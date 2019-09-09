@@ -1,4 +1,0 @@
-#Mon Sep 09 21:33:51 CST 2019
-base.0=/home/daniel/emarket/client/platforms/android/app/build/intermediates/transforms/dex/release/0
-path.0=classes.dex
-renamed.0=classes.dex
