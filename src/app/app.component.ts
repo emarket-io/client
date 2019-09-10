@@ -21,7 +21,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       //this.statusBar.styleDefault();
-      this.statusBar.backgroundColorByName("white")
+      this.statusBar.backgroundColorByHexString("transparent")
       this.splashScreen.hide();
     });
   }
