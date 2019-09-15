@@ -6,10 +6,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-virtual-scroll [items]="items" style="width: 100px">
+<ion-content style="width: 160px">
+  <ion-virtual-scroll [items]="items">
     <div *virtualItem="let item; let itemBounds = bounds;">
-      menu
+      {{item.name}}
     </div>
   </ion-virtual-scroll>
 </ion-content>
