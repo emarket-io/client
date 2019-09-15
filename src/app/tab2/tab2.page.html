@@ -6,10 +6,34 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="width: 160px">
-  <ion-virtual-scroll [items]="items">
-    <div *virtualItem="let item; let itemBounds = bounds;">
-      {{item.name}}
-    </div>
-  </ion-virtual-scroll>
+<ion-content>
+  <ion-slides [options]="slideOpts" style="width: 60px;margin-left: 0">
+    <ion-slide>
+      menu1
+    </ion-slide>
+    <ion-slide>
+      menu2
+    </ion-slide>
+    <ion-slide>
+      menu3
+    </ion-slide>
+    <ion-slide>
+      menu4
+    </ion-slide>
+    <ion-slide>
+      menu5
+    </ion-slide>
+    <ion-slide>
+      menu6
+    </ion-slide>
+    <ion-slide>
+      menu7
+    </ion-slide>
+    <ion-slide>
+      <h1>menu8</h1>
+    </ion-slide>
+    <ion-slide>
+      menu9
+    </ion-slide>
+  </ion-slides>
 </ion-content>
