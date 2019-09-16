@@ -12,7 +12,7 @@
 <ion-content>
   <ion-slides [options]="slideOpts" style="width: 80px;margin-left: 0">
     <ion-slide (click)="itemClick(item)" *ngFor="let item of items">
-      <ion-label [class.selected]="currentItem === item">{{item}}</ion-label>
+      <ion-label [class.selected]="currentItem === item" style="font-size: medium">{{item}}</ion-label>
     </ion-slide>
   </ion-slides>
 </ion-content>
