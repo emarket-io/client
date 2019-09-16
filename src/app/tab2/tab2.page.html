@@ -1,39 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab Two 2
-    </ion-title>
+    <ion-buttons>
+      <ion-button>
+        <ion-icon name="search"></ion-icon>
+        <ion-input placeholder="9块9包邮"></ion-input>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-slides [options]="slideOpts" style="width: 60px;margin-left: 0">
-    <ion-slide>
-      menu1
-    </ion-slide>
-    <ion-slide>
-      menu2
-    </ion-slide>
-    <ion-slide>
-      menu3
-    </ion-slide>
-    <ion-slide>
-      menu4
-    </ion-slide>
-    <ion-slide>
-      menu5
-    </ion-slide>
-    <ion-slide>
-      menu6
-    </ion-slide>
-    <ion-slide>
-      menu7
-    </ion-slide>
-    <ion-slide>
-      <h1>menu8</h1>
-    </ion-slide>
-    <ion-slide>
-      menu9
+  <ion-slides [options]="slideOpts" style="width: 80px;margin-left: 0">
+    <ion-slide (click)="itemClick(item)" *ngFor="let item of items">
+      <ion-label [class.selected]="currentItem === item">{{item}}</ion-label>
     </ion-slide>
   </ion-slides>
 </ion-content>
