@@ -10,9 +10,35 @@
 </ion-header>
 
 <ion-content>
-  <ion-slides [options]="slideOpts" style="width: 90px;margin-left: 0;background-color:rgba(248, 246, 246)">
-    <ion-slide (click)="itemClick(item)" [class.selected]="currentItem === item" *ngFor="let item of items">
-      <ion-label style="font-size: medium">{{item}}</ion-label>
-    </ion-slide>
-  </ion-slides>
+  <div style="display: inline-block;width: 30%">
+    <ion-slides [options]="slideOpts" style="background-color:#f2f2f2">
+      <ion-slide (click)="itemClick(item)" [class.selected]="currentItem === item" *ngFor="let item of items">
+        <ion-label style="font-size: medium">{{item}}</ion-label>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div style="display:inline-block;width: 70%;vertical-align:top;">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>热门水果</ion-card-subtitle>
+        <!-- <ion-card-title>热门水果</ion-card-title> -->
+      </ion-card-header>
+
+      <ion-card-content>
+        Keep close to Nature's heart... and break clear away, once in awhile,
+        and climb a mountain or spend a week in the woods. Wash your spirit clean.
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>热门蔬菜</ion-card-subtitle>
+          <!-- <ion-card-title>热门水果</ion-card-title> -->
+        </ion-card-header>
+  
+        <ion-card-content>
+          Keep close to Nature's heart... and break clear away, once in awhile,
+          and climb a mountain or spend a week in the woods. Wash your spirit clean.
+        </ion-card-content>
+      </ion-card>
+  </div>
 </ion-content>
