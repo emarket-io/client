@@ -11,7 +11,7 @@ export class Tab2Page {
     speed: 400,
     direction: "vertical",
     slidesPerView: 10,
-    height: 550,
+    height: 500,
   };
 
   items = [];
