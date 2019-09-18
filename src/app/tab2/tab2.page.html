@@ -20,27 +20,28 @@
   <div style="display:inline-block;width: 75%;vertical-align:top;">
     <ion-card>
       <ion-card-header>
-        <ion-card-subtitle>热门水果</ion-card-subtitle>
+        <ion-card-subtitle>当季热门</ion-card-subtitle>
         <!-- <ion-card-title>热门水果</ion-card-title> -->
       </ion-card-header>
 
       <ion-card-content>
-        <div *ngFor="let image of currentItem?.images" style="display:inline-block;width: 25%;text-align: center">
-          <img src="assets/{{image.src}}" />
-          {{image.name}}
+        <div *ngFor="let hot of currentItem?.hots" style="display:inline-block;width: 25%;text-align: center">
+          <img src="assets/{{hot.src}}" />
+          {{hot.name}}
         </div>
       </ion-card-content>
     </ion-card>
-    <!-- <ion-card>
+    <ion-card *ngIf="currentItem.names">
       <ion-card-header>
-        <ion-card-subtitle>热门蔬菜</ion-card-subtitle>
-        <ion-card-title>热门水果</ion-card-title>
+        <ion-card-subtitle>更多</ion-card-subtitle>
+        <!-- <ion-card-title>热门水果</ion-card-title> -->
       </ion-card-header>
 
       <ion-card-content>
-        Keep close to Nature's heart... and break clear away, once in awhile,
-        and climb a mountain or spend a week in the woods. Wash your spirit clean.
+        <div *ngFor="let name of currentItem?.names" style="display:inline-block;width: 25%;text-align: center">
+          {{name}}
+        </div>
       </ion-card-content>
-    </ion-card> -->
+    </ion-card>
   </div>
 </ion-content>
