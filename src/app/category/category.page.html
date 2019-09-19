@@ -19,11 +19,14 @@
   </div>
   <div style="display:inline-block;width: 78%;vertical-align:top;">
     <ion-card>
-      <ion-card-header>
+      <!-- <ion-card-header>
         <ion-card-subtitle>当季热门</ion-card-subtitle>
-        <!-- <ion-card-title>热门水果</ion-card-title> -->
-      </ion-card-header>
-
+        <ion-card-title>热门水果</ion-card-title>
+      </ion-card-header> -->
+      <ion-item>
+        <ion-label style="font-size: small">当季热门</ion-label>
+        <ion-icon name="menu" slot="end"></ion-icon>
+      </ion-item>
       <ion-card-content>
         <div *ngFor="let hot of currentItem?.hots" style="display:inline-block;width: 25%;text-align: center">
           <img src="assets/{{hot.src}}" />
@@ -32,14 +35,12 @@
       </ion-card-content>
     </ion-card>
     <ion-card *ngIf="currentItem.names">
-      <ion-card-header>
+      <!-- <ion-card-header>
         <ion-card-subtitle>更多</ion-card-subtitle>
-        <!-- <ion-card-title>热门水果</ion-card-title> -->
-      </ion-card-header>
-
+      </ion-card-header> -->
       <ion-card-content>
         <div *ngFor="let name of currentItem?.names" style="display:inline-block;width: 25%;text-align: center">
-          <div style="margin:10px;">{{name}}</div>
+          <div (click)="gotoView(name)" style="margin:10px;">{{name}}</div>
         </div>
       </ion-card-content>
     </ion-card>

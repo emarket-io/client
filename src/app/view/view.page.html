@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button (click)="back()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <!-- <ion-icon name="search"></ion-icon> -->
+        <ion-input placeholder="{{key}}"></ion-input>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="keypad"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-slides [options]="slideOpts">
+    <ion-slide style="font-size: small">
+      综合
+    </ion-slide>
+    <ion-slide style="font-size: small">
+      产地
+    </ion-slide>
+    <ion-slide style="font-size: small">
+      品类
+    </ion-slide>
+    <ion-slide style="font-size: small">
+      筛选
+    </ion-slide>
+  </ion-slides>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-item>
+          <ion-icon name="pin" slot="start"></ion-icon>
+          <ion-label>ion-item in a card, icon left, button right</ion-label>
+          <ion-button fill="outline" slot="end">View</ion-button>
+        </ion-item>
+      
+        <ion-card-content>
+          This is content, without any paragraph or header tags,
+          within an ion-card-content element.
+        </ion-card-content>
+      </ion-card>
+</ion-content>

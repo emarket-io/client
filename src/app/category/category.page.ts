@@ -1,11 +1,14 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { apiService } from '../provider/api.service'
+
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-category',
+  templateUrl: 'category.page.html',
+  styleUrls: ['category.page.scss']
 })
-export class Tab2Page {
+export class CategoryPage {
   slideOpts = {
     initialSlide: 0,
     speed: 400,
@@ -18,7 +21,7 @@ export class Tab2Page {
   //["热门分类", "水果", "蔬菜", "禽畜蛋肉", "茶叶", "水产", "中药材", "坚果干果", "农副/副食", "粮油作物", "食用菌", "特种种植", "绿化苗木"];
   currentItem: any;
 
-  constructor() {
+  constructor(private router: Router) {
     let cat0 = {
       "title": "热门分类", "hots": [
         { "name": "苹果", "src": "fruit/apple.png" },
@@ -138,14 +141,9 @@ export class Tab2Page {
   itemClick(item) {
     this.currentItem = item;
   }
-}
 
-export class Category {
-  title: string;
-  images: any[]
-}
-
-export class image {
-  name: string;
-  src: string;
+  gotoView(key) {
+    apiService.key = key;
+    this.router.navigateByUrl('/view');
+  }
 }
