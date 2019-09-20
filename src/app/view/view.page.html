@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header> -->
   <ion-toolbar>
     <ion-buttons>
       <ion-button (click)="back()">
@@ -11,11 +11,11 @@
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button>
-        <ion-icon name="keypad"></ion-icon>
+        <ion-icon name="more"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-slides [options]="slideOpts">
+  <ion-slides [options]="slideOpts" style="width: 100%">
     <ion-slide style="font-size: small">
       综合
     </ion-slide>
@@ -29,11 +29,31 @@
       筛选
     </ion-slide>
   </ion-slides>
-</ion-header>
+<!-- </ion-header> -->
 
 <ion-content>
   <ion-card>
     <img style="display:inline-block;width: 30%;" src="assets/fruit/apple.png" />
+    <ion-grid style="display:inline-block;width: 70%;">
+      <ion-row>
+        <ion-col>
+          山东烟台红富士苹果
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-badge color="success">苹果</ion-badge>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          $66.66
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card>
+    <img style="display:inline-block;width: 30%;" src="assets/fruit/pea.png" />
     <ion-grid style="display:inline-block;width: 70%;">
       <ion-row>
         <ion-col>
