@@ -19,4 +19,8 @@ export class ViewPage {
   back() {
     this.router.navigateByUrl('/tabs/category');
   }
+
+  gotoDetail(key) {
+    this.router.navigateByUrl('/detail');
+  }
 }
