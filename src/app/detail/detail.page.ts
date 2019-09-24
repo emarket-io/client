@@ -9,6 +9,9 @@ export class DetailPage implements OnInit {
 
   slideOpts = {
     slidesPerView: 1,
+    autoplay: {
+      delay: 2000,
+    },
   };
 
   constructor() { }
