@@ -14,29 +14,23 @@ export class HomePage {
 
   constructor(private geolocation: Geolocation) { }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     this.getLocation();
   }
 
   getLocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
       console.log(resp.coords.latitude + ', ' + resp.coords.longitude);
-
       AMap.service('AMap.Geocoder', () => {
         const geocoder = new AMap.Geocoder({
           // city: "010"
         });
-        console.log(geocoder, 'fuwu');
         const positionInfo = [resp.coords.longitude + '', resp.coords.latitude + ''];
-        console.log(positionInfo);
         geocoder.getAddress(positionInfo, (status, result) => {
           console.log(status, result, '转换定位信息');
           if (status === 'complete' && result.info === 'OK') {
             // 获得了有效的地址信息:
-            //alert(result.regeocode.formattedAddress);
             this.address = result.regeocode.formattedAddress;
-            // console.log(result.addresscomponent.building);
-            // this.formattedAddress = result.regeocode.formattedAddress;
           } else {
             // 获取地址失败
             console.log('获取地址失败');
