@@ -1,18 +1,26 @@
 <!-- <ion-header> -->
-  <ion-toolbar>
-    <!-- <ion-title>detail</ion-title> -->
-    <ion-slides [options]="slideOpts" pager="true">
-      <ion-slide>
-        <img src="assets/fruit/pea.png" />
-      </ion-slide>
-      <ion-slide>
-        <img src="assets/fruit/apple.png" />
-      </ion-slide>
-      <ion-slide>
-        <img src="assets/fruit/banana.png" />
-      </ion-slide>
-    </ion-slides>
-  </ion-toolbar>
+<ion-toolbar>
+  <!-- <ion-title>detail</ion-title> -->
+  <ion-slides [options]="slideOpts" pager="true">
+    <ion-slide>
+      <img src="assets/fruit/pea.png" />
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/fruit/apple.png" />
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/fruit/banana.png" />
+    </ion-slide>
+  </ion-slides>
+  <ion-buttons style="position: fixed;top:0px;right:0px">
+    <ion-button>
+      <ion-icon name="heart-empty"></ion-icon>
+    </ion-button>
+    <ion-button>
+      <ion-icon name="share"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
 <!-- </ion-header> -->
 
 <ion-content>
@@ -37,15 +45,28 @@
         <ion-badge color="success">7天退换</ion-badge>
       </ion-col>
     </ion-row>
-    </ion-grid>
-    <hr style="height: 5px;background-color:gainsboro;margin-top: 0px;padding-top: 0px" />
+  </ion-grid>
+  <hr style="height: 5px;background-color:gainsboro;margin-top: 0px;padding-top: 0px" />
 
-    <ion-fab vertical="bottom" horizontal="center">
-        <ion-fab-button>
-          <ion-icon name="settings"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-list side="end">
-          <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
-        </ion-fab-list>
-      </ion-fab>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button>
+        <ion-icon name="wallet"></ion-icon>
+        店铺
+      </ion-button>
+      <ion-button>
+        <ion-icon name="chatbubbles"></ion-icon>
+        客服
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>单买
+      </ion-button>
+      <ion-button>拼买
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
