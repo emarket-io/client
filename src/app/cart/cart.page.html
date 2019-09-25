@@ -1,10 +1,24 @@
 <ion-header>
   <ion-toolbar class="ion-text-center">
     <ion-title>
-      购物车
+      我的订单
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-slides [options]="slideOpts">
+    <ion-slide style="font-size: small">
+      待付款
+    </ion-slide>
+    <ion-slide style="font-size: small">
+      待发货
+    </ion-slide>
+    <ion-slide style="font-size: small">
+      代收货
+    </ion-slide>
+    <ion-slide style="font-size: small">
+      待评价
+    </ion-slide>
+  </ion-slides>
 </ion-content>
