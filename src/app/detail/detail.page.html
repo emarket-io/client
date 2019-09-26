@@ -3,15 +3,20 @@
   <!-- <ion-title>detail</ion-title> -->
   <ion-slides [options]="slideOpts" pager="true">
     <ion-slide>
-      <img src="assets/fruit/pea.png" />
+      <img src="assets/fruit/apple.png" />
     </ion-slide>
     <ion-slide>
-      <img src="assets/fruit/apple.png" />
+      <img src="assets/fruit/pea.png" />
     </ion-slide>
     <ion-slide>
       <img src="assets/fruit/banana.png" />
     </ion-slide>
   </ion-slides>
+  <ion-buttons style="position: fixed;top:0px;left:0px">
+    <ion-button>
+      <ion-icon name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
   <ion-buttons style="position: fixed;top:0px;right:0px">
     <ion-button>
       <ion-icon name="heart-empty"></ion-icon>
@@ -63,10 +68,10 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button fill="outline">单买(¥88)
+      <ion-button>单买(¥88)
       </ion-button>
-      <ion-button fill="outline">拼买(¥66)
-        </ion-button>
+      <ion-button>拼买(¥66)
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
