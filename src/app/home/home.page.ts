@@ -12,12 +12,10 @@ export class HomePage {
 
   address = "北京昌平区"
 
-  constructor(private geolocation: Geolocation) {
-    this.getLocation();
-  }
+  constructor(private geolocation: Geolocation) { }
 
   ionViewWillEnter() {
-    //this.getLocation();
+    this.getLocation();
   }
 
   getLocation() {

@@ -13,7 +13,7 @@
     </ion-slide>
   </ion-slides>
   <ion-buttons style="position: fixed;top:0px;left:0px">
-    <ion-button>
+    <ion-button (click)="back()">
       <ion-icon name="arrow-round-back"></ion-icon>
     </ion-button>
   </ion-buttons>
@@ -51,8 +51,19 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <hr style="height: 5px;background-color:gainsboro;margin-top: 0px;padding-top: 0px" />
-
+  <hr style="height: 5px;background-color:gainsboro;margin-top: -5px;" />
+  <ion-list>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-avatar>
+      <ion-label>小麦铺</ion-label>
+      <ion-label style="font-size:x-small">1000粉丝</ion-label>
+    </ion-item>
+    <ion-item lines="none" style="font-size:small">
+      商品详情
+    </ion-item>
+  </ion-list>
 </ion-content>
 
 <ion-footer>

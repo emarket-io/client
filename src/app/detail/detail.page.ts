@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.page.html',
   styleUrls: ['./detail.page.scss'],
 })
-export class DetailPage implements OnInit {
+export class DetailPage {
 
   slideOpts = {
     slidesPerView: 1,
@@ -14,9 +15,10 @@ export class DetailPage implements OnInit {
     },
   };
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {
+  back() {
+    this.router.navigateByUrl('/view');
   }
 
 }
