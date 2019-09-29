@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class CartPage {
 
   slideOpts = {
-    slidesPerView: 4,
+    slidesPerView: 5,
   };
   constructor() {}
 
