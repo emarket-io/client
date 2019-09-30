@@ -1,1 +1,24 @@
+.orderImageDiv {
+    display:inline-block;
+    width: 25%;
+}
 
+.orderImage {
+    width: auto;
+    height: 50px;
+    margin:0 auto;
+}
+
+.orderContentDiv {
+    display:inline-block;
+    width: 75%;
+    vertical-align: top;
+}
+
+.orderPrice {
+    position:absolute;
+    right:20px;
+    bottom:30px;
+    font-size: large;
+    color:coral;
+}
