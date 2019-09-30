@@ -14,7 +14,7 @@ export class HomePage {
 
   constructor(private geolocation: Geolocation) { }
 
-  ionViewWillLoad() {
+  ionViewWillEnter() {
     this.getLocation();
   }
 
