@@ -11,8 +11,8 @@ export class MyPage implements OnInit {
   constructor(private statusBar: StatusBar) { }
 
   ngOnInit() {
-    this.statusBar.overlaysWebView(true);
-    this.statusBar.styleBlackTranslucent();
+    //this.statusBar.overlaysWebView(true);
+    //this.statusBar.styleBlackTranslucent();
   }
 
 }
