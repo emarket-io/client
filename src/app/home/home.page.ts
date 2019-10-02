@@ -10,8 +10,7 @@ declare let AMap;
 })
 export class HomePage {
 
-  address = "北京昌平区"
-
+  address = "湖北荆门市"
   constructor(private geolocation: Geolocation) { }
 
   ionViewWillEnter() {
@@ -20,22 +19,23 @@ export class HomePage {
 
   getLocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
-      console.log(resp.coords.latitude + ', ' + resp.coords.longitude);
       AMap.service('AMap.Geocoder', () => {
-        const geocoder = new AMap.Geocoder({
-          // city: "010"
-        });
-        const positionInfo = [resp.coords.longitude + '', resp.coords.latitude + ''];
-        geocoder.getAddress(positionInfo, (status, result) => {
-          console.log(status, result, '转换定位信息');
-          if (status === 'complete' && result.info === 'OK') {
-            // 获得了有效的地址信息:
-            this.address = result.regeocode.formattedAddress;
-          } else {
-            // 获取地址失败
-            console.log('获取地址失败');
-          }
-        });
+        AMap.convertFrom(resp.coords.longitude + "," + resp.coords.latitude, "gps",
+          (status, result) => {
+            if (status == "complete") {
+              const positionInfo = [result.locations[0].P + '', result.locations[0].O + ''];
+              const geocoder = new AMap.Geocoder({});
+              geocoder.getAddress(positionInfo, (status, result) => {
+                if (status === 'complete' && result.info === 'OK') {
+                  this.address = result.regeocode.formattedAddress;
+                } else {
+                  console.log('获取地址失败');
+                }
+              });
+            } else {
+              alert("坐标转换失败," + status + "/" + result);
+            }
+          });
       });
     }).catch((error) => {
       console.log('Error getting location', error);
