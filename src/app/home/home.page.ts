@@ -29,7 +29,7 @@ export class HomePage {
                 if (status === 'complete' && result.info === 'OK') {
                   this.address = result.regeocode.formattedAddress;
                 } else {
-                  console.log('获取地址失败');
+                  alert('获取地址失败:' + status);
                 }
               });
             } else {
@@ -38,7 +38,7 @@ export class HomePage {
           });
       });
     }).catch((error) => {
-      console.log('Error getting location', error);
+      alert('Error getting location:' + error);
     });
   }
 }
