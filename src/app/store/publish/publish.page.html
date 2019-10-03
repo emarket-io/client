@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <!-- <ion-buttons>
+      <ion-button (click)="back()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+    <ion-title>发布商品</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item lines="none">
+      <ion-label>标题</ion-label>
+      <ion-input placeholder="请输入商品标题"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>类别</ion-label>
+      <ion-select placeholder="商品类别">
+        <ion-select-option value="f">Female</ion-select-option>
+        <ion-select-option value="m">Male</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-card-content>
+      <img style="width: 80px;height: auto;" src="assets/fruit/apple.png" />
+      <ion-button>添加图片/视频</ion-button>
+    </ion-card-content>
+    <ion-item>
+      <ion-icon name="pin"></ion-icon>
+      <ion-label>货源地址</ion-label>
+      <ion-input placeholder="请选择货源地址"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>价格</ion-label>
+      <ion-input placeholder="请设置价格"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>物流</ion-label>
+      <ion-input placeholder="运费待商议"></ion-input>
+    </ion-item>
+    <ion-card-content>
+      <ion-label>详情</ion-label>
+      <ion-input placeholder="请填写内容"></ion-input>
+    </ion-card-content>
+    <ion-button expand="full">确认发布</ion-button>
+  </ion-card>
+</ion-content>

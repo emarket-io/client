@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -8,11 +9,14 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class MyPage implements OnInit {
 
-  constructor(private statusBar: StatusBar) { }
+  constructor(private statusBar: StatusBar,private router: Router) { }
 
   ngOnInit() {
     //this.statusBar.overlaysWebView(true);
     //this.statusBar.styleBlackTranslucent();
   }
 
+  gotoPublish(){
+    this.router.navigateByUrl('/publish');
+  }
 }
