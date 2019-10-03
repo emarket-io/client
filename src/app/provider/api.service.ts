@@ -8,6 +8,7 @@ export class ApiService {
   constructor() { }
 
   key = '';
+  currentAddress='湖北荆门市';
 }
 
 export const apiService = new ApiService();

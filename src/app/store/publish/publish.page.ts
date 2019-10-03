@@ -1,4 +1,5 @@
 import { Router } from '@angular/router';
+import { apiService } from '../../provider/api.service'
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./publish.page.scss'],
 })
 export class PublishPage {
-
+  
+  address = apiService.currentAddress;
   constructor(private router: Router) { }
 
   gotoPublish() {
