@@ -12,7 +12,7 @@ declare let AMap;
 export class HomePage {
 
   address = apiService.currentAddress;
-  
+
   constructor(private geolocation: Geolocation) { }
 
   ionViewWillEnter() {
@@ -30,6 +30,7 @@ export class HomePage {
               geocoder.getAddress(positionInfo, (status, result) => {
                 if (status === 'complete' && result.info === 'OK') {
                   apiService.currentAddress = result.regeocode.formattedAddress;
+                  this.address = apiService.currentAddress;
                 } else {
                   alert('获取地址失败:' + status);
                 }
