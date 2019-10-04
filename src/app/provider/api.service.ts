@@ -26,7 +26,7 @@ export class ApiService {
               geocoder.getAddress(positionInfo, (status, result) => {
                 if (status === 'complete' && result.info === 'OK') {
                   // apiService.currentAddress = result.regeocode.formattedAddress;
-                  // this.currentAddress = apiService.currentAddress;
+                  this.currentAddress = apiService.currentAddress;
                   return result.regeocode.formattedAddress;
                 } else {
                   alert('获取地址失败:' + status);

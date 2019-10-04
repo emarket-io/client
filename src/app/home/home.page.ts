@@ -11,7 +11,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 })
 export class HomePage {
 
-  address = apiService.getCurrentAddress();
+  address = apiService.currentAddress;
 
   constructor(private geolocation: Geolocation) { }
 

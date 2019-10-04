@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublishPage {
   
-  address = apiService.getCurrentAddress();
+  address = apiService.currentAddress;
   constructor(private router: Router) { }
 
   gotoPublish() {
