@@ -1,6 +1,8 @@
+import { ModalController } from '@ionic/angular';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { apiService } from '../provider/api.service'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { AddressComponent } from '../modal/address/address.component';
 
 declare let AMap;
 
@@ -14,7 +16,9 @@ export class HomePage {
   map: any; // 地图对象
 
   address = apiService.currentAddress;
-  constructor(private geolocation: Geolocation) { }
+  constructor(
+    private geolocation: Geolocation,
+    private modalController: ModalController) { }
 
   ionViewWillEnter() {
     this.map = new AMap.Map(this.map_container.nativeElement, {
@@ -40,31 +44,12 @@ export class HomePage {
     //this.getLocation();
   }
 
-  // getLocation() {
-  //   this.geolocation.getCurrentPosition().then((resp) => {
-  //     AMap.service('AMap.Geocoder', () => {
-  //       AMap.convertFrom(resp.coords.longitude + "," + resp.coords.latitude, "gps",
-  //         (status, result) => {
-  //           if (status == "complete") {
-  //             const positionInfo = [result.locations[0].P + '', result.locations[0].O + ''];
-  //             const geocoder = new AMap.Geocoder({});
-  //             geocoder.getAddress(positionInfo, (status, result) => {
-  //               if (status === 'complete' && result.info === 'OK') {
-  //                 apiService.currentAddress = result.regeocode.formattedAddress;
-  //                 this.address = apiService.currentAddress;
-  //               } else {
-  //                 alert('获取地址失败:' + status);
-  //               }
-  //             });
-  //           } else {
-  //             alert("坐标转换失败," + status + "/" + result);
-  //           }
-  //         });
-  //     });
-  //   }).catch((error) => {
-  //     alert('Error getting location:' + error);
-  //   });
-  // }
+  async openAddress() {
+    const modal = await this.modalController.create({
+      component: AddressComponent
+    });
+    return await modal.present();
+  }
 
   getLocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
