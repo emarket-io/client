@@ -71,7 +71,9 @@ export class HomePage {
                   //   content: result.regeocode.formattedAddress
                   // });
                   apiService.currentAddress = result.regeocode.formattedAddress;
-                  this.address = apiService.currentAddress;
+                  this.address = result.regeocode.addressComponent.province
+                    + result.regeocode.addressComponent.city
+                    + result.regeocode.addressComponent.district;
                 } else {
                   console.log('获取地址失败');
                 }
