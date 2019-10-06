@@ -1,5 +1,6 @@
 import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
+import { apiService } from '../../provider/api.service'
 
 @Component({
   selector: 'app-address',
@@ -8,11 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddressComponent implements OnInit {
 
+  address = apiService.currentAddress;
+  
   constructor(private modalController: ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  closeAddress(){
+  closeAddress() {
     this.modalController.dismiss({
       'dismissed': true
     });
