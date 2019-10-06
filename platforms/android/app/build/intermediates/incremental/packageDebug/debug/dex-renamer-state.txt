@@ -1,4 +1,4 @@
-#Sun Oct 06 14:16:43 CST 2019
+#Sun Oct 06 19:13:53 CST 2019
 base.0=/home/daniel/emart/client/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex
