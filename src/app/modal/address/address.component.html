@@ -7,24 +7,25 @@
 </ion-header>
 
 <ion-content>
-  <ion-item lines="none">
-    <ion-icon slot="start" name="pin"></ion-icon>
+  <ion-item>
+    <!-- <ion-icon slot="start" name="pin"></ion-icon> -->
     <ion-select placeholder="北京市">
       <ion-select-option value="f">Female</ion-select-option>
       <ion-select-option value="m">Male</ion-select-option>
     </ion-select>
     <ion-input placeholder="请输入收货地址"></ion-input>
   </ion-item>
-  <ion-item>
+  <ion-item lines="none">
     <!-- <ion-icon slot="start" name="pin"></ion-icon> -->
     <ion-label>
       <h3>定位地址</h3>
     </ion-label>
-    <div>
-      <ion-label>
-        {{address}}
-      </ion-label>
-    </div>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="pin"></ion-icon>
+    <ion-label>
+      {{address}}
+    </ion-label>
   </ion-item>
   <ion-item>
     <!-- <ion-icon slot="start" name="pin"></ion-icon> -->
@@ -32,7 +33,6 @@
       <h3>我的收货地址</h3>
     </ion-label>
   </ion-item>
-
 </ion-content>
 
 <ion-button (click)="closeAddress()">

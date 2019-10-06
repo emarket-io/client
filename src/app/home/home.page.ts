@@ -25,7 +25,7 @@ export class HomePage {
       //resizeEnable: true,
       //rotateEnable: true,
       //pitchEnable: true,
-      zoom: 15,
+      //zoom: 10,
       //pitch: 80,
       //rotation: -15,
       viewMode: '2D',//开启3D视图,默认为关闭
