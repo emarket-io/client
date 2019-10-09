@@ -23,8 +23,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       apiService.injector = this.injector;
       //this.statusBar.overlaysWebView(true);
-      //this.statusBar.backgroundColorByHexString("#10dc60")
-      this.statusBar.styleDefault();
+      this.statusBar.backgroundColorByHexString("#FF000000")
       this.splashScreen.hide();
     });
   }
