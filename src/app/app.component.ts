@@ -21,11 +21,10 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      apiService.injector = this.injector;
-      this.statusBar.styleDefault();
+      apiService.injector = this.injector;      
       this.statusBar.overlaysWebView(true);
+      this.statusBar.styleDefault();
       // this.statusBar.backgroundColorByHexString("#10dc60");
-      // this.statusBar.styleLightContent();
       this.splashScreen.hide();
     });
   }
