@@ -1,4 +1,5 @@
 import { ModalController } from '@ionic/angular';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { apiService } from '../provider/api.service'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
@@ -17,8 +18,14 @@ export class HomePage {
 
   address = apiService.currentAddress;
   constructor(
+    private statusBar: StatusBar,
     private geolocation: Geolocation,
     private modalController: ModalController) { }
+
+  changeStatusBar() {
+    this.statusBar.overlaysWebView(true);
+    this.statusBar.styleDefault();
+  }
 
   ionViewWillEnter() {
     // this.map = new AMap.Map(this.map_container.nativeElement, {
