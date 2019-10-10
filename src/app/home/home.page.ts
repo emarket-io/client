@@ -23,7 +23,7 @@ export class HomePage {
     private modalController: ModalController) { }
 
   changeStatusBar() {
-    this.statusBar.overlaysWebView(false);
+    //this.statusBar.overlaysWebView(false);
     this.statusBar.styleDefault();
   }
 

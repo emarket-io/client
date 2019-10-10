@@ -22,6 +22,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       apiService.injector = this.injector;
+      this.statusBar.styleDefault();
       this.statusBar.overlaysWebView(true);
       // this.statusBar.backgroundColorByHexString("#10dc60");
       // this.statusBar.styleLightContent();
