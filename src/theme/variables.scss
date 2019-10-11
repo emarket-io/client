@@ -75,3 +75,14 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
+ion-header {
+  height: 80px;
+  background:linear-gradient(70deg,#10dc60, white);
+}
+
+ion-header ion-toolbar {
+  position: absolute;
+  bottom: 0px;
+  --background: linear-gradient(70deg,#10dc60, white);
+}
