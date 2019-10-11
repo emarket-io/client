@@ -15,8 +15,15 @@ declare let AMap;
 export class HomePage {
   // @ViewChild('map_container', null) map_container: ElementRef;
   // map: any; // 地图对象
-
   address = apiService.currentAddress;
+
+  slideOpts = {
+    slidesPerView: 1,
+    autoplay: {
+      delay: 2000,
+    },
+  };
+
   constructor(
     private statusBar: StatusBar,
     private geolocation: Geolocation,

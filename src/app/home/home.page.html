@@ -9,7 +9,7 @@
         <ion-input placeholder="搜一下"></ion-input>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="end">      
+    <ion-buttons slot="end">
       <ion-button (click)="changeStatusBar()">
         <ion-icon slot="icon-only" name="mail-unread"></ion-icon>
       </ion-button>
@@ -21,17 +21,26 @@
   <!-- <iframe width="420" scrolling="no" height="60" frameborder="0" allowtransparency="true"
     src="//i.tianqi.com/index.php?c=code&id=12&icon=1&num=1&site=12"></iframe> -->
   <!-- <div #map_container class="map_container"></div> -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>天气冷暖</ion-card-subtitle>
-      <!-- <ion-card-title>天气冷暖</ion-card-title> -->
-    </ion-card-header>
-
-    <ion-card-content>
-      <iframe width="420" scrolling="no" height="60" frameborder="0" allowtransparency="true"
-        src="//i.tianqi.com/index.php?c=code&id=12&icon=1&num=2&site=12"></iframe>
-    </ion-card-content>
-  </ion-card>
+  <ion-slides [options]="slideOpts" pager="true">
+    <ion-slide>
+      <ion-card>
+        <ion-card-subtitle>天气冷暖</ion-card-subtitle>
+        <ion-card-content>
+          <iframe width="420" scrolling="no" height="60" frameborder="0"
+            allowtransparency="true" src="//i.tianqi.com/index.php?c=code&id=12&icon=1&num=2&site=12"></iframe>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <img style="height: 120px;width: auto;" src="assets/fruit/pea.png" />
+    </ion-slide>
+    <!-- <ion-slide>
+      <img style="height: 120px;width: auto;" src="assets/fruit/apple.png" />
+    </ion-slide> -->
+    <ion-slide>
+      <img style="height: 120px;width: auto;" src="assets/fruit/banana.png" />
+    </ion-slide>
+  </ion-slides>
   <ion-card-content>
     <div class="icon-layout">
       <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
