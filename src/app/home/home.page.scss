@@ -13,3 +13,15 @@
   width:25%;
   text-align: center
 }
+
+ion-header {
+  height: 280px;
+  background:linear-gradient(70deg,#10dc60, white);
+}
+
+ion-header ion-toolbar {
+  position: absolute;
+  top: 40px;
+  //color: white;
+  --background: inherit;
+}

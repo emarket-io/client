@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header style="box-shadow: 0px;">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="openAddress()">
@@ -15,32 +15,31 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+  <iframe style="position: absolute;top: 200px;left: 15%;" width="420" scrolling="no" height="60" frameborder="0" allowtransparency="true"
+    src="//i.tianqi.com/index.php?c=code&id=12&icon=1&num=2&site=12"></iframe>
 </ion-header>
 
 <ion-content>
   <!-- <iframe width="420" scrolling="no" height="60" frameborder="0" allowtransparency="true"
     src="//i.tianqi.com/index.php?c=code&id=12&icon=1&num=1&site=12"></iframe> -->
   <!-- <div #map_container class="map_container"></div> -->
-  <ion-slides [options]="slideOpts" pager="true">
+  <!-- <ion-slides [options]="slideOpts">
     <ion-slide>
-      <ion-card style="box-shadow: none;">
-        <!-- <ion-card-subtitle>天气冷暖</ion-card-subtitle> -->
+      <ion-card style="width:100%">
+        <ion-card-subtitle style="float: left;">天气</ion-card-subtitle>
         <ion-card-content>
-          <iframe width="300" scrolling="no" height="60" frameborder="0"
-            allowtransparency="true" src="//i.tianqi.com/index.php?c=code&id=12&icon=1&num=2&site=12"></iframe>
+          <iframe width="299" scrolling="no" height="60" frameborder="0" allowtransparency="true"
+            src="//i.tianqi.com/index.php?c=code&id=12&icon=1&num=2&site=12"></iframe>
         </ion-card-content>
       </ion-card>
     </ion-slide>
     <ion-slide>
       <img style="height: 120px;width: auto;" src="assets/fruit/pea.png" />
     </ion-slide>
-    <!-- <ion-slide>
-      <img style="height: 120px;width: auto;" src="assets/fruit/apple.png" />
-    </ion-slide> -->
     <ion-slide>
       <img style="height: 120px;width: auto;" src="assets/fruit/banana.png" />
     </ion-slide>
-  </ion-slides>
+  </ion-slides> -->
   <ion-card-content>
     <div class="icon-layout">
       <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
@@ -75,7 +74,7 @@
       品牌館
     </div>
   </ion-card-content>
-  <div style="bottom: 0px;position: absolute;height: 45%;width: 100%;text-align: center">
+  <!-- <div style="bottom: 0px;position: absolute;height: 45%;width: 100%;text-align: center">
     <ion-card
       style="display: inline-block;width: 26%;height: 90%;background:linear-gradient(50deg,white, rgb(247, 247, 230))">
       <ion-card-header>
@@ -94,5 +93,5 @@
         <ion-card-subtitle>专栏</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
-  </div>
+  </div> -->
 </ion-content>
