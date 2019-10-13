@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { apiService } from '../provider/api.service'
+import { apiService } from '../../providers/api.service'
 
 @Component({
   selector: 'app-view',

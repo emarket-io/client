@@ -13,7 +13,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../home/home.module').then(m => m.HomePageModule)
+              import('../buyer/home/home.module').then(m => m.HomePageModule)
           }
         ]
       },
@@ -23,7 +23,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../category/category.module').then(m => m.CategoryPageModule)
+              import('../buyer/category/category.module').then(m => m.CategoryPageModule)
           }
         ]
       },
@@ -33,7 +33,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../cart/cart.module').then(m => m.CartPageModule)
+              import('../buyer/cart/cart.module').then(m => m.CartPageModule)
           }
         ]
       },
@@ -43,7 +43,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../my/my.module').then(m => m.MyPageModule)
+              import('../buyer/my/my.module').then(m => m.MyPageModule)
           }
         ]
       },

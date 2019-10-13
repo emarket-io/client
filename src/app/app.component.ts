@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { apiService } from './provider/api.service'
+import { apiService } from './providers/api.service'
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';

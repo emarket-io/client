@@ -6,10 +6,10 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
-  { path: 'view', loadChildren: './view/view.module#ViewPageModule' },
-  { path: 'detail', loadChildren: './detail/detail.module#DetailPageModule' },
-  { path: 'publish', loadChildren: './store/publish/publish.module#PublishPageModule' },
-  { path: 'address', loadChildren: './modal/address/address.module#AddressPageModule' }
+  { path: 'view', loadChildren: './buyer/view/view.module#ViewPageModule' },
+  { path: 'detail', loadChildren: './buyer/detail/detail.module#DetailPageModule' },
+  { path: 'publish', loadChildren: './seller/publish/publish.module#PublishPageModule' },
+  { path: 'address', loadChildren: './buyer/address/address.module#AddressPageModule' }
 ];
 @NgModule({
   imports: [

@@ -1,10 +1,10 @@
 import { ModalController } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { apiService } from '../provider/api.service'
+import { apiService } from '../../providers/api.service'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Router } from '@angular/router';
-import { AddressPageModule } from '../modal/address/address.module';
+import { AddressPageModule } from '../address/address.module';
 
 declare let AMap;
 

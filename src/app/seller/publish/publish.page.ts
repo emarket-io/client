@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { apiService } from '../../provider/api.service'
+import { apiService } from '../../providers/api.service'
 import { Component, OnInit } from '@angular/core';
 
 @Component({
