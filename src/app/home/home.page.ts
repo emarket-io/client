@@ -3,7 +3,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { apiService } from '../provider/api.service'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { AddressComponent } from '../modal/address/address.component';
+import { Router } from '@angular/router';
+import { AddressPageModule } from '../modal/address/address.module';
 
 declare let AMap;
 
@@ -25,6 +26,7 @@ export class HomePage {
   };
 
   constructor(
+    private router: Router,
     private statusBar: StatusBar,
     private geolocation: Geolocation,
     private modalController: ModalController) { }
@@ -58,10 +60,11 @@ export class HomePage {
   }
 
   async openAddress() {
-    const modal = await this.modalController.create({
-      component: AddressComponent
-    });
-    return await modal.present();
+    // const modal = await this.modalController.create({
+    //   component: AddressPageModule,
+    // });
+    // return await modal.present();
+    this.router.navigateByUrl('/address');
   }
 
   getLocation() {
