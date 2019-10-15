@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { Camera } from '@ionic-native/camera/ngx';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -16,6 +17,7 @@ import { AppComponent } from './app.component';
     StatusBar,
     SplashScreen,
     Geolocation,
+    Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
