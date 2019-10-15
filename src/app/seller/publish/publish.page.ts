@@ -12,6 +12,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 export class PublishPage {
 
   address = apiService.currentAddress;
+  formData = new FormData();
+
   constructor(
     private file: File,
     private router: Router,
@@ -26,7 +28,7 @@ export class PublishPage {
       quality: 100,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.ALLMEDIA,
     };
     this.camera.getPicture(options).then(async (imageData) => {
       // imageData is either a base64 encoded string or a file URI
@@ -38,7 +40,6 @@ export class PublishPage {
       try {
         var dirUrl = await this.file.resolveDirectoryUrl(dirpath);
         var retrievedFile = await this.file.getFile(dirUrl, filename, {});
-
       } catch (err) {
         alert(err)
       }
@@ -49,10 +50,11 @@ export class PublishPage {
         //if (data.type !== ALLOWED_MIME_TYPE) return this.presentAlert("Error", "Incorrect file type.");
 
         //this.selectedVideo = retrievedFile.nativeURL;
-        alert(data.name + data.localURL + data.type);
+        this.formData.append('uploadfile', data, data.name);
+        alert(data.name + '|' + data.localURL + '|' + data.type + '|' + data.size);
       });
 
-      alert(base64Image);
+      //alert(base64Image);
     }, (err) => {
       // Handle error
     });
