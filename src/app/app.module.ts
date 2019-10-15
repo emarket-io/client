@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { File } from '@ionic-native/file/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -18,6 +19,7 @@ import { AppComponent } from './app.component';
     SplashScreen,
     Geolocation,
     Camera,
+    File,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
