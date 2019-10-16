@@ -26,6 +26,7 @@ export class PublishPage {
   addMedia(type: number) {
     const options: CameraOptions = {
       quality: 100,
+      sourceType: this.camera.PictureSourceType.CAMERA,
       destinationType: this.camera.DestinationType.FILE_URI,
       //encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.VIDEO,
