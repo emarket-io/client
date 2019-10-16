@@ -23,12 +23,12 @@ export class PublishPage {
     this.router.navigateByUrl('/store/publish');
   }
 
-  addMedia() {
+  addMedia(type: number) {
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.ALLMEDIA,
+      //encodingType: this.camera.EncodingType.JPEG,
+      mediaType: type,//this.camera.MediaType.ALLMEDIA,
     };
     this.camera.getPicture(options).then(async (imageData) => {
       // imageData is either a base64 encoded string or a file URI
