@@ -28,7 +28,7 @@ export class PublishPage {
       quality: 100,
       destinationType: this.camera.DestinationType.FILE_URI,
       //encodingType: this.camera.EncodingType.JPEG,
-      mediaType: type,//this.camera.MediaType.ALLMEDIA,
+      mediaType: this.camera.MediaType.VIDEO,
     };
     this.camera.getPicture(options).then(async (imageData) => {
       // imageData is either a base64 encoded string or a file URI
