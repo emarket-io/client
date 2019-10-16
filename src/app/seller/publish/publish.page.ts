@@ -1,7 +1,10 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { File } from '@ionic-native/file/ngx';
+import { Commodity } from '../../../sdk/commodity_pb';
+import { HttpClient } from '@angular/common/http';
 import { apiService } from '../../providers/api.service'
-import { File, FileEntry, IFile } from '@ionic-native/file/ngx';
+import { environment } from '../../../environments/environment';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
@@ -10,26 +13,22 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
   styleUrls: ['./publish.page.scss'],
 })
 export class PublishPage {
-
+  commodity=new Commodity();
   address = apiService.currentAddress;
   formData = new FormData();
 
   constructor(
     private file: File,
     private router: Router,
-    private camera: Camera) { }
+    private camera: Camera,
+    private httpClient: HttpClient) { }
 
-  gotoPublish() {
-    this.router.navigateByUrl('/store/publish');
-  }
-
-  addMedia(type: number) {
+  addMedia() {
     const options: CameraOptions = {
       quality: 100,
-      sourceType: this.camera.PictureSourceType.CAMERA,
       destinationType: this.camera.DestinationType.FILE_URI,
-      //encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.VIDEO,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.ALLMEDIA,
     };
     this.camera.getPicture(options).then(async (imageData) => {
       // imageData is either a base64 encoded string or a file URI
@@ -59,5 +58,25 @@ export class PublishPage {
     }, (err) => {
       // Handle error
     });
+  }
+
+  submit() {
+    // upload firstly
+    this.httpClient.post(environment.apiUrl + '/upload', this.formData, { params: { title: this.commodity.title } }).subscribe(
+      data => {
+        console.log(data);
+      }, error => {
+        console.log(error);
+      }
+    );
+
+    apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
+      if (err) {
+        alert(JSON.stringify(err));
+      } else {
+        console.log(response);
+      }
+    });
+    // this.ngOnInit();
   }
 }

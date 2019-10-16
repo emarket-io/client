@@ -13,7 +13,7 @@
   <ion-card>
     <ion-item lines="none">
       <ion-label>标题</ion-label>
-      <ion-input placeholder="请输入商品标题"></ion-input>
+      <ion-input placeholder="请输入商品标题" [(ngModel)]="commodity.title"></ion-input>
     </ion-item>
     <ion-item lines="none">
       <ion-label>类别</ion-label>
@@ -26,19 +26,15 @@
       <img style="width: 80px;height: auto;" src="assets/fruit/apple.png" />
     </ion-card-content>
     <ion-item lines="none">
-      <ion-button color="success" (click)="addMedia(1)">
+      <ion-button color="success" (click)="addMedia()">
         <ion-icon name="add"></ion-icon>
         图片|视频
-      </ion-button>
-      <ion-button color="success" (click)="addMedia(2)">
-        <ion-icon name="add"></ion-icon>
-        视频
       </ion-button>
     </ion-item>
     <ion-item>
       <ion-label>货源地址</ion-label>
       <ion-icon name="pin"></ion-icon>
-      <ion-input placeholder="{{address}}"></ion-input>
+      <ion-input placeholder="{{address}}" [(ngModel)]="commodity.address"></ion-input>
     </ion-item>
     <ion-item lines="none">
       <ion-label>单买价</ion-label>
@@ -65,4 +61,4 @@
     </ion-card-content> -->
   </ion-card>
 </ion-content>
-<ion-button color="success">确认发布</ion-button>
+<ion-button color="success" (click)="submit()">确认发布</ion-button>
