@@ -1,5 +1,5 @@
-import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { Location } from "@angular/common";
 import { File } from '@ionic-native/file/ngx';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { HttpClient } from '@angular/common/http';
@@ -13,14 +13,14 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
   styleUrls: ['./publish.page.scss'],
 })
 export class PublishPage {
-  commodity=new Commodity();
+  commodity = new Commodity();
   address = apiService.currentAddress;
   formData = new FormData();
 
   constructor(
     private file: File,
-    private router: Router,
     private camera: Camera,
+    private location: Location,
     private httpClient: HttpClient) { }
 
   addMedia() {
@@ -47,14 +47,13 @@ export class PublishPage {
       retrievedFile.file(data => {
         //this.dismissLoader();
         // if (data.size > MAX_FILE_SIZE) return this.presentAlert("Error", "You cannot upload more than 5mb.");
-        //if (data.type !== ALLOWED_MIME_TYPE) return this.presentAlert("Error", "Incorrect file type.");
-
+        
         const reader = new FileReader();
         reader.onloadend = () => {
-            const imgBlob = new Blob([reader.result], {
-                type: data.type
-            });
-            this.formData.append('uploadfile', imgBlob, data.name);
+          const imgBlob = new Blob([reader.result], {
+            type: data.type
+          });
+          this.formData.append('uploadfile', imgBlob, data.name);
         };
         reader.readAsArrayBuffer(data);
         //alert(data.name + '|' + data.localURL + '|' + data.type + '|' + data.size);
@@ -84,5 +83,6 @@ export class PublishPage {
       }
     });
     // this.ngOnInit();
+    this.location.back();
   }
 }
