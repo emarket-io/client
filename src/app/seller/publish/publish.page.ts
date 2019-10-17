@@ -49,26 +49,20 @@ export class PublishPage {
         // if (data.size > MAX_FILE_SIZE) return this.presentAlert("Error", "You cannot upload more than 5mb.");
         //if (data.type !== ALLOWED_MIME_TYPE) return this.presentAlert("Error", "Incorrect file type.");
 
-        //this.selectedVideo = retrievedFile.nativeURL;
-
         const reader = new FileReader();
         reader.onloadend = () => {
-            //const formData = new FormData();
             const imgBlob = new Blob([reader.result], {
                 type: data.type
             });
-            this.formData.append('file', imgBlob, data.name);
-            //this.uploadImageData(formData);
+            this.formData.append('uploadfile', imgBlob, data.name);
         };
         reader.readAsArrayBuffer(data);
-
-        //this.formData.append('uploadfile', data, data.name);
         //alert(data.name + '|' + data.localURL + '|' + data.type + '|' + data.size);
       });
-
       //alert(base64Image);
     }, (err) => {
       // Handle error
+      alert(err);
     });
   }
 
