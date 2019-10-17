@@ -26,7 +26,6 @@ export class PublishPage {
   addMedia() {
     const options: CameraOptions = {
       quality: 100,
-      sourceType:this.camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.ALLMEDIA,
@@ -51,7 +50,19 @@ export class PublishPage {
         //if (data.type !== ALLOWED_MIME_TYPE) return this.presentAlert("Error", "Incorrect file type.");
 
         //this.selectedVideo = retrievedFile.nativeURL;
-        this.formData.append('uploadfile', data, data.name);
+
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            //const formData = new FormData();
+            const imgBlob = new Blob([reader.result], {
+                type: data.type
+            });
+            this.formData.append('file', imgBlob, data.name);
+            //this.uploadImageData(formData);
+        };
+        reader.readAsArrayBuffer(data);
+
+        //this.formData.append('uploadfile', data, data.name);
         //alert(data.name + '|' + data.localURL + '|' + data.type + '|' + data.size);
       });
 
