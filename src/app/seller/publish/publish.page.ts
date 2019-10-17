@@ -51,7 +51,7 @@ export class PublishPage {
 
         //this.selectedVideo = retrievedFile.nativeURL;
         this.formData.append('uploadfile', data, data.name);
-        alert(data.name + '|' + data.localURL + '|' + data.type + '|' + data.size);
+        //alert(data.name + '|' + data.localURL + '|' + data.type + '|' + data.size);
       });
 
       //alert(base64Image);
