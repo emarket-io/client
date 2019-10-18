@@ -30,11 +30,12 @@
         <ion-icon name="add"></ion-icon>
         图片|视频
       </ion-button>
+      <img [src]="imageSrc" />
     </ion-item>
     <ion-item>
       <ion-label>货源地址</ion-label>
       <ion-icon name="pin"></ion-icon>
-      <ion-input placeholder="{{address}}" [(ngModel)]="commodity.address"></ion-input>
+      <ion-input [placeholder]="address" [(ngModel)]="commodity.address"></ion-input>
     </ion-item>
     <ion-item lines="none">
       <ion-label>单买价</ion-label>
