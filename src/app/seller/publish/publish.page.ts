@@ -17,7 +17,7 @@ export class PublishPage {
   commodity = new Commodity();
   address = apiService.currentAddress;
   formData = new FormData();
-  imageSrc: any;
+  images = [];
 
   constructor(
     private file: File,
@@ -36,10 +36,10 @@ export class PublishPage {
     this.camera.getPicture(options).then(async (imageUrl) => {
       // imageUrl is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
-      let base64Image = 'data:image/jpeg;base64,' + imageUrl;
+      // let base64Image = 'data:image/jpeg;base64,' + imageUrl;
       var filename = imageUrl.substr(imageUrl.lastIndexOf('/') + 1);
       var dirpath = imageUrl.substr(0, imageUrl.lastIndexOf('/') + 1);
-      
+
       try {
         var dirUrl = await this.file.resolveDirectoryUrl(dirpath);
         var retrievedFile = await this.file.getFile(dirUrl, filename, {});
@@ -59,7 +59,7 @@ export class PublishPage {
           this.formData.append('uploadfile', imgBlob, data.name);
         };
         reader.readAsArrayBuffer(data);
-        this.imageSrc = this.webview.convertFileSrc(imageUrl);
+        this.images.push(this.webview.convertFileSrc(imageUrl));
         //alert(data.name + '|' + data.localURL + '|' + data.type + '|' + data.size);
       });
       //alert(base64Image);
