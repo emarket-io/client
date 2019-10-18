@@ -4,6 +4,7 @@ import { File } from '@ionic-native/file/ngx';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { HttpClient } from '@angular/common/http';
 import { apiService } from '../../providers/api.service'
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { environment } from '../../../environments/environment';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
@@ -21,6 +22,7 @@ export class PublishPage {
   constructor(
     private file: File,
     private camera: Camera,
+    private webview: WebView,
     private location: Location,
     private httpClient: HttpClient) { }
 
@@ -57,7 +59,7 @@ export class PublishPage {
           this.formData.append('uploadfile', imgBlob, data.name);
         };
         reader.readAsArrayBuffer(data);
-        this.imageSrc = data.localURL;
+        this.imageSrc = this.webview.convertFileSrc(imageUrl);
         //alert(data.name + '|' + data.localURL + '|' + data.type + '|' + data.size);
       });
       //alert(base64Image);
