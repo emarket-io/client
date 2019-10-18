@@ -37,7 +37,7 @@ export class PublishPage {
       let base64Image = 'data:image/jpeg;base64,' + imageUrl;
       var filename = imageUrl.substr(imageUrl.lastIndexOf('/') + 1);
       var dirpath = imageUrl.substr(0, imageUrl.lastIndexOf('/') + 1);
-      this.imageSrc = imageUrl;
+      
       try {
         var dirUrl = await this.file.resolveDirectoryUrl(dirpath);
         var retrievedFile = await this.file.getFile(dirUrl, filename, {});
@@ -57,6 +57,7 @@ export class PublishPage {
           this.formData.append('uploadfile', imgBlob, data.name);
         };
         reader.readAsArrayBuffer(data);
+        this.imageSrc = data.localURL;
         //alert(data.name + '|' + data.localURL + '|' + data.type + '|' + data.size);
       });
       //alert(base64Image);
