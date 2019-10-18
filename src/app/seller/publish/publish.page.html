@@ -22,8 +22,8 @@
         <ion-select-option value="m">Male</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-item lines="none">
-      <img style="width: 80px;height: auto;" *ngFor="let image of images" [src]="image" />
+    <ion-item lines="none" *ngIf="images[0]">
+      <img style="width: 80px;height: auto;margin-right: 2px;" *ngFor="let image of images" [src]="image" />
     </ion-item>
     <ion-item lines="none">
       <ion-button color="success" (click)="addMedia()">

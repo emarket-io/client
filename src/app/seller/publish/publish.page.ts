@@ -32,11 +32,13 @@ export class PublishPage {
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.ALLMEDIA,
+      correctOrientation: true,
     };
     this.camera.getPicture(options).then(async (imageUrl) => {
       // imageUrl is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       // let base64Image = 'data:image/jpeg;base64,' + imageUrl;
+      this.images.push(this.webview.convertFileSrc(imageUrl));
       var filename = imageUrl.substr(imageUrl.lastIndexOf('/') + 1);
       var dirpath = imageUrl.substr(0, imageUrl.lastIndexOf('/') + 1);
 
@@ -59,7 +61,7 @@ export class PublishPage {
           this.formData.append('uploadfile', imgBlob, data.name);
         };
         reader.readAsArrayBuffer(data);
-        this.images.push(this.webview.convertFileSrc(imageUrl));
+        
         //alert(data.name + '|' + data.localURL + '|' + data.type + '|' + data.size);
       });
       //alert(base64Image);
