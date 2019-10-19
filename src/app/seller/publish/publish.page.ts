@@ -15,7 +15,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 })
 export class PublishPage {
   commodity = new Commodity();
-  city = apiService.address.addressComponent.city;
+  city = apiService.address.addressComponent.city ? apiService.address.addressComponent.city : apiService.address.addressComponent.province;
   formData = new FormData();
   images = [];
 
