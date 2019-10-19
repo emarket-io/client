@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from "@angular/common";
 import { File } from '@ionic-native/file/ngx';
-import { Commodity, Medium } from '../../../sdk/commodity_pb';
+import { Commodity, Medium, Price } from '../../../sdk/commodity_pb';
 import { HttpClient } from '@angular/common/http';
 import { apiService } from '../../providers/api.service'
 import { WebView } from '@ionic-native/ionic-webview/ngx';
@@ -14,7 +14,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
   styleUrls: ['./publish.page.scss'],
 })
 export class PublishPage {
-  commodity = new Commodity();
+  commodity: Commodity;
   city = apiService.address.addressComponent.city ? apiService.address.addressComponent.city : apiService.address.addressComponent.province;
   formData = new FormData();
   images = [];
@@ -24,7 +24,10 @@ export class PublishPage {
     private camera: Camera,
     private webview: WebView,
     private location: Location,
-    private httpClient: HttpClient) { }
+    private httpClient: HttpClient) {
+    this.commodity = new (Commodity);
+    this.commodity.price = new (Price);
+  }
 
   addMedia() {
     const options: CameraOptions = {
@@ -83,7 +86,6 @@ export class PublishPage {
       }
     );
 
-    this.commodity.city = this.city;
     apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
       if (err) {
         alert(JSON.stringify(err));
