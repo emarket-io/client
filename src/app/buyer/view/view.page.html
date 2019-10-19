@@ -1,20 +1,21 @@
-<!-- <ion-header> -->
-<ion-toolbar>
-  <ion-buttons>
-    <ion-button (click)="back()">
-      <ion-icon name="arrow-round-back"></ion-icon>
-    </ion-button>
-    <ion-button>
-      <!-- <ion-icon name="search"></ion-icon> -->
-      <ion-input placeholder="{{key}}"></ion-input>
-    </ion-button>
-  </ion-buttons>
-  <ion-buttons slot="end">
-    <ion-button>
-      <ion-icon name="more"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-</ion-toolbar>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button (click)="back()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <!-- <ion-icon name="search"></ion-icon> -->
+        <ion-input placeholder="{{key}}"></ion-input>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="more"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-slides [options]="slideOpts" style="width: 100%">
   <ion-slide style="font-size: small">
     综合
@@ -29,21 +30,19 @@
     筛选
   </ion-slide>
 </ion-slides>
-<!-- </ion-header> -->
-
 <ion-content>
-  <ion-card *ngFor="let commodity of commodities">
-    <img style="display:inline-block;width: 35%;max-width: 100px;max-height: 100px;;"
+  <ion-card *ngFor="let commodity of commodities" style="height: 100px;">
+    <img style="display:inline-block;width: 35%;height: 100%;"
       src="{{host}}/static/{{commodity.title}}/{{commodity.mediaList[0].image}}" />
-    <div style="display:inline-block;width: 65%;" (click)="gotoDetail('name')">
+    <div style="display:inline-block;width: 65%;vertical-align: top;padding-left: 10px;" (click)="gotoDetail('name')">
       <div>
         {{commodity.title}}
       </div>
-      <div style="margin-top: 10%">
-        <ion-badge color="success">苹果</ion-badge>
+      <div style="margin-top: 20px">
+        <ion-badge color="success">自家</ion-badge>
         <ion-badge color="success">满减</ion-badge>
       </div>
-      <div style="margin-top: 5%">
+      <div style="margin-top: 12px">
         <div style="display:inline-block;width: 50%;">¥{{commodity.price?.group}}</div>
         <div style="display:inline-block;width: 50%;text-align: right;">{{commodity.city}}</div>
       </div>
