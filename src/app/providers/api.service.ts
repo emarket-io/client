@@ -16,7 +16,7 @@ export class ApiService {
   key = '';
   // https://lbs.amap.com/api/javascript-api/reference/lnglat-to-address#regeocode
   address = {
-    'formattedAddress': '湖北荆门市',
+    'formattedAddress': '湖北省荆门市',
     'addressComponent': { 'province': '湖北', 'city': "荆门", 'district': '沙洋' }
   };
 

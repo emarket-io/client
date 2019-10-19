@@ -33,7 +33,7 @@
 
 <ion-content>
   <ion-card *ngFor="let commodity of commodities">
-    <img style="display:inline-block;width: 35%;" src="{{commodity.mediaList[0].image}}" />
+    <img style="display:inline-block;width: 35%;" src="{{host}}/{{commodity.title}}/{{commodity.mediaList[0].image}}" />
     <div style="display:inline-block;width: 65%;" (click)="gotoDetail('name')">
       <div>
         {{commodity.title}}

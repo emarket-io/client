@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from "@angular/common";
 import { File } from '@ionic-native/file/ngx';
-import { Commodity } from '../../../sdk/commodity_pb';
+import { Commodity, Medium } from '../../../sdk/commodity_pb';
 import { HttpClient } from '@angular/common/http';
 import { apiService } from '../../providers/api.service'
 import { WebView } from '@ionic-native/ionic-webview/ngx';
@@ -59,9 +59,11 @@ export class PublishPage {
             type: data.type
           });
           this.formData.append('uploadfile', imgBlob, data.name);
+          let medium = new (Medium);
+          medium.image = data.name;
+          this.commodity.mediaList.push(medium);
         };
         reader.readAsArrayBuffer(data);
-
         //alert(data.name + '|' + data.localURL + '|' + data.type + '|' + data.size);
       });
       //alert(base64Image);

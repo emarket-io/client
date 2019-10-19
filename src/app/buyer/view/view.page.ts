@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { apiService } from '../../providers/api.service'
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-view',
@@ -9,6 +10,7 @@ import { apiService } from '../../providers/api.service'
   styleUrls: ['./view.page.scss'],
 })
 export class ViewPage implements OnInit {
+  host = environment.apiUrl;
   commodities: Commodity[];
   key = apiService.key;
   slideOpts = {
