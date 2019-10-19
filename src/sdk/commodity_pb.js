@@ -126,7 +126,7 @@ proto.zbay.Commodity.toObject = function(includeInstance, msg) {
     content: jspb.Message.getFieldWithDefault(msg, 4, ""),
     mediaList: jspb.Message.toObjectList(msg.getMediaList(),
     proto.zbay.Medium.toObject, includeInstance),
-    address: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    city: jspb.Message.getFieldWithDefault(msg, 6, ""),
     price: (f = msg.getPrice()) && proto.zbay.Price.toObject(includeInstance, f),
     amount: jspb.Message.getFieldWithDefault(msg, 8, 0),
     fare: jspb.Message.getFieldWithDefault(msg, 9, 0),
@@ -193,7 +193,7 @@ proto.zbay.Commodity.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAddress(value);
+      msg.setCity(value);
       break;
     case 7:
       var value = new proto.zbay.Price;
@@ -293,7 +293,7 @@ proto.zbay.Commodity.serializeBinaryToWriter = function(message, writer) {
       proto.zbay.Medium.serializeBinaryToWriter
     );
   }
-  f = message.getAddress();
+  f = message.getCity();
   if (f.length > 0) {
     writer.writeString(
       6,
@@ -496,27 +496,27 @@ proto.zbay.Commodity.prototype.clearMediaList = function() {
 };
 
 
-Object.defineProperty(proto.zbay.Commodity.prototype, "address", {
+Object.defineProperty(proto.zbay.Commodity.prototype, "city", {
   set: function(value) {
-    this.setAddress(value);
+    this.setCity(value);
   },
   get: function() {
-    return this.getAddress();
+    return this.getCity();
   },
 });
 
 
 /**
- * optional string address = 6;
+ * optional string city = 6;
  * @return {string}
  */
-proto.zbay.Commodity.prototype.getAddress = function() {
+proto.zbay.Commodity.prototype.getCity = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
 
 /** @param {string} value */
-proto.zbay.Commodity.prototype.setAddress = function(value) {
+proto.zbay.Commodity.prototype.setCity = function(value) {
   jspb.Message.setProto3StringField(this, 6, value);
 };
 

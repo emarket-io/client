@@ -9,7 +9,7 @@ import { Location } from "@angular/common";
 })
 export class AddressPage implements OnInit {
 
-  address = apiService.currentAddress;
+  address = apiService.address.formattedAddress;
 
   constructor(private location: Location) { }
 

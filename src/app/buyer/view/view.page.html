@@ -32,23 +32,23 @@
 <!-- </ion-header> -->
 
 <ion-content>
-  <ion-card>
-    <img style="display:inline-block;width: 35%;" src="assets/fruit/apple.png" />
+  <ion-card *ngFor="let commodity of commodities">
+    <img style="display:inline-block;width: 35%;" src="{{commodity.mediaList[0].image}}" />
     <div style="display:inline-block;width: 65%;" (click)="gotoDetail('name')">
       <div>
-        山东烟台红富士苹果
+        {{commodity.title}}
       </div>
       <div style="margin-top: 10%">
         <ion-badge color="success">苹果</ion-badge>
         <ion-badge color="success">满减</ion-badge>
       </div>
       <div style="margin-top: 5%">
-        <div style="display:inline-block;width: 50%;">$66.66</div>
-        <div style="display:inline-block;width: 50%;text-align: right;">烟台</div>
+        <div style="display:inline-block;width: 50%;">${{commodity.price?.group}}</div>
+        <div style="display:inline-block;width: 50%;text-align: right;">{{commodity.city}}</div>
       </div>
     </div>
   </ion-card>
-  <ion-card>
+  <!-- <ion-card>
     <img style="display:inline-block;width: 35%;" src="assets/fruit/pea.png" />
     <div style="display:inline-block;width: 65%;">
       <div>
@@ -62,5 +62,5 @@
         <div style="display:inline-block;width: 50%;text-align: right;">银川</div>
       </div>
     </div>
-  </ion-card>
+  </ion-card> -->
 </ion-content>

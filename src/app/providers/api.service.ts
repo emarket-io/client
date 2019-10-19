@@ -14,12 +14,16 @@ export class ApiService {
 
   injector: Injector;
   key = '';
-  currentAddress = '湖北荆门市';
+  // https://lbs.amap.com/api/javascript-api/reference/lnglat-to-address#regeocode
+  address = {
+    'formattedAddress': '湖北荆门市',
+    'addressComponent': { 'province': '湖北', 'city': "荆门", 'district': '沙洋' }
+  };
 
-  commodityClient = new CommoditiesClient(environment.apiUrl,null,null);
-  userClient = new UsersClient(environment.apiUrl,null,null);
-  messageClient = new MessagesClient(environment.apiUrl,null,null);
-  
+  commodityClient = new CommoditiesClient(environment.apiUrl, null, null);
+  userClient = new UsersClient(environment.apiUrl, null, null);
+  messageClient = new MessagesClient(environment.apiUrl, null, null);
+
   metaData = { 'authorization-token': 'admin' };
 }
 

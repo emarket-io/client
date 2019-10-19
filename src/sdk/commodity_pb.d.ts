@@ -11,7 +11,7 @@ export class Commodity extends jspb.Message {
   mediaList: Array<Medium>;
   clearmediaList(): void;
   addMedia(value?: Medium, index?: number): Medium;
-  address: string;
+  city: string;
   price: Price | undefined;
   hasprice(): boolean;
   clearprice(): void;
@@ -41,7 +41,7 @@ export namespace Commodity {
     category: string,
     content: string,
     mediaList: Array<Medium.AsObject>,
-    address: string,
+    city: string,
     price?: Price.AsObject,
     amount: number,
     fare: number,

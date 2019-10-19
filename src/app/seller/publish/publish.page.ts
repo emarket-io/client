@@ -15,7 +15,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 })
 export class PublishPage {
   commodity = new Commodity();
-  address = apiService.currentAddress;
+  city = apiService.address.addressComponent.city;
   formData = new FormData();
   images = [];
 
@@ -61,7 +61,7 @@ export class PublishPage {
           this.formData.append('uploadfile', imgBlob, data.name);
         };
         reader.readAsArrayBuffer(data);
-        
+
         //alert(data.name + '|' + data.localURL + '|' + data.type + '|' + data.size);
       });
       //alert(base64Image);
@@ -81,14 +81,16 @@ export class PublishPage {
       }
     );
 
+    this.commodity.city = this.city;
     apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
       if (err) {
         alert(JSON.stringify(err));
       } else {
         console.log(response);
+        this.location.back();
       }
     });
     // this.ngOnInit();
-    this.location.back();
+    // this.location.back();
   }
 }
