@@ -788,8 +788,8 @@ proto.zbay.Price.prototype.toObject = function(opt_includeInstance) {
  */
 proto.zbay.Price.toObject = function(includeInstance, msg) {
   var f, obj = {
-    single: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    group: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
+    single: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    group: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -827,11 +827,11 @@ proto.zbay.Price.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readFloat());
+      var value = /** @type {number} */ (reader.readUint32());
       msg.setSingle(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readFloat());
+      var value = /** @type {number} */ (reader.readUint32());
       msg.setGroup(value);
       break;
     default:
@@ -864,15 +864,15 @@ proto.zbay.Price.prototype.serializeBinary = function() {
 proto.zbay.Price.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getSingle();
-  if (f !== 0.0) {
-    writer.writeFloat(
+  if (f !== 0) {
+    writer.writeUint32(
       1,
       f
     );
   }
   f = message.getGroup();
-  if (f !== 0.0) {
-    writer.writeFloat(
+  if (f !== 0) {
+    writer.writeUint32(
       2,
       f
     );
@@ -891,17 +891,17 @@ Object.defineProperty(proto.zbay.Price.prototype, "single", {
 
 
 /**
- * optional float single = 1;
+ * optional uint32 single = 1;
  * @return {number}
  */
 proto.zbay.Price.prototype.getSingle = function() {
-  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 1, 0.0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /** @param {number} value */
 proto.zbay.Price.prototype.setSingle = function(value) {
-  jspb.Message.setProto3FloatField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -916,17 +916,17 @@ Object.defineProperty(proto.zbay.Price.prototype, "group", {
 
 
 /**
- * optional float group = 2;
+ * optional uint32 group = 2;
  * @return {number}
  */
 proto.zbay.Price.prototype.getGroup = function() {
-  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 2, 0.0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /** @param {number} value */
 proto.zbay.Price.prototype.setGroup = function(value) {
-  jspb.Message.setProto3FloatField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 

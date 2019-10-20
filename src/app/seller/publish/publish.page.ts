@@ -18,8 +18,8 @@ export class PublishPage {
   city = apiService.address.addressComponent.province + apiService.address.addressComponent.city;
   formData = new FormData();
   images = [];
- // priceSingle = 0.00;
- // priceGroup = 0.00;
+  price_single = 0.00;
+  price_group = 0.00;
 
   constructor(
     private file: File,
@@ -91,6 +91,8 @@ export class PublishPage {
       }
     );
 
+    this.commodity.price.single = this.price_single * 100;
+    this.commodity.price.group = this.price_group * 100;
     this.commodity.city = this.city;
     apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
       if (err) {
