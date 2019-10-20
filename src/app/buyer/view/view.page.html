@@ -31,7 +31,7 @@
   </ion-slide>
 </ion-slides>
 <ion-content>
-  <ion-card *ngFor="let commodity of commodities" style="height: 130px;">
+  <ion-card *ngFor="let commodity of commodities" style="height: 150px;">
     <img style="display:inline-block;width: 35%;height: 100%;"
       src="{{host}}/static/{{commodity.title}}/{{commodity.mediaList[0].image}}" />
     <div style="display:inline-block;width: 65%;vertical-align: top;padding-left: 10px;" (click)="gotoDetail(commodity)">
@@ -42,7 +42,7 @@
         <ion-badge>自家</ion-badge>
         <ion-badge>满减</ion-badge>
       </div>
-      <div style="margin-top: 25px">
+      <div style="margin-top: 30px">
         <div style="display:inline-block;width: 50%;color:red;">¥{{displayWithDot(commodity.price?.group)}}</div>
         <div style="display:inline-block;width: 50%;text-align: right;">{{commodity.city}}</div>
       </div>
