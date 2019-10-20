@@ -31,10 +31,10 @@
   </ion-slide>
 </ion-slides>
 <ion-content>
-  <ion-card *ngFor="let commodity of commodities" style="height: 150px;">
-    <img style="display:inline-block;width: 35%;height: 100%;"
+  <ion-item *ngFor="let commodity of commodities" style="height: 150px;">
+    <img style="width: 35%;height: 140px;object-fit: none;box-shadow: 2px 2px 1px #888888;"
       src="{{host}}/static/{{commodity.title}}/{{commodity.mediaList[0].image}}" />
-    <div style="display:inline-block;width: 65%;vertical-align: top;padding-left: 10px;" (click)="gotoDetail(commodity)">
+    <div style="width: 65%;vertical-align: top;padding-left: 10px;" (click)="gotoDetail(commodity)">
       <div>
         {{commodity.title}}
       </div>
@@ -47,7 +47,7 @@
         <div style="display:inline-block;width: 50%;text-align: right;">{{commodity.city}}</div>
       </div>
     </div>
-  </ion-card>
+  </ion-item>
   <!-- <ion-card>
     <img style="display:inline-block;width: 35%;" src="assets/fruit/pea.png" />
     <div style="display:inline-block;width: 65%;">
