@@ -1,3 +1,4 @@
+import { Commodity } from '../../sdk/commodity_pb';
 import { Injectable, Injector } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { CommoditiesClient } from '../../sdk/commodity_grpc_web_pb';
@@ -14,6 +15,7 @@ export class ApiService {
 
   injector: Injector;
   key = '';
+  commodity: Commodity;
   // https://lbs.amap.com/api/javascript-api/reference/lnglat-to-address#regeocode
   address = {
     'formattedAddress': '湖北省荆门市',

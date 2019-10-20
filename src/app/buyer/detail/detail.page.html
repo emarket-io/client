@@ -2,7 +2,10 @@
 <ion-toolbar>
   <!-- <ion-title>detail</ion-title> -->
   <ion-slides [options]="slideOpts" pager="true">
-    <ion-slide>
+    <ion-slide *ngFor="let medium of commodity.mediaList">
+      <img style="height:200px;" src="{{host}}/static/{{commodity.title}}/{{medium.image}}" />
+    </ion-slide>
+    <!-- <ion-slide>
       <img src="assets/fruit/apple.png" />
     </ion-slide>
     <ion-slide>
@@ -10,7 +13,7 @@
     </ion-slide>
     <ion-slide>
       <img src="assets/fruit/banana.png" />
-    </ion-slide>
+    </ion-slide> -->
   </ion-slides>
   <ion-buttons style="position: fixed;top:0px;left:0px">
     <ion-button (click)="back()">
@@ -32,7 +35,7 @@
   <ion-grid>
     <ion-row>
       <ion-col style="font-size: x-large;color:crimson">
-        ¥88
+        ¥{{commodity.price.group}}
       </ion-col>
       <ion-col style="text-align: right;font-size: small">
         月销量9999
@@ -40,7 +43,7 @@
     </ion-row>
     <ion-row>
       <ion-col style="font-weight: bolder">
-        [2日内发货]山东烟台红富士苹果
+        [2日内发货]{{commodity.title}}
       </ion-col>
     </ion-row>
     <ion-row>
@@ -63,6 +66,7 @@
     <ion-item lines="none" style="font-size:small">
       商品详情
     </ion-item>
+    <img style="height:200px;" *ngFor="let medium of commodity.mediaList" src="{{host}}/static/{{commodity.title}}/{{medium.image}}" />
   </ion-list>
 </ion-content>
 
@@ -79,9 +83,9 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button>单买(¥88)
+      <ion-button>单买(¥{{commodity.price.single}})
       </ion-button>
-      <ion-button>拼买(¥66)
+      <ion-button>拼买(¥{{commodity.price.group}})
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

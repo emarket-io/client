@@ -35,7 +35,8 @@ export class ViewPage implements OnInit {
     this.router.navigateByUrl('/tabs/category');
   }
 
-  gotoDetail(key) {
+  gotoDetail(commodity: Commodity) {
+    apiService.commodity = commodity;
     this.router.navigateByUrl('/detail');
   }
 }
