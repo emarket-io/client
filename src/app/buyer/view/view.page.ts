@@ -35,6 +35,13 @@ export class ViewPage implements OnInit {
     this.router.navigateByUrl('/tabs/category');
   }
 
+  displayWithDot(v: Number): string {
+    var str = v.toString();
+    var s1 = str.substring(0, str.length - 2);
+    var s2 = str.substring(str.length - 2, str.length);
+    return s1 + '.' + s2
+  }
+
   gotoDetail(commodity: Commodity) {
     apiService.commodity = commodity;
     this.router.navigateByUrl('/detail');

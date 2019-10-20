@@ -15,7 +15,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 })
 export class PublishPage {
   commodity: Commodity;
-  city = apiService.address.addressComponent.city ? apiService.address.addressComponent.city : apiService.address.addressComponent.province;
+  city = apiService.address.addressComponent.province + apiService.address.addressComponent.city;
   formData = new FormData();
   images = [];
 
@@ -31,7 +31,8 @@ export class PublishPage {
 
   addMedia() {
     const options: CameraOptions = {
-      quality: 100,
+      quality: 50,
+      allowEdit: true,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.ALLMEDIA,
@@ -86,6 +87,7 @@ export class PublishPage {
       }
     );
 
+    this.commodity.city = this.city;
     apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
       if (err) {
         alert(JSON.stringify(err));
