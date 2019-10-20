@@ -18,8 +18,9 @@ export class PublishPage {
   city = apiService.address.addressComponent.province + apiService.address.addressComponent.city;
   formData = new FormData();
   images = [];
-  price_single = 0.00;
-  price_group = 0.00;
+  price_single = '';
+  price_group = '';
+  amount = '';
 
   constructor(
     private file: File,
@@ -27,8 +28,8 @@ export class PublishPage {
     private webview: WebView,
     private location: Location,
     private httpClient: HttpClient) {
-    this.commodity = new (Commodity);
-    this.commodity.price = new (Price);
+    this.commodity = new Commodity();
+    this.commodity.price = new Price();
   }
 
   addMedia() {
@@ -91,9 +92,11 @@ export class PublishPage {
       }
     );
 
-    this.commodity.price.single = this.price_single * 100;
-    this.commodity.price.group = this.price_group * 100;
+    this.commodity.price.single = parseFloat(this.price_single) * 100;
+    this.commodity.price.group = parseFloat(this.price_group) * 100;
+    this.commodity.amount = parseInt(this.amount);
     this.commodity.city = this.city;
+
     apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
       if (err) {
         alert(JSON.stringify(err));
