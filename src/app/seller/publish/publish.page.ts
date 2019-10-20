@@ -31,11 +31,13 @@ export class PublishPage {
 
   addMedia() {
     const options: CameraOptions = {
-      quality: 50,
+      // quality: 50,
       allowEdit: true,
+      targetWidth: 300,
+      targetHeight: 300,
       destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.ALLMEDIA,
+      // encodingType: this.camera.EncodingType.JPEG,
+      // mediaType: this.camera.MediaType.ALLMEDIA,
       correctOrientation: true,
     };
     this.camera.getPicture(options).then(async (imageUrl) => {
