@@ -18,6 +18,8 @@ export class PublishPage {
   city = apiService.address.addressComponent.province + apiService.address.addressComponent.city;
   formData = new FormData();
   images = [];
+ // priceSingle = 0.00;
+ // priceGroup = 0.00;
 
   constructor(
     private file: File,
@@ -35,7 +37,7 @@ export class PublishPage {
       allowEdit: true,
       targetWidth: 300,
       targetHeight: 300,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      // destinationType: this.camera.DestinationType.FILE_URI,
       // encodingType: this.camera.EncodingType.JPEG,
       // mediaType: this.camera.MediaType.ALLMEDIA,
       correctOrientation: true,

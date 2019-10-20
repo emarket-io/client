@@ -25,17 +25,17 @@
     <ion-item lines="none" *ngIf="images[0]">
       <img style="width: 80px;height: auto;margin-right: 2px;" *ngFor="let image of images" [src]="image" />
     </ion-item>
-    <ion-item lines="none">
-      <ion-button color="success" (click)="addMedia()">
-        <ion-icon name="add"></ion-icon>
-        图片|视频
+    <ion-item>
+      <ion-button (click)="addMedia()">
+        <!-- <ion-icon name="add"></ion-icon> -->
+        <ion-icon name="camera"></ion-icon>+
       </ion-button>
     </ion-item>
-    <ion-item>
+    <!-- <ion-item>
       <ion-label>货源地址</ion-label>
       <ion-icon name="pin"></ion-icon>
       <ion-input [placeholder]="city" [(ngModel)]="commodity.city"></ion-input>
-    </ion-item>
+    </ion-item> -->
     <ion-item lines="none">
       <ion-label>单买价</ion-label>
       <ion-input placeholder="¥0.00" [(ngModel)]="commodity.price.single"></ion-input>

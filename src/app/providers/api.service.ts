@@ -18,8 +18,8 @@ export class ApiService {
   commodity: Commodity;
   // https://lbs.amap.com/api/javascript-api/reference/lnglat-to-address#regeocode
   address = {
-    'formattedAddress': '湖北省荆门市',
-    'addressComponent': { 'province': '湖北', 'city': "荆门", 'district': '沙洋' }
+    formattedAddress: '湖北省荆门市',
+    addressComponent: { province: '湖北', city: "荆门", district: '沙洋' }
   };
 
   commodityClient = new CommoditiesClient(environment.apiUrl, null, null);
