@@ -6,15 +6,6 @@
       <img style="width: 100%;height: 300px; object-fit: cover;"
         src="{{host}}/static/{{commodity.title}}/{{medium.image}}" />
     </ion-slide>
-    <!-- <ion-slide>
-      <img src="assets/fruit/apple.png" />
-    </ion-slide>
-    <ion-slide>
-      <img src="assets/fruit/pea.png" />
-    </ion-slide>
-    <ion-slide>
-      <img src="assets/fruit/banana.png" />
-    </ion-slide> -->
   </ion-slides>
   <ion-buttons style="position: fixed;top:20px;left:0px">
     <ion-button (click)="back()">
@@ -36,7 +27,7 @@
   <ion-grid>
     <ion-row>
       <ion-col style="font-size: x-large;color:crimson">
-        ¥{{commodity.price.group}}
+        ¥{{formatRBM(commodity.price.group)}}
       </ion-col>
       <ion-col style="text-align: right;font-size: small">
         月销量9999
@@ -85,9 +76,9 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button>单买(¥{{commodity.price.single}})
+      <ion-button>单买(¥{{formatRBM(commodity.price.single)}})
       </ion-button>
-      <ion-button>拼买(¥{{commodity.price.group}})
+      <ion-button>拼单(¥{{formatRBM(commodity.price.group)}})
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

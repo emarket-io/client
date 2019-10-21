@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { apiService } from '../../providers/api.service'
+import { utilsService } from '../../providers/utils.service'
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -13,6 +14,7 @@ export class ViewPage implements OnInit {
   host = environment.apiUrl;
   commodities: Commodity[];
   key = apiService.key;
+  formatRBM = utilsService.formatRMB;
   slideOpts = {
     slidesPerView: 4,
   };
@@ -33,13 +35,6 @@ export class ViewPage implements OnInit {
 
   back() {
     this.router.navigateByUrl('/tabs/category');
-  }
-
-  displayWithDot(v: Number): string {
-    var str = v.toString();
-    var s1 = str.substring(0, str.length - 2);
-    var s2 = str.substring(str.length - 2, str.length);
-    return s1 + '.' + s2
   }
 
   gotoDetail(commodity: Commodity) {
