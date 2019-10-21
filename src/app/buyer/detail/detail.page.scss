@@ -3,3 +3,7 @@ ion-header {
     background: transparent;
     z-index: 999;
   }
+
+ion-header ion-toolbar {
+    top: 20px;
+}
