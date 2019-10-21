@@ -1,9 +1,8 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Commodity } from '../../../sdk/commodity_pb';
-import { apiService } from '../../providers/api.service'
-import { utilsService } from '../../providers/utils.service'
 import { environment } from '../../../environments/environment';
+import { apiService,utilsService } from '../../providers/utils.service'
 
 @Component({
   selector: 'app-view',
@@ -13,7 +12,7 @@ import { environment } from '../../../environments/environment';
 export class ViewPage implements OnInit {
   host = environment.apiUrl;
   commodities: Commodity[];
-  key = apiService.key;
+  key = utilsService.key;
   formatRBM = utilsService.formatRMB;
   slideOpts = {
     slidesPerView: 4,
@@ -38,7 +37,7 @@ export class ViewPage implements OnInit {
   }
 
   gotoDetail(commodity: Commodity) {
-    apiService.commodity = commodity;
+    utilsService.commodity = commodity;
     this.router.navigateByUrl('/detail');
   }
 }

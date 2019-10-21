@@ -1,8 +1,7 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { apiService } from 'src/app/providers/api.service';
-import { utilsService } from '../../providers/utils.service'
 import { environment } from '../../../environments/environment';
+import { apiService,utilsService } from '../../providers/utils.service'
 
 @Component({
   selector: 'app-detail',
@@ -11,7 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class DetailPage {
   host = environment.apiUrl;
-  commodity = apiService.commodity;
+  commodity = utilsService.commodity;
   formatRBM = utilsService.formatRMB;
   slideOpts = {
     slidesPerView: 1,
@@ -23,11 +22,10 @@ export class DetailPage {
   constructor(private router: Router) { }
 
   ionViewWillEnter() {
-    this.commodity = apiService.commodity;
+    this.commodity = utilsService.commodity;
   }
 
   back() {
     this.router.navigateByUrl('/view');
   }
-
 }

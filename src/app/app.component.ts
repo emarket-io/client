@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { apiService } from './providers/api.service'
+import { utilsService } from './providers/utils.service'
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -21,7 +21,7 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      apiService.injector = this.injector;      
+      utilsService.injector = this.injector;
       this.statusBar.overlaysWebView(true);
       this.statusBar.styleDefault();
       // this.statusBar.backgroundColorByHexString("#10dc60");

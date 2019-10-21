@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Location } from "@angular/common";
 import { File } from '@ionic-native/file/ngx';
-import { Commodity, Medium, Price } from '../../../sdk/commodity_pb';
 import { HttpClient } from '@angular/common/http';
-import { apiService } from '../../providers/api.service'
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { environment } from '../../../environments/environment';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Commodity, Medium, Price } from '../../../sdk/commodity_pb';
+import { apiService, utilsService } from '../../providers/utils.service'
 
 @Component({
   selector: 'app-publish',
@@ -15,7 +15,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 })
 export class PublishPage {
   commodity: Commodity;
-  city = apiService.address.addressComponent.province + apiService.address.addressComponent.city;
+  city = utilsService.address.addressComponent.province + utilsService.address.addressComponent.city;
   formData = new FormData();
   images = [];
   price_single = '';
@@ -36,8 +36,8 @@ export class PublishPage {
     const options: CameraOptions = {
       // quality: 50,
       allowEdit: true,
-      targetWidth: 300,
-      targetHeight: 300,
+      targetWidth: 400,
+      targetHeight: 400,
       // destinationType: this.camera.DestinationType.FILE_URI,
       // encodingType: this.camera.EncodingType.JPEG,
       // mediaType: this.camera.MediaType.ALLMEDIA,

@@ -1,6 +1,6 @@
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { apiService } from '../../providers/api.service'
+import { apiService,utilsService } from '../../providers/utils.service'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Router } from '@angular/router';
 
@@ -14,7 +14,7 @@ declare let AMap;
 export class HomePage {
   // @ViewChild('map_container', null) map_container: ElementRef;
   // map: any; // 地图对象
-  address = apiService.address.formattedAddress;
+  address = utilsService.address.formattedAddress;
 
   slideOpts = {
     slidesPerView: 1,
@@ -84,10 +84,10 @@ export class HomePage {
                   //   offset: new AMap.Pixel(20, 20), // 修改label相对于marker的位置
                   //   content: result.regeocode.formattedAddress
                   // });
-                  apiService.address = result.regeocode;
-                  this.address = apiService.address.addressComponent.province
-                    + apiService.address.addressComponent.city
-                    + apiService.address.addressComponent.district;
+                  utilsService.address = result.regeocode;
+                  this.address = utilsService.address.addressComponent.province
+                    + utilsService.address.addressComponent.city
+                    + utilsService.address.addressComponent.district;
                 } else {
                   console.log('获取地址失败');
                 }

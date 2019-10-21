@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { apiService } from '../../providers/api.service'
+import { apiService, utilsService } from '../../providers/utils.service'
 
 
 @Component({
@@ -143,7 +143,7 @@ export class CategoryPage {
   }
 
   gotoView(key) {
-    apiService.key = key;
+    utilsService.key = key;
     this.router.navigateByUrl('/view');
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { apiService } from '../../providers/api.service'
+import { apiService, utilsService } from '../../providers/utils.service'
 import { Location } from "@angular/common";
 
 @Component({
@@ -9,7 +9,7 @@ import { Location } from "@angular/common";
 })
 export class AddressPage implements OnInit {
 
-  address = apiService.address.formattedAddress;
+  address = utilsService.address.formattedAddress;
 
   constructor(private location: Location) { }
 

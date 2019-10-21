@@ -1,11 +1,19 @@
-import { Injectable } from '@angular/core';
+import { ApiService } from './api.service'
+import { Commodity } from '../../sdk/commodity_pb';
+import { Injectable, Injector } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
-
-  constructor() { }
+  injector: Injector;
+  key = '';
+  commodity: Commodity;
+  // https://lbs.amap.com/api/javascript-api/reference/lnglat-to-address#regeocode
+  address = {
+    formattedAddress: '湖北省荆门市',
+    addressComponent: { province: '湖北', city: "荆门", district: '沙洋' }
+  };
 
   formatRMB(v: Number): string {
     var str = v.toString();
@@ -16,3 +24,4 @@ export class UtilsService {
 }
 
 export const utilsService = new UtilsService();
+export const apiService = new ApiService();

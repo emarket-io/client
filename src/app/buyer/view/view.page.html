@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header no-border>
   <ion-toolbar>
     <ion-buttons>
       <ion-button (click)="back()">
@@ -31,10 +31,10 @@
   </ion-slide>
 </ion-slides>
 <ion-content>
-  <ion-item *ngFor="let commodity of commodities" style="height: 150px;">
+  <ion-item *ngFor="let commodity of commodities" style="height: 150px;" (click)="gotoDetail(commodity)">
     <img style="width: 38%;height: 140px;object-fit: none;"
       src="{{host}}/static/{{commodity.title}}/{{commodity.mediaList[0].image}}" />
-    <div style="width: 62%;vertical-align: top;padding-left: 10px;" (click)="gotoDetail(commodity)">
+    <div style="width: 62%;vertical-align: top;padding-left: 10px;">
       <div>
         {{commodity.title}}
       </div>
@@ -48,19 +48,4 @@
       </div>
     </div>
   </ion-item>
-  <!-- <ion-card>
-    <img style="display:inline-block;width: 35%;" src="assets/fruit/pea.png" />
-    <div style="display:inline-block;width: 65%;">
-      <div>
-        栖霞红富士苹果
-      </div>
-      <div style="margin-top: 10%">
-        <ion-badge color="success">苹果</ion-badge>
-      </div>
-      <div style="margin-top: 5%">
-        <div style="display:inline-block;width: 50%;">$88.88</div>
-        <div style="display:inline-block;width: 50%;text-align: right;">银川</div>
-      </div>
-    </div>
-  </ion-card> -->
 </ion-content>
