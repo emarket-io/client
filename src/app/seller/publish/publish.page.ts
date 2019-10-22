@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Location } from "@angular/common";
 import { File } from '@ionic-native/file/ngx';
 import { HttpClient } from '@angular/common/http';
+import { PopoverController } from '@ionic/angular';
+import { PopoverPage } from '../popover/popover.page'
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { environment } from '../../../environments/environment';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
@@ -27,7 +29,8 @@ export class PublishPage {
     private camera: Camera,
     private webview: WebView,
     private location: Location,
-    private httpClient: HttpClient) {
+    private httpClient: HttpClient,
+    private popoverController: PopoverController) {
     this.commodity = new Commodity();
     this.commodity.price = new Price();
   }
@@ -107,5 +110,14 @@ export class PublishPage {
     });
     // this.ngOnInit();
     // this.location.back();
+  }
+
+  async presentPopover() {
+    const popover = await this.popoverController.create({
+      component: PopoverPage,
+      //event: ev,
+      translucent: true
+    });
+    return await popover.present();
   }
 }

@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'view', loadChildren: './buyer/view/view.module#ViewPageModule' },
   { path: 'detail', loadChildren: './buyer/detail/detail.module#DetailPageModule' },
   { path: 'publish', loadChildren: './seller/publish/publish.module#PublishPageModule' },
-  { path: 'address', loadChildren: './buyer/address/address.module#AddressPageModule' }
+  { path: 'address', loadChildren: './buyer/address/address.module#AddressPageModule' },
+  { path: 'popover', loadChildren: './seller/popover/popover.module#PopoverPageModule' }
 ];
 @NgModule({
   imports: [
@@ -17,4 +18,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
