@@ -1,5 +1,6 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { apiService, utilsService } from '../../providers/utils.service'
 
 @Component({
   selector: 'app-popover',
@@ -8,12 +9,20 @@ import { PopoverController } from '@ionic/angular';
 })
 export class PopoverPage implements OnInit {
 
-  constructor(private popoverController: PopoverController) { }
+  categories = apiService.categories.slice(1, apiService.categories.length - 1);
+  currentItem = this.categories[0];
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  async dismissPopover() {
-    return await this.popoverController.dismiss();
+  itemClick(item) {
+    this.currentItem = item;
+  }
+
+  selectCategory(name: string) {
+    utilsService.selectedCategory = this.currentItem.title + '->' + name;
+    this.router.navigateByUrl('/publish');
   }
 }

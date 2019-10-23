@@ -9,6 +9,7 @@ export class UtilsService {
   injector: Injector;
   key = '';
   commodity: Commodity;
+  selectedCategory = '';
   // https://lbs.amap.com/api/javascript-api/reference/lnglat-to-address#regeocode
   address = {
     formattedAddress: '湖北省荆门市',

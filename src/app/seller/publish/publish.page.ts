@@ -1,9 +1,8 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Location } from "@angular/common";
 import { File } from '@ionic-native/file/ngx';
 import { HttpClient } from '@angular/common/http';
-import { PopoverController } from '@ionic/angular';
-import { PopoverPage } from '../popover/popover.page'
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { environment } from '../../../environments/environment';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
@@ -17,7 +16,6 @@ import { apiService, utilsService } from '../../providers/utils.service'
 })
 export class PublishPage {
   commodity: Commodity;
-  city = utilsService.address.addressComponent.province + utilsService.address.addressComponent.city;
   formData = new FormData();
   images = [];
   price_single = '';
@@ -27,12 +25,17 @@ export class PublishPage {
   constructor(
     private file: File,
     private camera: Camera,
+    private router: Router,
     private webview: WebView,
     private location: Location,
-    private httpClient: HttpClient,
-    private popoverController: PopoverController) {
+    private httpClient: HttpClient) {
     this.commodity = new Commodity();
     this.commodity.price = new Price();
+  }
+
+  ionViewWillEnter() {
+    this.commodity.category = utilsService.selectedCategory;
+    this.commodity.city = utilsService.address.addressComponent.province + utilsService.address.addressComponent.city;
   }
 
   addMedia() {
@@ -98,7 +101,6 @@ export class PublishPage {
     this.commodity.price.single = parseFloat(this.price_single) * 100;
     this.commodity.price.group = parseFloat(this.price_group) * 100;
     this.commodity.amount = parseInt(this.amount);
-    this.commodity.city = this.city;
 
     apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
       if (err) {
@@ -112,12 +114,7 @@ export class PublishPage {
     // this.location.back();
   }
 
-  async presentPopover() {
-    const popover = await this.popoverController.create({
-      component: PopoverPage,
-      //event: ev,
-      translucent: true
-    });
-    return await popover.present();
+  presentPopover() {
+    this.router.navigateByUrl('/popover');
   }
 }

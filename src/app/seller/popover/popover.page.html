@@ -1,15 +1,25 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>popover</ion-title>
+  <ion-toolbar class="ion-text-center">
+    <ion-title>选择类别</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-item>
-    <ion-button (click)="dismissPopover()">
-      <!-- <ion-icon name="add"></ion-icon> -->
-      <ion-icon name="camera"></ion-icon>
-      关闭
-    </ion-button>
+    <ion-label>一级分类</ion-label>
+    <ion-label>二级分类</ion-label>
+  </ion-item>
+  <ion-item>
+    <div style="display: inline-block;width: 50%;">
+      <div (click)="itemClick(category)" [class.selected]="currentItem === category"
+        *ngFor="let category of categories">
+        {{category.title}}
+      </div>
+    </div>
+    <div style="display:inline-block;width: 50%;vertical-align:top;">
+      <div *ngFor="let name of currentItem?.names" style="display:inline-block;width: 25%;text-align: center">
+        <div (click)="selectCategory(name)">{{name}}</div>
+      </div>
+    </div>
   </ion-item>
 </ion-content>
