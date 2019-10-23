@@ -10,15 +10,16 @@
     <ion-label>二级分类</ion-label>
   </ion-item>
   <ion-item>
-    <div style="display: inline-block;width: 50%;">
-      <div (click)="itemClick(category)" [class.selected]="currentItem === category"
+    <div style="display: inline-block;width: 45%;">
+      <div style="margin:15px 0" (click)="itemClick(category)" [class.selected]="currentItem === category"
         *ngFor="let category of categories">
         {{category.title}}
       </div>
     </div>
-    <div style="display:inline-block;width: 50%;vertical-align:top;">
-      <div *ngFor="let name of currentItem?.names" style="display:inline-block;width: 25%;text-align: center">
-        <div (click)="selectCategory(name)">{{name}}</div>
+    <div style="display:inline-block;width: 55%;vertical-align:top;">
+      <div *ngFor="let name of currentItem?.names" (click)="selectCategory(name)"
+        style="display:inline-block;width: 33%;text-align: center;margin:10px 0;">
+        {{name}}
       </div>
     </div>
   </ion-item>

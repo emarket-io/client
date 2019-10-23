@@ -1,6 +1,5 @@
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { apiService,utilsService } from '../../providers/utils.service'
+import { apiService, utilsService } from '../../providers/utils.service'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Router } from '@angular/router';
 
@@ -25,42 +24,14 @@ export class HomePage {
 
   constructor(
     private router: Router,
-    private statusBar: StatusBar,
     private geolocation: Geolocation) { }
 
-  changeStatusBar() {
-    //this.statusBar.overlaysWebView(false);
-    this.statusBar.styleDefault();
-  }
-
   ionViewWillEnter() {
-    // this.map = new AMap.Map(this.map_container.nativeElement, {
-    //   //resizeEnable: true,
-    //   //rotateEnable: true,
-    //   //pitchEnable: true,
-    //   //zoom: 10,
-    //   //pitch: 80,
-    //   //rotation: -15,
-    //   viewMode: '2D',//开启3D视图,默认为关闭
-    //   buildingAnimation: true,//楼块出现是否带动画
-    //   showBuildingBlock: true,
-    //   expandZoomRange: true,
-    //   //zooms: [3, 20],
-    //   //center: [116.333926, 39.997245]
-    //   mapStyle: 'amap://styles/light',
-    // });
-    // AMap.plugin('AMap.ToolBar', () => {
-    //   var toolbar = new AMap.ToolBar();
-    //   this.map.addControl(toolbar);
-    // });
+    this.address = utilsService.address.formattedAddress;
     this.getLocation();
   }
 
-  async openAddress() {
-    // const modal = await this.modalController.create({
-    //   component: AddressPageModule,
-    // });
-    // return await modal.present();
+  openAddress() {
     this.router.navigateByUrl('/address');
   }
 

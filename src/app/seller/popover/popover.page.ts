@@ -9,8 +9,8 @@ import { apiService, utilsService } from '../../providers/utils.service'
 })
 export class PopoverPage implements OnInit {
 
+  currentItem: any;
   categories = apiService.categories.slice(1, apiService.categories.length - 1);
-  currentItem = this.categories[0];
 
   constructor(private router: Router) { }
 
