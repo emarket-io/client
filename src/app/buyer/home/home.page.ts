@@ -27,8 +27,6 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.getLocation();
-    let address = utilsService.address.addressComponent;
-    this.city = address.city + address.district;
   }
 
   openAddress() {
@@ -47,18 +45,13 @@ export class HomePage {
               const geocoder = new AMap.Geocoder({});
               geocoder.getAddress(positionInfo, (status, result) => {
                 if (status === 'complete' && result.info === 'OK') {
-                  // const marker = new AMap.Marker({
-                  //   map: this.map,
-                  //   position: positionInfo
-                  // });
-                  // marker.setLabel({
-                  //   offset: new AMap.Pixel(20, 20), // 修改label相对于marker的位置
-                  //   content: result.regeocode.formattedAddress
-                  // });
                   utilsService.address = result.regeocode;
-                  //this.address = utilsService.address.addressComponent.province
-                  // + utilsService.address.addressComponent.city
-                  // + utilsService.address.addressComponent.district;
+                  if (utilsService.address.addressComponent.city == '') {
+                    this.city = utilsService.address.addressComponent.province + utilsService.address.addressComponent.district;
+                  } else {
+                    this.city = utilsService.address.addressComponent.city + utilsService.address.addressComponent.district;
+                  }
+
                 } else {
                   console.log('获取地址失败');
                 }
