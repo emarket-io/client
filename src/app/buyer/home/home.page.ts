@@ -13,7 +13,8 @@ declare let AMap;
 export class HomePage {
   // @ViewChild('map_container', null) map_container: ElementRef;
   // map: any; // 地图对象
-  address = utilsService.address.formattedAddress;
+  address = utilsService.address.addressComponent.city ?
+    utilsService.address.addressComponent.city : utilsService.address.addressComponent.province + utilsService.address.addressComponent.district;
 
   slideOpts = {
     slidesPerView: 1,
@@ -27,7 +28,6 @@ export class HomePage {
     private geolocation: Geolocation) { }
 
   ionViewWillEnter() {
-    this.address = utilsService.address.formattedAddress;
     this.getLocation();
   }
 
@@ -56,9 +56,9 @@ export class HomePage {
                   //   content: result.regeocode.formattedAddress
                   // });
                   utilsService.address = result.regeocode;
-                  this.address = utilsService.address.addressComponent.province
-                    + utilsService.address.addressComponent.city
-                    + utilsService.address.addressComponent.district;
+                  //this.address = utilsService.address.addressComponent.province
+                  // + utilsService.address.addressComponent.city
+                  // + utilsService.address.addressComponent.district;
                 } else {
                   console.log('获取地址失败');
                 }

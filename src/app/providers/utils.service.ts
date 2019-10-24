@@ -1,4 +1,5 @@
 import { ApiService } from './api.service'
+import { AlertController } from '@ionic/angular';
 import { Commodity } from '../../sdk/commodity_pb';
 import { Injectable, Injector } from '@angular/core';
 
@@ -22,6 +23,16 @@ export class UtilsService {
     var s2 = str.substring(str.length - 2, str.length);
     return s1 + '.' + s2
   }
+
+  async alert(msg: string, title: string = '提示') {
+    const alert = await this.injector.get(AlertController).create({
+      header: title,
+      message: msg,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
 }
 
 export const utilsService = new UtilsService();

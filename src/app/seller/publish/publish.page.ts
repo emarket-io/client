@@ -1,6 +1,5 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { Location } from "@angular/common";
 import { File } from '@ionic-native/file/ngx';
 import { HttpClient } from '@angular/common/http';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
@@ -27,7 +26,6 @@ export class PublishPage {
     private camera: Camera,
     private router: Router,
     private webview: WebView,
-    private location: Location,
     private httpClient: HttpClient) {
     this.commodity = new Commodity();
     this.commodity.price = new Price();
@@ -89,6 +87,22 @@ export class PublishPage {
   }
 
   submit() {
+    if (this.commodity.title == '') {
+      utilsService.alert('请输入标题!');
+      return
+    }
+    if (this.price_single == '') {
+      utilsService.alert('请输入单价!');
+      return
+    }
+    if (this.price_group == '') {
+      utilsService.alert('请输入拼单价!');
+      return
+    }
+    if (this.amount == '') {
+      utilsService.alert('请输入库存数量!');
+      return
+    }
     // upload firstly
     this.httpClient.post(environment.apiUrl + '/upload', this.formData, { params: { title: this.commodity.title } }).subscribe(
       data => {
@@ -107,11 +121,9 @@ export class PublishPage {
         alert(JSON.stringify(err));
       } else {
         console.log(response);
-        this.location.back();
+        this.router.navigateByUrl('/my');
       }
     });
-    // this.ngOnInit();
-    // this.location.back();
   }
 
   presentPopover() {
