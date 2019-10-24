@@ -88,7 +88,7 @@ export class PublishPage {
 
   submit() {
     if (this.commodity.title == '') {
-      utilsService.alert('请输入标题!');
+      utilsService.alert('请输入商品标题!');
       return
     }
     if (this.price_single == '') {
@@ -121,12 +121,16 @@ export class PublishPage {
         alert(JSON.stringify(err));
       } else {
         console.log(response);
-        this.router.navigateByUrl('/my');
+        this.router.navigateByUrl('/tabs/my');
       }
     });
   }
 
   presentPopover() {
     this.router.navigateByUrl('/popover');
+  }
+
+  back() {
+    this.router.navigateByUrl('/tabs/my');
   }
 }

@@ -13,9 +13,7 @@ declare let AMap;
 export class HomePage {
   // @ViewChild('map_container', null) map_container: ElementRef;
   // map: any; // 地图对象
-  address = utilsService.address.addressComponent.city ?
-    utilsService.address.addressComponent.city : utilsService.address.addressComponent.province + utilsService.address.addressComponent.district;
-
+  city = '';
   slideOpts = {
     slidesPerView: 1,
     autoplay: {
@@ -29,6 +27,8 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.getLocation();
+    let address = utilsService.address.addressComponent;
+    this.city = address.city + address.district;
   }
 
   openAddress() {
