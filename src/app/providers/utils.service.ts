@@ -24,10 +24,11 @@ export class UtilsService {
     return s1 + '.' + s2
   }
 
-  async alert(content: string, title: string = '提示') {
+  async alert(msg: string, title: string = '提示') {
     const alert = await this.injector.get(AlertController).create({
       header: title,
-      message: content,
+      subHeader: msg,
+      message: msg,
       buttons: ['OK']
     });
     await alert.present();

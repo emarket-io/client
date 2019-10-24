@@ -46,10 +46,10 @@ export class HomePage {
               geocoder.getAddress(positionInfo, (status, result) => {
                 if (status === 'complete' && result.info === 'OK') {
                   utilsService.address = result.regeocode;
-                  if (utilsService.address.addressComponent.city == '') {
-                    utilsService.address.addressComponent.city = utilsService.address.addressComponent.province;
-                  }
                   this.city = utilsService.address.addressComponent.city + utilsService.address.addressComponent.district;
+                  if (utilsService.address.addressComponent.city == '') {
+                    this.city = utilsService.address.addressComponent.province + utilsService.address.addressComponent.district;
+                  }
                 } else {
                   console.log('获取地址失败');
                 }
