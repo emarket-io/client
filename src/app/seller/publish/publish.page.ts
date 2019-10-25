@@ -88,19 +88,19 @@ export class PublishPage {
 
   submit() {
     if (this.commodity.title == '') {
-      utilsService.alert('请输入商品标题!');
+      utilsService.alert('请输入商品标题', '');
       return
     }
     if (this.price_single == '') {
-      utilsService.alert('请输入单价!');
+      utilsService.alert('请输入单价', '');
       return
     }
     if (this.price_group == '') {
-      utilsService.alert('请输入拼单价!');
+      utilsService.alert('请输入拼单价', '');
       return
     }
     if (this.amount == '') {
-      utilsService.alert('请输入库存数量!');
+      utilsService.alert('请输入库存数量', '');
       return
     }
     // upload firstly
