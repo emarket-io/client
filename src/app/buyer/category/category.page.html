@@ -30,18 +30,16 @@
         </div>
       </ion-card-content>
     </ion-card>
-    <ion-card>
-      <ion-card *ngFor="let sc of level1?.subCategories | keyvalue" style="box-shadow: none;margin: 0;">
-        <ion-card-header>
-          <ion-card-subtitle (click)="gotoView(sc.key)">{{sc.key}}</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-          <div *ngFor="let name of sc.value" (click)="gotoView(name)"
-            style="display:inline-block;width: 25%;text-align: center;line-height: 40px;">
-            {{name}}
-          </div>
-        </ion-card-content>
-      </ion-card>
+    <ion-card *ngFor="let sc of level1?.subCategories | keyvalue" style="box-shadow: none;margin: 0;">
+      <ion-card-header>
+        <ion-card-subtitle (click)="gotoView(sc.key)">{{sc.key}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <div *ngFor="let name of sc.value" (click)="gotoView(name)"
+          style="display:inline-block;width: 25%;text-align: center;line-height: 40px;">
+          {{name}}
+        </div>
+      </ion-card-content>
     </ion-card>
   </div>
 </ion-content>

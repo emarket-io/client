@@ -11,6 +11,7 @@ import { apiService, utilsService } from '../../providers/utils.service'
 export class CategoryPage {
   slideOpts = {
     initialSlide: 0,
+    speed: 400,
     direction: "vertical",
     slidesPerView: 10,
     height: 500,
