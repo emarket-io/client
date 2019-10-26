@@ -14,7 +14,7 @@ export class UtilsService {
   // https://lbs.amap.com/api/javascript-api/reference/lnglat-to-address#regeocode
   address = {
     formattedAddress: '湖北省荆门市',
-    addressComponent: { province: '湖北', city: "荆门", district: '沙洋' }
+    addressComponent: { province: '湖北省', city: "荆门市", district: '沙洋县' }
   };
 
   formatRMB(v: Number): string {
@@ -24,11 +24,11 @@ export class UtilsService {
     return s1 + '.' + s2
   }
 
-  async alert(msg: string, title: string = '提示') {
+  async alert(content: string, title: string = '提示') {
     const alert = await this.injector.get(AlertController).create({
       header: title,
       //subHeader: msg,
-      message: msg,
+      message: content,
       buttons: ['OK']
     });
     await alert.present();

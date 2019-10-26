@@ -87,21 +87,17 @@ export class PublishPage {
   }
 
   async submit() {
-    if (this.commodity.title == '') {
-      utilsService.alert('请输入商品标题');
-      return
+    if (!this.commodity.title) {
+      return await utilsService.alert('请输入商品标题');
     }
-    if (this.price_single == '') {
-      utilsService.alert('请输入单价');
-      return
+    if (!this.price_single) {
+      return await utilsService.alert('请输入单价');
     }
-    if (this.price_group == '') {
-      utilsService.alert('请输入拼单价');
-      return
+    if (!this.price_group) {
+      return await utilsService.alert('请输入拼单价');
     }
-    if (this.amount == '') {
-      utilsService.alert('请输入库存数量');
-      return
+    if (!this.amount) {
+      return await utilsService.alert('请输入库存数量');
     }
     // upload firstly
     this.httpClient.post(environment.apiUrl + '/upload', this.formData, { params: { title: this.commodity.title } }).subscribe(

@@ -20,12 +20,12 @@ export class AppComponent {
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
-      utilsService.injector = this.injector;
+    this.platform.ready().then(() => {      
       this.statusBar.overlaysWebView(true);
       this.statusBar.styleDefault();
-      // this.statusBar.backgroundColorByHexString("#10dc60");
       this.splashScreen.hide();
+
+      utilsService.injector = this.injector;
     });
   }
 }
