@@ -27,12 +27,12 @@ export class ApiService {
         { "name": "橙子", "src": "fruit/orange.png" }]
     }, {
       "title": "水果", "hots": [
-        { "name": "苹果1", "src": "fruit/pea.png" },
-        { "name": "梨1", "src": "fruit/apple.png" },
-        { "name": "草莓1", "src": "fruit/caomei.png" },
-        { "name": "橙子1", "src": "fruit/orange.png" }],
+        { "name": "苹果", "src": "fruit/apple.png" },
+        { "name": "猕猴桃", "src": "fruit/kiwi.png" },
+        { "name": "草莓", "src": "fruit/caomei.png" },
+        { "name": "橙子", "src": "fruit/orange.png" }],
       subCategories: {
-        核仁果类: ['苹果', '梨', '桃', '枣', '石榴', '山楂', '李子', '杏', '海棠果', '梅'],
+        核仁类: ['苹果', '梨', '桃', '枣', '石榴', '山楂', '李子', '杏', '海棠果', '梅'],
         浆果类: ['葡萄', '猕猴桃', '柿子', '草莓', '圣女果', '无花果', '桑椹', '拐枣', '仙人掌果'],
         柑橘类: ['柑桔', '橙子', '柚子', '枸桔果'],
         茄果类: ['鲜辣椒', '西红柿', '茄子'],
@@ -41,13 +41,13 @@ export class ApiService {
       // "names": ["苹果", "西瓜", "桔子", "葡萄", "桃子", "梨", "甜瓜", "橙子", "枣", "香蕉", "樱桃", "哈密瓜", "草莓", "猕猴桃", "柚子", "菠萝", "李子", "柿子", "芒果", "无花果", "杏", "榴莲", "龙眼", "荔枝", "柠檬", "其他"]
     }, {
       "title": "蔬菜", "hots": [
-        { "name": "苹果2", "src": "fruit/kiwi.png" },
-        { "name": "梨2", "src": "fruit/apple.png" },
-        { "name": "草莓2", "src": "fruit/shiliu.png" },
-        { "name": "橙子2", "src": "fruit/caomei.png" }],
+        { "name": "白菜", "src": "fruit/kiwi.png" },
+        { "name": "香菜", "src": "fruit/apple.png" },
+        { "name": "大蒜", "src": "fruit/shiliu.png" },
+        { "name": "土豆", "src": "fruit/caomei.png" }],
       subCategories: {
         紫薯类: ['红薯', '土豆', '山药', '芋头', '雪莲果', '山药豆'],
-        叶菜类: ['白柴', '芹菜', '莴苣', '香菜', '菠菜', '油菜', '生菜', '芥菜', '娃娃菜', '茼蒿', '菜薹', '茴香', '苦菊', '连白', '雪里红', '鸡毛菜', '苋菜'],
+        叶菜类: ['白菜', '芹菜', '莴苣', '香菜', '菠菜', '油菜', '生菜', '芥菜', '娃娃菜', '茼蒿', '菜薹', '茴香', '苦菊', '连白', '雪里红', '鸡毛菜', '苋菜'],
         葱蒜类: ['大葱', '生姜', '大蒜', '洋葱', '韭菜', '小葱'],
         茄果类: ['鲜辣椒', '西红柿', '茄子'],
         瓜类: ['南瓜', '冬瓜', '黄瓜', '西葫芦', '苦瓜', '丝瓜', '葫芦', '北瓜'],
@@ -59,10 +59,10 @@ export class ApiService {
       }
     }, {
       "title": "禽畜蛋肉", "hots": [
-        { "name": "苹果3", "src": "fruit/pea.png" },
-        { "name": "梨3", "src": "fruit/apple.png" },
-        { "name": "草莓3", "src": "fruit/orange.png" },
-        { "name": "橙子3", "src": "fruit/banana.png" }],
+        { "name": "鸡蛋", "src": "fruit/pea.png" },
+        { "name": "鹌鹑蛋", "src": "fruit/apple.png" },
+        { "name": "鸭蛋", "src": "fruit/orange.png" },
+        { "name": "鸽子蛋", "src": "fruit/banana.png" }],
       subCategories: {
         //活禽: ['土鸡', '鸭', '鹅', '鸽子', '野鸡', '乌鸡', '鹌鹑', '麻雀'],
         蛋类: ['鸡蛋', '鸭蛋', '鹅蛋', '松花蛋', '鹌鹑蛋', '鸽子蛋'],
@@ -70,10 +70,10 @@ export class ApiService {
       },
     }, {
       "title": "茶叶", "hots": [
-        { "name": "苹果4", "src": "fruit/grape.png" },
-        { "name": "梨4", "src": "fruit/apple.png" },
-        { "name": "草莓4", "src": "fruit/orange.png" },
-        { "name": "橙子4", "src": "fruit/caomei.png" }],
+        { "name": "菊花茶", "src": "fruit/grape.png" },
+        { "name": "茉莉花茶", "src": "fruit/apple.png" },
+        { "name": "毛尖茶", "src": "fruit/orange.png" },
+        { "name": "乌龙红茶", "src": "fruit/caomei.png" }],
       subCategories: {
         花果茶: ['菊花茶', '玫瑰花茶', '蒲公英茶', '茉莉花茶', '荷叶茶', '其他'],
         黑茶: ['普洱茶', '湖南黑茶', '湖北老青茶', '其他'],
@@ -82,32 +82,32 @@ export class ApiService {
       },
     }, {
       "title": "水产", "hots": [
-        { "name": "苹果1", "src": "fruit/pea.png" },
-        { "name": "梨1", "src": "fruit/apple.png" },
-        { "name": "草莓1", "src": "fruit/caomei.png" },
-        { "name": "橙子1", "src": "fruit/orange.png" }],
+        { "name": "鱼干", "src": "fruit/pea.png" },
+        { "name": "虾皮", "src": "fruit/apple.png" },
+        { "name": "干虾", "src": "fruit/caomei.png" },
+        { "name": "花胶", "src": "fruit/orange.png" }],
       subCategories: {
         水产干货: ['鱼干', '干虾', '虾皮', '花胶', '其他']
       },
     }, {
       "title": "中药材", "hots": [
-        { "name": "苹果1", "src": "fruit/pea.png" },
-        { "name": "梨1", "src": "fruit/apple.png" },
-        { "name": "草莓1", "src": "fruit/caomei.png" },
-        { "name": "橙子1", "src": "fruit/orange.png" }],
+        { "name": "三七", "src": "fruit/pea.png" },
+        { "name": "当归", "src": "fruit/apple.png" },
+        { "name": "连翘", "src": "fruit/caomei.png" },
+        { "name": "金银花", "src": "fruit/orange.png" }],
       subCategories: {
-        中药根茎类: ['人参', '天麻', '黄精', '三七', '重楼', '白笈', '当归'],
-        中药果实籽仁类: ['茱萸', '五味子', '砂仁', '连翘'],
-        中药全草类: ['石斛', '艾叶', '金线莲', '薄荷', '益母草'],
-        中药花类: ['金银花', '藏红花'],
+        根茎类: ['人参', '天麻', '黄精', '三七', '重楼', '白笈', '当归'],
+        果实籽仁类: ['茱萸', '五味子', '砂仁', '连翘'],
+        全草类: ['石斛', '艾叶', '金线莲', '薄荷', '益母草'],
+        花类: ['金银花', '藏红花'],
       },
       //"names": ["苹果", "西瓜", "桔子", "葡萄", "桃子", "梨", "甜瓜", "橙子", "枣", "香蕉", "樱桃", "哈密瓜", "草莓", "猕猴桃", "柚子", "菠萝", "李子", "柿子", "芒果", "无花果", "杏", "榴莲", "龙眼", "荔枝", "柠檬", "其他"]
     }, {
       "title": "坚果干果", "hots": [
-        { "name": "苹果1", "src": "fruit/pea.png" },
-        { "name": "梨1", "src": "fruit/apple.png" },
-        { "name": "草莓1", "src": "fruit/caomei.png" },
-        { "name": "橙子1", "src": "fruit/orange.png" }],
+        { "name": "核桃", "src": "fruit/pea.png" },
+        { "name": "巴旦木", "src": "fruit/apple.png" },
+        { "name": "红枣", "src": "fruit/caomei.png" },
+        { "name": "葡萄干", "src": "fruit/orange.png" }],
       subCategories: {
         坚果: ['核桃', '栗子', '瓜子', '桂圆', '莲子', '松子', '榛子', '杏仁', '白果', '巴旦木', '夏威夷果', '腰果', '开心果', '碧根果'],
         干果: ['红枣', '枸杞', '葡萄干', '地瓜干', '红枣', '枸杞', '葡萄干', '地瓜干', '核桃仁', '柿饼', '桑葚干', '山楂干', '无花果干', '果脯', '金桔丁'],
@@ -115,10 +115,10 @@ export class ApiService {
       //"names": ["苹果", "西瓜", "桔子", "葡萄", "桃子", "梨", "甜瓜", "橙子", "枣", "香蕉", "樱桃", "哈密瓜", "草莓", "猕猴桃", "柚子", "菠萝", "李子", "柿子", "芒果", "无花果", "杏", "榴莲", "龙眼", "荔枝", "柠檬", "其他"]
     }, {
       "title": "农副/副食", "hots": [
-        { "name": "苹果1", "src": "fruit/pea.png" },
-        { "name": "梨1", "src": "fruit/apple.png" },
-        { "name": "草莓1", "src": "fruit/caomei.png" },
-        { "name": "橙子1", "src": "fruit/orange.png" }],
+        { "name": "花生油", "src": "fruit/pea.png" },
+        { "name": "香油", "src": "fruit/apple.png" },
+        { "name": "干笋", "src": "fruit/caomei.png" },
+        { "name": "蕨菜干", "src": "fruit/orange.png" }],
       subCategories: {
         粮油产品: ['粉条', '面粉', '花生油', '粉丝', '山茶油', '菜油', '核桃油', '面条', '香油', '胡麻油', '荞面'],
         调味品: ['花椒', '干辣椒', '八角', '干姜', '桂皮', '孜然', '香叶'],
@@ -127,10 +127,10 @@ export class ApiService {
       // "names": ["苹果", "西瓜", "桔子", "葡萄", "桃子", "梨", "甜瓜", "橙子", "枣", "香蕉", "樱桃", "哈密瓜", "草莓", "猕猴桃", "柚子", "菠萝", "李子", "柿子", "芒果", "无花果", "杏", "榴莲", "龙眼", "荔枝", "柠檬", "其他"]
     }, {
       "title": "粮油作物", "hots": [
-        { "name": "苹果1", "src": "fruit/pea.png" },
-        { "name": "梨1", "src": "fruit/apple.png" },
-        { "name": "草莓1", "src": "fruit/caomei.png" },
-        { "name": "橙子1", "src": "fruit/orange.png" }],
+        { "name": "小米", "src": "fruit/pea.png" },
+        { "name": "荞麦", "src": "fruit/apple.png" },
+        { "name": "芝麻", "src": "fruit/caomei.png" },
+        { "name": "黑豆", "src": "fruit/orange.png" }],
       subCategories: {
         谷类作物: ['小米', '高粱', '薏米', '荞麦', '燕麦', '大麦', '青稞', '莜麦'],
         油类作物: ['芝麻', '油茶籽', '葵花', '菜籽'],
@@ -139,10 +139,10 @@ export class ApiService {
       //"names": ["苹果", "西瓜", "桔子", "葡萄", "桃子", "梨", "甜瓜", "橙子", "枣", "香蕉", "樱桃", "哈密瓜", "草莓", "猕猴桃", "柚子", "菠萝", "李子", "柿子", "芒果", "无花果", "杏", "榴莲", "龙眼", "荔枝", "柠檬", "其他"]
     }, {
       "title": "食用菌", "hots": [
-        { "name": "苹果1", "src": "fruit/pea.png" },
-        { "name": "梨1", "src": "fruit/apple.png" },
-        { "name": "草莓1", "src": "fruit/caomei.png" },
-        { "name": "橙子1", "src": "fruit/orange.png" }],
+        { "name": "黑木耳", "src": "fruit/pea.png" },
+        { "name": "香菇", "src": "fruit/apple.png" },
+        { "name": "茶树菇", "src": "fruit/caomei.png" },
+        { "name": "银耳", "src": "fruit/orange.png" }],
       subCategories: {
         食用菌鲜货: ['灵芝', '黑木耳', '虫草', '蘑菇', '平菇', '香菇', '松茸', '银耳'],
         食用菌干货: ['干香菇', '猴头菇', '茶树菇', '竹燕窝', '菜籽']
@@ -150,17 +150,17 @@ export class ApiService {
       // "names": ["苹果", "西瓜", "桔子", "葡萄", "桃子", "梨", "甜瓜", "橙子", "枣", "香蕉", "樱桃", "哈密瓜", "草莓", "猕猴桃", "柚子", "菠萝", "李子", "柿子", "芒果", "无花果", "杏", "榴莲", "龙眼", "荔枝", "柠檬", "其他"]
     }, {
       "title": "特种种植", "hots": [
-        { "name": "苹果1", "src": "fruit/pea.png" },
-        { "name": "梨1", "src": "fruit/apple.png" },
-        { "name": "草莓1", "src": "fruit/caomei.png" },
-        { "name": "橙子1", "src": "fruit/orange.png" }],
+        { "name": "苹果", "src": "fruit/pea.png" },
+        { "name": "梨", "src": "fruit/apple.png" },
+        { "name": "草莓", "src": "fruit/caomei.png" },
+        { "name": "橙子", "src": "fruit/orange.png" }],
       //"names": ["苹果", "西瓜", "桔子", "葡萄", "桃子", "梨", "甜瓜", "橙子", "枣", "香蕉", "樱桃", "哈密瓜", "草莓", "猕猴桃", "柚子", "菠萝", "李子", "柿子", "芒果", "无花果", "杏", "榴莲", "龙眼", "荔枝", "柠檬", "其他"]
     }, {
       "title": "绿化苗木", "hots": [
-        { "name": "苹果1", "src": "fruit/pea.png" },
-        { "name": "梨1", "src": "fruit/apple.png" },
-        { "name": "草莓1", "src": "fruit/caomei.png" },
-        { "name": "橙子1", "src": "fruit/orange.png" }],
+        { "name": "苹果", "src": "fruit/pea.png" },
+        { "name": "梨", "src": "fruit/apple.png" },
+        { "name": "草莓", "src": "fruit/caomei.png" },
+        { "name": "橙子", "src": "fruit/orange.png" }],
       //"names": ["苹果", "西瓜", "桔子", "葡萄", "桃子", "梨", "甜瓜", "橙子", "枣", "香蕉", "樱桃", "哈密瓜", "草莓", "猕猴桃", "柚子", "菠萝", "李子", "柿子", "芒果", "无花果", "杏", "榴莲", "龙眼", "荔枝", "柠檬", "其他"]
     }]
 }

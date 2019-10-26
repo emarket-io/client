@@ -8,7 +8,7 @@ import { Injectable, Injector } from '@angular/core';
 })
 export class UtilsService {
   injector: Injector;
-  key = '';
+  keyword = '';
   commodity: Commodity;
   selectedCategory = '';
   // https://lbs.amap.com/api/javascript-api/reference/lnglat-to-address#regeocode

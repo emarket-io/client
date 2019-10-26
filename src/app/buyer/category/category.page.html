@@ -12,38 +12,36 @@
 <ion-content>
   <div style="position:fixed; top: 80px;width: 23%;">
     <ion-slides [options]="slideOpts" style="background-color:#f2f2f2;">
-      <ion-slide (click)="itemClick(item)" [class.selected]="currentItem === item" *ngFor="let item of items">
+      <ion-slide (click)="level1Click(item)" [class.selected]="level1 === item" *ngFor="let item of items">
         <ion-card-content>{{item.title}}</ion-card-content>
       </ion-slide>
     </ion-slides>
   </div>
   <div style="margin-left:23%;vertical-align:top;">
     <ion-card>
-      <!-- <ion-card-header>
-        <ion-card-subtitle>当季热门</ion-card-subtitle>
-        <ion-card-title>热门水果</ion-card-title>
-      </ion-card-header> -->
       <ion-item>
         <ion-label style="font-size: small">当季热门</ion-label>
         <ion-icon name="menu" slot="end"></ion-icon>
       </ion-item>
       <ion-card-content>
-        <div *ngFor="let hot of currentItem?.hots" style="display:inline-block;width: 25%;text-align: center">
+        <div *ngFor="let hot of level1?.hots" style="display:inline-block;width: 25%;text-align: center">
           <img src="assets/{{hot.src}}" />
           {{hot.name}}
         </div>
       </ion-card-content>
     </ion-card>
-    <ion-card *ngFor="let sc of currentItem?.subCategories | keyvalue" style="box-shadow: none;margin: 0;">
-      <ion-card-header>
-        <ion-card-subtitle>{{sc.key}}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        <div *ngFor="let name of sc.value" (click)="gotoView(name)"
-          style="display:inline-block;width: 25%;text-align: center;line-height: 40px;">
-          {{name}}
-        </div>
-      </ion-card-content>
+    <ion-card>
+      <ion-card *ngFor="let sc of level1?.subCategories | keyvalue" style="box-shadow: none;margin: 0;">
+        <ion-card-header>
+          <ion-card-subtitle (click)="gotoView(sc.key)">{{sc.key}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <div *ngFor="let name of sc.value" (click)="gotoView(name)"
+            style="display:inline-block;width: 25%;text-align: center;line-height: 40px;">
+            {{name}}
+          </div>
+        </ion-card-content>
+      </ion-card>
     </ion-card>
   </div>
 </ion-content>
