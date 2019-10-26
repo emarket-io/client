@@ -10,14 +10,14 @@
 </ion-header>
 
 <ion-content>
-  <div style="display: inline-block;width: 22%;">
+  <div style="position:fixed; top: 80px;width: 22%;">
     <ion-slides [options]="slideOpts" style="background-color:#f2f2f2;">
       <ion-slide (click)="itemClick(item)" [class.selected]="currentItem === item" *ngFor="let item of items">
         <div style="font-size:small">{{item.title}}</div>
       </ion-slide>
     </ion-slides>
   </div>
-  <div style="display:inline-block;width: 78%;vertical-align:top;">
+  <div style="margin-left:22%;vertical-align:top;">
     <ion-card>
       <!-- <ion-card-header>
         <ion-card-subtitle>当季热门</ion-card-subtitle>
@@ -34,7 +34,7 @@
         </div>
       </ion-card-content>
     </ion-card>
-    <ion-card *ngFor="let sc of currentItem?.subCategories | keyvalue">
+    <ion-card *ngFor="let sc of currentItem?.subCategories | keyvalue" style="box-shadow: none;">
       <ion-card-header>
         <ion-card-subtitle>{{sc.key}}</ion-card-subtitle>
       </ion-card-header>
