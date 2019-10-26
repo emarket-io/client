@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { File } from '@ionic-native/file/ngx';
+import { AlertController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { environment } from '../../../environments/environment';
@@ -26,7 +27,8 @@ export class PublishPage {
     private camera: Camera,
     private router: Router,
     private webview: WebView,
-    private httpClient: HttpClient) {
+    private httpClient: HttpClient,
+    public alertController: AlertController) {
     this.commodity = new Commodity();
     this.commodity.price = new Price();
   }
@@ -40,8 +42,8 @@ export class PublishPage {
     const options: CameraOptions = {
       // quality: 50,
       allowEdit: true,
-      targetWidth: 400,
-      targetHeight: 400,
+      targetWidth: 500,
+      targetHeight: 500,
       // destinationType: this.camera.DestinationType.FILE_URI,
       // encodingType: this.camera.EncodingType.JPEG,
       // mediaType: this.camera.MediaType.ALLMEDIA,
@@ -88,16 +90,25 @@ export class PublishPage {
 
   async submit() {
     if (!this.commodity.title) {
-      return await utilsService.alert('请输入商品标题');
+      //return utilsService.alert('请输入商品标题');
+      const alert = await this.alertController.create({
+        header: 'Alert',
+        subHeader: 'Subtitle',
+        message: 'This is an alert message.',
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+      return
     }
     if (!this.price_single) {
-      return await utilsService.alert('请输入单价');
+      return utilsService.alert('请输入单价');
     }
     if (!this.price_group) {
-      return await utilsService.alert('请输入拼单价');
+      return utilsService.alert('请输入拼单价');
     }
     if (!this.amount) {
-      return await utilsService.alert('请输入库存数量');
+      return utilsService.alert('请输入库存数量');
     }
     // upload firstly
     this.httpClient.post(environment.apiUrl + '/upload', this.formData, { params: { title: this.commodity.title } }).subscribe(
