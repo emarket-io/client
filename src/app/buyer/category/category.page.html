@@ -13,7 +13,7 @@
   <div style="position:fixed; top: 80px;width: 22%;">
     <ion-slides [options]="slideOpts" style="background-color:#f2f2f2;">
       <ion-slide (click)="itemClick(item)" [class.selected]="currentItem === item" *ngFor="let item of items">
-        <div style="font-size:small">{{item.title}}</div>
+        <ion-card-content>{{item.title}}</ion-card-content>
       </ion-slide>
     </ion-slides>
   </div>
@@ -39,7 +39,7 @@
         <ion-card-subtitle>{{sc.key}}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <div *ngFor="let name of sc.value" style="display:inline-block;width: 25%;text-align: center">
+        <div *ngFor="let name of sc.value" style="display:inline-block;width: 25%">
           <div (click)="gotoView(name)" style="margin:10px 0;">{{name}}</div>
         </div>
       </ion-card-content>
