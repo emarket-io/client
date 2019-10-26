@@ -27,7 +27,7 @@ export class UtilsService {
   async alert(msg: string, title: string = '提示') {
     const alert = await this.injector.get(AlertController).create({
       header: title,
-      subHeader: msg,
+      //subHeader: msg,
       message: msg,
       buttons: ['OK']
     });
