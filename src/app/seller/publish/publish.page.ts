@@ -1,7 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { File } from '@ionic-native/file/ngx';
-import { AlertController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { environment } from '../../../environments/environment';
@@ -27,8 +26,7 @@ export class PublishPage {
     private camera: Camera,
     private router: Router,
     private webview: WebView,
-    private httpClient: HttpClient,
-    public alertController: AlertController) {
+    private httpClient: HttpClient) {
     this.commodity = new Commodity();
     this.commodity.price = new Price();
   }
@@ -90,16 +88,7 @@ export class PublishPage {
 
   async submit() {
     if (!this.commodity.title) {
-      //return utilsService.alert('请输入商品标题');
-      const alert = await this.alertController.create({
-        header: 'Alert',
-        subHeader: 'Subtitle',
-        message: 'This is an alert message.',
-        buttons: ['OK']
-      });
-  
-      await alert.present();
-      return
+      return utilsService.alert('请输入商品标题');
     }
     if (!this.price_single) {
       return utilsService.alert('请输入单价');
@@ -125,7 +114,7 @@ export class PublishPage {
 
     apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
       if (err) {
-        alert(JSON.stringify(err));
+        utilsService.alert(JSON.stringify(err));
       } else {
         console.log(response);
         this.router.navigateByUrl('/tabs/my');

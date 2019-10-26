@@ -8,17 +8,24 @@
   <ion-item>
     <ion-label>一级分类</ion-label>
     <ion-label>二级分类</ion-label>
+    <ion-label>三级分类</ion-label>
   </ion-item>
   <ion-item>
-    <div style="display: inline-block;width: 45%;">
-      <div style="margin:15px 0" (click)="itemClick(category)" [class.selected]="currentItem === category"
+    <div style="width: 35%;">
+      <div style="line-height: 40px;" (click)="level1Click(category)" [class.selected]="level1 === category"
         *ngFor="let category of categories">
         {{category.title}}
       </div>
     </div>
-    <div style="display:inline-block;width: 55%;vertical-align:top;">
-      <div *ngFor="let name of currentItem?.names" (click)="selectCategory(name)"
-        style="display:inline-block;width: 33%;text-align: center;margin:10px 0;">
+    <div style="width: 30%;">
+      <div style="line-height: 40px;" (click)="level2Click(sc)" [class.selected]="level2 === sc"
+        *ngFor="let sc of level1?.subCategories | keyvalue">
+        {{sc.key}}
+      </div>
+    </div>
+    <div style="width: 35%;">
+      <div *ngFor="let name of level2?.value" (click)="level3Click(name)"
+        style="display:inline-block;width: 50%;line-height: 40px;">
         {{name}}
       </div>
     </div>

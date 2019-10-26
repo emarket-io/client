@@ -34,12 +34,12 @@
         </div>
       </ion-card-content>
     </ion-card>
-    <ion-card *ngIf="currentItem.names">
-      <!-- <ion-card-header>
-        <ion-card-subtitle>更多</ion-card-subtitle>
-      </ion-card-header> -->
+    <ion-card *ngFor="let sc of currentItem?.subCategories | keyvalue">
+      <ion-card-header>
+        <ion-card-subtitle>{{sc.key}}</ion-card-subtitle>
+      </ion-card-header>
       <ion-card-content>
-        <div *ngFor="let name of currentItem?.names" style="display:inline-block;width: 25%;text-align: center">
+        <div *ngFor="let name of sc.value" style="display:inline-block;width: 25%;text-align: center">
           <div (click)="gotoView(name)" style="margin:10px 0;">{{name}}</div>
         </div>
       </ion-card-content>
