@@ -15,8 +15,8 @@ export class Message extends jspb.Message {
   addVideos(value: string, index?: number): void;
   to: string;
   from: string;
-  labelsMap: jspb.Map<string, string>;
-  clearlabelsMap(): void;
+  annotationsMap: jspb.Map<string, string>;
+  clearannotationsMap(): void;
   created: google_protobuf_timestamp_pb.Timestamp | undefined;
   hascreated(): boolean;
   clearcreated(): void;
@@ -36,7 +36,7 @@ export namespace Message {
     videosList: Array<string>,
     to: string,
     from: string,
-    labelsMap: Array<[string, string]>,
+    annotationsMap: Array<[string, string]>,
     created?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }

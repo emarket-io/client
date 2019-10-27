@@ -106,7 +106,7 @@ proto.zbay.Message.toObject = function(includeInstance, msg) {
     videosList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
     to: jspb.Message.getFieldWithDefault(msg, 5, ""),
     from: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
+    annotationsMap: (f = msg.getAnnotationsMap()) ? f.toObject(includeInstance, undefined) : [],
     created: (f = msg.getCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
@@ -169,7 +169,7 @@ proto.zbay.Message.deserializeBinaryFromReader = function(msg, reader) {
       msg.setFrom(value);
       break;
     case 7:
-      var value = msg.getLabelsMap();
+      var value = msg.getAnnotationsMap();
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
@@ -250,7 +250,7 @@ proto.zbay.Message.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getLabelsMap(true);
+  f = message.getAnnotationsMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(7, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
@@ -449,23 +449,23 @@ proto.zbay.Message.prototype.setFrom = function(value) {
 };
 
 
-Object.defineProperty(proto.zbay.Message.prototype, "labelsMap", {
+Object.defineProperty(proto.zbay.Message.prototype, "annotationsMap", {
   set: function(value) {
-    this.setLabelsMap(value);
+    this.setAnnotationsMap(value);
   },
   get: function() {
-    return this.getLabelsMap();
+    return this.getAnnotationsMap();
   },
 });
 
 
 /**
- * map<string, string> labels = 7;
+ * map<string, string> annotations = 7;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
  * @return {!jspb.Map<string,string>}
  */
-proto.zbay.Message.prototype.getLabelsMap = function(opt_noLazyCreate) {
+proto.zbay.Message.prototype.getAnnotationsMap = function(opt_noLazyCreate) {
   return /** @type {!jspb.Map<string,string>} */ (
       jspb.Message.getMapField(this, 7, opt_noLazyCreate,
       null));
@@ -475,8 +475,8 @@ proto.zbay.Message.prototype.getLabelsMap = function(opt_noLazyCreate) {
 /**
  * Clears values from the map. The map will be non-null.
  */
-proto.zbay.Message.prototype.clearLabelsMap = function() {
-  this.getLabelsMap().clear();
+proto.zbay.Message.prototype.clearAnnotationsMap = function() {
+  this.getAnnotationsMap().clear();
 };
 
 

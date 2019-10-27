@@ -2,16 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { ModalPage } from './modal/modal.page';
-import { ModalPageModule } from './modal/modal.module';
+
 import { IonicModule } from '@ionic/angular';
 
-import { AddressPage } from './address.page';
+import { ModalPage } from './modal.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: AddressPage
+    component: ModalPage
   }
 ];
 
@@ -22,7 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ModalPage, AddressPage],
-  entryComponents: [ModalPage],
+  //declarations: [ModalPage]
 })
-export class AddressPageModule { }
+export class ModalPageModule { }

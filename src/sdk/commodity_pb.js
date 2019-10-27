@@ -201,11 +201,11 @@ proto.zbay.Commodity.deserializeBinaryFromReader = function(msg, reader) {
       msg.setPrice(value);
       break;
     case 8:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {number} */ (reader.readUint32());
       msg.setAmount(value);
       break;
     case 9:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {number} */ (reader.readUint32());
       msg.setFare(value);
       break;
     case 10:
@@ -310,14 +310,14 @@ proto.zbay.Commodity.serializeBinaryToWriter = function(message, writer) {
   }
   f = message.getAmount();
   if (f !== 0) {
-    writer.writeInt32(
+    writer.writeUint32(
       8,
       f
     );
   }
   f = message.getFare();
   if (f !== 0) {
-    writer.writeInt32(
+    writer.writeUint32(
       9,
       f
     );
@@ -575,7 +575,7 @@ Object.defineProperty(proto.zbay.Commodity.prototype, "amount", {
 
 
 /**
- * optional int32 amount = 8;
+ * optional uint32 amount = 8;
  * @return {number}
  */
 proto.zbay.Commodity.prototype.getAmount = function() {
@@ -600,7 +600,7 @@ Object.defineProperty(proto.zbay.Commodity.prototype, "fare", {
 
 
 /**
- * optional int32 fare = 9;
+ * optional uint32 fare = 9;
  * @return {number}
  */
 proto.zbay.Commodity.prototype.getFare = function() {
@@ -827,11 +827,11 @@ proto.zbay.Price.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readUint32());
+      var value = /** @type {number} */ (reader.readUint64());
       msg.setSingle(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readUint32());
+      var value = /** @type {number} */ (reader.readUint64());
       msg.setGroup(value);
       break;
     default:
@@ -865,14 +865,14 @@ proto.zbay.Price.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getSingle();
   if (f !== 0) {
-    writer.writeUint32(
+    writer.writeUint64(
       1,
       f
     );
   }
   f = message.getGroup();
   if (f !== 0) {
-    writer.writeUint32(
+    writer.writeUint64(
       2,
       f
     );
@@ -891,7 +891,7 @@ Object.defineProperty(proto.zbay.Price.prototype, "single", {
 
 
 /**
- * optional uint32 single = 1;
+ * optional uint64 single = 1;
  * @return {number}
  */
 proto.zbay.Price.prototype.getSingle = function() {
@@ -916,7 +916,7 @@ Object.defineProperty(proto.zbay.Price.prototype, "group", {
 
 
 /**
- * optional uint32 group = 2;
+ * optional uint64 group = 2;
  * @return {number}
  */
 proto.zbay.Price.prototype.getGroup = function() {

@@ -62,7 +62,7 @@
   </ion-list>
 </ion-content>
 
-<ion-footer transparent>
+<ion-footer>
   <ion-toolbar>
     <ion-buttons>
       <ion-button>
@@ -77,7 +77,7 @@
     <ion-buttons slot="end">
       <ion-button>单买(¥{{formatRBM(commodity.price.single)}})
       </ion-button>
-      <ion-button>拼单(¥{{formatRBM(commodity.price.group)}})
+      <ion-button (click)="order()">拼单(¥{{formatRBM(commodity.price.group)}})
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

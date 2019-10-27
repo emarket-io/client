@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { utilsService } from '../../providers/utils.service'
 import { environment } from '../../../environments/environment';
-import { apiService,utilsService } from '../../providers/utils.service'
 
 @Component({
   selector: 'app-detail',
@@ -27,5 +27,9 @@ export class DetailPage {
 
   back() {
     this.router.navigateByUrl('/view');
+  }
+
+  order() {
+    this.router.navigateByUrl('/order');
   }
 }
