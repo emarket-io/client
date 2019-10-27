@@ -1,0 +1,28 @@
+<!-- <ion-header> -->
+<!-- <ion-toolbar class="ion-text-center"> -->
+<!-- <ion-buttons slot="start">
+          <ion-button (click)="dismiss()">
+            <ion-icon name="arrow-round-back"></ion-icon>
+          </ion-button>
+        </ion-buttons> -->
+<!-- <ion-title>添加收货地址</ion-title>
+</ion-toolbar> -->
+<!-- </ion-header> -->
+
+<ion-content>
+  <ion-item>
+    添加收货地址
+  </ion-item>
+  <ion-item>
+    <ion-input required placeholder="收货姓名" [(ngModel)]="address.contact"></ion-input>
+    <ion-input required placeholder="联系方式" [(ngModel)]="address.telephone"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input required placeholder="详细地址（如省/市/区/镇/街道/小区/村）" [(ngModel)]="address.location"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-button (click)="submitAddress()">
+      确定
+    </ion-button>
+  </ion-item>
+</ion-content>

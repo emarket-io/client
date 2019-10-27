@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../../sdk/user_pb';
+import { Address } from '../../../sdk/address_pb';
 import { apiService, utilsService } from '../../providers/utils.service'
 import { Location } from "@angular/common";
-import { ModalController } from '@ionic/angular';
-import { ModalPage } from './modal/modal.page';
+import { PopoverController } from '@ionic/angular';
+import { PopoverPage } from './popover/popover.page';
 
 @Component({
   selector: 'app-address',
@@ -10,21 +12,33 @@ import { ModalPage } from './modal/modal.page';
   styleUrls: ['./address.page.scss'],
 })
 export class AddressPage implements OnInit {
-
+  addresses: Address[]
   address = utilsService.address.formattedAddress;
 
   constructor(
     private location: Location,
-    private modalController: ModalController) { }
+    private popoverController: PopoverController) { }
 
   ngOnInit() { }
 
-
-  async presentModal() {
-    const modal = await this.modalController.create({
-      component: ModalPage,
+  ionViewWillEnter() {
+    this.addresses = []
+    let stream = apiService.addressClient.list((new User()), apiService.metaData);
+    stream.on('data', response => {
+      this.addresses.push(response);
+      console.log(response.toObject())
     });
-    return await modal.present();
+    stream.on('error', err => {
+      alert(JSON.stringify(err));
+    });
+  }
+
+  async presentPopover() {
+    const popover = await this.popoverController.create({
+      component: PopoverPage
+    });
+    popover.style.cssText = '--width: 90%;';
+    return await popover.present();
   }
 
   closeAddress() {
