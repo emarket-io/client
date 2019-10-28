@@ -10,6 +10,7 @@ export class Address extends jspb.Message {
   contact: string;
   telephone: string;
   location: string;
+  default: boolean;
   annotationsMap: jspb.Map<string, string>;
   clearannotationsMap(): void;
   created: google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -30,6 +31,7 @@ export namespace Address {
     contact: string,
     telephone: string,
     location: string,
+    pb_default: boolean,
     annotationsMap: Array<[string, string]>,
     created?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }

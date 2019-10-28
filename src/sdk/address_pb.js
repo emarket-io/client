@@ -76,6 +76,7 @@ proto.zbay.Address.toObject = function(includeInstance, msg) {
     contact: jspb.Message.getFieldWithDefault(msg, 3, ""),
     telephone: jspb.Message.getFieldWithDefault(msg, 4, ""),
     location: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    pb_default: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
     annotationsMap: (f = msg.getAnnotationsMap()) ? f.toObject(includeInstance, undefined) : [],
     created: (f = msg.getCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
@@ -133,6 +134,10 @@ proto.zbay.Address.deserializeBinaryFromReader = function(msg, reader) {
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setLocation(value);
+      break;
+    case 8:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDefault(value);
       break;
     case 6:
       var value = msg.getAnnotationsMap();
@@ -206,6 +211,13 @@ proto.zbay.Address.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       5,
+      f
+    );
+  }
+  f = message.getDefault();
+  if (f) {
+    writer.writeBool(
+      8,
       f
     );
   }
@@ -346,6 +358,31 @@ proto.zbay.Address.prototype.getLocation = function() {
 /** @param {string} value */
 proto.zbay.Address.prototype.setLocation = function(value) {
   jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+Object.defineProperty(proto.zbay.Address.prototype, "pb_default", {
+  set: function(value) {
+    this.setDefault(value);
+  },
+  get: function() {
+    return this.getDefault();
+  },
+});
+
+
+/**
+ * optional bool default = 8;
+ * @return {boolean}
+ */
+proto.zbay.Address.prototype.getDefault = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
+};
+
+
+/** @param {boolean} value */
+proto.zbay.Address.prototype.setDefault = function(value) {
+  jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 

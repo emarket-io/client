@@ -1,4 +1,6 @@
+import { User } from '../../../sdk/user_pb';
 import { Order } from '../../../sdk/order_pb';
+import { Address } from '../../../sdk/address_pb';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service'
@@ -8,11 +10,25 @@ import { apiService, utilsService } from '../../providers/utils.service'
   templateUrl: './order.page.html',
   styleUrls: ['./order.page.scss'],
 })
-export class OrderPage implements OnInit {
+export class OrderPage {
+  address: Address;
+  addresses: Address[];
+  host = environment.apiUrl;
+  commodity = utilsService.commodity;
+  formatRBM = utilsService.formatRMB;
 
   constructor() { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
+    this.addresses = []
+    let stream = apiService.addressClient.list((new User()), apiService.metaData);
+    stream.on('data', response => {
+      this.addresses.push(response);
+      console.log(response.toObject())
+    });
+    stream.on('error', err => {
+      alert(JSON.stringify(err));
+    });
   }
 
   preparebuy() {
