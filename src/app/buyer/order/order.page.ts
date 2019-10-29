@@ -51,6 +51,7 @@ export class OrderPage {
           utilsService.alert(err.message)
         } {
           let payInfo = response.getValue();
+          alert(payInfo);
           // cordova.plugins.alipay.payment(payInfo, (success) => {
           //   console.log(success);
           //   alert('success:' + JSON.stringify(success));
