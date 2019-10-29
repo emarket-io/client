@@ -43,7 +43,7 @@ export class OrderPage {
     order.userId = 'TODO';
     order.destination = null;
     order.quantity = 1;
-    order.amount = 1; //单位:分
+    order.amount = 0.01;
     order.status = '待付款';
     apiService.orderClient.signAlipay(order, apiService.metaData,
       (err: grpcWeb.Error, response: StringValue) => {
@@ -51,7 +51,7 @@ export class OrderPage {
           utilsService.alert(err.message)
         } {
           let payInfo = response.getValue();
-          alert(payInfo);
+          // alert(payInfo);
           // cordova.plugins.alipay.payment(payInfo, (success) => {
           //   console.log(success);
           //   alert('success:' + JSON.stringify(success));
