@@ -42,7 +42,7 @@ export class OrderPage {
     order.userId = 'TODO';
     order.destination = null;
     order.quantity = 1;
-    order.amount = 0.01;
+    order.amount = 1; //单位:分
     order.status = '待付款';
     apiService.orderClient.signAlipay(order, apiService.metaData,
       (err: grpcWeb.Error, response: StringValue) => {
