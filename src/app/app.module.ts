@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { File } from '@ionic-native/file/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
+import { Alipay } from '@ionic-native/alipay/ngx';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -20,7 +21,7 @@ import { AppComponent } from './app.component';
     StatusBar,
     SplashScreen,
     Geolocation,
-    Camera,
+    Camera, Alipay,
     File, WebView,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

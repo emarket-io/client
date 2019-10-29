@@ -2,13 +2,14 @@ import * as grpcWeb from 'grpc-web';
 import { User } from '../../../sdk/user_pb';
 import { Order } from '../../../sdk/order_pb';
 import { Address } from '../../../sdk/address_pb';
+import { Alipay } from '@ionic-native/alipay/ngx';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service'
 import { Timestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
 import { StringValue } from "google-protobuf/google/protobuf/wrappers_pb";
 
-declare let cordova;
+//declare let cordova;
 
 @Component({
   selector: 'app-order',
@@ -22,7 +23,7 @@ export class OrderPage {
   commodity = utilsService.commodity;
   formatRBM = utilsService.formatRMB;
 
-  constructor() { }
+  constructor(private alipay: Alipay) { }
 
   ionViewWillEnter() {
     this.addresses = []
@@ -50,16 +51,23 @@ export class OrderPage {
           utilsService.alert(err.message)
         } {
           let payInfo = response.getValue();
-          cordova.plugins.alipay.payment(payInfo, (success) => {
-            console.log(success);
-            alert('success:' + JSON.stringify(success));
-            // let payInfo = new PayInfo();
-            // payInfo.setType('alipay');
-            // payInfo.setPayresult(JSON.stringify(success));
-            // this.addOrder(payInfo);
-          }, (error) => {
-            console.log(error);
-            utilsService.alert(JSON.stringify(error));
+          // cordova.plugins.alipay.payment(payInfo, (success) => {
+          //   console.log(success);
+          //   alert('success:' + JSON.stringify(success));
+          //   // let payInfo = new PayInfo();
+          //   // payInfo.setType('alipay');
+          //   // payInfo.setPayresult(JSON.stringify(success));
+          //   // this.addOrder(payInfo);
+          // }, (error) => {
+          //   console.log(error);
+          //   utilsService.alert(JSON.stringify(error));
+          // });
+          this.alipay.pay(payInfo).then(result => {
+            console.log(result); // Success
+            alert(result);
+          }).catch(error => {
+            console.log(error); // Failed
+            alert(JSON.stringify(error));
           });
         }
       });
