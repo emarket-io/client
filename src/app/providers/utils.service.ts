@@ -17,11 +17,16 @@ export class UtilsService {
     addressComponent: { province: '湖北省', city: "荆门市", district: '沙洋县' }
   };
 
-  formatRMB(v: Number): string {
-    var str = v.toString();
-    var s1 = str.substring(0, str.length - 2);
-    var s2 = str.substring(str.length - 2, str.length);
-    return s1 + '.' + s2
+  formatRMB(v: number): string {
+    var strValue = v.toString();
+    if (strValue.length == 1) {
+      return '0.0' + strValue;
+    }
+    if (strValue.length == 2) {
+      return '0.' + strValue;
+    }
+
+    return strValue.substring(0, strValue.length - 2) + '.' + strValue.substring(strValue.length - 2, strValue.length)
   }
 
   async alert(content: string, title: string = '提示') {

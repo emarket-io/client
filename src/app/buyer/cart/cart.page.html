@@ -24,7 +24,7 @@
       待评价
     </ion-slide>
   </ion-slides>
-  <ion-card>
+  <ion-card *ngFor="let order of orders">
     <ion-toolbar>
       <ion-buttons>
         <ion-button style="font-size: small">
@@ -34,7 +34,7 @@
       </ion-buttons>
       <ion-buttons slot="end">
         <ion-button style="font-size: small">
-          待评价
+          {{order.status}}
         </ion-button>
       </ion-buttons>
     </ion-toolbar>
@@ -44,7 +44,7 @@
     <div class="order-content-div">
       山东烟台红富士苹果
       <div class="order-price">
-        ¥88
+        ¥{{formatRBM(order.amount)}}
       </div>
     </div>
     <ion-buttons style="float:right">
