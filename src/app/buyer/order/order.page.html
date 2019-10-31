@@ -7,11 +7,11 @@
 <ion-content>
   <ion-item>
     <ion-icon name="pin"></ion-icon>
-    <ion-card-content *ngIf="addresses">
-      {{addresses[0]?.contact}} {{addresses[0]?.telephone}}
-      <br /> {{addresses[0]?.location}}
+    <ion-card-content>
+      {{destination?.contact}} {{destination?.telephone}}
+      <br /> {{destination?.location}}
     </ion-card-content>
-    <ion-icon name="arrow-dropright" slot="end"></ion-icon>
+    <ion-icon name="arrow-dropright" slot="end" (click)="selectDestination()"></ion-icon>
   </ion-item>
   <ion-item>
     <ion-thumbnail slot="start">
@@ -24,16 +24,16 @@
   </ion-item>
   <ion-item>
     <ion-label>购买数量</ion-label>
-    <ion-input type="number" value="1"></ion-input>
+    <ion-input type="number" [(ngModel)]="order.quantity"></ion-input>
   </ion-item>
   <ion-list>
     <ion-item>
       <ion-icon name="arrow-dropright-circle"></ion-icon>
-      <ion-card-content> 微信支付</ion-card-content>
+      <ion-card-content>微信支付</ion-card-content>
     </ion-item>
     <ion-item>
       <ion-icon name="share"></ion-icon>
-      <ion-card-content> 支付宝支付</ion-card-content>
+      <ion-card-content>支付宝支付</ion-card-content>
     </ion-item>
   </ion-list>
 </ion-content>
@@ -41,6 +41,8 @@
 <ion-footer>
   <ion-toolbar>
     <ion-buttons slot="end">
+      <!-- <ion-button>实付款¥666
+      </ion-button> -->
       <ion-button (click)="preparebuy()">立即支付
       </ion-button>
     </ion-buttons>

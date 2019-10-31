@@ -13,7 +13,7 @@ declare let AMap;
 export class HomePage {
   // @ViewChild('map_container', null) map_container: ElementRef;
   // map: any; // 地图对象
-  city = utilsService.address.addressComponent.city + utilsService.address.addressComponent.district;
+  city = utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
   slideOpts = {
     slidesPerView: 1,
     autoplay: {
@@ -45,10 +45,10 @@ export class HomePage {
               const geocoder = new AMap.Geocoder({});
               geocoder.getAddress(positionInfo, (status, result) => {
                 if (status === 'complete' && result.info === 'OK') {
-                  utilsService.address = result.regeocode;
-                  this.city = utilsService.address.addressComponent.city + utilsService.address.addressComponent.district;
-                  if (utilsService.address.addressComponent.city == '') {
-                    this.city = utilsService.address.addressComponent.province + utilsService.address.addressComponent.district;
+                  utilsService.location = result.regeocode;
+                  this.city = utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
+                  if (utilsService.location.addressComponent.city == '') {
+                    this.city = utilsService.location.addressComponent.province + utilsService.location.addressComponent.district;
                   }
                 } else {
                   console.log('获取地址失败');

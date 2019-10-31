@@ -13,7 +13,7 @@ import { PopoverPage } from './popover/popover.page';
 })
 export class AddressPage implements OnInit {
   addresses: Address[]
-  address = utilsService.address.formattedAddress;
+  address = utilsService.location.formattedAddress;
 
   constructor(
     private location: Location,
@@ -26,7 +26,9 @@ export class AddressPage implements OnInit {
     let stream = apiService.addressClient.list((new User()), apiService.metaData);
     stream.on('data', response => {
       this.addresses.push(response);
-      console.log(response.toObject())
+      console.log(response.toObject());
+      // first by default
+      utilsService.destination = this.addresses[0];
     });
     stream.on('error', err => {
       alert(JSON.stringify(err));
@@ -39,6 +41,11 @@ export class AddressPage implements OnInit {
     });
     popover.style.cssText = '--width: 90%;';
     return await popover.present();
+  }
+
+  selectDestionation(address: Address) {
+    utilsService.destination = address;
+    this.closeAddress();
   }
 
   closeAddress() {

@@ -33,7 +33,7 @@ export class PublishPage {
 
   ionViewWillEnter() {
     this.commodity.category = utilsService.selectedCategory;
-    this.commodity.city = utilsService.address.addressComponent.province + utilsService.address.addressComponent.city;
+    this.commodity.city = utilsService.location.addressComponent.province + utilsService.location.addressComponent.city;
   }
 
   addMedia() {

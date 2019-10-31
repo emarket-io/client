@@ -15,37 +15,42 @@ import { StringValue } from "google-protobuf/google/protobuf/wrappers_pb";
   styleUrls: ['./order.page.scss'],
 })
 export class OrderPage {
-  address: Address;
-  addresses: Address[];
+  order = new Order();
+  destination: Address;
   host = environment.apiUrl;
   commodity = utilsService.commodity;
   formatRBM = utilsService.formatRMB;
 
   constructor(
     private router: Router,
-    private alipay: Alipay) { }
+    private alipay: Alipay) {
+    this.order.commodityId = utilsService.commodity.id;
+    this.order.userId = 'TODO';
+    this.order.destination = null;
+    this.order.quantity = 1;
+  }
 
   ionViewWillEnter() {
-    this.addresses = []
-    let stream = apiService.addressClient.list((new User()), apiService.metaData);
-    stream.on('data', response => {
-      this.addresses.push(response);
-      console.log(response.toObject())
-    });
-    stream.on('error', err => {
-      alert(JSON.stringify(err));
-    });
+    this.destination = utilsService.destination;
+    // this.addresses = []
+    // let stream = apiService.addressClient.list((new User()), apiService.metaData);
+    // stream.on('data', response => {
+    //   this.addresses.push(response);
+    //   console.log(response.toObject())
+    // });
+    // stream.on('error', err => {
+    //   alert(JSON.stringify(err));
+    // });
+  }
+
+  selectDestination() {
+    this.router.navigateByUrl('/address');
   }
 
   preparebuy() {
-    let order = new Order();
-    order.commodityId = utilsService.commodity.id;
-    order.userId = 'TODO';
-    order.destination = null;
-    order.quantity = 1;
-    order.amount = utilsService.commodity.price.group * order.quantity;// 分
-    order.status = '待发货';
-    apiService.orderClient.signAlipay(order, apiService.metaData,
+    this.order.amount = utilsService.commodity.price.group * this.order.quantity / 100;
+    this.order.status = '待发货';
+    apiService.orderClient.signAlipay(this.order, apiService.metaData,
       (err: grpcWeb.Error, response: StringValue) => {
         if (err) {
           utilsService.alert(err.message)
@@ -53,17 +58,18 @@ export class OrderPage {
           let payInfo = response.getValue();
           this.alipay.pay(payInfo).then(result => {
             console.log(result); // Success
-            apiService.orderClient.add(order, apiService.metaData, (err: grpcWeb.Error, response: Order) => {
+            apiService.orderClient.add(this.order, apiService.metaData, (err: grpcWeb.Error, response: Order) => {
               if (err) {
                 utilsService.alert(JSON.stringify(err));
               } else {
                 console.log(response);
+                this.router.navigateByUrl('/tabs/cart');
               }
             });
           }).catch(error => {
             console.log(error); // Failed
             alert(JSON.stringify(error));
-            apiService.orderClient.add(order, apiService.metaData, (err: grpcWeb.Error, response: Order) => {
+            apiService.orderClient.add(this.order, apiService.metaData, (err: grpcWeb.Error, response: Order) => {
               if (err) {
                 utilsService.alert(JSON.stringify(err));
               } else {

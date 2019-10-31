@@ -1,4 +1,5 @@
 import { ApiService } from './api.service'
+import { Address } from '../../sdk/address_pb';
 import { AlertController } from '@ionic/angular';
 import { Commodity } from '../../sdk/commodity_pb';
 import { Injectable, Injector } from '@angular/core';
@@ -11,8 +12,9 @@ export class UtilsService {
   keyword = '';
   commodity: Commodity;
   selectedCategory = '';
+  destination: Address;
   // https://lbs.amap.com/api/javascript-api/reference/lnglat-to-address#regeocode
-  address = {
+  location = {
     formattedAddress: '湖北省荆门市',
     addressComponent: { province: '湖北省', city: "荆门市", district: '沙洋县' }
   };

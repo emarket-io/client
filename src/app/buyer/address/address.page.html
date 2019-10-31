@@ -36,7 +36,7 @@
       新建地址
     </ion-button>
   </ion-item>
-  <ion-item *ngFor="let address of addresses" lines="none">
+  <ion-item *ngFor="let address of addresses" lines="none" (click)="selectDestionation(address)">
     {{address.location}}
   </ion-item>
 </ion-content>
