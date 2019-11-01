@@ -12,6 +12,7 @@ import { apiService, utilsService } from '../../providers/utils.service'
 })
 export class CartPage {
   orders: Order[];
+  host = environment.apiUrl;
   idToCommodity = new Map<string, Commodity>();
   formatRBM = utilsService.formatRMB;
   slideOpts = {
@@ -25,7 +26,7 @@ export class CartPage {
     let stream = apiService.orderClient.list(new User(), apiService.metaData);
     stream.on('data', response => {
       this.orders.push(response);
-      this.getCommodityById(response.id);
+      this.getCommodityById(response.commodityId);
       console.log(response.toObject())
     });
     stream.on('error', err => {
@@ -37,7 +38,12 @@ export class CartPage {
     let commodity = new Commodity();
     commodity.id = id;
     apiService.commodityClient.get(commodity, apiService.metaData, (err: any, response: Commodity) => {
-      this.idToCommodity[id] = response;
+      if (err) {
+        console.log(JSON.stringify(err));
+      } else {
+        this.idToCommodity[id] = response;
+        console.log(response.toObject())
+      };
     });
   }
 }

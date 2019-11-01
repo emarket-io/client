@@ -7,9 +7,12 @@
     </ion-buttons>
   </ion-toolbar> -->
   <!-- <img src="assets/fruit/apple.png" style="margin-top: 30px"> -->
-  <ion-avatar style="margin-top: 20px;margin-left: 20px">
-    <img src="assets/fruit/apple.png">
-  </ion-avatar>
+  <ion-item style="--background:inherit;" lines="none" (click)="login()">
+    <ion-avatar style="margin-top: 20px;margin-left: 20px">
+      <img src="assets/fruit/apple.png">
+    </ion-avatar>
+    <ion-label>{{user?.name?user.name:'请登录'}}</ion-label>
+  </ion-item>
 </ion-header>
 
 <ion-content>

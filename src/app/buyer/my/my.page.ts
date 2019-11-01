@@ -1,22 +1,26 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { apiService, utilsService } from '../../providers/utils.service'
 
 @Component({
   selector: 'app-my',
   templateUrl: './my.page.html',
   styleUrls: ['./my.page.scss'],
 })
-export class MyPage implements OnInit {
+export class MyPage {
+  user = utilsService.user;
 
-  constructor(private statusBar: StatusBar,private router: Router) { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {
-    //this.statusBar.overlaysWebView(true);
-    //this.statusBar.styleBlackTranslucent();
+  ionViewWillEnter() {
+    this.user = utilsService.user;
   }
 
-  gotoPublish(){
+  gotoPublish() {
     this.router.navigateByUrl('/publish');
+  }
+
+  login() {
+    this.router.navigateByUrl('/login');
   }
 }

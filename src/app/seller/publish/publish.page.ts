@@ -111,7 +111,7 @@ export class PublishPage {
     this.commodity.price.single = parseFloat(this.price_single) * 100;
     this.commodity.price.group = parseFloat(this.price_group) * 100;
     this.commodity.amount = parseInt(this.amount);
-
+    this.commodity.owner = "TODO";
     apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
       if (err) {
         utilsService.alert(JSON.stringify(err));

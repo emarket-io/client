@@ -11,7 +11,9 @@ const routes: Routes = [
   { path: 'publish', loadChildren: './seller/publish/publish.module#PublishPageModule' },
   { path: 'address', loadChildren: './buyer/address/address.module#AddressPageModule' },
   { path: 'popover', loadChildren: './seller/popover/popover.module#PopoverPageModule' },
-  { path: 'order', loadChildren: './buyer/order/order.module#OrderPageModule' }
+  { path: 'order', loadChildren: './buyer/order/order.module#OrderPageModule' },
+  { path: 'login', loadChildren: './user/login/login.module#LoginPageModule' },
+  { path: 'signup', loadChildren: './user/signup/signup.module#SignupPageModule' }
 ];
 @NgModule({
   imports: [

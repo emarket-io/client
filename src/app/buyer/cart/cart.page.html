@@ -28,8 +28,7 @@
     <ion-toolbar>
       <ion-buttons>
         <ion-button style="font-size: small">
-          <ion-icon name="pin"></ion-icon>
-          正禾食品
+          {{idToCommodity[order.commodityId]?.owner?idToCommodity[order.commodityId].owner:'绿色之家'}}
         </ion-button>
       </ion-buttons>
       <ion-buttons slot="end">
@@ -39,10 +38,11 @@
       </ion-buttons>
     </ion-toolbar>
     <div class="order-image-div">
-      <img class="order-image" src="assets/fruit/apple.png" />
+      <img class="order-image"
+        src="{{host}}/static/{{idToCommodity[order.commodityId]?.title}}/{{idToCommodity[order.commodityId]?.mediaList[0].image}}" />
     </div>
     <div class="order-content-div">
-      {{idToCommodity[order.id]?.title}}
+      {{idToCommodity[order.commodityId]?.title}}
       <div class="order-price">
         ¥{{formatRBM(order.amount)}}
       </div>
