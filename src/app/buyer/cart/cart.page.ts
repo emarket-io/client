@@ -12,6 +12,7 @@ import { apiService, utilsService } from '../../providers/utils.service'
 })
 export class CartPage {
   orders: Order[];
+  idToCommodity = new Map<string, Commodity>();
   formatRBM = utilsService.formatRMB;
   slideOpts = {
     slidesPerView: 5,
@@ -31,15 +32,11 @@ export class CartPage {
     });
   }
 
-  getCommodityById(id: string): Promise<Commodity> {
-    var promise = new Promise<Commodity>(resolve => {
-      let commodity = new Commodity();
-      commodity.id = id;
-      apiService.commodityClient.get(commodity, apiService.metaData, (err: any, response: Commodity) => {
-        resolve(response);
-      });
-    })
-
-    return promise;
+  getCommodityById(id: string) {
+    let commodity = new Commodity();
+    commodity.id = id;
+    apiService.commodityClient.get(commodity, apiService.metaData, (err: any, response: Commodity) => {
+      this.idToCommodity[id] = response;
+    });
   }
 }

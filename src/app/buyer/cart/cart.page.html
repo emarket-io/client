@@ -42,7 +42,7 @@
       <img class="order-image" src="assets/fruit/apple.png" />
     </div>
     <div class="order-content-div">
-      山东烟台红富士苹果
+      {{idToCommodity[order.id]?.title}}
       <div class="order-price">
         ¥{{formatRBM(order.amount)}}
       </div>
