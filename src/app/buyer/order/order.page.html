@@ -5,13 +5,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
+  <ion-item (click)="selectDestination()">
     <ion-icon name="pin"></ion-icon>
     <ion-card-content>
       {{destination?.contact}} {{destination?.telephone}}
       <br /> {{destination?.location}}
     </ion-card-content>
-    <ion-icon name="arrow-dropright" slot="end" (click)="selectDestination()"></ion-icon>
+    <ion-icon name="arrow-dropright" slot="end"></ion-icon>
   </ion-item>
   <ion-item>
     <ion-thumbnail slot="start">

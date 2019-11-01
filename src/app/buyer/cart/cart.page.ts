@@ -25,6 +25,7 @@ export class CartPage {
     let stream = apiService.orderClient.list(new User(), apiService.metaData);
     stream.on('data', response => {
       this.orders.push(response);
+      this.getCommodityById(response.id);
       console.log(response.toObject())
     });
     stream.on('error', err => {
