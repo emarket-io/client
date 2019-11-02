@@ -5,34 +5,34 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
+<ion-slides [options]="slideOpts" style="width:100%">
+  <ion-slide class="slide-menu">
+    全部
+  </ion-slide>
+  <ion-slide class="slide-menu">
+    待付款
+  </ion-slide>
+  <ion-slide class="slide-menu">
+    待发货
+  </ion-slide>
+  <ion-slide class="slide-menu">
+    待收货
+  </ion-slide>
+  <ion-slide class="slide-menu">
+    待评价
+  </ion-slide>
+</ion-slides>
 <ion-content>
-  <ion-slides [options]="slideOpts">
-    <ion-slide class="slide-menu">
-      全部
-    </ion-slide>
-    <ion-slide class="slide-menu">
-      待付款
-    </ion-slide>
-    <ion-slide class="slide-menu">
-      待发货
-    </ion-slide>
-    <ion-slide class="slide-menu">
-      待收货
-    </ion-slide>
-    <ion-slide class="slide-menu">
-      待评价
-    </ion-slide>
-  </ion-slides>
+
   <ion-card *ngFor="let order of orders">
     <ion-toolbar>
       <ion-buttons>
-        <ion-button style="font-size: small">
+        <ion-button>
           {{idToCommodity[order.commodityId]?.owner?idToCommodity[order.commodityId].owner:'绿色之家'}}
         </ion-button>
       </ion-buttons>
       <ion-buttons slot="end">
-        <ion-button style="font-size: small">
+        <ion-button>
           {{order.status}}
         </ion-button>
       </ion-buttons>
@@ -46,13 +46,13 @@
       </div>
     </div>
     <ion-buttons style="float:right">
-      <ion-button style="font-size: small">
+      <ion-button>
         申请退款
       </ion-button>
-      <ion-button style="font-size: small">
+      <ion-button>
         再次购买
       </ion-button>
-      <ion-button style="font-size: small">
+      <ion-button>
         立即评价
       </ion-button>
     </ion-buttons>
