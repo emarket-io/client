@@ -10,7 +10,7 @@ import { apiService, utilsService } from '../../providers/utils.service'
   styleUrls: ['./my.page.scss'],
 })
 export class MyPage {
-  user: User.AsObject;
+  user = utilsService.getUser();
 
   constructor(
     private events: Events,
