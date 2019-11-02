@@ -3,18 +3,16 @@
     margin-top: 5px;
 }
 
-.order-image-div {
-    display:inline-block;
-    width: 25%;
-}
-
 .order-image {
-    width: auto;
-    height: 50px;
-    margin:0 auto;
+    width: 20%;
+    height: auto;
+    border-radius:5px;
+    margin-left: 10px;
+    display:inline-block;
 }
 
-.order-content-div {
+.order-content {
+    margin-left:5px;
     display:inline-block;
     width: 75%;
     vertical-align: top;

@@ -37,11 +37,9 @@
         </ion-button>
       </ion-buttons>
     </ion-toolbar>
-    <div class="order-image-div">
-      <img class="order-image"
-        src="{{host}}/static/{{idToCommodity[order.commodityId]?.title}}/{{idToCommodity[order.commodityId]?.mediaList[0].image}}" />
-    </div>
-    <div class="order-content-div">
+    <img class="order-image"
+      src="{{host}}/static/{{idToCommodity[order.commodityId]?.title}}/{{idToCommodity[order.commodityId]?.mediaList[0].image}}" />
+    <div class="order-content">
       {{idToCommodity[order.commodityId]?.title}}
       <div class="order-price">
         ¥{{formatRBM(order.amount)}}
