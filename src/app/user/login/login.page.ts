@@ -24,7 +24,7 @@ export class LoginPage {
         utilsService.alert('手机号或密码不正确.');
       } else {
         utilsService.setUser(response);
-        //this.events.publish('user:login', response.name);
+        this.events.publish('user:login', response.name);
         this.router.navigateByUrl('/tabs/my');
       }
       //console.log(response);
@@ -36,7 +36,7 @@ export class LoginPage {
   }
 
   logout() {
-    utilsService.logout();
+    utilsService.setUser(null);
     this.router.navigateByUrl('/login');
   }
 }

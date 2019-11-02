@@ -28,11 +28,11 @@ export class UtilsService {
   };
 
   setUser(user: User) {
-    window.localStorage.setItem('user', JSON.stringify(user.toObject()));
-  }
-
-  logout() {
-    window.localStorage.removeItem('user');
+    if (!user) {
+      window.localStorage.removeItem('user');
+    } else {
+      window.localStorage.setItem('user', JSON.stringify(user.toObject()));
+    }
   }
 
   formatRMB(v: number): string {
