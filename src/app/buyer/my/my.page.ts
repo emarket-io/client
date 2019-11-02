@@ -18,6 +18,9 @@ export class MyPage {
     this.events.subscribe('user:login', (username) => {
       this.user = utilsService.getUser();
     });
+    this.events.subscribe('user:logout', (username) => {
+      this.user = utilsService.getUser();
+    });
   }
 
   ionViewWillEnter() {

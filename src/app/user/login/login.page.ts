@@ -37,6 +37,7 @@ export class LoginPage {
 
   logout() {
     utilsService.setUser(null);
+    this.events.publish('user:logout', '');
     this.router.navigateByUrl('/login');
   }
 }

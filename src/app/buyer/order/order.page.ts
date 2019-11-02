@@ -55,9 +55,13 @@ export class OrderPage {
           utilsService.alert(err.message)
         } {
           let payInfo = response.getValue();
-          this.alipay.pay(payInfo).then(result => {
-            console.log(result); // Success
+          this.alipay.pay(payInfo, (success: any) => {
             this.order.status = '待发货';
+          }, (err: any) => {
+            utilsService.alert(JSON.stringify(err));
+            this.order.status = '待付款';
+          }).then(result => {
+            console.log(result); // Success
             apiService.orderClient.add(this.order, apiService.metaData, (err: grpcWeb.Error, response: Order) => {
               if (err) {
                 utilsService.alert(JSON.stringify(err));
@@ -68,15 +72,6 @@ export class OrderPage {
             });
           }).catch(error => {
             console.log(error); // Failed
-            this.order.status = '待付款';
-            apiService.orderClient.add(this.order, apiService.metaData, (err: grpcWeb.Error, response: Order) => {
-              if (err) {
-                utilsService.alert(JSON.stringify(err));
-              } else {
-                console.log(response);
-                this.router.navigateByUrl('/tabs/cart');
-              }
-            });
           });
         }
       });

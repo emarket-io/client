@@ -5,6 +5,7 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-slides [options]="slideOpts" style="width:100%">
   <ion-slide class="slide-menu">
     全部
@@ -22,21 +23,17 @@
     待评价
   </ion-slide>
 </ion-slides>
-<ion-content>
 
+<ion-content>
   <ion-card *ngFor="let order of orders">
-    <ion-toolbar>
-      <ion-buttons>
-        <ion-button>
-          {{idToCommodity[order.commodityId]?.owner?idToCommodity[order.commodityId].owner:'绿色之家'}}
-        </ion-button>
-      </ion-buttons>
-      <ion-buttons slot="end">
-        <ion-button>
-          {{order.status}}
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
+    <ion-item lines="none">
+      <ion-card-subtitle>
+        {{idToCommodity[order.commodityId]?.owner?idToCommodity[order.commodityId].owner:'绿色之家'}}
+      </ion-card-subtitle>
+      <ion-card-subtitle style="right:15px;position: absolute;">
+        {{order.status}}
+      </ion-card-subtitle>
+    </ion-item>
     <img class="order-image"
       src="{{host}}/static/{{idToCommodity[order.commodityId]?.title}}/{{idToCommodity[order.commodityId]?.mediaList[0].image}}" />
     <div class="order-content">
