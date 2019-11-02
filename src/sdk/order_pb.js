@@ -122,7 +122,7 @@ proto.zbay.Order.toObject = function(includeInstance, msg) {
     userId: jspb.Message.getFieldWithDefault(msg, 3, ""),
     destination: (f = msg.getDestination()) && proto.zbay.Position.toObject(includeInstance, f),
     quantity: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    amount: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+    amount: jspb.Message.getFieldWithDefault(msg, 6, 0),
     status: jspb.Message.getFieldWithDefault(msg, 7, ""),
     comment: jspb.Message.getFieldWithDefault(msg, 8, ""),
     payInfo: (f = msg.getPayInfo()) && proto.zbay.PayInfo.toObject(includeInstance, f),
@@ -186,7 +186,7 @@ proto.zbay.Order.deserializeBinaryFromReader = function(msg, reader) {
       msg.setQuantity(value);
       break;
     case 6:
-      var value = /** @type {number} */ (reader.readFloat());
+      var value = /** @type {number} */ (reader.readUint64());
       msg.setAmount(value);
       break;
     case 7:
@@ -279,8 +279,8 @@ proto.zbay.Order.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getAmount();
-  if (f !== 0.0) {
-    writer.writeFloat(
+  if (f !== 0) {
+    writer.writeUint64(
       6,
       f
     );
@@ -476,17 +476,17 @@ Object.defineProperty(proto.zbay.Order.prototype, "amount", {
 
 
 /**
- * optional float amount = 6;
+ * optional uint64 amount = 6;
  * @return {number}
  */
 proto.zbay.Order.prototype.getAmount = function() {
-  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 6, 0.0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
 /** @param {number} value */
 proto.zbay.Order.prototype.setAmount = function(value) {
-  jspb.Message.setProto3FloatField(this, 6, value);
+  jspb.Message.setProto3IntField(this, 6, value);
 };
 
 

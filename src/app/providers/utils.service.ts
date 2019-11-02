@@ -11,7 +11,6 @@ import { Injectable, Injector } from '@angular/core';
 export class UtilsService {
   injector: Injector;
   keyword = '';
-  user: User;
   commodity: Commodity;
   selectedCategory = '';
   destination: Address;
@@ -20,6 +19,21 @@ export class UtilsService {
     formattedAddress: '湖北省荆门市',
     addressComponent: { province: '湖北省', city: "荆门市", district: '沙洋县' }
   };
+
+  getUser(): User.AsObject {
+    if (!window.localStorage.getItem('user')) {
+      return null
+    }
+    return JSON.parse(window.localStorage.getItem('user'));
+  };
+
+  setUser(user: User) {
+    window.localStorage.setItem('user', JSON.stringify(user.toObject()));
+  }
+
+  logout() {
+    window.localStorage.removeItem('user');
+  }
 
   formatRMB(v: number): string {
     var strValue = v.toString();

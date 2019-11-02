@@ -1,4 +1,5 @@
 import { Router } from '@angular/router';
+import { User } from '../../../sdk/user_pb';
 import { Component, OnInit } from '@angular/core';
 import { apiService, utilsService } from '../../providers/utils.service'
 
@@ -8,12 +9,12 @@ import { apiService, utilsService } from '../../providers/utils.service'
   styleUrls: ['./my.page.scss'],
 })
 export class MyPage {
-  user = utilsService.user;
+  user: User.AsObject;
 
   constructor(private router: Router) { }
 
   ionViewWillEnter() {
-    this.user = utilsService.user;
+    this.user = utilsService.getUser();
   }
 
   gotoPublish() {
