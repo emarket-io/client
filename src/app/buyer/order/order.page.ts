@@ -48,7 +48,7 @@ export class OrderPage {
   }
 
   preparebuy() {
-    this.order.amount = utilsService.commodity.price.group * this.order.quantity / 100;
+    this.order.amount = utilsService.commodity.price.group * this.order.quantity;
     this.order.status = '待发货';
     apiService.orderClient.signAlipay(this.order, apiService.metaData,
       (err: grpcWeb.Error, response: StringValue) => {
