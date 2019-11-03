@@ -10,14 +10,17 @@
 </ion-header>
 
 <ion-content>
-  <div style="position:fixed; top: 80px;width: 25%;">
-    <ion-slides [options]="slideOpts" style="background-color:#f2f2f2;">
+  <div style="display:inline-block;width: 25%;height: 100%;text-align: center;background-color:#f2f2f2;overflow:auto">
+    <ion-card-content (click)="level1Click(item)" [class.selected]="level1 === item" *ngFor="let item of items">
+      {{item.title}}
+    </ion-card-content>
+    <!-- <ion-slides [options]="slideOpts" style="background-color:#f2f2f2;">
       <ion-slide (click)="level1Click(item)" [class.selected]="level1 === item" *ngFor="let item of items">
         <ion-card-content>{{item.title}}</ion-card-content>
       </ion-slide>
-    </ion-slides>
+    </ion-slides> -->
   </div>
-  <div style="margin-left:25%;vertical-align:top;">
+  <div style="display:inline-block;width:75%;height: 100%;vertical-align:top;overflow:auto">
     <ion-card>
       <ion-item>
         <ion-label style="font-size: small">当季热门</ion-label>
