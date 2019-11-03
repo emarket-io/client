@@ -16,20 +16,22 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
 <ion-slides [options]="slideOpts" style="width: 100%">
-  <ion-slide style="font-size: small">
+  <ion-slide class="slide-menu">
     综合
   </ion-slide>
-  <ion-slide style="font-size: small">
+  <ion-slide class="slide-menu">
     产地
   </ion-slide>
-  <ion-slide style="font-size: small">
+  <ion-slide class="slide-menu">
     品类
   </ion-slide>
-  <ion-slide style="font-size: small">
+  <ion-slide class="slide-menu">
     筛选
   </ion-slide>
 </ion-slides>
+
 <ion-content>
   <ion-item *ngFor="let commodity of commodities" style="height: 150px;" (click)="gotoDetail(commodity)">
     <img style="width: 38%;height: 140px;object-fit: conver;"
