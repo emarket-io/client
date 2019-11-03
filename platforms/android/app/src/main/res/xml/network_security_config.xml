@@ -2,5 +2,7 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">i.tianqi.com</domain>
+        <domain includeSubdomains="true">129.28.202.47</domain>
     </domain-config>
 </network-security-config>
