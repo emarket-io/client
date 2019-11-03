@@ -60,12 +60,12 @@
         "source": "/home/daniel/emart.io/client/platforms/android/app/src/main/res/mipmap-ldpi/ic_launcher.png"
     },
     {
-        "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_notification_bg_normal.9.png.flat",
-        "source": "/home/daniel/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/c16aa6f92629baf4b54fac5f088cdd3d/res/drawable-mdpi-v4/notification_bg_normal.9.png"
-    },
-    {
         "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/debug/layout_notification_action.xml.flat",
         "source": "/home/daniel/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/c16aa6f92629baf4b54fac5f088cdd3d/res/layout/notification_action.xml"
+    },
+    {
+        "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "/home/daniel/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/c16aa6f92629baf4b54fac5f088cdd3d/res/drawable-mdpi-v4/notification_bg_normal.9.png"
     },
     {
         "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/debug/layout-v21_notification_action_tombstone.xml.flat",
