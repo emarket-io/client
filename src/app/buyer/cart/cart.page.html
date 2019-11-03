@@ -28,7 +28,7 @@
   <ion-card *ngFor="let order of orders">
     <ion-item lines="none">
       <ion-card-subtitle>
-        {{idToCommodity[order.commodityId]?.owner?idToCommodity[order.commodityId].owner:'绿色之家'}}
+        {{idToCommodity[order.commodityId]?.owner?idToCommodity[order.commodityId].owner:'绿色专卖'}}
       </ion-card-subtitle>
       <ion-card-subtitle style="right:15px;position: absolute;">
         {{order.status}}

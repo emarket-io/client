@@ -33,6 +33,10 @@ export class HomePage {
     this.router.navigateByUrl('/address');
   }
 
+  openView(keyword: string) {
+    this.router.navigateByUrl('/view');
+  }
+
   getLocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
       AMap.service('AMap.Geocoder', () => {

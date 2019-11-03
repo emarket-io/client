@@ -56,23 +56,25 @@ export class OrderPage {
         } {
           let payInfo = response.getValue();
           this.alipay.pay(payInfo, (success: any) => {
-            this.order.status = '待发货';
+            utilsService.alert('success:' + JSON.stringify(success));
           }, (err: any) => {
-            utilsService.alert(JSON.stringify(err));
-            this.order.status = '待付款';
-          }).then(result => {
-            console.log(result); // Success
-            apiService.orderClient.add(this.order, apiService.metaData, (err: grpcWeb.Error, response: Order) => {
-              if (err) {
-                utilsService.alert(JSON.stringify(err));
-              } else {
-                console.log(response);
-                this.router.navigateByUrl('/tabs/cart');
-              }
-            });
-          }).catch(error => {
-            console.log(error); // Failed
+            utilsService.alert('err:' + JSON.stringify(err));
           });
+
+          // .then(result => {
+          //   console.log(result); // Success
+          //   utilsService.alert(JSON.stringify(result));
+          //   apiService.orderClient.add(this.order, apiService.metaData, (err: grpcWeb.Error, response: Order) => {
+          //     if (err) {
+          //       utilsService.alert(JSON.stringify(err));
+          //     } else {
+          //       console.log(response);
+          //       this.router.navigateByUrl('/tabs/cart');
+          //     }
+          //   });
+          // }).catch(error => {
+          //   console.log(error); // Failed
+          // });
         }
       });
   }
