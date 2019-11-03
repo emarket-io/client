@@ -38,7 +38,7 @@ export class HomePage {
   }
 
   getLocation() {
-    this.geolocation.getCurrentPosition().then((resp) => {
+    this.geolocation.getCurrentPosition({ enableHighAccuracy: true }).then((resp) => {
       AMap.service('AMap.Geocoder', () => {
         AMap.convertFrom(resp.coords.longitude + "," + resp.coords.latitude, "gps",
           (status, result) => {
