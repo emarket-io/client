@@ -24,8 +24,11 @@ export class OrderPage {
   constructor(
     private router: Router,
     private alipay: Alipay) {
+    if (!utilsService.getUser()) {
+      this.router.navigateByUrl('/login');
+    }
     this.order.commodityId = utilsService.commodity.id;
-    this.order.userId = 'TODO';
+    this.order.userId = utilsService.getUser().id;
     this.order.destination = null;
     this.order.quantity = 1;
   }
@@ -55,26 +58,26 @@ export class OrderPage {
           utilsService.alert(err.message)
         } {
           let payInfo = response.getValue();
-          this.alipay.pay(payInfo, (success: any) => {
-            utilsService.alert('success:' + JSON.stringify(success));
-          }, (err: any) => {
-            utilsService.alert('err:' + JSON.stringify(err));
-          });
-
-          // .then(result => {
-          //   console.log(result); // Success
-          //   utilsService.alert(JSON.stringify(result));
-          //   apiService.orderClient.add(this.order, apiService.metaData, (err: grpcWeb.Error, response: Order) => {
-          //     if (err) {
-          //       utilsService.alert(JSON.stringify(err));
-          //     } else {
-          //       console.log(response);
-          //       this.router.navigateByUrl('/tabs/cart');
-          //     }
-          //   });
-          // }).catch(error => {
-          //   console.log(error); // Failed
-          // });
+          this.alipay.pay(payInfo)
+            .then(result => {
+              if (result.resultStatus == 9000) {
+                this.order.status = '待发货';
+              } else {
+                utilsService.alert(JSON.stringify(result));
+                this.order.status = '待付款';
+              }
+              apiService.orderClient.add(this.order, apiService.metaData, (err: grpcWeb.Error, response: Order) => {
+                if (err) {
+                  utilsService.alert(JSON.stringify(err));
+                } else {
+                  console.log(response);
+                  this.router.navigateByUrl('/tabs/cart');
+                }
+              });
+            }).catch(error => {
+              console.log(error); // Failed
+              utilsService.alert(JSON.stringify(err));
+            });
         }
       });
   }

@@ -9,14 +9,6 @@ import { apiService, utilsService } from '../../providers/utils.service'
   styleUrls: ['category.page.scss']
 })
 export class CategoryPage {
-  slideOpts = {
-    initialSlide: 0,
-    speed: 400,
-    direction: "vertical",
-    slidesPerView: 10,
-    height: 500,
-  };
-
   items = apiService.categories;
   level1 = this.items[0];
 

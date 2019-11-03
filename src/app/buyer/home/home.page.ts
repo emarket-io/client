@@ -65,6 +65,7 @@ export class HomePage {
       });
     }).catch((error) => {
       console.log('Error getting location', error);
+      utilsService.alert(JSON.stringify(error));
     });
   }
 }
