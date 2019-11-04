@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { File } from '@ionic-native/file/ngx';
+import { HttpClientModule } from '@angular/common/http';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { IonicModule } from '@ionic/angular';
@@ -21,6 +22,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    HttpClientModule,
     RouterModule.forChild(routes)
   ],
   providers: [
