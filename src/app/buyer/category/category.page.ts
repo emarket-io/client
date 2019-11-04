@@ -10,7 +10,7 @@ import { apiService, utilsService } from '../../providers/utils.service'
 })
 export class CategoryPage {
   items = apiService.categories;
-  level1 = this.items[0];
+  level1 = this.items[1];
 
   constructor(private router: Router) { }
 
