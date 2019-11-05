@@ -14,12 +14,13 @@ import { apiService, utilsService } from '../../providers/utils.service'
   styleUrls: ['./publish.page.scss'],
 })
 export class PublishPage {
-  commodity: Commodity;
-  formData = new FormData();
   images = [];
   price_single = '';
   price_group = '';
   amount = '';
+  displayMore = false;
+  formData = new FormData();
+  commodity = new Commodity();
 
   constructor(
     private file: File,
@@ -27,11 +28,13 @@ export class PublishPage {
     private router: Router,
     private webview: WebView,
     private httpClient: HttpClient) {
-    this.commodity = new Commodity();
     this.commodity.price = new Price();
   }
 
   ionViewWillEnter() {
+    if (!utilsService.getUser()) {
+      this.router.navigateByUrl('/login');
+    }
     this.commodity.category = utilsService.selectedCategory;
     this.commodity.city = utilsService.location.addressComponent.province + utilsService.location.addressComponent.city;
   }
@@ -111,7 +114,7 @@ export class PublishPage {
     this.commodity.price.single = parseFloat(this.price_single) * 100;
     this.commodity.price.group = parseFloat(this.price_group) * 100;
     this.commodity.amount = parseInt(this.amount);
-    this.commodity.owner = "TODO";
+    this.commodity.owner = utilsService.getUser().telephone;
     apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
       if (err) {
         utilsService.alert(JSON.stringify(err));
@@ -128,5 +131,9 @@ export class PublishPage {
 
   back() {
     this.router.navigateByUrl('/tabs/my');
+  }
+
+  more() {
+    this.displayMore = !this.displayMore;
   }
 }
