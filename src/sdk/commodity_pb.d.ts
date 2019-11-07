@@ -17,7 +17,7 @@ export class Commodity extends jspb.Message {
   clearprice(): void;
   amount: number;
   fare: number;
-  owner: string;
+  ownerId: string;
   annotationsMap: jspb.Map<string, string>;
   clearannotationsMap(): void;
   created: google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -45,7 +45,7 @@ export namespace Commodity {
     price?: Price.AsObject,
     amount: number,
     fare: number,
-    owner: string,
+    ownerid: string,
     annotationsMap: Array<[string, string]>,
     created?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updated?: google_protobuf_timestamp_pb.Timestamp.AsObject,

@@ -27,14 +27,18 @@
     <ion-input type="number" [(ngModel)]="order.quantity"></ion-input>
   </ion-item>
   <ion-list>
-    <ion-item>
-      <ion-icon name="arrow-dropright-circle"></ion-icon>
-      <ion-card-content>微信支付</ion-card-content>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="share"></ion-icon>
-      <ion-card-content>支付宝支付</ion-card-content>
-    </ion-item>
+    <ion-radio-group [(ngModel)]="order.payInfo.type">
+      <ion-item>
+        <ion-icon name="arrow-dropright-circle"></ion-icon>
+        <ion-card-content>微信支付</ion-card-content>
+        <ion-radio slot="end" value="wechat"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="share"></ion-icon>
+        <ion-card-content>支付宝支付</ion-card-content>
+        <ion-radio slot="end" value="alipay"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
   </ion-list>
 </ion-content>
 

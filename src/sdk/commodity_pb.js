@@ -130,7 +130,7 @@ proto.zbay.Commodity.toObject = function(includeInstance, msg) {
     price: (f = msg.getPrice()) && proto.zbay.Price.toObject(includeInstance, f),
     amount: jspb.Message.getFieldWithDefault(msg, 8, 0),
     fare: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    owner: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    ownerId: jspb.Message.getFieldWithDefault(msg, 10, ""),
     annotationsMap: (f = msg.getAnnotationsMap()) ? f.toObject(includeInstance, undefined) : [],
     created: (f = msg.getCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     updated: (f = msg.getUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
@@ -210,7 +210,7 @@ proto.zbay.Commodity.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 10:
       var value = /** @type {string} */ (reader.readString());
-      msg.setOwner(value);
+      msg.setOwnerId(value);
       break;
     case 11:
       var value = msg.getAnnotationsMap();
@@ -322,7 +322,7 @@ proto.zbay.Commodity.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getOwner();
+  f = message.getOwnerId();
   if (f.length > 0) {
     writer.writeString(
       10,
@@ -614,27 +614,27 @@ proto.zbay.Commodity.prototype.setFare = function(value) {
 };
 
 
-Object.defineProperty(proto.zbay.Commodity.prototype, "owner", {
+Object.defineProperty(proto.zbay.Commodity.prototype, "ownerId", {
   set: function(value) {
-    this.setOwner(value);
+    this.setOwnerId(value);
   },
   get: function() {
-    return this.getOwner();
+    return this.getOwnerId();
   },
 });
 
 
 /**
- * optional string owner = 10;
+ * optional string ownerId = 10;
  * @return {string}
  */
-proto.zbay.Commodity.prototype.getOwner = function() {
+proto.zbay.Commodity.prototype.getOwnerId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
 
 
 /** @param {string} value */
-proto.zbay.Commodity.prototype.setOwner = function(value) {
+proto.zbay.Commodity.prototype.setOwnerId = function(value) {
   jspb.Message.setProto3StringField(this, 10, value);
 };
 
