@@ -42,7 +42,13 @@ export class OrderPage {
     this.router.navigateByUrl('/address');
   }
 
-  compute() {
+  increment() {
+    this.order.quantity += 1;
+    this.order.amount = utilsService.commodity.price.group * this.order.quantity;
+  }
+
+  decrement() {
+    this.order.quantity -= 1;
     this.order.amount = utilsService.commodity.price.group * this.order.quantity;
   }
 
