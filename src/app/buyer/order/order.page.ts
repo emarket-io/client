@@ -35,14 +35,18 @@ export class OrderPage {
     this.order.userId = utilsService.getUser().id;
     this.order.quantity = 1;
     this.destination = utilsService.destination;
+    this.order.amount = utilsService.commodity.price.group * this.order.quantity;
   }
 
   selectDestination() {
     this.router.navigateByUrl('/address');
   }
 
-  preparebuy() {
+  compute() {
     this.order.amount = utilsService.commodity.price.group * this.order.quantity;
+  }
+
+  preparebuy() {
     if (this.order.payInfo.type == 'alipay') {
       apiService.orderClient.signAlipay(this.order, apiService.metaData,
         (err: grpcWeb.Error, response: StringValue) => {

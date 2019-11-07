@@ -24,7 +24,7 @@
   </ion-item>
   <ion-item>
     <ion-label>购买数量</ion-label>
-    <ion-input type="number" [(ngModel)]="order.quantity"></ion-input>
+    <ion-input type="number" [(ngModel)]="order.quantity" (ionChange)="compute()"></ion-input>
   </ion-item>
   <ion-list>
     <ion-radio-group [(ngModel)]="order.payInfo.type">
@@ -43,7 +43,8 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
+  <ion-toolbar class="ion-text-end">
+    <ion-label style="color:#f04b0f;">¥{{formatRBM(order.amount)}}</ion-label>
     <ion-buttons slot="end">
       <!-- <ion-button>实付款¥666
       </ion-button> -->
