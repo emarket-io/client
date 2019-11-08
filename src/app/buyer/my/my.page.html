@@ -1,4 +1,4 @@
-<ion-header style="height: 200px;background:linear-gradient(70deg,#10dc60, white)">
+<ion-header style="height: 200px;background:linear-gradient(70deg,var(--mycolor), white)">
   <!-- <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-button>
@@ -10,7 +10,7 @@
   <ion-avatar style="margin-top: 85px;margin-left: 45px">
     <img src="assets/fruit/apple.png">
   </ion-avatar>
-  <div style="top:110px;left: 120px;position: absolute;" (click)="login()">Hello,{{user?.name?user.name:'请登录'}}</div>
+  <div style="top:110px;left: 120px;position: absolute;color: var(--mytextcolor);" (click)="login()">Hello,{{user?.name?user.name:'请登录'}}</div>
 </ion-header>
 
 <ion-content>

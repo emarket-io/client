@@ -2,6 +2,7 @@
     font-size: small;
     margin-top: 5px;
   }
+
 .order-image {
     width: 20%;
     height: auto;
@@ -20,11 +21,23 @@
 .order-price {
     position:absolute;
     right:20px;
-    bottom:30px;
+    bottom:40px;
     font-size: large;
     color:#f04b0f;
 }
 
 ion-button {
     font-size: small;
+}
+
+ion-card {
+    ion-item {
+        --min-height:30px;
+        --padding-start:5px;
+        --background: #f2f2f2;
+    }
+    ion-toolbar {
+        --min-height:30px;
+        --background: #f2f2f2;
+    }
 }

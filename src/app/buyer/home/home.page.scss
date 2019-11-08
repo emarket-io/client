@@ -16,7 +16,7 @@
 
 ion-header {
   height: 280px;
-  background:linear-gradient(70deg,#10dc60, white);
+  background:linear-gradient(70deg,var(--mycolor), white);
 }
 
 ion-header ion-toolbar {
