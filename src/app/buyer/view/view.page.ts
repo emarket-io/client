@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service'
@@ -9,7 +9,7 @@ import { apiService, utilsService } from '../../providers/utils.service'
   templateUrl: './view.page.html',
   styleUrls: ['./view.page.scss'],
 })
-export class ViewPage implements OnInit {
+export class ViewPage {
   host = environment.apiUrl;
   commodities: Commodity[];
   keyword = utilsService.keyword;
@@ -20,7 +20,7 @@ export class ViewPage implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.commodities = []
     let stream = apiService.commodityClient.list((new Commodity), apiService.metaData);
     stream.on('data', response => {

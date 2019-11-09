@@ -86,4 +86,8 @@ export class OrderPage {
       utilsService.alert('微信支付即将开通');
     }
   }
+
+  onChangeHandler($event) {
+    this.order.payInfo.type = $event.target.value;
+  }
 }

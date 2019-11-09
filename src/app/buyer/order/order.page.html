@@ -29,7 +29,7 @@
     <ion-icon name="add" (click)="increment()" slot="end"></ion-icon>
   </ion-item>
   <ion-list>
-    <ion-radio-group [(ngModel)]="order.payInfo.type">
+    <ion-radio-group (ionChange)="onChangeHandler($event)">
       <ion-item>
         <ion-icon name="arrow-dropright-circle"></ion-icon>
         <ion-card-content>微信支付</ion-card-content>
@@ -48,8 +48,6 @@
   <ion-toolbar class="ion-text-end">
     <ion-label style="color:#f04b0f;">¥{{formatRBM(order.amount)}}</ion-label>
     <ion-buttons slot="end">
-      <!-- <ion-button>实付款¥666
-      </ion-button> -->
       <ion-button (click)="preparebuy()">立即支付
       </ion-button>
     </ion-buttons>
