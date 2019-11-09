@@ -266,6 +266,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "window.StatusBar"
       ]
+    },
+    {
+      "id": "cordova-plugin-wechat.Wechat",
+      "file": "plugins/cordova-plugin-wechat/www/wechat.js",
+      "pluginId": "cordova-plugin-wechat",
+      "clobbers": [
+        "Wechat"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -278,6 +286,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-ionic-webview": "4.1.1",
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "2.4.2",
+    "cordova-plugin-wechat": "2.9.0",
     "cordova-plugin-whitelist": "1.3.3"
   };
 });

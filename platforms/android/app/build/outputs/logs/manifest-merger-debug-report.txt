@@ -11,10 +11,10 @@ INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/Androi
 	android:name
 		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:12:127-180
 manifest
-ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-24:12
+ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-38:12
+INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-38:12
+INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-38:12
+INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-38:12
 MERGED from [:CordovaLib] /home/daniel/emart.io/client/platforms/android/CordovaLib/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:1-27:12
 MERGED from [com.android.support:support-v4:27.1.1] /home/daniel/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/3f71916f86212dc951a6f80ca33a221e/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-media-compat:27.1.1] /home/daniel/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/7b287a918ca23847546929740e8505bf/AndroidManifest.xml:17:1-22:12
@@ -26,9 +26,9 @@ MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/daniel/.gradle/caches/t
 MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/daniel/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/1f73f8a451f3cb30b0d2a84636aeb3f9/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/daniel/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/b7a5f280f6ab33661e5dabf4c84c8233/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] /home/daniel/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/270e50341689d63ad1d5a119a9d3b3f5/AndroidManifest.xml:17:1-22:12
-INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-24:12
+INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-38:12
+INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-38:12
+INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:2:1-38:12
 	package
 		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:2:98-124
 		INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml
@@ -64,7 +64,7 @@ ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidMa
 	android:name
 		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:4:22-64
 application
-ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:5:5-16:19
+ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:5:5-30:19
 	android:supportsRtl
 		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:5:182-208
 	android:label
@@ -113,34 +113,70 @@ ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidMa
 		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:15:19-91
 	android:name
 		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:15:117-164
+activity#io.emart.starter.wxapi.WXEntryActivity
+ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:16:9-22:20
+	android:label
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:16:43-80
+	android:launchMode
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:16:81-112
+	android:exported
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:16:19-42
+	android:taskAffinity
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:16:151-190
+	android:name
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:16:113-150
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.DEFAULT+data:scheme:wx28aa8762d098fa7f
+ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:17:13-21:29
+action#android.intent.action.VIEW
+ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:18:17-69
+	android:name
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:18:25-66
+category#android.intent.category.DEFAULT
+ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:19:17-76
+	android:name
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:19:27-73
+data
+ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:20:17-61
+	android:scheme
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:20:23-58
+activity#io.emart.starter.wxapi.WXPayEntryActivity
+ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:23:9-29:20
+	android:label
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:23:43-80
+	android:launchMode
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:23:81-111
+	android:exported
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:23:19-42
+	android:name
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:23:112-152
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:17:5-81
+ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:31:5-81
 	android:name
-		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:17:22-78
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:31:22-78
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:18:5-81
+ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:32:5-81
 	android:name
-		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:18:22-78
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:32:22-78
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:19:5-79
+ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:33:5-79
 	android:name
-		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:19:22-76
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:33:22-76
 uses-feature#android.hardware.location.gps
-ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:20:5-66
+ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:34:5-66
 	android:name
-		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:20:19-63
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:34:19-63
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:21:5-79
+ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:35:5-79
 	android:name
-		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:21:22-76
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:35:22-76
 uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:22:5-76
+ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:36:5-76
 	android:name
-		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:22:22-73
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:36:22-73
 uses-permission#android.permission.READ_PHONE_STATE
-ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:23:5-75
+ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:37:5-75
 	android:name
-		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:23:22-72
+		ADDED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml:37:22-72
 uses-sdk
 INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/daniel/emart.io/client/platforms/android/app/src/main/AndroidManifest.xml
