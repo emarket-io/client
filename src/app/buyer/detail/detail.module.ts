@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
+import { Wechat } from '@ionic-native/wechat/ngx';
 import { IonicModule } from '@ionic/angular';
 
 import { DetailPage } from './detail.page';
@@ -21,6 +21,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
+  providers: [Wechat],
   declarations: [DetailPage]
 })
-export class DetailPageModule {}
+export class DetailPageModule { }
