@@ -33,12 +33,12 @@
       <ion-item>
         <ion-icon name="arrow-dropright-circle"></ion-icon>
         <ion-card-content>微信支付</ion-card-content>
-        <ion-radio slot="end" value="wechat"></ion-radio>
+        <ion-radio slot="end" value="wechat" [checked]="order.payInfo.type=='wechat'"></ion-radio>
       </ion-item>
       <ion-item>
         <ion-icon name="share"></ion-icon>
         <ion-card-content>支付宝支付</ion-card-content>
-        <ion-radio slot="end" value="alipay"></ion-radio>
+        <ion-radio slot="end" value="alipay" [checked]="order.payInfo.type=='alipay'"></ion-radio>
       </ion-item>
     </ion-radio-group>
   </ion-list>
