@@ -54,10 +54,15 @@
       <ion-item lines="none">
         <ion-textarea placeholder="填写描述(可选)" [(ngModel)]="commodity.content"></ion-textarea>
       </ion-item>
-      <!-- <ion-item lines="none">
-        <ion-label>市场价</ion-label>
-        <ion-input placeholder="运费待商议"></ion-input>
-      </ion-item> -->
+      <ion-item lines="none">
+        <ion-label>标签</ion-label>
+        <ion-select multiple="true" [(ngModel)]="commodity.tagsList" cancelText="取消" okText="确定">
+          <ion-select-option value="自家种植" selected>自家种植</ion-select-option>
+          <ion-select-option value="限量特价">限量特价</ion-select-option>
+          <ion-select-option value="满减" selected>满减</ion-select-option>
+          <ion-select-option value="返红包">返红包</ion-select-option>
+        </ion-select>
+      </ion-item>
       <ion-item>
         <ion-label>货源地址</ion-label>
         <ion-input [(ngModel)]="commodity.city"></ion-input>

@@ -87,7 +87,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.zbay.Commodity.repeatedFields_ = [5];
+proto.zbay.Commodity.repeatedFields_ = [5,14];
 
 
 
@@ -130,6 +130,7 @@ proto.zbay.Commodity.toObject = function(includeInstance, msg) {
     price: (f = msg.getPrice()) && proto.zbay.Price.toObject(includeInstance, f),
     amount: jspb.Message.getFieldWithDefault(msg, 8, 0),
     fare: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    tagsList: (f = jspb.Message.getRepeatedField(msg, 14)) == null ? undefined : f,
     ownerId: jspb.Message.getFieldWithDefault(msg, 10, ""),
     annotationsMap: (f = msg.getAnnotationsMap()) ? f.toObject(includeInstance, undefined) : [],
     created: (f = msg.getCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
@@ -207,6 +208,10 @@ proto.zbay.Commodity.deserializeBinaryFromReader = function(msg, reader) {
     case 9:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setFare(value);
+      break;
+    case 14:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addTags(value);
       break;
     case 10:
       var value = /** @type {string} */ (reader.readString());
@@ -319,6 +324,13 @@ proto.zbay.Commodity.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeUint32(
       9,
+      f
+    );
+  }
+  f = message.getTagsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      14,
       f
     );
   }
@@ -611,6 +623,48 @@ proto.zbay.Commodity.prototype.getFare = function() {
 /** @param {number} value */
 proto.zbay.Commodity.prototype.setFare = function(value) {
   jspb.Message.setProto3IntField(this, 9, value);
+};
+
+
+Object.defineProperty(proto.zbay.Commodity.prototype, "tagsList", {
+  set: function(value) {
+    this.setTagsList(value);
+  },
+  get: function() {
+    return this.getTagsList();
+  },
+});
+
+
+/**
+ * repeated string tags = 14;
+ * @return {!Array<string>}
+ */
+proto.zbay.Commodity.prototype.getTagsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 14));
+};
+
+
+/** @param {!Array<string>} value */
+proto.zbay.Commodity.prototype.setTagsList = function(value) {
+  jspb.Message.setField(this, 14, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ */
+proto.zbay.Commodity.prototype.addTags = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 14, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ */
+proto.zbay.Commodity.prototype.clearTagsList = function() {
+  this.setTagsList([]);
 };
 
 
