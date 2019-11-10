@@ -25,12 +25,4 @@ export class MyPage {
 
   ionViewWillEnter() {
   }
-
-  gotoPublish() {
-    this.router.navigateByUrl('/publish');
-  }
-
-  login() {
-    this.router.navigateByUrl('/login');
-  }
 }

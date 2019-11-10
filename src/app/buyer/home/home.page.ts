@@ -29,10 +29,6 @@ export class HomePage {
     this.getLocation();
   }
 
-  openAddress() {
-    this.router.navigateByUrl('/address');
-  }
-
   openView(keyword: string) {
     this.router.navigateByUrl('/view');
   }

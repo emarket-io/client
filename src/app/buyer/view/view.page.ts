@@ -32,10 +32,6 @@ export class ViewPage {
     });
   }
 
-  back() {
-    this.router.navigateByUrl('/tabs/category');
-  }
-
   gotoDetail(commodity: Commodity) {
     utilsService.commodity = commodity;
     this.router.navigateByUrl('/detail');

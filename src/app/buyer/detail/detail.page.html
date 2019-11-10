@@ -1,7 +1,7 @@
 <ion-header no-border>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="back()">
+      <ion-button routerLink="/view">
         <ion-icon name="arrow-round-back"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -80,7 +80,7 @@
     <ion-buttons slot="end">
       <ion-button>单买(¥{{formatRBM(commodity.price.single)}})
       </ion-button>
-      <ion-button (click)="order()">拼单(¥{{formatRBM(commodity.price.group)}})
+      <ion-button routerLink="/order">拼单(¥{{formatRBM(commodity.price.group)}})
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

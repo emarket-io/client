@@ -124,12 +124,4 @@ export class PublishPage {
       }
     });
   }
-
-  presentPopover() {
-    this.router.navigateByUrl('/popover');
-  }
-
-  back() {
-    this.router.navigateByUrl('/tabs/my');
-  }
 }

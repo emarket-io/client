@@ -38,10 +38,6 @@ export class OrderPage {
     this.order.amount = utilsService.commodity.price.group * this.order.quantity;
   }
 
-  selectDestination() {
-    this.router.navigateByUrl('/address');
-  }
-
   increment() {
     this.order.quantity += 1;
     this.order.amount = utilsService.commodity.price.group * this.order.quantity;

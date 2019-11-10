@@ -28,14 +28,6 @@ export class DetailPage {
     this.commodity = utilsService.commodity;
   }
 
-  back() {
-    this.router.navigateByUrl('/view');
-  }
-
-  order() {
-    this.router.navigateByUrl('/order');
-  }
-
   share() {
     this.wechat.share({
       message: {
