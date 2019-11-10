@@ -2,8 +2,13 @@ ion-header {
     position: fixed;
     background: transparent;
     z-index: 999;
+    ion-toolbar {
+        top: 15px;
+    }
 }
 
-ion-header ion-toolbar {
-    top: 15px;
+ion-list {
+    ion-item {
+        font-size:small;
+    }
 }

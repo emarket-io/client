@@ -85,7 +85,7 @@ export class PublishPage {
       //alert(base64Image);
     }, (err) => {
       // Handle error
-      alert(err);
+      utilsService.alert(err);
     });
   }
 
@@ -131,9 +131,5 @@ export class PublishPage {
 
   back() {
     this.router.navigateByUrl('/tabs/my');
-  }
-
-  more() {
-    this.displayMore = !this.displayMore;
   }
 }

@@ -58,10 +58,10 @@
         <ion-label>标签</ion-label>
         <ion-select style="max-width: 90%;" placeholder="可选" multiple [(ngModel)]="commodity.tagsList" cancelText="取消"
           okText="确定">
-          <ion-select-option value="自家种植" selected>自家种植</ion-select-option>
+          <ion-select-option value="自家种养">自家种养</ion-select-option>
           <ion-select-option value="限量特价">限量特价</ion-select-option>
-          <ion-select-option value="满减" selected>满减</ion-select-option>
-          <ion-select-option value="返红包">返红包</ion-select-option>
+          <ion-select-option value="7天退换">7天退换</ion-select-option>
+          <ion-select-option value="极速退款">极速退款</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
@@ -70,11 +70,11 @@
       </ion-item>
     </div>
   </ion-card>
-  <ion-item lines="none" *ngIf="!displayMore" (click)="more()">
+  <ion-item lines="none" *ngIf="!displayMore" (click)="displayMore=!displayMore">
     <ion-icon name="arrow-dropright"></ion-icon>
     <ion-label>显示更多</ion-label>
   </ion-item>
-  <ion-item lines="none" *ngIf="displayMore" (click)="more()">
+  <ion-item lines="none" *ngIf="displayMore" (click)="displayMore=!displayMore">
     <ion-icon name="arrow-dropup"></ion-icon>
     <ion-label>隐藏更多</ion-label>
   </ion-item>
