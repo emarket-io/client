@@ -32,10 +32,10 @@ export class AppComponent {
   theme = { mycolor: '', mytextcolor: '' };
 
   setTheme(random: number) {
-    if (random <= 0.3) {
+    if (random <= 0.33) {
       this.theme = { mycolor: 'rebeccapurple', mytextcolor: '#fff' };
-    } else if (0.3 < random && random <= 0.6) {
-      this.theme = { mycolor: '#e97527', mytextcolor: '#fff' };
+    } else if (0.33 < random && random <= 0.66) {
+      this.theme = { mycolor: 'orangered', mytextcolor: '#fff' };
     } else {
       this.theme = { mycolor: '#10dc60', mytextcolor: '#222428' };
     }
