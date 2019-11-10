@@ -35,7 +35,7 @@ export class AppComponent {
     if (random <= 0.3) {
       this.theme = { mycolor: 'rebeccapurple', mytextcolor: '#fff' };
     } else if (0.3 < random && random <= 0.6) {
-      this.theme = { mycolor: '#fa8704', mytextcolor: '#fff' };
+      this.theme = { mycolor: '#e97527', mytextcolor: '#fff' };
     } else {
       this.theme = { mycolor: '#10dc60', mytextcolor: '#222428' };
     }

@@ -25,7 +25,7 @@
   <ion-item>
     <ion-label>购买数量</ion-label>
     <ion-icon name="remove" (click)="decrement()" slot="end"></ion-icon>
-    <ion-input type="number" [(ngModel)]="order.quantity" slot="end"></ion-input>
+    <ion-input type="number" [(ngModel)]="order.quantity" slot="end" style="max-width: 30px;"></ion-input>
     <ion-icon name="add" (click)="increment()" slot="end"></ion-icon>
   </ion-item>
   <ion-list>
