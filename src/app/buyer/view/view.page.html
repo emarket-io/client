@@ -17,17 +17,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-slides [options]="slideOpts" style="width: 100%">
-  <ion-slide class="slide-menu">
+<ion-slides [options]="slideOpts">
+  <ion-slide>
     综合
   </ion-slide>
-  <ion-slide class="slide-menu">
+  <ion-slide>
     产地
   </ion-slide>
-  <ion-slide class="slide-menu">
+  <ion-slide>
     品类
   </ion-slide>
-  <ion-slide class="slide-menu">
+  <ion-slide>
     筛选
   </ion-slide>
 </ion-slides>
@@ -41,8 +41,8 @@
         {{commodity.title}}
       </div>
       <div style="margin-top: 30px">
-        <ion-badge>自家</ion-badge>
-        <ion-badge>满减</ion-badge>
+        <ion-badge>自家种养</ion-badge>
+        <ion-badge>限量特惠</ion-badge>
       </div>
       <div style="margin-top: 30px">
         <div style="display:inline-block;width: 50%;color:red;">¥{{formatRBM(commodity.price?.group)}}</div>
