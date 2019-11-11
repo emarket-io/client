@@ -13,7 +13,9 @@ const routes: Routes = [
   { path: 'popover', loadChildren: './seller/popover/popover.module#PopoverPageModule' },
   { path: 'order', loadChildren: './buyer/order/order.module#OrderPageModule' },
   { path: 'login', loadChildren: './user/login/login.module#LoginPageModule' },
-  { path: 'signup', loadChildren: './user/signup/signup.module#SignupPageModule' }
+  { path: 'signup', loadChildren: './user/signup/signup.module#SignupPageModule' },
+  { path: 'coupon', loadChildren: './seller/coupon/coupon.module#CouponPageModule' },
+  { path: 'add', loadChildren: './seller/coupon/add/add.module#AddPageModule' }
 ];
 @NgModule({
   imports: [

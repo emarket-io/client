@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <ion-buttons slot="start">
+      <ion-button routerLink="/coupon">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>添加优惠券</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none">
+    <ion-label>券的名称</ion-label>
+    <ion-input required placeholder="请输入优惠券名称" [(ngModel)]="coupon.name"></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label>选择商品</ion-label>
+    <ion-input required placeholder="请选择" [(ngModel)]="coupon.commodityId"></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label>券的面额</ion-label>
+    <ion-input required placeholder="1~500" [(ngModel)]="coupon.denomination"></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label>发行张数</ion-label>
+    <ion-input required placeholder="1~5000" [(ngModel)]="coupon.count"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>每人限额</ion-label>
+    <ion-input required placeholder="请选择" [(ngModel)]="coupon.limit"></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label>开始时间</ion-label>
+    <ion-input required placeholder="请选择" [(ngModel)]="coupon.begin"></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label>结束时间</ion-label>
+    <ion-input required placeholder="请选择" [(ngModel)]="coupon.end"></ion-input>
+  </ion-item>
+</ion-content>
+<ion-button color="primary" (click)="submit()">确认添加</ion-button>

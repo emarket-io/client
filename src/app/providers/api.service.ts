@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { UsersClient } from '../../sdk/user_grpc_web_pb';
 import { OrdersClient } from '../../sdk/order_grpc_web_pb';
+import { CouponsClient } from '../../sdk/coupon_grpc_web_pb';
 import { MessagesClient } from '../../sdk/message_grpc_web_pb';
 import { AddressesClient } from '../../sdk/address_grpc_web_pb';
 import { CommoditiesClient } from '../../sdk/commodity_grpc_web_pb';
@@ -16,6 +17,7 @@ export class ApiService {
 
   commodityClient = new CommoditiesClient(environment.apiUrl, null, null);
   userClient = new UsersClient(environment.apiUrl, null, null);
+  couponClient = new CouponsClient(environment.apiUrl, null, null);
   orderClient = new OrdersClient(environment.apiUrl, null, null);
   addressClient = new AddressesClient(environment.apiUrl, null, null);
   messageClient = new MessagesClient(environment.apiUrl, null, null);
