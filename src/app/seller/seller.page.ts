@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { utilsService } from '../providers/utils.service'
 
 @Component({
   selector: 'app-seller',
   templateUrl: './seller.page.html',
   styleUrls: ['./seller.page.scss'],
 })
-export class SellerPage implements OnInit {
+export class SellerPage {
 
-  constructor() { }
+  constructor(private router: Router) {
+  }
 
-  ngOnInit() {
+  ionViewWillEnter() {
+    if (!utilsService.getUser()) {
+      this.router.navigateByUrl('/login');
+    }
   }
 
 }
