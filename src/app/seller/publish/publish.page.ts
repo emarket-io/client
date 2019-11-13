@@ -105,8 +105,7 @@ export class PublishPage {
     // upload firstly
     this.httpClient.post(environment.apiUrl + '/upload', this.formData, {
       params: {
-        //directory: utilsService.getUser().id,
-        title: encodeURIComponent(utilsService.getUser().id + '/' + this.commodity.title)
+        title: utilsService.getUser().id + encodeURIComponent('/') + this.commodity.title
       }
     }).subscribe(
       data => {
