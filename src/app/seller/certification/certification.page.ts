@@ -57,9 +57,7 @@ export class CertificationPage {
 
         const reader = new FileReader();
         reader.onloadend = () => {
-          const imgBlob = new Blob([reader.result], {
-            type: data.type
-          });
+          const imgBlob = new Blob([reader.result], { type: data.type });
           this.formData.append('uploadfile', imgBlob, name + '.jpg');
           this.httpClient.post(environment.apiUrl + '/upload', this.formData, {
             params: {
