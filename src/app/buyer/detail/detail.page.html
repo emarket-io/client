@@ -18,7 +18,7 @@
   <ion-slides [options]="slideOpts" pager="true">
     <ion-slide *ngFor="let medium of commodity.mediaList">
       <img style="width: 100%;height: auto; object-fit: cover;"
-        src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{medium.image}}" />
+        src="{{host}}/static/{{commodity.ownerId}}-{{commodity.title}}/{{medium.image}}" />
     </ion-slide>
   </ion-slides>
   <ion-grid>
@@ -59,7 +59,7 @@
       {{commodity.content}}
     </ion-item>
     <img style="display:inline-block;width: 50%;height:auto;padding: 0 1px;" *ngFor="let medium of commodity.mediaList"
-      src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{medium.image}}" />
+      src="{{host}}/static/{{commodity.ownerId}}-{{commodity.title}}/{{medium.image}}" />
   </ion-list>
 </ion-content>
 

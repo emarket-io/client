@@ -61,7 +61,7 @@ export class CertificationPage {
           this.formData.append('uploadfile', imgBlob, name + '.jpg');
           this.httpClient.post(environment.apiUrl + '/upload', this.formData, {
             params: {
-              title: utilsService.getUser().id + encodeURIComponent('/') + 'certification'
+              title: utilsService.getUser().id + '-' + 'certification'
             }
           }).subscribe(
             data => {
