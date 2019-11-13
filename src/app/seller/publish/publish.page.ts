@@ -111,7 +111,7 @@ export class PublishPage {
       data => {
         console.log(data);
       }, error => {
-        console.log(error);
+        utilsService.alert(JSON.stringify(error));
       }
     );
 
