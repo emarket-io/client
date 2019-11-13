@@ -9,37 +9,23 @@ import { Commodity, Medium, Price } from '../../../sdk/commodity_pb';
 import { apiService, utilsService } from '../../providers/utils.service'
 
 @Component({
-  selector: 'app-publish',
-  templateUrl: './publish.page.html',
-  styleUrls: ['./publish.page.scss'],
+  selector: 'app-certification',
+  templateUrl: './certification.page.html',
+  styleUrls: ['./certification.page.scss'],
 })
-export class PublishPage {
+export class CertificationPage {
   images = [];
-  price_single = '';
-  price_group = '';
-  amount = '';
-  displayMore = false;
   formData = new FormData();
-  commodity = new Commodity();
+  host = environment.apiUrl;
+  user = utilsService.getUser();
 
-  constructor(
-    private file: File,
+  constructor(private file: File,
     private camera: Camera,
     private router: Router,
     private webview: WebView,
-    private httpClient: HttpClient) {
-    this.commodity.price = new Price();
-  }
+    private httpClient: HttpClient) { }
 
-  ionViewWillEnter() {
-    if (!utilsService.getUser()) {
-      this.router.navigateByUrl('/login');
-    }
-    this.commodity.category = utilsService.selectedCategory;
-    this.commodity.city = utilsService.location.addressComponent.province + utilsService.location.addressComponent.city;
-  }
-
-  addMedia() {
+  uploadImage(name: string) {
     const options: CameraOptions = {
       // quality: 50,
       allowEdit: true,
@@ -74,10 +60,18 @@ export class PublishPage {
           const imgBlob = new Blob([reader.result], {
             type: data.type
           });
-          this.formData.append('uploadfile', imgBlob, data.name);
-          let medium = new (Medium);
-          medium.image = data.name;
-          this.commodity.mediaList.push(medium);
+          this.formData.append('uploadfile', imgBlob, name + '.jpg');
+          this.httpClient.post(environment.apiUrl + '/upload', this.formData, {
+            params: {
+              title: utilsService.getUser().id + '/certification/' + name + '.jpg'
+            }
+          }).subscribe(
+            data => {
+              console.log(data);
+            }, error => {
+              utilsService.alert(JSON.stringify(error));
+            }
+          );
         };
         reader.readAsArrayBuffer(data);
         //alert(data.name + '|' + data.localURL + '|' + data.type + '|' + data.size);
@@ -85,47 +79,8 @@ export class PublishPage {
       //alert(base64Image);
     }, (err) => {
       // Handle error
-      utilsService.alert(err);
+      utilsService.alert(JSON.stringify(err));
     });
   }
 
-  async submit() {
-    if (!this.commodity.title) {
-      return utilsService.alert('请输入商品标题');
-    }
-    if (!this.price_single) {
-      return utilsService.alert('请输入单价');
-    }
-    if (!this.price_group) {
-      return utilsService.alert('请输入拼单价');
-    }
-    if (!this.amount) {
-      return utilsService.alert('请输入库存数量');
-    }
-    // upload firstly
-    this.httpClient.post(environment.apiUrl + '/upload', this.formData, {
-      params: {
-        title: this.commodity.ownerId + '/' + this.commodity.title
-      }
-    }).subscribe(
-      data => {
-        console.log(data);
-      }, error => {
-        console.log(error);
-      }
-    );
-
-    this.commodity.price.single = parseFloat(this.price_single) * 100;
-    this.commodity.price.group = parseFloat(this.price_group) * 100;
-    this.commodity.amount = parseInt(this.amount);
-    this.commodity.ownerId = utilsService.getUser().id;
-    apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
-      if (err) {
-        utilsService.alert(JSON.stringify(err));
-      } else {
-        console.log(response);
-        this.router.navigateByUrl('/tabs/my');
-      }
-    });
-  }
 }

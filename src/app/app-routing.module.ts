@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'signup', loadChildren: './user/signup/signup.module#SignupPageModule' },
   { path: 'coupon', loadChildren: './seller/coupon/coupon.module#CouponPageModule' },
   { path: 'add', loadChildren: './seller/coupon/add/add.module#AddPageModule' },
-  { path: 'seller', loadChildren: './seller/seller.module#SellerPageModule' }
+  { path: 'seller', loadChildren: './seller/seller.module#SellerPageModule' },
+  { path: 'certification', loadChildren: './seller/certification/certification.module#CertificationPageModule' }
 ];
 @NgModule({
   imports: [
