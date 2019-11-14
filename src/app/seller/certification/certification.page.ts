@@ -61,8 +61,7 @@ export class CertificationPage {
           this.formData.append('uploadfile', imgBlob, name + '.jpg');
           this.httpClient.post(environment.apiUrl + '/upload', this.formData, {
             params: {
-              path: [utilsService.getUser().id]
-              //title: utilsService.getUser().id + '-' + 'certification'
+              paths: [utilsService.getUser().id, 'certification']
             }
           }).subscribe(
             data => {
@@ -80,6 +79,11 @@ export class CertificationPage {
       // Handle error
       utilsService.alert(JSON.stringify(err));
     });
+  }
+
+  doDefault(img){
+    img.src = "assets/fruit/apple.png";
+    img.onerror = null;
   }
 
 }
