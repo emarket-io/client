@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from '../../../sdk/user_pb';
-import { Coupon } from '../../../sdk/coupon_pb';
+import { Coupon } from '../../../sdk/commodity_pb';
 import { apiService, utilsService } from '../../providers/utils.service'
 
 @Component({

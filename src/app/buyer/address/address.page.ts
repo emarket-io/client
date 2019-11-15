@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../sdk/user_pb';
-import { Address } from '../../../sdk/address_pb';
+import { User, Address } from '../../../sdk/user_pb';
 import { apiService, utilsService } from '../../providers/utils.service'
 import { Location } from "@angular/common";
 import { PopoverController } from '@ionic/angular';

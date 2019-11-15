@@ -89,7 +89,7 @@ export class PublishPage {
     });
   }
 
-  async submit() {
+  submit() {
     if (!this.commodity.title) {
       return utilsService.alert('请输入商品标题');
     }
@@ -110,22 +110,21 @@ export class PublishPage {
     }).subscribe(
       data => {
         console.log(data);
+        this.commodity.price.single = parseFloat(this.price_single) * 100;
+        this.commodity.price.group = parseFloat(this.price_group) * 100;
+        this.commodity.amount = parseInt(this.amount);
+        this.commodity.ownerId = utilsService.getUser().id;
+        apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
+          if (err) {
+            utilsService.alert(JSON.stringify(err));
+          } else {
+            console.log(response);
+            this.router.navigateByUrl('/tabs/my');
+          }
+        });
       }, error => {
         utilsService.alert(JSON.stringify(error));
       }
     );
-
-    this.commodity.price.single = parseFloat(this.price_single) * 100;
-    this.commodity.price.group = parseFloat(this.price_group) * 100;
-    this.commodity.amount = parseInt(this.amount);
-    this.commodity.ownerId = utilsService.getUser().id;
-    apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
-      if (err) {
-        utilsService.alert(JSON.stringify(err));
-      } else {
-        console.log(response);
-        this.router.navigateByUrl('/tabs/my');
-      }
-    });
   }
 }

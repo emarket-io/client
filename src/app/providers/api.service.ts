@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { UsersClient } from '../../sdk/user_grpc_web_pb';
 import { OrdersClient } from '../../sdk/order_grpc_web_pb';
-import { CouponsClient } from '../../sdk/coupon_grpc_web_pb';
 import { MessagesClient } from '../../sdk/message_grpc_web_pb';
-import { AddressesClient } from '../../sdk/address_grpc_web_pb';
-import { CommoditiesClient } from '../../sdk/commodity_grpc_web_pb';
+import { UsersClient, AddressesClient } from '../../sdk/user_grpc_web_pb';
+import { CommoditiesClient, CouponsClient } from '../../sdk/commodity_grpc_web_pb';
 
 //declare let AMap;
 

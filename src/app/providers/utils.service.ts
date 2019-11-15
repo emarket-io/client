@@ -1,7 +1,6 @@
-import { ApiService } from './api.service'
-import { Address } from '../../sdk/address_pb';
+import { ApiService } from './api.service';
 import { AlertController } from '@ionic/angular';
-import { User } from '../../sdk/user_pb';
+import { User, Address } from '../../sdk/user_pb';
 import { Commodity } from '../../sdk/commodity_pb';
 import { Injectable, Injector } from '@angular/core';
 

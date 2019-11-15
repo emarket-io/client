@@ -2,7 +2,7 @@ import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Alipay } from '@ionic-native/alipay/ngx';
-import { Address } from '../../../sdk/address_pb';
+import { Address } from '../../../sdk/user_pb';
 import { Order, PayInfo } from '../../../sdk/order_pb';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service'
