@@ -10,10 +10,10 @@
 <ion-content>
   <ion-item (click)="uploadImage('身份证正面')">
     身份证正面
-    <ion-img src="{{host}}/static/{{user.id}}/certification/身份证正面.jpg" onerror="doDefault(this)"></ion-img>
+    <img src="{{host}}/static/{{user.id}}/certification/身份证正面.jpg" onError="this.src='assets/fruit/apple.png'">
   </ion-item>
   <ion-item (click)="uploadImage('身份证反面')">
     身份证反面
-    <ion-img src="{{host}}/static/{{user.id}}/certification/身份证反面.jpg" onerror="doDefault(this)"></ion-img>
+    <img src="{{host}}/static/{{user.id}}/certification/身份证反面.jpg" onError="this.src='assets/fruit/apple.png'">
   </ion-item>
 </ion-content>
