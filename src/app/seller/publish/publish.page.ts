@@ -106,7 +106,7 @@ export class PublishPage {
     this.httpClient.post(environment.apiUrl + '/upload', this.formData, {
       params: {
         paths: [utilsService.getUser().id, this.commodity.title]
-      }
+      }, responseType: 'text',
     }).subscribe(
       data => {
         console.log(data);

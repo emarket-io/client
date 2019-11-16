@@ -33,14 +33,13 @@
 <ion-content>
   <ion-item *ngFor="let commodity of commodities" style="height: 150px;" (click)="gotoDetail(commodity)">
     <img style="width: 38%;height: 140px;object-fit: conver;"
-      src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0].image}}" />
+      src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
     <div style="width: 62%;vertical-align: top;padding-left: 10px;">
       <div>
         {{commodity.title}}
       </div>
       <div style="margin-top: 30px">
-        <ion-badge>自家种养</ion-badge>
-        <ion-badge>限量特惠</ion-badge>
+        <ion-badge *ngFor="let tag of commodity.tagsList">{{tag}}</ion-badge>
       </div>
       <div style="margin-top: 30px">
         <div style="display:inline-block;width: 50%;color:red;">¥{{formatRBM(commodity.price?.group)}}</div>

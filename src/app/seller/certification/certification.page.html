@@ -20,16 +20,17 @@
     <img *ngFor="let image of images" [src]="image">
   </ion-item>
   <ion-list lines="none">
-    <!-- <ion-list-header>
-      身份证
-    </ion-list-header> -->
-    <ion-item (click)="addImage('身份证正面')" style="margin-top: 100px;">
+    <ion-item>
       身份证正面
-      <img src="{{host}}/static/{{user.id}}/certification/身份证正面.jpg" onError="this.src='assets/fruit/apple.png'">
+    </ion-item>
+    <ion-item (click)="addImage('身份证正面')">
+      <img src="{{host}}/static/{{user.id}}/certification/身份证正面.jpg" onError="this.src='svg/md-cloud-upload.svg'">
+    </ion-item>
+    <ion-item>
+      身份证反面
     </ion-item>
     <ion-item (click)="addImage('身份证反面')">
-      身份证反面
-      <img src="{{host}}/static/{{user.id}}/certification/身份证反面.jpg" onError="this.src='assets/fruit/apple.png'">
+      <img src="{{host}}/static/{{user.id}}/certification/身份证反面.jpg" onError="this.src='svg/md-cloud-upload.svg'">
     </ion-item>
   </ion-list>
 </ion-content>
