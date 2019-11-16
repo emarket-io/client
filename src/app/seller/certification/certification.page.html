@@ -19,7 +19,7 @@
   <ion-item lines="none">
     <img *ngFor="let image of images" [src]="image">
   </ion-item>
-  <ion-list lines="none" style="position: absolute;top: 40%;">
+  <ion-list lines="none" style="position: absolute;top: 30%;">
     <ion-item>
       身份证正面
     </ion-item>
@@ -36,6 +36,4 @@
     </ion-item>
   </ion-list>
 </ion-content>
-<ion-button *ngIf="!user.cert.idCardNo||!user.cert.fullName||user.cert.imagesList.length==0" (click)="submit()">
-  确认提交
-</ion-button>
+<ion-button (click)="submit()">提交</ion-button>
