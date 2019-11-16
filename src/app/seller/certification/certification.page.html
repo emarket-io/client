@@ -19,19 +19,23 @@
   <ion-item lines="none">
     <img *ngFor="let image of images" [src]="image">
   </ion-item>
-  <ion-list lines="none">
+  <ion-list lines="none" style="position: absolute;bottom: 50px;">
     <ion-item>
       身份证正面
     </ion-item>
     <ion-item (click)="addImage('身份证正面')">
-      <img src="{{host}}/static/{{user.id}}/certification/身份证正面.jpg" onError="this.src='svg/md-cloud-upload.svg'">
+      <img src="{{host}}/static/{{user.id}}/certification/身份证正面.jpg"
+        onError="this.src='svg/md-cloud-upload.svg';this.style='width:30px'">
     </ion-item>
     <ion-item>
       身份证反面
     </ion-item>
     <ion-item (click)="addImage('身份证反面')">
-      <img src="{{host}}/static/{{user.id}}/certification/身份证反面.jpg" onError="this.src='svg/md-cloud-upload.svg'">
+      <img src="{{host}}/static/{{user.id}}/certification/身份证反面.jpg"
+        onError="this.src='svg/md-cloud-upload.svg';this.style='width:30px'">
     </ion-item>
   </ion-list>
 </ion-content>
-<ion-button color="primary" (click)="submit()">提交</ion-button>
+<ion-button *ngIf="!user.cert.idCardNo||!user.cert.fullName||user.cert.imagesList.length==0" (click)="submit()">
+  确认提交
+</ion-button>

@@ -1,6 +1,8 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { Location } from "@angular/common";
 import { File } from '@ionic-native/file/ngx';
+import { ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { environment } from '../../../environments/environment';
@@ -27,7 +29,9 @@ export class PublishPage {
     private camera: Camera,
     private router: Router,
     private webview: WebView,
-    private httpClient: HttpClient) {
+    private location: Location,
+    private httpClient: HttpClient,
+    private toastController: ToastController) {
     this.commodity.price = new Price();
   }
 
@@ -89,7 +93,7 @@ export class PublishPage {
     });
   }
 
-  submit() {
+  async submit() {
     if (!this.commodity.title) {
       return utilsService.alert('请输入商品标题');
     }
@@ -102,6 +106,7 @@ export class PublishPage {
     if (!this.amount) {
       return utilsService.alert('请输入库存数量');
     }
+
     // upload firstly
     this.httpClient.post(environment.apiUrl + '/upload', this.formData, {
       params: {
@@ -119,12 +124,18 @@ export class PublishPage {
             utilsService.alert(JSON.stringify(err));
           } else {
             console.log(response);
-            this.router.navigateByUrl('/tabs/my');
+            toast.dismiss();
+            this.location.back();
           }
         });
       }, error => {
         utilsService.alert(JSON.stringify(error));
       }
     );
+    const toast = await this.toastController.create({
+      message: '正在提交商品，请稍后...',
+      position: 'middle'
+    });
+    toast.present();
   }
 }
