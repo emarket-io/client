@@ -29,8 +29,17 @@ export class CertificationPage {
   }
 
   ionViewWillEnter() {
+    apiService.userClient.get(this.user, apiService.metaData, (err: any, response: User) => {
+      if (err) {
+        utilsService.alert(JSON.stringify(err));
+      } else {
+        this.user = response;
+        if (!this.user.cert) {
+          this.user.cert = new Certification();
+        }
+      }
+    })
   }
-
 
   addImage(name: string) {
     const options: CameraOptions = {

@@ -9,25 +9,28 @@
 
 <ion-content>
   <ion-item lines="none">
-    <ion-label stacked>姓名</ion-label>
-    <ion-input type="text" [(ngModel)]="user.cert.full_name"></ion-input>
+    <ion-label>姓名</ion-label>
+    <ion-input type="text" placeholder="请输入真实姓名" [(ngModel)]="user.cert.full_name"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label stacked>身份证号</ion-label>
-    <ion-input type="text" [(ngModel)]="user.cert.id_card_no"></ion-input>
+    <ion-label>身份证号</ion-label>
+    <ion-input type="text" placeholder="请输入身份证号" [(ngModel)]="user.cert.id_card_no"></ion-input>
   </ion-item>
-  <ion-item (click)="addImage('身份证正面')" lines="none">
-    身份证正面
-    <!-- <ion-image [src]="images[0]"></ion-image> -->
-    <img src="{{host}}/static/{{user.id}}/certification/身份证正面.jpg" onError="this.src='assets/fruit/apple.png'">
+  <ion-item lines="none">
+    <img *ngFor="let image of images" [src]="image">
   </ion-item>
-  <ion-item (click)="addImage('身份证反面')">
-    身份证反面
-    <!-- <ion-image [src]="images[1]"></ion-image> -->
-    <img src="{{host}}/static/{{user.id}}/certification/身份证反面.jpg" onError="this.src='assets/fruit/apple.png'">
-  </ion-item>
-  <ion-item>
-    <ion-img *ngFor="let image of images" [src]="image"></ion-img>    
-  </ion-item>
+  <ion-list lines="none">
+    <!-- <ion-list-header>
+      身份证
+    </ion-list-header> -->
+    <ion-item (click)="addImage('身份证正面')" style="margin-top: 100px;">
+      身份证正面
+      <img src="{{host}}/static/{{user.id}}/certification/身份证正面.jpg" onError="this.src='assets/fruit/apple.png'">
+    </ion-item>
+    <ion-item (click)="addImage('身份证反面')">
+      身份证反面
+      <img src="{{host}}/static/{{user.id}}/certification/身份证反面.jpg" onError="this.src='assets/fruit/apple.png'">
+    </ion-item>
+  </ion-list>
 </ion-content>
 <ion-button color="primary" (click)="submit()">确认提交</ion-button>
