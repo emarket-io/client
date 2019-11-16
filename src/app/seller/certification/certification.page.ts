@@ -29,6 +29,7 @@ export class CertificationPage {
   }
 
   ionViewWillEnter() {
+   this.user.id = utilsService.getUser().id;
     apiService.userClient.get(this.user, apiService.metaData, (err: any, response: User) => {
       if (err) {
         utilsService.alert(JSON.stringify(err));
@@ -87,14 +88,15 @@ export class CertificationPage {
     }).subscribe(
       data => {
         console.log(data);
-        apiService.userClient.certificate(this.user, apiService.metaData, (err: grpcWeb.Error, response: User) => {
-          if (err) {
-            utilsService.alert(JSON.stringify(err));
-          }
-        })
       }, error => {
-        utilsService.alert(JSON.stringify(error));
+        //utilsService.alert(JSON.stringify(error));
       }
     );
+
+    apiService.userClient.certificate(this.user, apiService.metaData, (err: grpcWeb.Error, response: User) => {
+      if (err) {
+        utilsService.alert(JSON.stringify(err));
+      }
+    })
   }
 }

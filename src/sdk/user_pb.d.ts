@@ -41,8 +41,8 @@ export namespace User {
 }
 
 export class Certification extends jspb.Message {
-  full_name: string;
-  id_card_no: string;
+  fullName: string;
+  idCardNo: string;
   imagesList: Array<string>;
   clearimagesList(): void;
   addImages(value: string, index?: number): void;
@@ -56,8 +56,8 @@ export class Certification extends jspb.Message {
 
 export namespace Certification {
   export type AsObject = {
-    fullName: string,
-    idCardNo: string,
+    fullname: string,
+    idcardno: string,
     imagesList: Array<string>,
   }
 }

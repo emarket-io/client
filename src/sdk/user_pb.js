@@ -713,7 +713,7 @@ Object.defineProperty(proto.zbay.Certification.prototype, "fullName", {
 
 
 /**
- * optional string full_name = 1;
+ * optional string fullName = 1;
  * @return {string}
  */
 proto.zbay.Certification.prototype.getFullName = function() {
@@ -738,7 +738,7 @@ Object.defineProperty(proto.zbay.Certification.prototype, "idCardNo", {
 
 
 /**
- * optional string id_card_no = 2;
+ * optional string idCardNo = 2;
  * @return {string}
  */
 proto.zbay.Certification.prototype.getIdCardNo = function() {
