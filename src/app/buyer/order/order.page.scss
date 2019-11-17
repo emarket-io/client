@@ -1,0 +1,43 @@
+.slide-menu {
+    font-size: small;
+    margin-top: 5px;
+  }
+
+.order-image {
+    width: 20%;
+    height: auto;
+    border-radius:5px;
+    margin-left: 10px;
+    display:inline-block;
+}
+
+.order-content {
+    margin-left:5px;
+    display:inline-block;
+    width: 75%;
+    vertical-align: top;
+}
+
+.order-price {
+    position:absolute;
+    right:20px;
+    bottom:40px;
+    font-size: large;
+    color:#f04b0f;
+}
+
+ion-button {
+    font-size: small;
+}
+
+ion-card {
+    ion-item {
+        --min-height:30px;
+        --padding-start:5px;
+        --background: #f2f2f2;
+    }
+    ion-toolbar {
+        --min-height:30px;
+        --background: #f2f2f2;
+    }
+}

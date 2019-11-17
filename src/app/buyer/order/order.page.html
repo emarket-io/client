@@ -1,55 +1,59 @@
 <ion-header>
   <ion-toolbar class="ion-text-center">
-    <ion-title>订单确认</ion-title>
+    <ion-title>
+      我的订单
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-item routerLink="/address">
-    <ion-icon name="pin"></ion-icon>
-    <ion-card-content>
-      {{destination?.contact}} {{destination?.telephone}}
-      <br /> {{destination?.location}}
-    </ion-card-content>
-    <ion-icon name="arrow-dropright" slot="end"></ion-icon>
-  </ion-item>
-  <ion-item>
-    <ion-thumbnail slot="start">
-      <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0].image}}">
-    </ion-thumbnail>
-    <div>
-      <ion-label>{{commodity.title}}</ion-label>
-      <ion-label>¥{{formatRBM(commodity.price?.group)}}</ion-label>
-    </div>
-  </ion-item>
-  <ion-item>
-    <ion-label>购买数量</ion-label>
-    <ion-icon name="remove" (click)="decrement()" slot="end" size="small"></ion-icon>
-    <ion-input type="number" [(ngModel)]="order.quantity" slot="end" style="max-width: 30px;"></ion-input>
-    <ion-icon name="add" (click)="increment()" slot="end" size="small"></ion-icon>
-  </ion-item>
-  <ion-list>
-    <ion-radio-group (ionChange)="onChangeHandler($event)">
-      <ion-item>
-        <ion-icon name="arrow-dropright-circle"></ion-icon>
-        <ion-card-content>微信支付</ion-card-content>
-        <ion-radio slot="end" value="wechat" [checked]="order.payInfo.type=='wechat'"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="share"></ion-icon>
-        <ion-card-content>支付宝支付</ion-card-content>
-        <ion-radio slot="end" value="alipay" [checked]="order.payInfo.type=='alipay'"></ion-radio>
-      </ion-item>
-    </ion-radio-group>
-  </ion-list>
-</ion-content>
+<ion-slides [options]="slideOpts" style="width:100%">
+  <ion-slide class="slide-menu">
+    全部
+  </ion-slide>
+  <ion-slide class="slide-menu">
+    待付款
+  </ion-slide>
+  <ion-slide class="slide-menu">
+    待发货
+  </ion-slide>
+  <ion-slide class="slide-menu">
+    待收货
+  </ion-slide>
+  <ion-slide class="slide-menu">
+    待评价
+  </ion-slide>
+</ion-slides>
 
-<ion-footer>
-  <ion-toolbar class="ion-text-end">
-    <ion-label style="color:#f04b0f;">¥{{formatRBM(order.amount)}}</ion-label>
-    <ion-buttons slot="end">
-      <ion-button (click)="preparebuy()">立即支付
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>
+<ion-content>
+  <ion-card *ngFor="let order of orders" style="box-shadow: none;" (click)="gotoOrderDetail(order)">
+    <ion-item lines="none">
+      <ion-card-subtitle>
+        {{idToCommodity[order.commodityId]?.ownerId?idToCommodity[order.commodityId].ownerId:'好农夫果园之家'}}
+      </ion-card-subtitle>
+      <ion-card-subtitle style="right:15px;position: absolute;">
+        {{order.status}}
+      </ion-card-subtitle>
+    </ion-item>
+    <img class="order-image"
+      src="{{host}}/static/{{idToCommodity[order.commodityId]?.ownerId}}/{{idToCommodity[order.commodityId]?.title}}/{{idToCommodity[order.commodityId]?.mediaList[0].image}}" />
+    <div class="order-content">
+      {{idToCommodity[order.commodityId]?.title}}
+      <div class="order-price">
+        ¥{{formatRBM(order.amount)}}
+      </div>
+    </div>
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-button>
+          申请退款
+        </ion-button>
+        <ion-button>
+          再次购买
+        </ion-button>
+        <ion-button>
+          立即评价
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-card>
+</ion-content>

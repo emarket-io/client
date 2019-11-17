@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <ion-title>订单确认</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item routerLink="/address">
+    <ion-icon name="pin"></ion-icon>
+    <ion-card-content>
+      {{destination?.contact}} {{destination?.telephone}}
+      <br /> {{destination?.location}}
+    </ion-card-content>
+    <ion-icon name="arrow-dropright" slot="end"></ion-icon>
+  </ion-item>
+  <ion-item>
+    <ion-thumbnail slot="start">
+      <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}">
+    </ion-thumbnail>
+    <div>
+      <ion-label>{{commodity.title}}</ion-label>
+      <ion-label>¥{{formatRBM(commodity.price?.group)}}</ion-label>
+    </div>
+  </ion-item>
+  <ion-item>
+    <ion-label>购买数量</ion-label>
+    <ion-icon name="remove" (click)="decrement()" slot="end" size="small"></ion-icon>
+    <ion-input type="number" [(ngModel)]="order.quantity" slot="end" style="max-width: 30px;"></ion-input>
+    <ion-icon name="add" (click)="increment()" slot="end" size="small"></ion-icon>
+  </ion-item>
+  <ion-list>
+    <ion-radio-group (ionChange)="onChangeHandler($event)">
+      <ion-item>
+        <ion-icon name="arrow-dropright-circle"></ion-icon>
+        <ion-card-content>微信支付</ion-card-content>
+        <ion-radio slot="end" value="wechat" [checked]="order.payInfo.type=='wechat'"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="share"></ion-icon>
+        <ion-card-content>支付宝支付</ion-card-content>
+        <ion-radio slot="end" value="alipay" [checked]="order.payInfo.type=='alipay'"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="ion-text-end">
+    <ion-label style="color:#f04b0f;">¥{{formatRBM(order.amount)}}</ion-label>
+    <ion-buttons slot="end">
+      <ion-button (click)="preparebuy()">立即支付
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

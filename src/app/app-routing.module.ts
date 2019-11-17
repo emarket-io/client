@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'view', loadChildren: './buyer/view/view.module#ViewPageModule' },
   { path: 'detail', loadChildren: './buyer/detail/detail.module#DetailPageModule' },
   { path: 'address', loadChildren: './buyer/address/address.module#AddressPageModule' },
-  { path: 'order', loadChildren: './buyer/order/order.module#OrderPageModule' },
+  { path: 'purchase', loadChildren: './buyer/purchase/purchase.module#PurchasePageModule' },
   { path: 'login', loadChildren: './user/login/login.module#LoginPageModule' },
   { path: 'signup', loadChildren: './user/signup/signup.module#SignupPageModule' },
   { path: 'coupon', loadChildren: './seller/coupon/coupon.module#CouponPageModule' },
@@ -19,7 +19,8 @@ const routes: Routes = [
   { path: 'commodity', loadChildren: './seller/commodity/commodity.module#CommodityPageModule' },
   { path: 'publish', loadChildren: './seller/commodity/publish/publish.module#PublishPageModule' },
   { path: 'popover', loadChildren: './seller/commodity/popover/popover.module#PopoverPageModule' },
-  { path: 'seller_order', loadChildren: './seller/order/order.module#OrderPageModule' }
+  { path: 'seller_order', loadChildren: './seller/order/order.module#OrderPageModule' },
+  { path: 'buyer_order_detail', loadChildren: './buyer/order/detail/detail.module#DetailPageModule' }
 ];
 @NgModule({
   imports: [

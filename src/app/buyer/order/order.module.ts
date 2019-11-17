@@ -1,28 +1,17 @@
+import { IonicModule } from '@ionic/angular';
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Alipay } from '@ionic-native/alipay/ngx';
-import { Routes, RouterModule } from '@angular/router';
-
-import { IonicModule } from '@ionic/angular';
-
 import { OrderPage } from './order.page';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: OrderPage
-  }
-];
 
 @NgModule({
   imports: [
+    IonicModule,
     CommonModule,
     FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild([{ path: '', component: OrderPage }])
   ],
-  providers: [Alipay],
   declarations: [OrderPage]
 })
 export class OrderPageModule { }

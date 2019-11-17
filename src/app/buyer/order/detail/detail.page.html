@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-round-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>订单详情</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>订单ID</ion-label>
+    {{order.id}}
+  </ion-item>
+  <ion-item>
+    <ion-label>商品ID</ion-label>
+    {{order.commodityId}}
+  </ion-item>
+  <ion-item>
+    <ion-label>送货地址</ion-label>
+    {{order.destination}}
+  </ion-item>
+  <ion-item>
+    <ion-label>购买时间</ion-label>
+    {{order.created}}
+  </ion-item>
+</ion-content>

@@ -28,12 +28,12 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'cart',
+        path: 'order',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../buyer/cart/cart.module').then(m => m.CartPageModule)
+              import('../buyer/order/order.module').then(m => m.OrderPageModule)
           }
         ]
       },
