@@ -18,13 +18,13 @@ export class CertificationPage {
   formData = new FormData();
   host = environment.apiUrl;
   user = new User();
+  couldSubmit = false;
 
   constructor(
     private file: File,
     private camera: Camera,
     private webview: WebView,
     private httpClient: HttpClient) {
-    this.user.id = utilsService.getUser().id;
     this.user.cert = new Certification();
   }
 
@@ -37,6 +37,7 @@ export class CertificationPage {
         this.user = response;
         if (!this.user.cert) {
           this.user.cert = new Certification();
+          this.couldSubmit = true;
         }
       }
     })
