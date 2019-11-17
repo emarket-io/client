@@ -5,10 +5,10 @@ import { File } from '@ionic-native/file/ngx';
 import { ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { Commodity, Medium, Price } from '../../../sdk/commodity_pb';
-import { apiService, utilsService } from '../../providers/utils.service'
+import { Commodity, Medium, Price } from '../../../../sdk/commodity_pb';
+import { apiService, utilsService } from '../../../providers/utils.service'
 
 @Component({
   selector: 'app-publish',

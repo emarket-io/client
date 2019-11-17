@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   { path: 'view', loadChildren: './buyer/view/view.module#ViewPageModule' },
   { path: 'detail', loadChildren: './buyer/detail/detail.module#DetailPageModule' },
-  { path: 'publish', loadChildren: './seller/publish/publish.module#PublishPageModule' },
+  { path: 'publish', loadChildren: './seller/commodity/publish/publish.module#PublishPageModule' },
   { path: 'address', loadChildren: './buyer/address/address.module#AddressPageModule' },
   { path: 'popover', loadChildren: './seller/popover/popover.module#PopoverPageModule' },
   { path: 'order', loadChildren: './buyer/order/order.module#OrderPageModule' },
@@ -17,7 +17,8 @@ const routes: Routes = [
   { path: 'coupon', loadChildren: './seller/coupon/coupon.module#CouponPageModule' },
   { path: 'add', loadChildren: './seller/coupon/add/add.module#AddPageModule' },
   { path: 'seller', loadChildren: './seller/seller.module#SellerPageModule' },
-  { path: 'certification', loadChildren: './seller/certification/certification.module#CertificationPageModule' }
+  { path: 'certification', loadChildren: './seller/certification/certification.module#CertificationPageModule' },
+  { path: 'commodity', loadChildren: './seller/commodity/commodity.module#CommodityPageModule' }
 ];
 @NgModule({
   imports: [
