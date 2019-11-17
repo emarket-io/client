@@ -131,7 +131,8 @@ export class PublishPage {
           } else {
             console.log(response);
             toast.dismiss();
-            this.location.back();
+            //this.location.back();
+            this.router.navigateByUrl('/seller');
           }
         });
       }, error => {
