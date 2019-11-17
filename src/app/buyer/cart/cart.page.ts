@@ -3,7 +3,7 @@ import { User } from '../../../sdk/user_pb';
 import { Order } from '../../../sdk/order_pb';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { environment } from '../../../environments/environment';
-import { apiService, utilsService } from '../../providers/utils.service'
+import { apiService, utilsService } from '../../providers/utils.service';
 
 @Component({
   selector: 'app-cart',
