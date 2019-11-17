@@ -39,6 +39,12 @@ export class PublishPage {
     if (!utilsService.getUser()) {
       this.router.navigateByUrl('/login');
     }
+
+    // if (!utilsService.getUser().cert) {
+    //   utilsService.alert('发布商品，请先实名认证');
+    //   this.router.navigateByUrl('/certification');
+    // }
+
     this.commodity.category = utilsService.selectedCategory;
     this.commodity.city = utilsService.location.addressComponent.province + utilsService.location.addressComponent.city;
   }

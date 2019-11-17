@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { apiService, utilsService } from '../../providers/utils.service'
+import { apiService, utilsService } from '../../../providers/utils.service'
 
 @Component({
   selector: 'app-popover',

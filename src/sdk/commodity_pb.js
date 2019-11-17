@@ -156,6 +156,7 @@ proto.zbay.Commodity.toObject = function(includeInstance, msg) {
     fare: jspb.Message.getFieldWithDefault(msg, 9, 0),
     tagsList: (f = jspb.Message.getRepeatedField(msg, 14)) == null ? undefined : f,
     ownerId: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    status: jspb.Message.getFieldWithDefault(msg, 15, ""),
     annotationsMap: (f = msg.getAnnotationsMap()) ? f.toObject(includeInstance, undefined) : [],
     created: (f = msg.getCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     updated: (f = msg.getUpdated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
@@ -240,6 +241,10 @@ proto.zbay.Commodity.deserializeBinaryFromReader = function(msg, reader) {
     case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.setOwnerId(value);
+      break;
+    case 15:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setStatus(value);
       break;
     case 11:
       var value = msg.getAnnotationsMap();
@@ -362,6 +367,13 @@ proto.zbay.Commodity.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       10,
+      f
+    );
+  }
+  f = message.getStatus();
+  if (f.length > 0) {
+    writer.writeString(
+      15,
       f
     );
   }
@@ -714,6 +726,31 @@ proto.zbay.Commodity.prototype.getOwnerId = function() {
 /** @param {string} value */
 proto.zbay.Commodity.prototype.setOwnerId = function(value) {
   jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+Object.defineProperty(proto.zbay.Commodity.prototype, "status", {
+  set: function(value) {
+    this.setStatus(value);
+  },
+  get: function() {
+    return this.getStatus();
+  },
+});
+
+
+/**
+ * optional string status = 15;
+ * @return {string}
+ */
+proto.zbay.Commodity.prototype.getStatus = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 15, ""));
+};
+
+
+/** @param {string} value */
+proto.zbay.Commodity.prototype.setStatus = function(value) {
+  jspb.Message.setProto3StringField(this, 15, value);
 };
 
 

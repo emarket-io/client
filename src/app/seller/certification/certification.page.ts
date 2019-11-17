@@ -1,5 +1,6 @@
 import * as grpcWeb from 'grpc-web';
 import { Component } from '@angular/core';
+import { Location } from "@angular/common";
 import { File } from '@ionic-native/file/ngx';
 import { HttpClient } from '@angular/common/http';
 import { User, Certification } from '../../../sdk/user_pb';
@@ -24,6 +25,7 @@ export class CertificationPage {
     private file: File,
     private camera: Camera,
     private webview: WebView,
+    private location: Location,
     private httpClient: HttpClient) {
     this.user.cert = new Certification();
   }
@@ -92,6 +94,8 @@ export class CertificationPage {
         apiService.userClient.certificate(this.user, apiService.metaData, (err: grpcWeb.Error, response: User) => {
           if (err) {
             utilsService.alert(JSON.stringify(err));
+          } else {
+            this.location.back();
           }
         })
       }, error => {
