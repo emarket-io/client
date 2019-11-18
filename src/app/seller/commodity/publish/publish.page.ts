@@ -115,7 +115,7 @@ export class PublishPage {
     }
 
     if (!this.check(this.commodity.title)) {
-      return utilsService.alert('商品标题有不允许的内容，请检查');
+      return utilsService.alert('标题含有不合规内容，请检查');
     }
 
     // upload firstly
