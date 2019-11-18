@@ -16,9 +16,6 @@ export class DetailPage {
     this.order = <Order>this.router.getCurrentNavigation().extras.state;
   }
 
-  ionViewWillEnter() {
-    //let orderId = this.router.getCurrentNavigation().extras.state.id;
-    //utilsService.alert(orderId);
-  }
+  ionViewWillEnter() { }
 
 }

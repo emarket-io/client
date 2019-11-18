@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { apiService, utilsService } from '../../providers/utils.service'
+import { apiService } from '../../providers/utils.service'
 
 
 @Component({
@@ -18,8 +18,7 @@ export class CategoryPage {
     this.level1 = item;
   }
 
-  gotoView(keyword) {
-    utilsService.keyword = keyword;
-    this.router.navigateByUrl('/view');
+  gotoView(keyword: string) {
+    this.router.navigateByUrl('/view', { state: { keyword: keyword } });
   }
 }

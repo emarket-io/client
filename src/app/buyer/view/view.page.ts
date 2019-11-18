@@ -10,15 +10,17 @@ import { apiService, utilsService } from '../../providers/utils.service'
   styleUrls: ['./view.page.scss'],
 })
 export class ViewPage {
+  keyword: string;
   host = environment.apiUrl;
   commodities: Commodity[];
-  keyword = utilsService.keyword;
   formatRBM = utilsService.formatRMB;
   slideOpts = {
     slidesPerView: 4,
   };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    this.keyword = this.router.getCurrentNavigation().extras.state.keyword;
+  }
 
   ionViewWillEnter() {
     this.commodities = []
@@ -33,7 +35,6 @@ export class ViewPage {
   }
 
   gotoDetail(commodity: Commodity) {
-    utilsService.commodity = commodity;
-    this.router.navigateByUrl('/detail');
+    this.router.navigateByUrl('/detail', { state: commodity });
   }
 }

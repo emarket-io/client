@@ -14,6 +14,8 @@ grpc.web = require('grpc-web');
 
 var user_pb = require('./user_pb.js')
 
+var commodity_pb = require('./commodity_pb.js')
+
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js')
 
 var google_protobuf_wrappers_pb = require('google-protobuf/google/protobuf/wrappers_pb.js')

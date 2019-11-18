@@ -13,12 +13,12 @@
     {{order.id}}
   </ion-item>
   <ion-item>
-    <ion-label>商品ID</ion-label>
-    {{order.commodityId}}
+    <ion-label>商品名</ion-label>
+    {{order.snapshot?.title}}
   </ion-item>
   <ion-item>
     <ion-label>送货地址</ion-label>
-    {{order.destination}}
+    {{order.destination?.location}}
   </ion-item>
   <ion-item>
     <ion-label>购买时间</ion-label>

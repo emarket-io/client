@@ -2,7 +2,7 @@ import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Alipay } from '@ionic-native/alipay/ngx';
-import { Address } from '../../../sdk/user_pb';
+import { Commodity } from '../../../sdk/commodity_pb';
 import { Order, PayInfo } from '../../../sdk/order_pb';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service'
@@ -15,9 +15,8 @@ import { StringValue } from "google-protobuf/google/protobuf/wrappers_pb";
 })
 export class PurchasePage {
   order = new Order();
-  destination: Address;
   host = environment.apiUrl;
-  commodity = utilsService.commodity;
+  commodity: Commodity;
   formatRBM = utilsService.formatRMB;
 
   constructor(
@@ -25,27 +24,28 @@ export class PurchasePage {
     private alipay: Alipay) {
     this.order.payInfo = new PayInfo();
     this.order.payInfo.type = 'alipay';
+    this.commodity = <Commodity>this.router.getCurrentNavigation().extras.state;
   }
 
   ionViewWillEnter() {
     if (!utilsService.getUser()) {
       this.router.navigateByUrl('/login');
     }
-    this.order.commodityId = utilsService.commodity.id;
+    this.order.snapshot = this.commodity;
     this.order.userId = utilsService.getUser().id;
     this.order.quantity = 1;
-    this.destination = utilsService.destination;
-    this.order.amount = utilsService.commodity.price.group * this.order.quantity;
+    this.order.destination = utilsService.destination;
+    this.order.amount = this.commodity.price.group * this.order.quantity;
   }
 
   increment() {
     this.order.quantity += 1;
-    this.order.amount = utilsService.commodity.price.group * this.order.quantity;
+    this.order.amount = this.commodity.price.group * this.order.quantity;
   }
 
   decrement() {
     this.order.quantity -= 1;
-    this.order.amount = utilsService.commodity.price.group * this.order.quantity;
+    this.order.amount = this.commodity.price.group * this.order.quantity;
   }
 
   preparebuy() {

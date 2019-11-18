@@ -9,6 +9,7 @@ import { environment } from '../../../../environments/environment';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Commodity, Medium, Price } from '../../../../sdk/commodity_pb';
 import { apiService, utilsService } from '../../../providers/utils.service'
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-publish',
@@ -113,6 +114,10 @@ export class PublishPage {
       return utilsService.alert('请输入库存数量');
     }
 
+    if (!this.check(this.commodity.title)) {
+      return utilsService.alert('商品标题有不允许的内容，请检查');
+    }
+
     // upload firstly
     this.httpClient.post(environment.apiUrl + '/upload', this.formData, {
       params: {
@@ -144,5 +149,9 @@ export class PublishPage {
       position: 'middle'
     });
     toast.present();
+  }
+
+  check(value: string): boolean {
+    return value.search('妈|测试|傻') == -1;
   }
 }

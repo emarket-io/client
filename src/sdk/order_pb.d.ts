@@ -1,15 +1,18 @@
 import * as jspb from "google-protobuf"
 
 import * as user_pb from './user_pb';
+import * as commodity_pb from './commodity_pb';
 import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb';
 import * as google_protobuf_wrappers_pb from 'google-protobuf/google/protobuf/wrappers_pb';
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 
 export class Order extends jspb.Message {
   id: string;
-  commodityId: string;
+  snapshot: commodity_pb.Commodity | undefined;
+  hassnapshot(): boolean;
+  clearsnapshot(): void;
   userId: string;
-  destination: Position | undefined;
+  destination: user_pb.Address | undefined;
   hasdestination(): boolean;
   cleardestination(): void;
   quantity: number;
@@ -35,9 +38,9 @@ export class Order extends jspb.Message {
 export namespace Order {
   export type AsObject = {
     id: string,
-    commodityid: string,
+    snapshot?: commodity_pb.Commodity.AsObject,
     userid: string,
-    destination?: Position.AsObject,
+    destination?: user_pb.Address.AsObject,
     quantity: number,
     amount: number,
     status: string,
@@ -45,26 +48,6 @@ export namespace Order {
     payinfo?: PayInfo.AsObject,
     annotationsMap: Array<[string, string]>,
     created?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-  }
-}
-
-export class Position extends jspb.Message {
-  name: string;
-  location: string;
-  address: string;
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Position.AsObject;
-  static toObject(includeInstance: boolean, msg: Position): Position.AsObject;
-  static serializeBinaryToWriter(message: Position, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Position;
-  static deserializeBinaryFromReader(message: Position, reader: jspb.BinaryReader): Position;
-}
-
-export namespace Position {
-  export type AsObject = {
-    name: string,
-    location: string,
-    address: string,
   }
 }
 

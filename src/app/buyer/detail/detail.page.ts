@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Wechat } from '@ionic-native/wechat/ngx';
+import { Commodity } from '../../../sdk/commodity_pb';
 import { utilsService } from '../../providers/utils.service'
 import { environment } from '../../../environments/environment';
 
@@ -11,7 +12,7 @@ import { environment } from '../../../environments/environment';
 })
 export class DetailPage {
   host = environment.apiUrl;
-  commodity = utilsService.commodity;
+  commodity: Commodity;
   formatRBM = utilsService.formatRMB;
   slideOpts = {
     slidesPerView: 1,
@@ -22,10 +23,11 @@ export class DetailPage {
 
   constructor(
     private router: Router,
-    private wechat: Wechat, ) { }
+    private wechat: Wechat, ) {
+    this.commodity = <Commodity>this.router.getCurrentNavigation().extras.state;
+  }
 
   ionViewWillEnter() {
-    this.commodity = utilsService.commodity;
   }
 
   share() {
@@ -48,5 +50,9 @@ export class DetailPage {
     }).catch(err => {
       utilsService.alert(JSON.stringify(err));
     });
+  }
+
+  purchase() {
+    this.router.navigateByUrl('/purchase', { state: this.commodity })
   }
 }
