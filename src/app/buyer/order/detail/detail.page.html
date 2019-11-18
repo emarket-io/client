@@ -9,6 +9,9 @@
 
 <ion-content>
   <ion-item>
+    物流信息：***
+  </ion-item>
+  <ion-item>
     <ion-label>订单ID</ion-label>
     {{order.id}}
   </ion-item>
@@ -22,6 +25,6 @@
   </ion-item>
   <ion-item>
     <ion-label>购买时间</ion-label>
-    {{order.created}}
+    {{order.created.toDate().toLocaleString()}}
   </ion-item>
 </ion-content>

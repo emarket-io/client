@@ -148,7 +148,7 @@ proto.zbay.Order.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
-    case 2:
+    case 12:
       var value = new commodity_pb.Commodity;
       reader.readMessage(value,commodity_pb.Commodity.deserializeBinaryFromReader);
       msg.setSnapshot(value);
@@ -233,7 +233,7 @@ proto.zbay.Order.serializeBinaryToWriter = function(message, writer) {
   f = message.getSnapshot();
   if (f != null) {
     writer.writeMessage(
-      2,
+      12,
       f,
       commodity_pb.Commodity.serializeBinaryToWriter
     );
@@ -340,18 +340,18 @@ Object.defineProperty(proto.zbay.Order.prototype, "snapshot", {
 
 
 /**
- * optional Commodity snapshot = 2;
+ * optional Commodity snapshot = 12;
  * @return {?proto.zbay.Commodity}
  */
 proto.zbay.Order.prototype.getSnapshot = function() {
   return /** @type{?proto.zbay.Commodity} */ (
-    jspb.Message.getWrapperField(this, commodity_pb.Commodity, 2));
+    jspb.Message.getWrapperField(this, commodity_pb.Commodity, 12));
 };
 
 
 /** @param {?proto.zbay.Commodity|undefined} value */
 proto.zbay.Order.prototype.setSnapshot = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
+  jspb.Message.setWrapperField(this, 12, value);
 };
 
 
@@ -368,7 +368,7 @@ proto.zbay.Order.prototype.clearSnapshot = function() {
  * @return {boolean}
  */
 proto.zbay.Order.prototype.hasSnapshot = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 12) != null;
 };
 
 

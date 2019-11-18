@@ -78,7 +78,7 @@
     <ion-buttons slot="end">
       <ion-button>单买(¥{{formatRBM(commodity.price.single)}})
       </ion-button>
-      <ion-button routerLink="/purchase">拼单(¥{{formatRBM(commodity.price.group)}})
+      <ion-button (click)="purchase()">拼单(¥{{formatRBM(commodity.price.group)}})
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

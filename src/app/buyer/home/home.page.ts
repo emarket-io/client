@@ -11,8 +11,6 @@ declare let AMap;
   styleUrls: ['home.page.scss']
 })
 export class HomePage {
-  // @ViewChild('map_container', null) map_container: ElementRef;
-  // map: any; // 地图对象
   city = utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
   slideOpts = {
     slidesPerView: 1,
