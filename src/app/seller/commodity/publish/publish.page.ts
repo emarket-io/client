@@ -55,15 +55,9 @@ export class PublishPage {
       allowEdit: true,
       targetWidth: 500,
       targetHeight: 500,
-      // destinationType: this.camera.DestinationType.FILE_URI,
-      // encodingType: this.camera.EncodingType.JPEG,
-      // mediaType: this.camera.MediaType.ALLMEDIA,
       correctOrientation: true,
     };
     this.camera.getPicture(options).then(async (imageUrl) => {
-      // imageUrl is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
-      // let base64Image = 'data:image/jpeg;base64,' + imageUrl;
       this.images.push(this.webview.convertFileSrc(imageUrl));
       var filename = imageUrl.substr(imageUrl.lastIndexOf('/') + 1);
       var dirpath = imageUrl.substr(0, imageUrl.lastIndexOf('/') + 1);
@@ -76,9 +70,6 @@ export class PublishPage {
       }
 
       retrievedFile.file(data => {
-        //this.dismissLoader();
-        // if (data.size > MAX_FILE_SIZE) return this.presentAlert("Error", "You cannot upload more than 5mb.");
-
         const reader = new FileReader();
         reader.onloadend = () => {
           const imgBlob = new Blob([reader.result], {

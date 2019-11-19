@@ -58,12 +58,7 @@ export class UtilsService {
       subHeader: title,
       buttons: [
         {
-          text: '取消',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
+          text: '取消'
         }, {
           text: '确定',
           handler: () => {
