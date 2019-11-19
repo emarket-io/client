@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { apiService, utilsService } from '../../providers/utils.service'
 
