@@ -30,34 +30,17 @@ export class CommodityPage {
     });
   }
 
-  async  delete(id) {
-    const alert = await utilsService.injector.get(AlertController).create({
-      //header: '确认!',
-      message: '确认删除此商品？',
-      buttons: [
-        {
-          text: '取消',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: '确定',
-          handler: () => {
-            let rc = new Commodity();
-            rc.id = id;
-            apiService.commodityClient.delete(rc, apiService.metaData, (err: any, response: any) => {
-              if (err) {
-                utilsService.alert(JSON.stringify(err));
-              } else {
-                this.ionViewWillEnter();
-              }
-            });
-          }
+  delete(id) {
+    utilsService.confirm('确认删除此商品？', () => {
+      let rc = new Commodity();
+      rc.id = id;
+      apiService.commodityClient.delete(rc, apiService.metaData, (err: any, response: any) => {
+        if (err) {
+          utilsService.alert(JSON.stringify(err));
+        } else {
+          this.ionViewWillEnter();
         }
-      ]
+      });
     });
-    await alert.present();
   }
 }

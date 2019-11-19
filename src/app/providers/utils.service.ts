@@ -48,7 +48,29 @@ export class UtilsService {
       //header: title,
       subHeader: content,
       //message: content,
-      buttons: ['OK']
+      buttons: ['确定']
+    });
+    await alert.present();
+  }
+
+  async confirm(title: string, fn) {
+    const alert = await this.injector.get(AlertController).create({
+      subHeader: title,
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: '确定',
+          handler: () => {
+            fn();
+          }
+        }
+      ]
     });
     await alert.present();
   }
