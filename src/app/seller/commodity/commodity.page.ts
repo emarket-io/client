@@ -16,10 +16,8 @@ export class CommodityPage {
   ionViewWillEnter() {
     this.commodities = []
     let requestCommodity = new Commodity();
-    requestCommodity.ownerId = utilsService.getUser().id;
-    // super admin
-    if (utilsService.getUser().id == '15901251201' || utilsService.getUser().id == '13488762245') {
-      requestCommodity.ownerId = '';
+    if (!utilsService.isAdmin()) {
+      requestCommodity.ownerId = utilsService.getUser().id;
     }
     let stream = apiService.commodityClient.list(requestCommodity, apiService.metaData);
     stream.on('data', response => {

@@ -21,11 +21,15 @@ export class OrderPage {
   constructor(private router: Router) { }
 
   ionViewWillEnter() {
+    if (!utilsService.getUser()) {
+      return
+    }
     this.orders = []
-    let stream = apiService.orderClient.list(new User(), apiService.metaData);
+    let user = new User();
+    user.id = utilsService.getUser().id;
+    let stream = apiService.orderClient.list(user, apiService.metaData);
     stream.on('data', response => {
       this.orders.push(response);
-      //this.getCommodityById(response.commodityId);
       console.log(response.toObject())
     });
     stream.on('error', err => {
@@ -35,5 +39,15 @@ export class OrderPage {
 
   gotoOrderDetail(order: Order) {
     this.router.navigateByUrl('buyer_order_detail', { state: order });
+  }
+
+  delete(order: Order) {
+    if (window.confirm('确认删除此订单？')) {
+      apiService.orderClient.delete(order, apiService.metaData, (err: any, response: any) => {
+        if (err) {
+          utilsService.alert(JSON.stringify(err));
+        }
+      })
+    }
   }
 }

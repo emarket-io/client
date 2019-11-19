@@ -30,7 +30,7 @@ export class ViewPage {
       console.log(response.toObject())
     });
     stream.on('error', err => {
-      alert(JSON.stringify(err));
+      utilsService.alert(JSON.stringify(err));
     });
   }
 

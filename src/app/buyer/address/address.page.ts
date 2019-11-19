@@ -30,7 +30,7 @@ export class AddressPage implements OnInit {
       utilsService.destination = this.addresses[0];
     });
     stream.on('error', err => {
-      alert(JSON.stringify(err));
+      utilsService.alert(JSON.stringify(err));
     });
   }
 

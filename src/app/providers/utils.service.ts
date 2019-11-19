@@ -53,6 +53,13 @@ export class UtilsService {
     await alert.present();
   }
 
+  check(value: string): boolean {
+    return value.search('妈|测试|傻|逼|鸡巴') == -1;
+  }
+
+  isAdmin(): boolean {
+    return (this.getUser().id == '15901251201') || (this.getUser().id == '13488762245')
+  }
 }
 
 export const utilsService = new UtilsService();

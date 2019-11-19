@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../../../sdk/user_pb';
 import { Order } from '../../../sdk/order_pb';
+import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service';
 
 @Component({
@@ -10,20 +11,24 @@ import { apiService, utilsService } from '../../providers/utils.service';
 })
 export class OrderPage {
   orders: Order[];
+  host = environment.apiUrl;
+  formatRBM = utilsService.formatRMB;
 
   constructor() { }
 
   ionViewWillEnter() {
     this.orders = []
-    let stream = apiService.orderClient.list(new User(), apiService.metaData);
+    let user = new User();
+    if (!utilsService.isAdmin()) {
+      user.id = utilsService.getUser().id;
+    }
+    let stream = apiService.orderClient.list(user, apiService.metaData);
     stream.on('data', response => {
       this.orders.push(response);
-      //this.getCommodityById(response.commodityId);
       console.log(response.toObject())
     });
     stream.on('error', err => {
-      alert(JSON.stringify(err));
+      utilsService.alert(JSON.stringify(err));
     });
   }
-
 }
