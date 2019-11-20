@@ -1,8 +1,11 @@
-
-prod:
+clean:
 	rm -rf www
+
+build:clean
+	ionic cordova build android
+
+prod:clean
 	ionic cordova build android --prod
 
-release:
-	rm -rf www
+release:clean
 	ionic cordova build android --prod --release
