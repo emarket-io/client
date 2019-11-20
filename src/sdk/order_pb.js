@@ -106,6 +106,7 @@ proto.zbay.Order.toObject = function(includeInstance, msg) {
     status: jspb.Message.getFieldWithDefault(msg, 7, ""),
     comment: jspb.Message.getFieldWithDefault(msg, 8, ""),
     payInfo: (f = msg.getPayInfo()) && proto.zbay.PayInfo.toObject(includeInstance, f),
+    expressNo: jspb.Message.getFieldWithDefault(msg, 13, ""),
     annotationsMap: (f = msg.getAnnotationsMap()) ? f.toObject(includeInstance, undefined) : [],
     created: (f = msg.getCreated()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
@@ -182,6 +183,10 @@ proto.zbay.Order.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.zbay.PayInfo;
       reader.readMessage(value,proto.zbay.PayInfo.deserializeBinaryFromReader);
       msg.setPayInfo(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setExpressNo(value);
       break;
     case 10:
       var value = msg.getAnnotationsMap();
@@ -287,6 +292,13 @@ proto.zbay.Order.serializeBinaryToWriter = function(message, writer) {
       9,
       f,
       proto.zbay.PayInfo.serializeBinaryToWriter
+    );
+  }
+  f = message.getExpressNo();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
+      f
     );
   }
   f = message.getAnnotationsMap(true);
@@ -580,6 +592,31 @@ proto.zbay.Order.prototype.clearPayInfo = function() {
  */
 proto.zbay.Order.prototype.hasPayInfo = function() {
   return jspb.Message.getField(this, 9) != null;
+};
+
+
+Object.defineProperty(proto.zbay.Order.prototype, "expressNo", {
+  set: function(value) {
+    this.setExpressNo(value);
+  },
+  get: function() {
+    return this.getExpressNo();
+  },
+});
+
+
+/**
+ * optional string expressNo = 13;
+ * @return {string}
+ */
+proto.zbay.Order.prototype.getExpressNo = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/** @param {string} value */
+proto.zbay.Order.prototype.setExpressNo = function(value) {
+  jspb.Message.setProto3StringField(this, 13, value);
 };
 
 

@@ -22,6 +22,7 @@ export class Order extends jspb.Message {
   payInfo: PayInfo | undefined;
   haspayInfo(): boolean;
   clearpayInfo(): void;
+  expressNo: string;
   annotationsMap: jspb.Map<string, string>;
   clearannotationsMap(): void;
   created: google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -46,6 +47,7 @@ export namespace Order {
     status: string,
     comment: string,
     payinfo?: PayInfo.AsObject,
+    expressno: string,
     annotationsMap: Array<[string, string]>,
     created?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }

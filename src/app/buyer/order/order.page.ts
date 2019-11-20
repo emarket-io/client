@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { User } from '../../../sdk/user_pb';
 import { Order } from '../../../sdk/order_pb';
+import { Commodity } from '../../../sdk/commodity_pb';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service';
 
@@ -26,7 +27,9 @@ export class OrderPage {
     }
     this.orders = []
     let user = new User();
-    user.id = utilsService.getUser().id;
+    if (!utilsService.isAdmin()) {
+      user.id = utilsService.getUser().id;
+    }
     let stream = apiService.orderClient.list(user, apiService.metaData);
     stream.on('data', response => {
       this.orders.push(response);
@@ -39,6 +42,16 @@ export class OrderPage {
 
   gotoOrderDetail(order: Order) {
     this.router.navigateByUrl('buyer_order_detail', { state: order });
+  }
+
+  buyAgain(commodity: Commodity) {
+    apiService.commodityClient.get(commodity, apiService.metaData, (err: any, response: Commodity) => {
+      if (err) {
+        utilsService.alert(JSON.stringify(err));
+      } else {
+        this.router.navigateByUrl('/detail', { state: response });
+      }
+    });
   }
 
   delete(order: Order) {
