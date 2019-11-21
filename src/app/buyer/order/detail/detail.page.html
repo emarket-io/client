@@ -13,7 +13,11 @@
   </ion-item>
   <ion-item>
     <ion-label>单号</ion-label>
-    {{order.expressNo}}
+    {{order.express?.number}}
+    <a target="_blank"
+      href="https://www.kuaidi100.com/chaxun?com={{order.express?.company}}&nu={{order.express?.number}}">
+      <ion-icon name="play"></ion-icon>
+    </a>
   </ion-item>
   <ion-list lines="none">
     <ion-item>

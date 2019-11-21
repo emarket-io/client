@@ -73,7 +73,7 @@ export class PurchasePage {
                   }
                 });
               }).catch(error => {
-                console.log(error); // Failed
+                console.log(error);
                 utilsService.alert(JSON.stringify(err));
               });
           }

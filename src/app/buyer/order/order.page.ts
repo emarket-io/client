@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { User } from '../../../sdk/user_pb';
 import { Order } from '../../../sdk/order_pb';
+import { AlertController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service';
@@ -19,7 +20,9 @@ export class OrderPage {
     slidesPerView: 5,
   };
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private alertController: AlertController) { }
 
   ionViewWillEnter() {
     if (!utilsService.getUser()) {
@@ -42,6 +45,39 @@ export class OrderPage {
 
   gotoOrderDetail(order: Order) {
     this.router.navigateByUrl('buyer_order_detail', { state: order });
+  }
+
+  async refund(order: Order) {
+    const alert = await this.alertController.create({
+      header: '退款理由',
+      inputs: [
+        {
+          name: 'refund',
+          type: 'text',
+          value: order.comment,
+          placeholder: '请输入退款理由'
+        }
+      ],
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel'
+        }, {
+          text: '确定',
+          handler: (alertData) => {
+            order.status = '退款中';
+            order.comment = alertData.refund;
+            apiService.orderClient.update(order, apiService.metaData, (err: any, response: Order) => {
+              if (err) {
+                utilsService.alert(JSON.stringify(err));
+              }
+            });
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   buyAgain(commodity: Commodity) {

@@ -22,7 +22,9 @@ export class Order extends jspb.Message {
   payInfo: PayInfo | undefined;
   haspayInfo(): boolean;
   clearpayInfo(): void;
-  expressNo: string;
+  express: Express | undefined;
+  hasexpress(): boolean;
+  clearexpress(): void;
   annotationsMap: jspb.Map<string, string>;
   clearannotationsMap(): void;
   created: google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -47,7 +49,7 @@ export namespace Order {
     status: string,
     comment: string,
     payinfo?: PayInfo.AsObject,
-    expressno: string,
+    express?: Express.AsObject,
     annotationsMap: Array<[string, string]>,
     created?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
@@ -68,6 +70,24 @@ export namespace PayInfo {
   export type AsObject = {
     type: string,
     payresult: string,
+  }
+}
+
+export class Express extends jspb.Message {
+  company: string;
+  number: string;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Express.AsObject;
+  static toObject(includeInstance: boolean, msg: Express): Express.AsObject;
+  static serializeBinaryToWriter(message: Express, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Express;
+  static deserializeBinaryFromReader(message: Express, reader: jspb.BinaryReader): Express;
+}
+
+export namespace Express {
+  export type AsObject = {
+    company: string,
+    number: string,
   }
 }
 

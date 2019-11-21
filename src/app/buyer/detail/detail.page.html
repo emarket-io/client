@@ -37,9 +37,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-badge>极速退款</ion-badge>
-        <ion-badge>全场包邮</ion-badge>
-        <ion-badge>7天退换</ion-badge>
+        <ion-badge *ngFor="let tag of commodity.tagsList">{{tag}}</ion-badge>
       </ion-col>
     </ion-row>
   </ion-grid>

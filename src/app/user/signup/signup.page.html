@@ -13,17 +13,17 @@
       <ion-label stacked>手机号码</ion-label>
       <ion-input type="text" [(ngModel)]="user.telephone"></ion-input>
     </ion-item>
- 
+
     <ion-item>
       <ion-label stacked>用户昵称</ion-label>
       <ion-input type="text" [(ngModel)]="user.name"></ion-input>
     </ion-item>
- 
+
     <ion-item>
       <ion-label stacked>密码</ion-label>
       <ion-input type="password" [(ngModel)]="user.password"></ion-input>
     </ion-item>
- 
+
     <ion-item>
       <ion-label stacked>确认密码</ion-label>
       <ion-input type="password"></ion-input>
@@ -31,10 +31,10 @@
   </ion-list>
   <ion-row>
     <ion-col>
-      <ion-button color="primary" (click)="signup()" expand="block">注册</ion-button>
+      <ion-button (click)="signup()" expand="block">注册</ion-button>
     </ion-col>
     <ion-col>
-      <ion-button color="primary" (click)="login()" expand="block">已有账号？登陆</ion-button>
+      <ion-button (click)="login()" expand="block">已有账号？登陆</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>

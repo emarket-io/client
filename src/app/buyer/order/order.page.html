@@ -51,7 +51,7 @@
     </ion-item-sliding>
     <ion-toolbar>
       <ion-buttons slot="end">
-        <ion-button>
+        <ion-button (click)="refund(order)">
           申请退款
         </ion-button>
         <ion-button (click)="buyAgain(order.snapshot)">

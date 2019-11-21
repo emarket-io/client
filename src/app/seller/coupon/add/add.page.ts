@@ -14,6 +14,10 @@ export class AddPage {
   constructor(private router: Router) { }
 
   submit() {
+    if (!this.coupon.name) {
+      utilsService.alert('请输入名称');
+      return
+    }
     this.coupon.owner = utilsService.getUser().telephone;
     apiService.couponClient.add(this.coupon, apiService.metaData, (err: any, response: Coupon) => {
       if (err) {

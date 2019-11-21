@@ -29,11 +29,9 @@ export class CommodityPage {
     });
   }
 
-  delete(id) {
+  delete(commodity: Commodity) {
     utilsService.confirm('确认删除此商品？', () => {
-      let rc = new Commodity();
-      rc.id = id;
-      apiService.commodityClient.delete(rc, apiService.metaData, (err: any, response: any) => {
+      apiService.commodityClient.delete(commodity, apiService.metaData, (err: any, response: any) => {
         if (err) {
           utilsService.alert(JSON.stringify(err));
         } else {

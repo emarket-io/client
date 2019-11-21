@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="ion-text-center">
     <ion-buttons slot="start">
       <ion-back-button icon="arrow-round-back"></ion-back-button>
     </ion-buttons>
-    <ion-title text-center>登录</ion-title>
+    <ion-title>登录</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="logout()">
         <ion-icon name="refresh-circle"></ion-icon>
@@ -26,10 +26,10 @@
       </ion-item>
       <ion-row>
         <ion-col>
-          <ion-button color="primary" (click)="login()" expand="block">登 录</ion-button>
+          <ion-button (click)="login()" expand="block">登 录</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button color="primary" (click)="signup()" expand="block">没有账号？注册</ion-button>
+          <ion-button (click)="signup()" expand="block">没有账号？注册</ion-button>
         </ion-col>
       </ion-row>
     </ion-card-content>

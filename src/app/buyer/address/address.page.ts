@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { User, Address } from '../../../sdk/user_pb';
 import { apiService, utilsService } from '../../providers/utils.service'
 import { Location } from "@angular/common";
@@ -10,15 +10,13 @@ import { PopoverPage } from './popover/popover.page';
   templateUrl: './address.page.html',
   styleUrls: ['./address.page.scss'],
 })
-export class AddressPage implements OnInit {
+export class AddressPage {
   addresses: Address[]
   address = utilsService.location.formattedAddress;
 
   constructor(
     private location: Location,
     private popoverController: PopoverController) { }
-
-  ngOnInit() { }
 
   ionViewWillEnter() {
     this.addresses = []
