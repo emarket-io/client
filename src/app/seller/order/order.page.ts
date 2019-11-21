@@ -38,14 +38,14 @@ export class OrderPage {
       order.express = new Express();
     }
     const alert = await this.alertController.create({
-      header: '快递与单号',
+      header: '快递单号',
       inputs: [
-        {
-          name: 'name1',
-          type: 'text',
-          value: order.express.company,
-          placeholder: '快递公司拼音'
-        },
+        // {
+        //   name: 'name1',
+        //   type: 'text',
+        //   value: order.express.company,
+        //   placeholder: '快递公司拼音'
+        // },
         {
           name: 'name2',
           type: 'text',
@@ -60,7 +60,7 @@ export class OrderPage {
         }, {
           text: '确定',
           handler: (alertData) => {
-            order.express.company = alertData.name1;
+            //order.express.company = alertData.name1;
             order.express.number = alertData.name2;
             apiService.orderClient.update(order, apiService.metaData, (err: any, response: Order) => {
               if (err) {
