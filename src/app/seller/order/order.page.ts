@@ -33,6 +33,10 @@ export class OrderPage {
     });
   }
 
+  destination(order: Order) {
+    utilsService.alert(order.destination.contact + '<br/>' + order.destination.telephone + '<br/>' + order.destination.location, '发货地址');
+  }
+
   async deliver(order: Order) {
     if (!order.express) {
       order.express = new Express();
@@ -40,14 +44,8 @@ export class OrderPage {
     const alert = await this.alertController.create({
       header: '快递单号',
       inputs: [
-        // {
-        //   name: 'name1',
-        //   type: 'text',
-        //   value: order.express.company,
-        //   placeholder: '快递公司拼音'
-        // },
         {
-          name: 'name2',
+          name: 'name1',
           type: 'text',
           value: order.express.number,
           placeholder: '请输入快递单号'
@@ -60,8 +58,8 @@ export class OrderPage {
         }, {
           text: '确定',
           handler: (alertData) => {
-            //order.express.company = alertData.name1;
-            order.express.number = alertData.name2;
+            order.status = '待收货';
+            order.express.number = alertData.name1;
             apiService.orderClient.update(order, apiService.metaData, (err: any, response: Order) => {
               if (err) {
                 utilsService.alert(JSON.stringify(err));

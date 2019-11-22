@@ -21,13 +21,13 @@
   <ion-card *ngFor="let order of orders">
     <ion-item lines="none">
       <ion-card-subtitle>
-        {{order.snapshot?.ownerId}}
+        {{order.userId}}
       </ion-card-subtitle>
       <ion-card-subtitle style="right:15px;position: absolute;">
         {{order.status}}
       </ion-card-subtitle>
     </ion-item>
-    <ion-item lines="none">
+    <ion-item lines="none" (click)="destination(order)">
       <img class="order-image"
         src="{{host}}/static/{{order.snapshot?.ownerId}}/{{order.snapshot?.title}}/{{order.snapshot?.mediaList[0]?.image}}" />
       <div class="order-content">

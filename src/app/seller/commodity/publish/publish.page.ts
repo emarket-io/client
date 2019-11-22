@@ -90,9 +90,9 @@ export class PublishPage {
     });
   }
 
-  async submit() {
+  submit() {
     if (!this.commodity.title) {
-      return utilsService.alert('请输入商品标题');
+      return utilsService.alert('请输入标题');
     }
     if (!this.price_single) {
       return utilsService.alert('请输入单价');
@@ -125,8 +125,8 @@ export class PublishPage {
             utilsService.alert(JSON.stringify(err));
           } else {
             console.log(response);
-            toast.dismiss();
-            //this.location.back();
+            // toast.dismiss();
+            // this.location.back();
             this.router.navigateByUrl('/seller');
           }
         });
@@ -134,10 +134,10 @@ export class PublishPage {
         utilsService.alert(JSON.stringify(error));
       }
     );
-    const toast = await this.toastController.create({
-      message: '正在提交商品，请稍后...',
-      position: 'middle'
-    });
-    toast.present();
+    // const toast = await this.toastController.create({
+    //   message: '正在提交商品，请稍后...',
+    //   position: 'middle'
+    // });
+    //toast.present();
   }
 }
