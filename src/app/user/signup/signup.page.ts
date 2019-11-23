@@ -11,6 +11,7 @@ import { apiService, utilsService } from '../../providers/utils.service'
 })
 export class SignupPage {
   user = new User();
+  confirmPassword = '';
 
   constructor(private router: Router) { }
 
@@ -20,7 +21,12 @@ export class SignupPage {
 
   signup() {
     if (!this.user.telephone) {
-      utilsService.alert('请输入电话！');
+      utilsService.alert('请输入手机号码');
+      return
+    }
+
+    if (this.user.password != this.confirmPassword) {
+      utilsService.alert('两次密码输入不一致');
       return
     }
 

@@ -18,6 +18,10 @@ export class LoginPage {
     private router: Router) { }
 
   login() {
+    if (!this.user.telephone) {
+      utilsService.alert('请输入手机号码');
+      return
+    }
     apiService.userClient.login(this.user, apiService.metaData, (err: grpcWeb.Error, response: User) => {
       if (err) {
         console.log(err.code, err.message);

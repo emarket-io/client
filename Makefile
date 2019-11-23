@@ -1,5 +1,6 @@
 clean:
 	rm -rf www
+	cp resources/sign/* platforms/android
 
 build:clean
 	ionic cordova build android
