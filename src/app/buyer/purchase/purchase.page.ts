@@ -2,6 +2,7 @@ import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Alipay } from '@ionic-native/alipay/ngx';
+import { User } from '../../../sdk/user_pb';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { Order, PayInfo } from '../../../sdk/order_pb';
 import { environment } from '../../../environments/environment';
@@ -30,6 +31,21 @@ export class PurchasePage {
   ionViewWillEnter() {
     if (!utilsService.getUser()) {
       this.router.navigateByUrl('/login');
+    }
+    if (!utilsService.destination) {
+      let user = new User();
+      user.id = utilsService.getUser().id;
+      let stream = apiService.addressClient.list(user, apiService.metaData);
+      stream.on('data', response => {
+        console.log(response.toObject());
+        // first by default
+        utilsService.destination = response;
+        stream.cancel()
+      });
+      stream.on('error', err => {
+        utilsService.alert(JSON.stringify(err));
+      });
+
     }
     this.order.snapshot = this.commodity;
     this.order.userId = utilsService.getUser().id;

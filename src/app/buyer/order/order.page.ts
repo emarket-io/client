@@ -90,6 +90,19 @@ export class OrderPage {
     });
   }
 
+  confirmReceive(order: Order) {
+    if (order.status == '待收货') {
+      utilsService.confirm('确认收到货品？', () => {
+        order.status = '待评价';
+        apiService.orderClient.update(order, apiService.metaData, (err: any, response: Order) => {
+          if (err) {
+            utilsService.alert(JSON.stringify(err));
+          }
+        })
+      });
+    }
+  }
+
   delete(order: Order) {
     utilsService.confirm('确认删除此订单？', () => {
       apiService.orderClient.delete(order, apiService.metaData, (err: any, response: any) => {
