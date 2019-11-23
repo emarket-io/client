@@ -20,11 +20,11 @@ export class UtilsService {
     if (!window.localStorage.getItem('user')) {
       return null
     }
-    let json = JSON.parse(window.localStorage.getItem('user'));
+    let jsonUser = JSON.parse(window.localStorage.getItem('user'));
     let user = new User();
-    for (let key in json) {
-      if (key.indexOf("Map") == -1 && key.indexOf("created") == -1) {
-        user[key] = json[key]
+    for (let key in jsonUser) {
+      if (key.search('Map|created|cert') == -1) {
+        user[key] = jsonUser[key]
       }
     }
     return user
