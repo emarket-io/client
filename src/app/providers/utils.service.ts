@@ -16,11 +16,18 @@ export class UtilsService {
     addressComponent: { province: '湖北省', city: "荆门市", district: '沙洋县' }
   };
 
-  getUser(): User.AsObject {
+  getUser(): User {
     if (!window.localStorage.getItem('user')) {
       return null
     }
-    return JSON.parse(window.localStorage.getItem('user'));
+    let json = JSON.parse(window.localStorage.getItem('user'));
+    let user = new User();
+    for (let key in json) {
+      if (key.indexOf("Map") == -1 && key.indexOf("created") == -1) {
+        user[key] = json[key]
+      }
+    }
+    return user
   };
 
   setUser(user: User) {
@@ -72,10 +79,6 @@ export class UtilsService {
 
   check(value: string): boolean {
     return value.search('妈|测试|傻|逼|鸡巴') == -1;
-  }
-
-  isAdmin(): boolean {
-    return (this.getUser().id == '15901251201') || (this.getUser().id == '13488762245')
   }
 }
 

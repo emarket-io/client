@@ -33,24 +33,19 @@ export class PurchasePage {
       this.router.navigateByUrl('/login');
     }
     if (!utilsService.destination) {
-      let user = new User();
-      user.id = utilsService.getUser().id;
-      let stream = apiService.addressClient.list(user, apiService.metaData);
+      let stream = apiService.addressClient.list(utilsService.getUser(), apiService.metaData);
       stream.on('data', response => {
-        console.log(response.toObject());
-        // first by default
-        utilsService.destination = response;
+        this.order.destination = response;
         stream.cancel()
       });
       stream.on('error', err => {
         utilsService.alert(JSON.stringify(err));
       });
-
     }
     this.order.snapshot = this.commodity;
     this.order.userId = utilsService.getUser().id;
-    this.order.quantity = 1;
     this.order.destination = utilsService.destination;
+    this.order.quantity = 1;
     this.order.amount = this.commodity.price.group * this.order.quantity;
   }
 

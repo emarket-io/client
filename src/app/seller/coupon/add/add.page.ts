@@ -18,7 +18,7 @@ export class AddPage {
       utilsService.alert('请输入名称');
       return
     }
-    this.coupon.owner = utilsService.getUser().telephone;
+    this.coupon.owner = utilsService.getUser().id;
     apiService.couponClient.add(this.coupon, apiService.metaData, (err: any, response: Coupon) => {
       if (err) {
         utilsService.alert(JSON.stringify(err));

@@ -19,11 +19,7 @@ export class OrderPage {
 
   ionViewWillEnter() {
     this.orders = []
-    let user = new User();
-    if (!utilsService.isAdmin()) {
-      user.id = utilsService.getUser().id;
-    }
-    let stream = apiService.orderClient.list(user, apiService.metaData);
+    let stream = apiService.orderClient.list(utilsService.getUser(), apiService.metaData);
     stream.on('data', response => {
       this.orders.push(response);
       console.log(response.toObject())

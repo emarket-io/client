@@ -29,11 +29,7 @@ export class OrderPage {
       return
     }
     this.orders = []
-    let user = new User();
-    if (!utilsService.isAdmin()) {
-      user.id = utilsService.getUser().id;
-    }
-    let stream = apiService.orderClient.list(user, apiService.metaData);
+    let stream = apiService.orderClient.list(utilsService.getUser(), apiService.metaData);
     stream.on('data', response => {
       this.orders.push(response);
       console.log(response.toObject())
@@ -92,7 +88,7 @@ export class OrderPage {
 
   confirmReceive(order: Order) {
     if (order.status == '待收货') {
-      utilsService.confirm('确认收到货品？', () => {
+      utilsService.confirm('确认收货后，卖家将收到付款.', () => {
         order.status = '待评价';
         apiService.orderClient.update(order, apiService.metaData, (err: any, response: Order) => {
           if (err) {

@@ -18,7 +18,7 @@ export class CertificationPage {
   images = [];
   formData = new FormData();
   host = environment.apiUrl;
-  user = new User();
+  user = utilsService.getUser();
   couldSubmit = false;
 
   constructor(
@@ -31,7 +31,6 @@ export class CertificationPage {
   }
 
   ionViewWillEnter() {
-    this.user.id = utilsService.getUser().id;
     apiService.userClient.get(this.user, apiService.metaData, (err: any, response: User) => {
       if (err) {
         utilsService.alert(JSON.stringify(err));

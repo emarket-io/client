@@ -20,9 +20,7 @@ export class AddressPage {
 
   ionViewWillEnter() {
     this.addresses = []
-    let user = new User();
-    user.id = utilsService.getUser().id
-    let stream = apiService.addressClient.list(user, apiService.metaData);
+    let stream = apiService.addressClient.list(utilsService.getUser(), apiService.metaData);
     stream.on('data', response => {
       this.addresses.push(response);
       console.log(response.toObject());
