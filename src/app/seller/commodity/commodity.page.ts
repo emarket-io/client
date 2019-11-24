@@ -15,9 +15,7 @@ export class CommodityPage {
 
   ionViewWillEnter() {
     this.commodities = []
-    let requestCommodity = new Commodity();
-    requestCommodity.ownerId = utilsService.getUser().id;
-    let stream = apiService.commodityClient.list(requestCommodity, apiService.metaData);
+    let stream = apiService.commodityClient.list(utilsService.getUser(), apiService.metaData);
     stream.on('data', response => {
       this.commodities.push(response);
       console.log(response.toObject())

@@ -2,7 +2,8 @@ import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { environment } from '../../../environments/environment';
-import { apiService, utilsService } from '../../providers/utils.service'
+import { apiService, utilsService } from '../../providers/utils.service';
+import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
 
 @Component({
   selector: 'app-view',
@@ -24,7 +25,9 @@ export class ViewPage {
 
   ionViewWillEnter() {
     this.commodities = []
-    let stream = apiService.commodityClient.list((new Commodity), apiService.metaData);
+    let kw = new StringValue();
+    kw.setValue(this.keyword);
+    let stream = apiService.commodityClient.search(kw, apiService.metaData);
     stream.on('data', response => {
       this.commodities.push(response);
       console.log(response.toObject())

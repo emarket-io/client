@@ -16,6 +16,8 @@ var user_pb = require('./user_pb.js')
 
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js')
 
+var google_protobuf_wrappers_pb = require('google-protobuf/google/protobuf/wrappers_pb.js')
+
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 const proto = {};
 proto.zbay = require('./commodity_pb.js');
@@ -260,12 +262,12 @@ proto.zbay.CommoditiesPromiseClient.prototype.update =
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.zbay.Commodity,
+ *   !proto.zbay.User,
  *   !proto.zbay.Commodity>}
  */
 const methodInfo_Commodities_List = new grpc.web.AbstractClientBase.MethodInfo(
   proto.zbay.Commodity,
-  /** @param {!proto.zbay.Commodity} request */
+  /** @param {!proto.zbay.User} request */
   function(request) {
     return request.serializeBinary();
   },
@@ -274,7 +276,7 @@ const methodInfo_Commodities_List = new grpc.web.AbstractClientBase.MethodInfo(
 
 
 /**
- * @param {!proto.zbay.Commodity} request The request proto
+ * @param {!proto.zbay.User} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.zbay.Commodity>}
@@ -291,7 +293,7 @@ proto.zbay.CommoditiesClient.prototype.list =
 
 
 /**
- * @param {!proto.zbay.Commodity} request The request proto
+ * @param {!proto.zbay.User} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.zbay.Commodity>}
@@ -304,6 +306,56 @@ proto.zbay.CommoditiesPromiseClient.prototype.list =
       request,
       metadata || {},
       methodInfo_Commodities_List);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.google.protobuf.StringValue,
+ *   !proto.zbay.Commodity>}
+ */
+const methodInfo_Commodities_Search = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Commodity,
+  /** @param {!proto.google.protobuf.StringValue} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Commodity.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.google.protobuf.StringValue} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Commodity>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.CommoditiesClient.prototype.search =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Commodities/Search',
+      request,
+      metadata || {},
+      methodInfo_Commodities_Search);
+};
+
+
+/**
+ * @param {!proto.google.protobuf.StringValue} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Commodity>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.CommoditiesPromiseClient.prototype.search =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Commodities/Search',
+      request,
+      metadata || {},
+      methodInfo_Commodities_Search);
 };
 
 

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { User } from '../../../sdk/user_pb';
 import { Order, Express } from '../../../sdk/order_pb';
 import { AlertController } from '@ionic/angular';
 import { environment } from '../../../environments/environment';

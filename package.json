@@ -46,7 +46,7 @@
     "cordova-res": "^0.6.0",
     "core-js": "^2.5.4",
     "google-protobuf": "^3.10.0",
-    "grpc-web": "^1.0.6",
+    "grpc-web": "^1.0.7",
     "ionic": "^5.4.6",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",

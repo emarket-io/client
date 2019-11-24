@@ -36,7 +36,9 @@ export class PurchasePage {
       let stream = apiService.addressClient.list(utilsService.getUser(), apiService.metaData);
       stream.on('data', response => {
         this.order.destination = response;
-        stream.cancel()
+        if (response.default) {
+          this.order.destination = response;
+        }
       });
       stream.on('error', err => {
         utilsService.alert(JSON.stringify(err));
