@@ -6,7 +6,7 @@
         <ion-label>{{city}}</ion-label>
       </ion-button>
       <ion-button>
-        <ion-input placeholder="搜一下"></ion-input>
+        <ion-input placeholder="搜一下" (keyup.enter)="gotoView($event.target.value)"></ion-input>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
@@ -23,35 +23,35 @@
 
 <ion-content>
   <ion-card-content style="margin-top: 10px;">
-    <div class="icon-layout" (click)="openView('')">
+    <div class="icon-layout" (click)="gotoView('')">
       <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
       限时秒杀
     </div>
-    <div class="icon-layout" (click)="openView('')">
+    <div class="icon-layout" (click)="gotoView('')">
       <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
       大集果园
     </div>
-    <div class="icon-layout" (click)="openView('')">
+    <div class="icon-layout" (click)="gotoView('')">
       <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
       9块9特卖
     </div>
-    <div class="icon-layout" (click)="openView('')">
+    <div class="icon-layout" (click)="gotoView('')">
       <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
       认证好店
     </div>
-    <div class="icon-layout" (click)="openView('')">
+    <div class="icon-layout" (click)="gotoView('')">
       <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
       厂家直销
     </div>
-    <div class="icon-layout" (click)="openView('')">
+    <div class="icon-layout" (click)="gotoView('')">
       <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
       全国行情
     </div>
-    <div class="icon-layout" (click)="openView('')">
+    <div class="icon-layout" (click)="gotoView('')">
       <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
       生意圈
     </div>
-    <div class="icon-layout" (click)="openView('')">
+    <div class="icon-layout" (click)="gotoView('')">
       <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
       品牌館
     </div>

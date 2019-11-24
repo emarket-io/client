@@ -4,7 +4,7 @@
       <ion-back-button icon="arrow-round-back"></ion-back-button>
       <ion-button>
         <!-- <ion-icon name="search"></ion-icon> -->
-        <ion-input [(ngModel)]="keyword" (change)="ionViewWillEnter()"></ion-input>
+        <ion-input [(ngModel)]="keyword" (keyup.enter)="ionViewWillEnter()"></ion-input>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">

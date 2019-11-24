@@ -27,7 +27,7 @@ export class HomePage {
     this.getLocation();
   }
 
-  openView(keyword: string) {
+  gotoView(keyword: string) {
     this.router.navigateByUrl('/view', { state: { keyword: keyword } });
   }
 
