@@ -1,7 +1,9 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Coupon } from '../../../../sdk/commodity_pb';
-import { apiService, utilsService } from '../../../providers/utils.service'
+import { Commodity } from '../../../../sdk/commodity_pb';
+import { Timestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
+import { apiService, utilsService } from '../../../providers/utils.service';
 
 @Component({
   selector: 'app-add',
@@ -10,15 +12,39 @@ import { apiService, utilsService } from '../../../providers/utils.service'
 })
 export class AddPage {
   coupon = new Coupon();
+  commodities: Commodity[];
+  begin: string;
+  end: string;
 
   constructor(private router: Router) { }
 
+  ionViewWillEnter() {
+    this.commodities = []
+    let stream = apiService.commodityClient.list(utilsService.getUser(), apiService.metaData);
+    stream.on('data', response => {
+      this.commodities.push(response);
+      console.log(response.toObject())
+    });
+    stream.on('error', err => {
+      utilsService.alert(JSON.stringify(err));
+    });
+  }
+
   submit() {
     if (!this.coupon.name) {
-      utilsService.alert('请输入名称');
+      utilsService.alert('请输入券的名称');
       return
     }
     this.coupon.owner = utilsService.getUser().id;
+
+    let tBegin = new Timestamp();
+    tBegin.fromDate(new Date(this.begin));
+    this.coupon.begin = tBegin;
+
+    let tEnd = new Timestamp();
+    tEnd.fromDate(new Date(this.end));
+    this.coupon.end = tEnd;
+
     apiService.couponClient.add(this.coupon, apiService.metaData, (err: any, response: Coupon) => {
       if (err) {
         utilsService.alert(JSON.stringify(err));
@@ -28,5 +54,4 @@ export class AddPage {
       }
     })
   }
-
 }

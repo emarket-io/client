@@ -14,7 +14,10 @@
   </ion-item>
   <ion-item lines="none">
     <ion-label>选择商品</ion-label>
-    <ion-input required placeholder="请选择" [(ngModel)]="coupon.commodityId"></ion-input>
+    <ion-select placeholder="请选择" [(ngModel)]="coupon.commodityId" okText="确定" cancelText="取消">
+      <ion-select-option value="{{commodity.id}}" *ngFor="let commodity of commodities">{{commodity.title}}
+      </ion-select-option>
+    </ion-select>
   </ion-item>
   <ion-item lines="none">
     <ion-label>券的面额</ion-label>
@@ -30,11 +33,13 @@
   </ion-item>
   <ion-item lines="none">
     <ion-label>开始时间</ion-label>
-    <ion-input required placeholder="请选择" [(ngModel)]="coupon.begin"></ion-input>
+    <ion-datetime [(ngModel)]="begin" displayFormat="YYYY/MM/DD" placeholder="请选择" cancelText="取消" doneText="确定">
+    </ion-datetime>
   </ion-item>
   <ion-item lines="none">
     <ion-label>结束时间</ion-label>
-    <ion-input required placeholder="请选择" [(ngModel)]="coupon.end"></ion-input>
+    <ion-datetime [(ngModel)]="end" displayFormat="YYYY/MM/DD" placeholder="请选择" cancelText="取消" doneText="确定">
+    </ion-datetime>
   </ion-item>
 </ion-content>
-<ion-button color="primary" (click)="submit()">确认添加</ion-button>
+<ion-button (click)="submit()">确认添加</ion-button>
