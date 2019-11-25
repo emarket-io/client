@@ -2,13 +2,14 @@ import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Location } from "@angular/common";
 import { File } from '@ionic-native/file/ngx';
-import { ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { environment } from '../../../../environments/environment';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Commodity, Medium, Price } from '../../../../sdk/commodity_pb';
-import { apiService, utilsService } from '../../../providers/utils.service'
+import { apiService, utilsService } from '../../../providers/utils.service';
 
 @Component({
   selector: 'app-publish',
@@ -31,7 +32,7 @@ export class PublishPage {
     private webview: WebView,
     private location: Location,
     private httpClient: HttpClient,
-    private toastController: ToastController) {
+    private modalController: ModalController) {
     this.commodity.price = new Price();
   }
 
@@ -44,8 +45,6 @@ export class PublishPage {
     //   utilsService.alert('发布商品，请先实名认证');
     //   this.router.navigateByUrl('/certification');
     // }
-
-    this.commodity.category = utilsService.selectedCategory;
     this.commodity.city = utilsService.location.addressComponent.province + utilsService.location.addressComponent.city;
   }
 
@@ -125,7 +124,6 @@ export class PublishPage {
             utilsService.alert(JSON.stringify(err));
           } else {
             console.log(response);
-            // toast.dismiss();
             // this.location.back();
             this.router.navigateByUrl('/seller');
           }
@@ -134,10 +132,14 @@ export class PublishPage {
         utilsService.alert(JSON.stringify(error));
       }
     );
-    // const toast = await this.toastController.create({
-    //   message: '正在提交商品，请稍后...',
-    //   position: 'middle'
-    // });
-    //toast.present();
+  }
+
+  async presentModal(ev: any) {
+    const modal = await this.modalController.create({
+      component: ModalPage
+    });
+    await modal.present();
+    const { data } = await modal.onWillDismiss();
+    this.commodity.category = data.category;
   }
 }

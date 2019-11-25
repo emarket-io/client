@@ -86,17 +86,17 @@
 
 ion-header {
   height: 80px;
-  background:linear-gradient(120deg,var(--mycolor), white);
+  background: linear-gradient(120deg,var(--mycolor), white);
   ion-toolbar {
     position: absolute;
     bottom: 0px;
     color: var(--mytextcolor);
-    --background: inherit;
+    --background: linear-gradient(120deg,var(--mycolor), white);
   }
 }
 
 ion-badge {
-  margin:0 1px;
+  margin: 0 1px;
 }
 
 ion-button {

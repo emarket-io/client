@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User, Address } from '../../../sdk/user_pb';
+import { Address } from '../../../sdk/user_pb';
 import { apiService, utilsService } from '../../providers/utils.service'
 import { Location } from "@angular/common";
 import { PopoverController } from '@ionic/angular';

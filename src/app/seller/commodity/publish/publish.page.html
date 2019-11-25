@@ -23,16 +23,11 @@
         <ion-icon name="camera"></ion-icon>+
       </ion-button>
     </ion-item>
-    <ion-item routerLink="/popover">
+    <ion-item (click)="presentModal(commodity)">
       <ion-label>类别</ion-label>
       <ion-input placeholder="选择商品类别" readonly [ngModel]="commodity.category"></ion-input>
       <ion-icon name="arrow-dropdown-circle"></ion-icon>
     </ion-item>
-    <!-- <ion-item>
-      <ion-label>货源地址</ion-label>
-      <ion-icon name="pin"></ion-icon>
-      <ion-input [placeholder]="city" [(ngModel)]="commodity.city"></ion-input>
-    </ion-item> -->
     <ion-item lines="none">
       <ion-label>单买价</ion-label>
       <ion-input placeholder="¥0.00" [(ngModel)]="price_single" required></ion-input>
@@ -77,4 +72,4 @@
     <ion-label>收起更多</ion-label>
   </ion-item>
 </ion-content>
-<ion-button color="primary" (click)="submit()">确认发布</ion-button>
+<ion-button (click)="submit()">确认发布</ion-button>

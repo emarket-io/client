@@ -25,9 +25,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forChild(routes)
   ],
-  providers: [
-    Camera,
-    File, WebView],
-  declarations: [PublishPage]
+  providers: [Camera, File, WebView],
+  declarations: [PublishPage],
 })
 export class PublishPageModule { }

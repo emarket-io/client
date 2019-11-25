@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { apiService, utilsService } from '../../providers/utils.service'
@@ -11,7 +12,7 @@ import { apiService, utilsService } from '../../providers/utils.service'
 export class CommodityPage {
   commodities: Commodity[];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ionViewWillEnter() {
     this.commodities = []
@@ -23,6 +24,10 @@ export class CommodityPage {
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
     });
+  }
+
+  update(commodity: Commodity) {
+    this.router.navigateByUrl('/commodity_update', { state: commodity });
   }
 
   delete(commodity: Commodity) {
