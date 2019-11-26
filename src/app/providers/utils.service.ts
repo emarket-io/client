@@ -37,19 +37,18 @@ export class UtilsService {
     }
   }
 
-  formatRMB(v: number): string {
-    if (!v) {
+  formatRMB(value: string): string {
+    if (!value) {
       return "0.00"
     }
-    var strValue = v.toString();
-    if (strValue.length == 1) {
-      return '0.0' + strValue;
+    if (value.length == 1) {
+      return '0.0' + value;
     }
-    if (strValue.length == 2) {
-      return '0.' + strValue;
+    if (value.length == 2) {
+      return '0.' + value;
     }
 
-    return strValue.substring(0, strValue.length - 2) + '.' + strValue.substring(strValue.length - 2, strValue.length)
+    return value;//.substring(0, value.length - 2) + '.' + value.substring(value.length - 2, value.length)
   }
 
   async alert(content: string, title: string = '提示') {

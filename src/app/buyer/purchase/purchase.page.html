@@ -19,7 +19,7 @@
     </ion-thumbnail>
     <div>
       <ion-label>{{commodity.title}}</ion-label>
-      <ion-label>¥{{formatRBM(commodity.pricesList?.amount)}}</ion-label>
+      <ion-label>¥{{formatRBM(commodity.pricesList[0]?.amount)}}</ion-label>
     </div>
   </ion-item>
   <ion-item>
@@ -46,7 +46,7 @@
 
 <ion-footer>
   <ion-toolbar class="ion-text-end">
-    <ion-label style="color:#f04b0f;">¥{{formatRBM(order.amount)}}</ion-label>
+    <ion-label style="color:#f04b0f;">¥{{order.amount}}</ion-label>
     <ion-buttons slot="end">
       <ion-button (click)="preparebuy()">立即支付
       </ion-button>

@@ -60,7 +60,7 @@ export namespace Commodity {
 
 export class Price extends jspb.Message {
   name: string;
-  amount: number;
+  amount: string;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Price.AsObject;
   static toObject(includeInstance: boolean, msg: Price): Price.AsObject;
@@ -72,7 +72,7 @@ export class Price extends jspb.Message {
 export namespace Price {
   export type AsObject = {
     name: string,
-    amount: number,
+    amount: string,
   }
 }
 

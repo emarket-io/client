@@ -32,7 +32,7 @@
       <ion-icon name="remove-circle" (click)="removePrice(i)" size="small"></ion-icon>
       <!-- <ion-button (click)="removePrice(i)">删除价格</ion-button> -->
       <ion-input [(ngModel)]="price.name" required></ion-input>
-      <ion-input [(ngModel)]="price.amount" required></ion-input>
+      <ion-input [(ngModel)]="price.amount" placeholder="¥0.00"></ion-input>
     </ion-item>
     <ion-icon name="add-circle" (click)="addPrice()"></ion-icon>
     <!-- <ion-item lines="none">

@@ -871,7 +871,7 @@ proto.zbay.Price.prototype.toObject = function(opt_includeInstance) {
 proto.zbay.Price.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    amount: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    amount: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -913,7 +913,7 @@ proto.zbay.Price.deserializeBinaryFromReader = function(msg, reader) {
       msg.setName(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setAmount(value);
       break;
     default:
@@ -953,8 +953,8 @@ proto.zbay.Price.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getAmount();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (f.length > 0) {
+    writer.writeString(
       2,
       f
     );
@@ -998,17 +998,17 @@ Object.defineProperty(proto.zbay.Price.prototype, "amount", {
 
 
 /**
- * optional uint64 amount = 2;
- * @return {number}
+ * optional string amount = 2;
+ * @return {string}
  */
 proto.zbay.Price.prototype.getAmount = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
-/** @param {number} value */
+/** @param {string} value */
 proto.zbay.Price.prototype.setAmount = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

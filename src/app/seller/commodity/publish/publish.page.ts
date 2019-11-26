@@ -101,7 +101,7 @@ export class PublishPage {
   }
 
   removePrice(i: number) {
-    this.commodity.pricesList.splice(i,1);
+    this.commodity.pricesList.splice(i, 1);
   }
 
   submit() {
