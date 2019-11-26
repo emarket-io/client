@@ -42,7 +42,7 @@
         <ion-badge *ngFor="let tag of commodity.tagsList">{{tag}}</ion-badge>
       </div>
       <div style="margin-top: 30px">
-        <div style="display:inline-block;width: 50%;color:red;">¥{{formatRBM(commodity.price?.group)}}</div>
+        <div style="display:inline-block;width: 50%;color:red;">¥{{formatRBM(commodity.pricesList?.amount)}}</div>
         <div style="display:inline-block;width: 50%;text-align: right;">{{commodity.city}}</div>
       </div>
     </div>

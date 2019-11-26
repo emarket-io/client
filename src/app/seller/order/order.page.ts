@@ -53,6 +53,10 @@ export class OrderPage {
         }, {
           text: '确定',
           handler: (alertData) => {
+            if (!alertData.name1) {
+              utilsService.alert('快递单号不能为空');
+              return
+            }
             order.status = '待收货';
             order.express.number = alertData.name1;
             apiService.orderClient.update(order, apiService.metaData, (err: any, response: Order) => {

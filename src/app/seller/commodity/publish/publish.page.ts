@@ -33,7 +33,12 @@ export class PublishPage {
     private location: Location,
     private httpClient: HttpClient,
     private modalController: ModalController) {
-    this.commodity.price = new Price();
+    let price = new Price();
+    price.name = '单买价';
+    this.commodity.pricesList.push(price);
+    let price2 = new Price();
+    price2.name = '拼单价';
+    this.commodity.pricesList.push(price2);
   }
 
   ionViewWillEnter() {
@@ -89,19 +94,29 @@ export class PublishPage {
     });
   }
 
+  addPrice() {
+    let price = new Price();
+    price.name = '规格描述';
+    this.commodity.pricesList.push(price);
+  }
+
+  removePrice(i: number) {
+    this.commodity.pricesList.splice(i,1);
+  }
+
   submit() {
     if (!this.commodity.title) {
       return utilsService.alert('请输入标题');
     }
-    if (!this.price_single) {
-      return utilsService.alert('请输入单价');
-    }
-    if (!this.price_group) {
-      return utilsService.alert('请输入拼单价');
-    }
-    if (!this.amount) {
-      return utilsService.alert('请输入库存数量');
-    }
+    // if (!this.price_single) {
+    //   return utilsService.alert('请输入单价');
+    // }
+    // if (!this.price_group) {
+    //   return utilsService.alert('请输入拼单价');
+    // }
+    // if (!this.amount) {
+    //   return utilsService.alert('请输入库存数量');
+    // }
 
     if (!utilsService.check(this.commodity.title)) {
       return utilsService.alert('标题含有不合规内容，请检查');
@@ -115,9 +130,9 @@ export class PublishPage {
     }).subscribe(
       data => {
         console.log(data);
-        this.commodity.price.single = parseFloat(this.price_single) * 100;
-        this.commodity.price.group = parseFloat(this.price_group) * 100;
-        this.commodity.amount = parseInt(this.amount);
+        //this.commodity.price.single = parseFloat(this.price_single) * 100;
+        //this.commodity.price.group = parseFloat(this.price_group) * 100;
+        //this.commodity.amount = parseInt(this.amount);
         this.commodity.ownerId = utilsService.getUser().id;
         apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
           if (err) {

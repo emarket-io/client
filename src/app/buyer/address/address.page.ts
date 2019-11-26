@@ -35,7 +35,9 @@ export class AddressPage {
       component: PopoverPage
     });
     popover.style.cssText = '--width: 90%;';
-    return await popover.present();
+    await popover.present();
+    const { data } = await popover.onWillDismiss();
+    this.ionViewWillEnter();
   }
 
   selectDestionation(address: Address) {

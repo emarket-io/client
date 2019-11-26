@@ -48,17 +48,17 @@ export class PurchasePage {
     this.order.userId = utilsService.getUser().id;
     this.order.destination = utilsService.destination;
     this.order.quantity = 1;
-    this.order.amount = this.commodity.price.group * this.order.quantity;
+    //this.order.amount = this.commodity.price.group * this.order.quantity;
   }
 
   increment() {
     this.order.quantity += 1;
-    this.order.amount = this.commodity.price.group * this.order.quantity;
+   // this.order.amount = this.commodity.price.group * this.order.quantity;
   }
 
   decrement() {
     this.order.quantity -= 1;
-    this.order.amount = this.commodity.price.group * this.order.quantity;
+    //this.order.amount = this.commodity.price.group * this.order.quantity;
   }
 
   preparebuy() {

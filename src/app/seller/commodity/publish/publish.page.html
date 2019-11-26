@@ -14,12 +14,12 @@
       <ion-input required placeholder="请输入商品标题" [(ngModel)]="commodity.title"></ion-input>
     </ion-item>
 
-    <ion-item lines="none">
+    <ion-item lines="none" *ngIf="images.length>0">
       <img style="width: 80px;height: auto;margin: 0 1px;" *ngFor="let image of images" [src]="image" />
     </ion-item>
     <ion-item lines="none">
       <ion-button (click)="addMedia()">
-        <!-- <ion-icon name="add"></ion-icon> -->
+        <ion-label>拍照</ion-label>
         <ion-icon name="camera"></ion-icon>+
       </ion-button>
     </ion-item>
@@ -28,7 +28,14 @@
       <ion-input placeholder="选择商品类别" readonly [ngModel]="commodity.category"></ion-input>
       <ion-icon name="arrow-dropdown-circle"></ion-icon>
     </ion-item>
-    <ion-item lines="none">
+    <ion-item lines="none" *ngFor="let price of commodity.pricesList; index as i">
+      <ion-icon name="remove-circle" (click)="removePrice(i)" size="small"></ion-icon>
+      <!-- <ion-button (click)="removePrice(i)">删除价格</ion-button> -->
+      <ion-input [(ngModel)]="price.name" required></ion-input>
+      <ion-input [(ngModel)]="price.amount" required></ion-input>
+    </ion-item>
+    <ion-icon name="add-circle" (click)="addPrice()"></ion-icon>
+    <!-- <ion-item lines="none">
       <ion-label>单买价</ion-label>
       <ion-input placeholder="¥0.00" [(ngModel)]="price_single" required></ion-input>
       <ion-label>拼单价</ion-label>
@@ -37,15 +44,16 @@
     <ion-item lines="none">
       <ion-label>库存</ion-label>
       <ion-input placeholder="请输入库存数量" [(ngModel)]="amount" required></ion-input>
-    </ion-item>
+    </ion-item> -->
     <ion-item>
       <ion-label>物流</ion-label>
       <ion-input placeholder="全场包邮"></ion-input>
     </ion-item>
 
-    <div *ngIf="displayMore">
+    <!-- <div *ngIf="displayMore"> -->
       <ion-item lines="none">
-        <ion-textarea placeholder="填写描述" [(ngModel)]="commodity.content"></ion-textarea>
+        <ion-label>描述</ion-label>
+        <ion-input placeholder="填写描述" [(ngModel)]="commodity.content"></ion-input>
       </ion-item>
       <ion-item lines="none">
         <ion-label>标签</ion-label>
@@ -61,15 +69,15 @@
         <ion-label>货源地址</ion-label>
         <ion-input [(ngModel)]="commodity.city" readonly></ion-input>
       </ion-item>
-    </div>
+    <!-- </div> -->
   </ion-card>
-  <ion-item lines="none" *ngIf="!displayMore" (click)="displayMore=!displayMore">
+  <!-- <ion-item lines="none" *ngIf="!displayMore" (click)="displayMore=!displayMore">
     <ion-icon name="arrow-dropright"></ion-icon>
     <ion-label>显示更多</ion-label>
   </ion-item>
   <ion-item lines="none" *ngIf="displayMore" (click)="displayMore=!displayMore">
     <ion-icon name="arrow-dropup"></ion-icon>
     <ion-label>收起更多</ion-label>
-  </ion-item>
+  </ion-item> -->
 </ion-content>
 <ion-button (click)="submit()">确认发布</ion-button>

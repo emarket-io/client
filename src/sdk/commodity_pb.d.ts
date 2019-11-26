@@ -14,11 +14,10 @@ export class Commodity extends jspb.Message {
   clearmediaList(): void;
   addMedia(value?: Medium, index?: number): Medium;
   city: string;
-  price: Price | undefined;
-  hasprice(): boolean;
-  clearprice(): void;
-  amount: number;
-  fare: number;
+  pricesList: Array<Price>;
+  clearpricesList(): void;
+  addPrices(value?: Price, index?: number): Price;
+  expressFare: number;
   tagsList: Array<string>;
   cleartagsList(): void;
   addTags(value: string, index?: number): void;
@@ -48,9 +47,8 @@ export namespace Commodity {
     content: string,
     mediaList: Array<Medium.AsObject>,
     city: string,
-    price?: Price.AsObject,
-    amount: number,
-    fare: number,
+    pricesList: Array<Price.AsObject>,
+    expressfare: number,
     tagsList: Array<string>,
     ownerid: string,
     status: string,
@@ -61,8 +59,8 @@ export namespace Commodity {
 }
 
 export class Price extends jspb.Message {
-  single: number;
-  group: number;
+  name: string;
+  amount: number;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Price.AsObject;
   static toObject(includeInstance: boolean, msg: Price): Price.AsObject;
@@ -73,14 +71,15 @@ export class Price extends jspb.Message {
 
 export namespace Price {
   export type AsObject = {
-    single: number,
-    group: number,
+    name: string,
+    amount: number,
   }
 }
 
 export class Medium extends jspb.Message {
   image: string;
   video: string;
+  isFirst: boolean;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Medium.AsObject;
   static toObject(includeInstance: boolean, msg: Medium): Medium.AsObject;
@@ -93,6 +92,7 @@ export namespace Medium {
   export type AsObject = {
     image: string,
     video: string,
+    isfirst: boolean,
   }
 }
 

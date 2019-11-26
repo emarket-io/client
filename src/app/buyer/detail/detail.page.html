@@ -24,7 +24,7 @@
   <ion-grid>
     <ion-row>
       <ion-col style="color:orangered">
-        ¥<span style="font-size: x-large;font-weight: bolder;">{{formatRBM(commodity.price.group)}}</span>
+        ¥<span style="font-size: x-large;font-weight: bolder;">{{formatRBM(commodity.pricesList[0]?.amount)}}</span>
       </ion-col>
       <ion-col style="text-align: right;font-size: small">
         月销量999件
@@ -74,9 +74,9 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button>单买(¥{{formatRBM(commodity.price.single)}})
+      <ion-button>单买(¥{{formatRBM(commodity.pricesList[0]?.amount)}})
       </ion-button>
-      <ion-button (click)="purchase()">拼单(¥{{formatRBM(commodity.price.group)}})
+      <ion-button (click)="purchase()">拼单(¥{{formatRBM(commodity.pricesList[0]?.amount)}})
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

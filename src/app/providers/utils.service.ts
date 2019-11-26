@@ -38,6 +38,9 @@ export class UtilsService {
   }
 
   formatRMB(v: number): string {
+    if (!v) {
+      return "0.00"
+    }
     var strValue = v.toString();
     if (strValue.length == 1) {
       return '0.0' + strValue;
