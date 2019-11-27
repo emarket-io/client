@@ -2,7 +2,6 @@ import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Alipay } from '@ionic-native/alipay/ngx';
-import { User } from '../../../sdk/user_pb';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { Order, PayInfo } from '../../../sdk/order_pb';
 import { environment } from '../../../environments/environment';
@@ -48,17 +47,17 @@ export class PurchasePage {
     this.order.userId = utilsService.getUser().id;
     this.order.destination = utilsService.destination;
     this.order.quantity = 1;
-    //this.order.amount = this.commodity.price.group * this.order.quantity;
+    this.order.amount = Number(this.commodity.pricesList[0].amount) * this.order.quantity;
   }
 
   increment() {
     this.order.quantity += 1;
-   // this.order.amount = this.commodity.price.group * this.order.quantity;
+    this.order.amount = Number(this.commodity.pricesList[0].amount) * this.order.quantity;
   }
 
   decrement() {
     this.order.quantity -= 1;
-    //this.order.amount = this.commodity.price.group * this.order.quantity;
+    this.order.amount = Number(this.commodity.pricesList[0].amount) * this.order.quantity;
   }
 
   preparebuy() {

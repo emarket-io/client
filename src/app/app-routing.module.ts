@@ -20,7 +20,8 @@ const routes: Routes = [
   { path: 'publish', loadChildren: './seller/commodity/publish/publish.module#PublishPageModule' },
   { path: 'seller_order', loadChildren: './seller/order/order.module#OrderPageModule' },
   { path: 'buyer_order_detail', loadChildren: './buyer/order/detail/detail.module#DetailPageModule' },
-  { path: 'commodity_update', loadChildren: './seller/commodity/update/update.module#UpdatePageModule' }
+  { path: 'commodity_update', loadChildren: './seller/commodity/update/update.module#UpdatePageModule' },
+  { path: 'price', loadChildren: './seller/commodity/price/price.module#PricePageModule' }
 ];
 @NgModule({
   imports: [
