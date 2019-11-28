@@ -4,7 +4,7 @@ import { Location } from "@angular/common";
 import { File } from '@ionic-native/file/ngx';
 import { HttpClient } from '@angular/common/http';
 import { ModalController } from '@ionic/angular';
-import { ModalPage } from '../modal/modal.page';
+import { CategoryPage } from '../category/category.page';
 import { PricePage } from '../price/price.page';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { environment } from '../../../../environments/environment';
@@ -140,7 +140,7 @@ export class PublishPage {
 
   async presentModal(ev: any) {
     const modal = await this.modalController.create({
-      component: ModalPage
+      component: CategoryPage
     });
     await modal.present();
     const { data } = await modal.onWillDismiss();

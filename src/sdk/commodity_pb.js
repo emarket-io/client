@@ -155,6 +155,7 @@ proto.zbay.Commodity.toObject = function(includeInstance, msg) {
     city: jspb.Message.getFieldWithDefault(msg, 6, ""),
     pricesList: jspb.Message.toObjectList(msg.getPricesList(),
     proto.zbay.Price.toObject, includeInstance),
+    inventory: jspb.Message.getFieldWithDefault(msg, 15, 0),
     expressFare: jspb.Message.getFieldWithDefault(msg, 8, 0),
     tagsList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f,
     ownerId: jspb.Message.getFieldWithDefault(msg, 10, ""),
@@ -227,6 +228,10 @@ proto.zbay.Commodity.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.zbay.Price;
       reader.readMessage(value,proto.zbay.Price.deserializeBinaryFromReader);
       msg.addPrices(value);
+      break;
+    case 15:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setInventory(value);
       break;
     case 8:
       var value = /** @type {number} */ (reader.readUint32());
@@ -338,6 +343,13 @@ proto.zbay.Commodity.serializeBinaryToWriter = function(message, writer) {
       7,
       f,
       proto.zbay.Price.serializeBinaryToWriter
+    );
+  }
+  f = message.getInventory();
+  if (f !== 0) {
+    writer.writeUint32(
+      15,
+      f
     );
   }
   f = message.getExpressFare();
@@ -601,6 +613,31 @@ proto.zbay.Commodity.prototype.addPrices = function(opt_value, opt_index) {
  */
 proto.zbay.Commodity.prototype.clearPricesList = function() {
   this.setPricesList([]);
+};
+
+
+Object.defineProperty(proto.zbay.Commodity.prototype, "inventory", {
+  set: function(value) {
+    this.setInventory(value);
+  },
+  get: function() {
+    return this.getInventory();
+  },
+});
+
+
+/**
+ * optional uint32 inventory = 15;
+ * @return {number}
+ */
+proto.zbay.Commodity.prototype.getInventory = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 15, 0));
+};
+
+
+/** @param {number} value */
+proto.zbay.Commodity.prototype.setInventory = function(value) {
+  jspb.Message.setProto3IntField(this, 15, value);
 };
 
 
@@ -871,7 +908,7 @@ proto.zbay.Price.prototype.toObject = function(opt_includeInstance) {
 proto.zbay.Price.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    amount: jspb.Message.getFieldWithDefault(msg, 2, "")
+    value: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -914,7 +951,7 @@ proto.zbay.Price.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAmount(value);
+      msg.setValue(value);
       break;
     default:
       reader.skipField();
@@ -952,7 +989,7 @@ proto.zbay.Price.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getAmount();
+  f = message.getValue();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -987,27 +1024,27 @@ proto.zbay.Price.prototype.setName = function(value) {
 };
 
 
-Object.defineProperty(proto.zbay.Price.prototype, "amount", {
+Object.defineProperty(proto.zbay.Price.prototype, "value", {
   set: function(value) {
-    this.setAmount(value);
+    this.setValue(value);
   },
   get: function() {
-    return this.getAmount();
+    return this.getValue();
   },
 });
 
 
 /**
- * optional string amount = 2;
+ * optional string value = 2;
  * @return {string}
  */
-proto.zbay.Price.prototype.getAmount = function() {
+proto.zbay.Price.prototype.getValue = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /** @param {string} value */
-proto.zbay.Price.prototype.setAmount = function(value) {
+proto.zbay.Price.prototype.setValue = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
 

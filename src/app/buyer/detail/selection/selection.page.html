@@ -1,0 +1,30 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>{{commodity.title}}</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <ion-item>
+    <ion-thumbnail slot="start">
+      <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}">
+    </ion-thumbnail>
+    <div>
+      <ion-label>{{commodity.title}}</ion-label>
+      <ion-label>¥{{selectedPrice?.value}}</ion-label>
+    </div>
+  </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-button (click)="select(price)" *ngFor="let price of commodity.pricesList">
+        {{price.name}}
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="close()">
+    确定
+  </ion-button>
+</ion-footer>

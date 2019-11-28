@@ -17,6 +17,7 @@ export class Commodity extends jspb.Message {
   pricesList: Array<Price>;
   clearpricesList(): void;
   addPrices(value?: Price, index?: number): Price;
+  inventory: number;
   expressFare: number;
   tagsList: Array<string>;
   cleartagsList(): void;
@@ -48,6 +49,7 @@ export namespace Commodity {
     mediaList: Array<Medium.AsObject>,
     city: string,
     pricesList: Array<Price.AsObject>,
+    inventory: number,
     expressfare: number,
     tagsList: Array<string>,
     ownerid: string,
@@ -60,7 +62,7 @@ export namespace Commodity {
 
 export class Price extends jspb.Message {
   name: string;
-  amount: string;
+  value: string;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Price.AsObject;
   static toObject(includeInstance: boolean, msg: Price): Price.AsObject;
@@ -72,7 +74,7 @@ export class Price extends jspb.Message {
 export namespace Price {
   export type AsObject = {
     name: string,
-    amount: string,
+    value: string,
   }
 }
 

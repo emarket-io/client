@@ -1,9 +1,11 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Wechat } from '@ionic-native/wechat/ngx';
+import { PopoverController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { utilsService } from '../../providers/utils.service'
 import { environment } from '../../../environments/environment';
+import { SelectionPage } from './selection/selection.page';
 
 @Component({
   selector: 'app-detail',
@@ -23,7 +25,8 @@ export class DetailPage {
 
   constructor(
     private router: Router,
-    private wechat: Wechat, ) {
+    private wechat: Wechat,
+    private popoverController: PopoverController) {
     this.commodity = <Commodity>this.router.getCurrentNavigation().extras.state;
   }
 
@@ -54,5 +57,19 @@ export class DetailPage {
 
   purchase() {
     this.router.navigateByUrl('/purchase', { state: this.commodity })
+  }
+
+  async select(ev: any) {
+    const popover = await this.popoverController.create({
+      component: SelectionPage,
+      componentProps: { commodity: this.commodity },
+      event: ev,
+      translucent: true
+    });
+    popover.style.cssText = '--width: 100%;--height:50%;';
+    await popover.present();
+    const { data } = await popover.onWillDismiss();
+    utilsService.alert(data.price);
+    //this.ionViewWillEnter();
   }
 }

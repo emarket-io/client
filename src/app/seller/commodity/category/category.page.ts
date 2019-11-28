@@ -3,11 +3,11 @@ import { ModalController } from '@ionic/angular';
 import { apiService } from '../../../providers/utils.service';
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.page.html',
-  styleUrls: ['./modal.page.scss'],
+  selector: 'app-category',
+  templateUrl: './category.page.html',
+  styleUrls: ['./category.page.scss'],
 })
-export class ModalPage {
+export class CategoryPage {
   level1: any;
   level2: any;
   level3: any;

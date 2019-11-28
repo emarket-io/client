@@ -8,14 +8,19 @@
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    可根据买法，自定义规格与价格
+  </ion-item>
   <ion-item lines="none" *ngFor="let price of commodity.pricesList; index as i">
     <ion-icon name="remove-circle" (click)="removePrice(i)" size="small"></ion-icon>
     <ion-input [(ngModel)]="price.name" required></ion-input>
-    <ion-input [(ngModel)]="price.amount" placeholder="¥0.00"></ion-input>
+    <ion-input [(ngModel)]="price.value" placeholder="¥0.00"></ion-input>
   </ion-item>
-  <ion-button (click)="addPrice()">
-    <ion-icon name="add-circle"></ion-icon>
-    <ion-label>规格与价格</ion-label>
-  </ion-button>
+  <ion-item>
+    <ion-button (click)="addPrice()">
+      <ion-icon name="add-circle"></ion-icon>
+      <ion-label>规格与价格</ion-label>
+    </ion-button>
+  </ion-item>
 </ion-content>
 <ion-button (click)="close()">确定</ion-button>

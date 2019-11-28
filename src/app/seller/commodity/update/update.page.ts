@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ModalPage } from '../modal/modal.page';
+import { CategoryPage } from '../category/category.page';
 import { Commodity } from '../../../../sdk/commodity_pb';
 import { apiService, utilsService } from '../../../providers/utils.service';
 
@@ -21,7 +21,7 @@ export class UpdatePage {
 
   async presentModal(ev: any) {
     const modal = await this.modalController.create({
-      component: ModalPage
+      component: CategoryPage
     });
     await modal.present();
     const { data } = await modal.onWillDismiss();
