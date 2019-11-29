@@ -14,17 +14,17 @@ import { StringValue } from "google-protobuf/google/protobuf/wrappers_pb";
   styleUrls: ['./purchase.page.scss'],
 })
 export class PurchasePage {
-  order = new Order();
+  order:Order;
   host = environment.apiUrl;
-  commodity: Commodity;
+  //commodity: Commodity;
   formatRBM = utilsService.formatRMB;
 
   constructor(
     private router: Router,
     private alipay: Alipay) {
+    this.order = <Order>this.router.getCurrentNavigation().extras.state;
     this.order.payInfo = new PayInfo();
     this.order.payInfo.type = 'alipay';
-    this.commodity = <Commodity>this.router.getCurrentNavigation().extras.state;
   }
 
   ionViewWillEnter() {
@@ -43,21 +43,20 @@ export class PurchasePage {
         utilsService.alert(JSON.stringify(err));
       });
     }
-    this.order.snapshot = this.commodity;
     this.order.userId = utilsService.getUser().id;
     this.order.destination = utilsService.destination;
     this.order.quantity = 1;
-    this.order.amount = Number(this.commodity.pricesList[0].value) * this.order.quantity;
+    this.order.amount = Number(this.order.price.value) * this.order.quantity;
   }
 
   increment() {
     this.order.quantity += 1;
-    this.order.amount = Number(this.commodity.pricesList[0].value) * this.order.quantity;
+    this.order.amount = Number(this.order.price.value) * this.order.quantity;
   }
 
   decrement() {
     this.order.quantity -= 1;
-    this.order.amount = Number(this.commodity.pricesList[0].value) * this.order.quantity;
+    this.order.amount = Number(this.order.price.value) * this.order.quantity;
   }
 
   preparebuy() {

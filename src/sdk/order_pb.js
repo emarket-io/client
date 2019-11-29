@@ -121,6 +121,7 @@ proto.zbay.Order.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     snapshot: (f = msg.getSnapshot()) && commodity_pb.Commodity.toObject(includeInstance, f),
+    price: (f = msg.getPrice()) && commodity_pb.Price.toObject(includeInstance, f),
     userId: jspb.Message.getFieldWithDefault(msg, 3, ""),
     destination: (f = msg.getDestination()) && user_pb.Address.toObject(includeInstance, f),
     quantity: jspb.Message.getFieldWithDefault(msg, 5, 0),
@@ -175,6 +176,11 @@ proto.zbay.Order.deserializeBinaryFromReader = function(msg, reader) {
       var value = new commodity_pb.Commodity;
       reader.readMessage(value,commodity_pb.Commodity.deserializeBinaryFromReader);
       msg.setSnapshot(value);
+      break;
+    case 13:
+      var value = new commodity_pb.Price;
+      reader.readMessage(value,commodity_pb.Price.deserializeBinaryFromReader);
+      msg.setPrice(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -264,6 +270,14 @@ proto.zbay.Order.serializeBinaryToWriter = function(message, writer) {
       12,
       f,
       commodity_pb.Commodity.serializeBinaryToWriter
+    );
+  }
+  f = message.getPrice();
+  if (f != null) {
+    writer.writeMessage(
+      13,
+      f,
+      commodity_pb.Price.serializeBinaryToWriter
     );
   }
   f = message.getUserId();
@@ -405,6 +419,49 @@ proto.zbay.Order.prototype.clearSnapshot = function() {
  */
 proto.zbay.Order.prototype.hasSnapshot = function() {
   return jspb.Message.getField(this, 12) != null;
+};
+
+
+Object.defineProperty(proto.zbay.Order.prototype, "price", {
+  set: function(value) {
+    this.setPrice(value);
+  },
+  get: function() {
+    return this.getPrice();
+  },
+});
+
+
+/**
+ * optional Price price = 13;
+ * @return {?proto.zbay.Price}
+ */
+proto.zbay.Order.prototype.getPrice = function() {
+  return /** @type{?proto.zbay.Price} */ (
+    jspb.Message.getWrapperField(this, commodity_pb.Price, 13));
+};
+
+
+/** @param {?proto.zbay.Price|undefined} value */
+proto.zbay.Order.prototype.setPrice = function(value) {
+  jspb.Message.setWrapperField(this, 13, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ */
+proto.zbay.Order.prototype.clearPrice = function() {
+  this.setPrice(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.zbay.Order.prototype.hasPrice = function() {
+  return jspb.Message.getField(this, 13) != null;
 };
 
 

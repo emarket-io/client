@@ -11,6 +11,9 @@ export class Order extends jspb.Message {
   snapshot: commodity_pb.Commodity | undefined;
   hassnapshot(): boolean;
   clearsnapshot(): void;
+  price: commodity_pb.Price | undefined;
+  hasprice(): boolean;
+  clearprice(): void;
   userId: string;
   destination: user_pb.Address | undefined;
   hasdestination(): boolean;
@@ -42,6 +45,7 @@ export namespace Order {
   export type AsObject = {
     id: string,
     snapshot?: commodity_pb.Commodity.AsObject,
+    price?: commodity_pb.Price.AsObject,
     userid: string,
     destination?: user_pb.Address.AsObject,
     quantity: number,

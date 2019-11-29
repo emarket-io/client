@@ -6,6 +6,7 @@ import { Commodity } from '../../../sdk/commodity_pb';
 import { utilsService } from '../../providers/utils.service'
 import { environment } from '../../../environments/environment';
 import { SelectionPage } from './selection/selection.page';
+import { Order } from 'src/sdk/order_pb';
 
 @Component({
   selector: 'app-detail',
@@ -55,10 +56,6 @@ export class DetailPage {
     });
   }
 
-  purchase() {
-    this.router.navigateByUrl('/purchase', { state: this.commodity })
-  }
-
   async select(ev: any) {
     const popover = await this.popoverController.create({
       component: SelectionPage,
@@ -66,10 +63,13 @@ export class DetailPage {
       event: ev,
       translucent: true
     });
-    popover.style.cssText = '--width: 100%;--height:50%;';
+    //popover.style.cssText = '--width: 100%;--height:50%;';
     await popover.present();
+
     const { data } = await popover.onWillDismiss();
-    utilsService.alert(data.price);
-    //this.ionViewWillEnter();
+    let order = new Order();
+    order.snapshot = this.commodity;
+    order.price = data.price;
+    this.router.navigateByUrl('/purchase', { state: order })
   }
 }

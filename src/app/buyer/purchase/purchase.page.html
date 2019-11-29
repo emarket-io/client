@@ -15,11 +15,11 @@
   </ion-item>
   <ion-item>
     <ion-thumbnail slot="start">
-      <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}">
+      <img src="{{host}}/static/{{order.snapshot.ownerId}}/{{order.snapshot.title}}/{{order.snapshot.mediaList[0]?.image}}">
     </ion-thumbnail>
     <div>
-      <ion-label>{{commodity.title}}</ion-label>
-      <ion-label>¥{{formatRBM(commodity.pricesList[0]?.value)}}</ion-label>
+      <ion-label>{{order.snapshot.title}}</ion-label>
+      <ion-label>¥{{formatRBM(order.snapshot.pricesList[0]?.value)}}</ion-label>
     </div>
   </ion-item>
   <ion-item>
