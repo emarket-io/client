@@ -67,9 +67,11 @@ export class DetailPage {
     await popover.present();
 
     const { data } = await popover.onWillDismiss();
-    let order = new Order();
-    order.snapshot = this.commodity;
-    order.price = data.price;
-    this.router.navigateByUrl('/purchase', { state: order })
+    if (data) {
+      let order = new Order();
+      order.snapshot = this.commodity;
+      order.price = data.price;
+      this.router.navigateByUrl('/purchase', { state: order })
+    }
   }
 }

@@ -25,7 +25,11 @@ export class SelectionPage {
     this.selectedPrice = price;
   }
 
-  close() {
+  continue() {
     this.popoverController.dismiss({ price: this.selectedPrice });
+  }
+
+  close() {
+    this.popoverController.dismiss();
   }
 }

@@ -76,7 +76,9 @@
     <ion-buttons slot="end">
       <!-- <ion-button>单买(¥{{formatRBM(commodity.pricesList[0]?.value)}})
       </ion-button> -->
-      <ion-button (click)="select($event)">立即购买
+      <ion-button style="background:var(--mycolor);color:var(--mytextcolor);" (click)="select($event)">立即购买
+      </ion-button>
+      <ion-button style="background:var(--mycolor);color:var(--mytextcolor);" (click)="select($event)">发起拼单
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
