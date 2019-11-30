@@ -33,7 +33,7 @@
       <div class="order-content">
         {{order.snapshot?.title}}
         <div class="order-price">
-          ¥{{formatRBM(order.amount)}}
+          ¥{{formatRBM((order.amount/100).toString())}}
         </div>
       </div>
     </ion-item>

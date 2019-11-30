@@ -11,7 +11,7 @@
     </ion-thumbnail>
     <div>
       <ion-label>{{commodity.title}}</ion-label>
-      <ion-label>¥{{selectedPrice?.value}}</ion-label>
+      <ion-label style="color:orangered">¥{{formatRBM(selectedPrice?.value)}}</ion-label>
     </div>
   </ion-item>
   <ion-list>

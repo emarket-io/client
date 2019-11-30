@@ -1,6 +1,5 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { User } from '../../../sdk/user_pb';
 import { Order } from '../../../sdk/order_pb';
 import { AlertController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';

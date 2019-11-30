@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { PricePage } from '../price/price.page';
 import { ModalController } from '@ionic/angular';
 import { CategoryPage } from '../category/category.page';
 import { Commodity } from '../../../../sdk/commodity_pb';
@@ -26,6 +27,16 @@ export class UpdatePage {
     await modal.present();
     const { data } = await modal.onWillDismiss();
     this.commodity.category = data.category;
+  }
+
+  async presentPrice() {
+    const modal = await this.modalController.create({
+      component: PricePage,
+      componentProps: { commodity: this.commodity },
+    });
+    await modal.present();
+    const { data } = await modal.onWillDismiss();
+    this.commodity = data.commodity;
   }
 
   submit() {

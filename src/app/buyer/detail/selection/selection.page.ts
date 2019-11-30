@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
+import { utilsService } from '../../../providers/utils.service';
 import { Commodity, Price } from '../../../../sdk/commodity_pb';
 import { environment } from '../../../../environments/environment';
 
@@ -10,6 +11,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class SelectionPage {
   @Input() commodity: Commodity;
+  formatRBM = utilsService.formatRMB;
   host = environment.apiUrl;
   selectedPrice: Price;
 

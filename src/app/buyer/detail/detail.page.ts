@@ -1,12 +1,12 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { Order } from '../../../sdk/order_pb';
 import { Wechat } from '@ionic-native/wechat/ngx';
 import { PopoverController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';
-import { utilsService } from '../../providers/utils.service'
-import { environment } from '../../../environments/environment';
 import { SelectionPage } from './selection/selection.page';
-import { Order } from 'src/sdk/order_pb';
+import { utilsService } from '../../providers/utils.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-detail',
