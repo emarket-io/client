@@ -41,14 +41,11 @@ export class UtilsService {
     if (!value) {
       return "0.00"
     }
-    if (value.length == 1) {
-      return '0.0' + value;
+    if (value.indexOf('.') == -1) {
+      return value = value + ".00"
     }
-    if (value.length == 2) {
-      return '0.' + value;
-    }
-
-    return value;//.substring(0, value.length - 2) + '.' + value.substring(value.length - 2, value.length)
+    value = value + "00"
+    return value.substring(0, value.indexOf(".") + 3);
   }
 
   async alert(content: string, title: string = '提示') {

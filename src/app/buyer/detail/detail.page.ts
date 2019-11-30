@@ -61,9 +61,9 @@ export class DetailPage {
       component: SelectionPage,
       componentProps: { commodity: this.commodity },
       event: ev,
-      translucent: true
+      translucent: true,
+      cssClass: 'bottom-sheet-popover'
     });
-    //popover.style.cssText = '--width: 100%;--height:50%;';
     await popover.present();
 
     const { data } = await popover.onWillDismiss();

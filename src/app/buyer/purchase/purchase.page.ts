@@ -2,10 +2,9 @@ import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Alipay } from '@ionic-native/alipay/ngx';
-import { Commodity } from '../../../sdk/commodity_pb';
 import { Order, PayInfo } from '../../../sdk/order_pb';
 import { environment } from '../../../environments/environment';
-import { apiService, utilsService } from '../../providers/utils.service'
+import { apiService, utilsService } from '../../providers/utils.service';
 import { StringValue } from "google-protobuf/google/protobuf/wrappers_pb";
 
 @Component({
@@ -16,7 +15,6 @@ import { StringValue } from "google-protobuf/google/protobuf/wrappers_pb";
 export class PurchasePage {
   order:Order;
   host = environment.apiUrl;
-  //commodity: Commodity;
   formatRBM = utilsService.formatRMB;
 
   constructor(
@@ -46,17 +44,17 @@ export class PurchasePage {
     this.order.userId = utilsService.getUser().id;
     this.order.destination = utilsService.destination;
     this.order.quantity = 1;
-    this.order.amount = Number(this.order.price.value) * this.order.quantity;
+    this.order.amount = Number(this.order.price.value)*100 * this.order.quantity;
   }
 
   increment() {
     this.order.quantity += 1;
-    this.order.amount = Number(this.order.price.value) * this.order.quantity;
+    this.order.amount = Number(this.order.price.value)*100 * this.order.quantity;
   }
 
   decrement() {
     this.order.quantity -= 1;
-    this.order.amount = Number(this.order.price.value) * this.order.quantity;
+    this.order.amount = Number(this.order.price.value)*100 * this.order.quantity;
   }
 
   preparebuy() {

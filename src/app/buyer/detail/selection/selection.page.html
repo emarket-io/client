@@ -16,18 +16,15 @@
   </ion-item>
   <ion-list>
     <ion-item>
-      <ion-button (click)="select(price)" *ngFor="let price of commodity.pricesList">
+      <ion-button fill="outline" (click)="select(price)" *ngFor="let price of commodity.pricesList">
         {{price.name}}
       </ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
 
-<ion-button (click)="close()" style="position: fixed;bottom: 0;width: 100%;">
-  确定
-</ion-button>
-<!-- <ion-footer>
+<ion-footer style="position: fixed;bottom: 0;width: 100%;">
   <ion-button (click)="close()" expand="full">
     确定
   </ion-button>
-</ion-footer> -->
+</ion-footer>

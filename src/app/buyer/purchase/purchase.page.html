@@ -15,11 +15,12 @@
   </ion-item>
   <ion-item>
     <ion-thumbnail slot="start">
-      <img src="{{host}}/static/{{order.snapshot.ownerId}}/{{order.snapshot.title}}/{{order.snapshot.mediaList[0]?.image}}">
+      <img
+        src="{{host}}/static/{{order.snapshot.ownerId}}/{{order.snapshot.title}}/{{order.snapshot.mediaList[0]?.image}}">
     </ion-thumbnail>
     <div>
       <ion-label>{{order.snapshot.title}}</ion-label>
-      <ion-label>¥{{formatRBM(order.snapshot.pricesList[0]?.value)}}</ion-label>
+      <ion-label>¥{{formatRBM(order.price.value)}}</ion-label>
     </div>
   </ion-item>
   <ion-item>
@@ -46,7 +47,7 @@
 
 <ion-footer>
   <ion-toolbar class="ion-text-end">
-    <ion-label style="color:#f04b0f;">¥{{order.amount}}</ion-label>
+    <ion-label style="color:#f04b0f;">¥{{formatRBM((order.amount/100).toString())}}</ion-label>
     <ion-buttons slot="end">
       <ion-button (click)="preparebuy()">立即支付
       </ion-button>

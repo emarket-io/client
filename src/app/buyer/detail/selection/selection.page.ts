@@ -15,6 +15,10 @@ export class SelectionPage {
 
   constructor(private popoverController: PopoverController) { }
 
+  ionViewWillEnter() {
+    this.selectedPrice = this.commodity.pricesList[0];
+  }
+
   select(price: Price) {
     this.selectedPrice = price;
   }
