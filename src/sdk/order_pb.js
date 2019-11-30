@@ -121,6 +121,7 @@ proto.zbay.Order.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     snapshot: (f = msg.getSnapshot()) && commodity_pb.Commodity.toObject(includeInstance, f),
+    isGroup: jspb.Message.getBooleanFieldWithDefault(msg, 15, false),
     price: (f = msg.getPrice()) && commodity_pb.Price.toObject(includeInstance, f),
     userId: jspb.Message.getFieldWithDefault(msg, 3, ""),
     destination: (f = msg.getDestination()) && user_pb.Address.toObject(includeInstance, f),
@@ -176,6 +177,10 @@ proto.zbay.Order.deserializeBinaryFromReader = function(msg, reader) {
       var value = new commodity_pb.Commodity;
       reader.readMessage(value,commodity_pb.Commodity.deserializeBinaryFromReader);
       msg.setSnapshot(value);
+      break;
+    case 15:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsGroup(value);
       break;
     case 13:
       var value = new commodity_pb.Price;
@@ -270,6 +275,13 @@ proto.zbay.Order.serializeBinaryToWriter = function(message, writer) {
       12,
       f,
       commodity_pb.Commodity.serializeBinaryToWriter
+    );
+  }
+  f = message.getIsGroup();
+  if (f) {
+    writer.writeBool(
+      15,
+      f
     );
   }
   f = message.getPrice();
@@ -419,6 +431,31 @@ proto.zbay.Order.prototype.clearSnapshot = function() {
  */
 proto.zbay.Order.prototype.hasSnapshot = function() {
   return jspb.Message.getField(this, 12) != null;
+};
+
+
+Object.defineProperty(proto.zbay.Order.prototype, "isGroup", {
+  set: function(value) {
+    this.setIsGroup(value);
+  },
+  get: function() {
+    return this.getIsGroup();
+  },
+});
+
+
+/**
+ * optional bool isGroup = 15;
+ * @return {boolean}
+ */
+proto.zbay.Order.prototype.getIsGroup = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 15, false));
+};
+
+
+/** @param {boolean} value */
+proto.zbay.Order.prototype.setIsGroup = function(value) {
+  jspb.Message.setProto3BooleanField(this, 15, value);
 };
 
 

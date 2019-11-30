@@ -56,11 +56,10 @@ export class DetailPage {
     });
   }
 
-  async select(ev: any) {
+  async select(isGroup: boolean) {
     const popover = await this.popoverController.create({
       component: SelectionPage,
-      componentProps: { commodity: this.commodity },
-      event: ev,
+      componentProps: { commodity: this.commodity, isGroup: isGroup },
       translucent: true,
       cssClass: 'bottom-sheet-popover'
     });
@@ -69,6 +68,7 @@ export class DetailPage {
     const { data } = await popover.onWillDismiss();
     if (data) {
       let order = new Order();
+      order.isGroup = isGroup;
       order.snapshot = this.commodity;
       order.price = data.price;
       this.router.navigateByUrl('/purchase', { state: order })

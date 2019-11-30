@@ -9,12 +9,19 @@
 
 <ion-content>
   <ion-item>
-    可根据买法，自定义规格与价格
+    根据商品买法，请自定义规格与价格
+  </ion-item>
+  <ion-item lines="none">
+    <ion-icon name="arrow-dropdown" size="small"></ion-icon>
+    <ion-input value="规格" readonly></ion-input>
+    <ion-input value="单买价" readonly></ion-input>
+    <ion-input value="拼团价" readonly></ion-input>
   </ion-item>
   <ion-item lines="none" *ngFor="let price of commodity.pricesList; index as i">
     <ion-icon name="remove-circle" (click)="removePrice(i)" size="small"></ion-icon>
-    <ion-input [(ngModel)]="price.name" required></ion-input>
-    <ion-input [(ngModel)]="price.value" placeholder="¥0.00"></ion-input>
+    <ion-input [(ngModel)]="price.name" placeholder="如1斤装"></ion-input>
+    <ion-input [(ngModel)]="price.single" placeholder="¥0.00"></ion-input>
+    <ion-input [(ngModel)]="price.group" placeholder="¥0.00"></ion-input>
   </ion-item>
   <ion-item>
     <ion-button (click)="addPrice()">

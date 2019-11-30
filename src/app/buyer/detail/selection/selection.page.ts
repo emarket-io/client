@@ -10,6 +10,7 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./selection.page.scss'],
 })
 export class SelectionPage {
+  @Input() isGroup: Boolean;
   @Input() commodity: Commodity;
   formatRBM = utilsService.formatRMB;
   host = environment.apiUrl;

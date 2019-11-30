@@ -908,7 +908,8 @@ proto.zbay.Price.prototype.toObject = function(opt_includeInstance) {
 proto.zbay.Price.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    value: jspb.Message.getFieldWithDefault(msg, 2, "")
+    single: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    group: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -951,7 +952,11 @@ proto.zbay.Price.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setValue(value);
+      msg.setSingle(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setGroup(value);
       break;
     default:
       reader.skipField();
@@ -989,10 +994,17 @@ proto.zbay.Price.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getValue();
+  f = message.getSingle();
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getGroup();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -1024,28 +1036,53 @@ proto.zbay.Price.prototype.setName = function(value) {
 };
 
 
-Object.defineProperty(proto.zbay.Price.prototype, "value", {
+Object.defineProperty(proto.zbay.Price.prototype, "single", {
   set: function(value) {
-    this.setValue(value);
+    this.setSingle(value);
   },
   get: function() {
-    return this.getValue();
+    return this.getSingle();
   },
 });
 
 
 /**
- * optional string value = 2;
+ * optional string single = 2;
  * @return {string}
  */
-proto.zbay.Price.prototype.getValue = function() {
+proto.zbay.Price.prototype.getSingle = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /** @param {string} value */
-proto.zbay.Price.prototype.setValue = function(value) {
+proto.zbay.Price.prototype.setSingle = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+Object.defineProperty(proto.zbay.Price.prototype, "group", {
+  set: function(value) {
+    this.setGroup(value);
+  },
+  get: function() {
+    return this.getGroup();
+  },
+});
+
+
+/**
+ * optional string group = 3;
+ * @return {string}
+ */
+proto.zbay.Price.prototype.getGroup = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.zbay.Price.prototype.setGroup = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
