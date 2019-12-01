@@ -20,10 +20,10 @@
   </ion-item>
   <ion-list>
     <ion-item>
-      <ion-button (click)="select(price)" [class.selected]="order.price==price"
+      <ion-badge (click)="select(price)" color="light" [class.selected]="order.price==price"
         *ngFor="let price of order.snapshot.pricesList">
         {{price.name}}
-      </ion-button>
+      </ion-badge>
     </ion-item>
   </ion-list>
   <ion-item>
