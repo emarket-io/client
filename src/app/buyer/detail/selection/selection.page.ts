@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { utilsService } from '../../../providers/utils.service';
-import { Commodity, Price } from '../../../../sdk/commodity_pb';
+import { Order } from '../../../../sdk/order_pb';
+import { Price } from '../../../../sdk/commodity_pb';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -10,24 +11,30 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./selection.page.scss'],
 })
 export class SelectionPage {
-  @Input() isGroup: Boolean;
-  @Input() commodity: Commodity;
+  @Input() order: Order;
   formatRBM = utilsService.formatRMB;
   host = environment.apiUrl;
-  selectedPrice: Price;
 
   constructor(private popoverController: PopoverController) { }
 
   ionViewWillEnter() {
-    this.selectedPrice = this.commodity.pricesList[0];
+    this.order.quantity = 1;
+  }
+
+  increment() {
+    this.order.quantity += 1;
+  }
+
+  decrement() {
+    this.order.quantity -= 1;
   }
 
   select(price: Price) {
-    this.selectedPrice = price;
+    this.order.price = price;
   }
 
   continue() {
-    this.popoverController.dismiss({ price: this.selectedPrice });
+    this.popoverController.dismiss({ order: this.order });
   }
 
   close() {

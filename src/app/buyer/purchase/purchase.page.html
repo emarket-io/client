@@ -20,7 +20,7 @@
     </ion-thumbnail>
     <div>
       <ion-label>{{order.snapshot.title}}</ion-label>
-      <ion-label>¥{{formatRBM(order.isGroup?order.price.group:order.price.single)}}</ion-label>
+      <ion-label>¥{{formatRBM(order.isGroup?order.price.group:order.price.single)}}({{order.price.name}})</ion-label>
     </div>
   </ion-item>
   <ion-item>
