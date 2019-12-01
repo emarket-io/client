@@ -12,7 +12,7 @@
     </ion-thumbnail>
     <div>
       <ion-label style="color:orangered">¥
-        <span style="font-size: large">{{formatRBM(order.isGroup?order.price?.group:order.price?.single)}}</span>
+        <span style="font-size: large">{{formatRBM(order.groupon?order.price?.group:order.price?.single)}}</span>
       </ion-label>
       <ion-label style="font-size: smaller;">已选择: {{order.price?.name}}</ion-label>
     </div>
@@ -34,7 +34,11 @@
   </ion-item>
 </ion-content>
 
-<ion-footer style="position: fixed;bottom: 0;width: 100%;">
+<ion-footer style="position: fixed;bottom: 0;width: 100%;" no-border>
+  <ion-item lines="none" style="font-size: smaller;" *ngIf="order.groupon">
+    <ion-label slot="start">***的团还差一人，</ion-label>
+    <ion-label slot="end">快速参团，立即拼成</ion-label>
+  </ion-item>
   <ion-button (click)="continue()" expand="full">
     确定
   </ion-button>

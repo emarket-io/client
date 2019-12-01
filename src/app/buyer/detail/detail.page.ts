@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { Order } from '../../../sdk/order_pb';
+import { Order, Groupon } from '../../../sdk/order_pb';
 import { Wechat } from '@ionic-native/wechat/ngx';
 import { PopoverController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';
@@ -58,7 +58,11 @@ export class DetailPage {
 
   async select(isGroup: boolean) {
     let order = new Order();
-    order.isGroup = isGroup;
+    if (isGroup) {
+      let groupon = new Groupon();
+      groupon.userIdsList.push(utilsService.getUser().id);
+      order.groupon = groupon;
+    }
     order.snapshot = this.commodity;
 
     const popover = await this.popoverController.create({

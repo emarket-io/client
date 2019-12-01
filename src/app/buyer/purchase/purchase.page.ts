@@ -43,17 +43,17 @@ export class PurchasePage {
     }
     this.order.userId = utilsService.getUser().id;
     this.order.destination = utilsService.destination;
-    this.order.amount = Number(this.order.isGroup ? this.order.price.group : this.order.price.single) * 100 * this.order.quantity;
+    this.order.amount = Number(this.order.groupon ? this.order.price.group : this.order.price.single) * 100 * this.order.quantity;
   }
 
   increment() {
     this.order.quantity += 1;
-    this.order.amount = Number(this.order.isGroup ? this.order.price.group : this.order.price.single) * 100 * this.order.quantity;
+    this.order.amount = Number(this.order.groupon ? this.order.price.group : this.order.price.single) * 100 * this.order.quantity;
   }
 
   decrement() {
     this.order.quantity -= 1;
-    this.order.amount = Number(this.order.isGroup ? this.order.price.group : this.order.price.single) * 100 * this.order.quantity;
+    this.order.amount = Number(this.order.groupon ? this.order.price.group : this.order.price.single) * 100 * this.order.quantity;
   }
 
   preparebuy() {
@@ -67,7 +67,11 @@ export class PurchasePage {
             this.alipay.pay(payInfo)
               .then(result => {
                 if (result.resultStatus == 9000) {
-                  this.order.status = '待发货';
+                  if (this.order.groupon && this.order.groupon.userIdsList.length <= 1) {
+                    this.order.status = '待成团';
+                  } else {
+                    this.order.status = '待发货';
+                  }
                 } else {
                   utilsService.alert(JSON.stringify(result));
                   this.order.status = '待付款';

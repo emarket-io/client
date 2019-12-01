@@ -11,7 +11,9 @@ export class Order extends jspb.Message {
   snapshot: commodity_pb.Commodity | undefined;
   hassnapshot(): boolean;
   clearsnapshot(): void;
-  isGroup: boolean;
+  groupon: Groupon | undefined;
+  hasgroupon(): boolean;
+  cleargroupon(): void;
   price: commodity_pb.Price | undefined;
   hasprice(): boolean;
   clearprice(): void;
@@ -46,7 +48,7 @@ export namespace Order {
   export type AsObject = {
     id: string,
     snapshot?: commodity_pb.Commodity.AsObject,
-    isgroup: boolean,
+    groupon?: Groupon.AsObject,
     price?: commodity_pb.Price.AsObject,
     userid: string,
     destination?: user_pb.Address.AsObject,
@@ -76,6 +78,24 @@ export namespace PayInfo {
   export type AsObject = {
     type: string,
     payresult: string,
+  }
+}
+
+export class Groupon extends jspb.Message {
+  userIdsList: Array<string>;
+  clearuserIdsList(): void;
+  addUserids(value: string, index?: number): void;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Groupon.AsObject;
+  static toObject(includeInstance: boolean, msg: Groupon): Groupon.AsObject;
+  static serializeBinaryToWriter(message: Groupon, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Groupon;
+  static deserializeBinaryFromReader(message: Groupon, reader: jspb.BinaryReader): Groupon;
+}
+
+export namespace Groupon {
+  export type AsObject = {
+    useridsList: Array<string>,
   }
 }
 
