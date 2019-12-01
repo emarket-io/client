@@ -28,7 +28,7 @@ export class OrderPage {
       return
     }
     this.orders = []
-    let stream = apiService.orderClient.list(utilsService.getUser(), apiService.metaData);
+    let stream = apiService.orderClient.listByUser(utilsService.getUser(), apiService.metaData);
     stream.on('data', response => {
       this.orders.push(response);
       console.log(response.toObject())

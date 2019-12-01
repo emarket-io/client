@@ -56,18 +56,16 @@ export class DetailPage {
     });
   }
 
-  async select(isGroup: boolean) {
+  async select(isGroup: boolean, ev: Event) {
     let order = new Order();
     if (isGroup) {
-      let groupon = new Groupon();
-      groupon.userIdsList.push(utilsService.getUser().id);
-      order.groupon = groupon;
+      order.groupon = new Groupon();
     }
     order.snapshot = this.commodity;
-
     const popover = await this.popoverController.create({
       component: SelectionPage,
       componentProps: { order: order },
+      event: ev,
       translucent: true,
       cssClass: 'bottom-sheet-popover'
     });

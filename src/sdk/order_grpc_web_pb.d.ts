@@ -41,8 +41,13 @@ export class OrdersClient {
                response: google_protobuf_empty_pb.Empty) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
-  list(
+  listByUser(
     request: user_pb.User,
+    metadata?: grpcWeb.Metadata
+  ): grpcWeb.ClientReadableStream<Order>;
+
+  listByStatus(
+    request: Order,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Order>;
 
@@ -80,8 +85,13 @@ export class OrdersPromiseClient {
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 
-  list(
+  listByUser(
     request: user_pb.User,
+    metadata?: grpcWeb.Metadata
+  ): grpcWeb.ClientReadableStream<Order>;
+
+  listByStatus(
+    request: Order,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Order>;
 

@@ -27,7 +27,7 @@ export class PurchasePage {
 
   ionViewWillEnter() {
     if (!utilsService.getUser()) {
-      this.router.navigateByUrl('/login');
+      return this.router.navigateByUrl('/login');
     }
     if (!utilsService.destination) {
       let stream = apiService.addressClient.list(utilsService.getUser(), apiService.metaData);
@@ -67,6 +67,9 @@ export class PurchasePage {
             this.alipay.pay(payInfo)
               .then(result => {
                 if (result.resultStatus == 9000) {
+                  if (this.order.groupon) {
+                    this.order.groupon.userIdsList.push(utilsService.getUser().id);
+                  }
                   if (this.order.groupon && this.order.groupon.userIdsList.length <= 1) {
                     this.order.status = '待成团';
                   } else {
@@ -84,6 +87,7 @@ export class PurchasePage {
                     this.router.navigateByUrl('/tabs/cart');
                   }
                 });
+                // update partnerUser order status
               }).catch(error => {
                 console.log(error);
                 utilsService.alert(JSON.stringify(err));

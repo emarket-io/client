@@ -36,10 +36,12 @@
 
 <ion-footer style="position: fixed;bottom: 0;width: 100%;" no-border>
   <ion-item lines="none" style="font-size: smaller;" *ngIf="order.groupon">
-    <ion-label slot="start">***的团还差一人，</ion-label>
-    <ion-label slot="end">快速参团，立即拼成</ion-label>
+    <div *ngFor="let order of pendingOrders">
+      <ion-label slot="start">{{order.userId}}的团还差一人，</ion-label>
+      <ion-label slot="end" (click)="continue(order.userId)">快速参团，立即拼成</ion-label>
+    </div>
   </ion-item>
-  <ion-button (click)="continue()" expand="full">
+  <ion-button (click)="continue('')" expand="full">
     确定
   </ion-button>
 </ion-footer>
