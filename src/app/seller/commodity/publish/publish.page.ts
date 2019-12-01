@@ -110,6 +110,10 @@ export class PublishPage {
       return utilsService.alert('请输入标题');
     }
 
+    if (this.commodity.mediaList.length == 0) {
+      return utilsService.alert('请拍摄照片');
+    }
+
     if (!utilsService.check(this.commodity.title)) {
       return utilsService.alert('标题含有不合规内容，请检查');
     }
