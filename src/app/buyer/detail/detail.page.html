@@ -73,11 +73,9 @@
         客服
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button style="background:var(--mycolor);color:var(--mytextcolor);" (click)="select(false)">立即购买
-      </ion-button>
-      <ion-button style="background:var(--mycolor);color:var(--mytextcolor);" (click)="select(true)">发起拼团
-      </ion-button>
-    </ion-buttons>
+    <ion-item-group slot="end">
+      <ion-button (click)="select(false)">立即购买</ion-button>
+      <ion-button (click)="select(true)">发起拼团</ion-button>
+    </ion-item-group>
   </ion-toolbar>
 </ion-footer>

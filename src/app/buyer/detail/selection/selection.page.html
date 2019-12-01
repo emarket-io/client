@@ -11,15 +11,17 @@
         src="{{host}}/static/{{order.snapshot.ownerId}}/{{order.snapshot.title}}/{{order.snapshot.mediaList[0]?.image}}">
     </ion-thumbnail>
     <div>
-      <ion-label style="color:orangered">¥{{formatRBM(order.isGroup?order.price?.group:order.price?.single)}}
+      <ion-label style="color:orangered">¥
+        <span style="font-size: large">{{formatRBM(order.isGroup?order.price?.group:order.price?.single)}}</span>
       </ion-label>
-      <ion-label style="font-size: smaller;">已选择:{{order.price?.name}}</ion-label>
+      <ion-label style="font-size: smaller;">已选择: {{order.price?.name}}</ion-label>
     </div>
     <ion-icon name="close" slot="end" (click)="close()" size="small"></ion-icon>
   </ion-item>
   <ion-list>
     <ion-item>
-      <ion-button fill="outline" (click)="select(price)" *ngFor="let price of order.snapshot.pricesList">
+      <ion-button (click)="select(price)" [class.selected]="order.price==price"
+        *ngFor="let price of order.snapshot.pricesList">
         {{price.name}}
       </ion-button>
     </ion-item>

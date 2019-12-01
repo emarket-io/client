@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
-import { utilsService } from '../../../providers/utils.service';
 import { Order } from '../../../../sdk/order_pb';
 import { Price } from '../../../../sdk/commodity_pb';
+import { utilsService } from '../../../providers/utils.service';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -19,6 +19,7 @@ export class SelectionPage {
 
   ionViewWillEnter() {
     this.order.quantity = 1;
+    this.order.price = this.order.snapshot.pricesList[0];
   }
 
   increment() {
