@@ -46,7 +46,7 @@ export class OrdersClient {
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Order>;
 
-  listByStatus(
+  listByOrder(
     request: Order,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Order>;
@@ -90,7 +90,7 @@ export class OrdersPromiseClient {
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Order>;
 
-  listByStatus(
+  listByOrder(
     request: Order,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Order>;

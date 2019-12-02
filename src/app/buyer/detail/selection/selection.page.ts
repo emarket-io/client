@@ -16,9 +16,11 @@ export class SelectionPage {
   pendingOrders: Order[];
   host = environment.apiUrl;
   slideOpts = {
-    initialSlide: 1,
     direction: "vertical",
-    speed: 1000
+    slidesPerView: 1,
+    autoplay: {
+      delay: 1500,
+    },
   };
 
   constructor(private popoverController: PopoverController) { }
@@ -32,7 +34,7 @@ export class SelectionPage {
       let requestOrder = new Order();
       requestOrder.snapshot = this.order.snapshot;
       requestOrder.status = '待成团';
-      let stream = apiService.orderClient.listByStatus(requestOrder, apiService.metaData);
+      let stream = apiService.orderClient.listByOrder(requestOrder, apiService.metaData);
       stream.on('data', response => {
         this.pendingOrders.push(response);
         console.log(response.toObject())

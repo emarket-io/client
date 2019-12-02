@@ -372,7 +372,7 @@ proto.zbay.OrdersPromiseClient.prototype.listByUser =
  *   !proto.zbay.Order,
  *   !proto.zbay.Order>}
  */
-const methodInfo_Orders_ListByStatus = new grpc.web.AbstractClientBase.MethodInfo(
+const methodInfo_Orders_ListByOrder = new grpc.web.AbstractClientBase.MethodInfo(
   proto.zbay.Order,
   /** @param {!proto.zbay.Order} request */
   function(request) {
@@ -389,13 +389,13 @@ const methodInfo_Orders_ListByStatus = new grpc.web.AbstractClientBase.MethodInf
  * @return {!grpc.web.ClientReadableStream<!proto.zbay.Order>}
  *     The XHR Node Readable Stream
  */
-proto.zbay.OrdersClient.prototype.listByStatus =
+proto.zbay.OrdersClient.prototype.listByOrder =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/zbay.Orders/ListByStatus',
+      '/zbay.Orders/ListByOrder',
       request,
       metadata || {},
-      methodInfo_Orders_ListByStatus);
+      methodInfo_Orders_ListByOrder);
 };
 
 
@@ -406,13 +406,13 @@ proto.zbay.OrdersClient.prototype.listByStatus =
  * @return {!grpc.web.ClientReadableStream<!proto.zbay.Order>}
  *     The XHR Node Readable Stream
  */
-proto.zbay.OrdersPromiseClient.prototype.listByStatus =
+proto.zbay.OrdersPromiseClient.prototype.listByOrder =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/zbay.Orders/ListByStatus',
+      '/zbay.Orders/ListByOrder',
       request,
       metadata || {},
-      methodInfo_Orders_ListByStatus);
+      methodInfo_Orders_ListByOrder);
 };
 
 
