@@ -66,19 +66,19 @@ export class PurchasePage {
             let payInfo = response.getValue();
             this.alipay.pay(payInfo)
               .then(result => {
-                if (result.resultStatus == 9000) {
-                  if (this.order.groupon) {
-                    this.order.groupon.userIdsList.push(utilsService.getUser().id);
-                  }
-                  if (this.order.groupon && this.order.groupon.userIdsList.length <= 1) {
-                    this.order.status = '待成团';
-                  } else {
-                    this.order.status = '待发货';
-                  }
-                } else {
-                  utilsService.alert(JSON.stringify(result));
-                  this.order.status = '待付款';
+                // if (result.resultStatus == 9000) {
+                if (this.order.groupon) {
+                  this.order.groupon.userIdsList.push(utilsService.getUser().id);
                 }
+                if (this.order.groupon && this.order.groupon.userIdsList.length <= 1) {
+                  this.order.status = '待成团';
+                } else {
+                  this.order.status = '待发货';
+                }
+                // } else {
+                //   utilsService.alert(JSON.stringify(result));
+                //   this.order.status = '待付款';
+                // }
                 apiService.orderClient.add(this.order, apiService.metaData, (err: grpcWeb.Error, response: Order) => {
                   if (err) {
                     utilsService.alert(JSON.stringify(err));
