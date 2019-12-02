@@ -1085,7 +1085,7 @@ proto.zbay.Groupon.prototype.toObject = function(opt_includeInstance) {
  */
 proto.zbay.Groupon.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    orderIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1124,7 +1124,7 @@ proto.zbay.Groupon.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.addUserIds(value);
+      msg.addOrderIds(value);
       break;
     default:
       reader.skipField();
@@ -1155,7 +1155,7 @@ proto.zbay.Groupon.prototype.serializeBinary = function() {
  */
 proto.zbay.Groupon.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUserIdsList();
+  f = message.getOrderIdsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
       1,
@@ -1165,27 +1165,27 @@ proto.zbay.Groupon.serializeBinaryToWriter = function(message, writer) {
 };
 
 
-Object.defineProperty(proto.zbay.Groupon.prototype, "userIdsList", {
+Object.defineProperty(proto.zbay.Groupon.prototype, "orderIdsList", {
   set: function(value) {
-    this.setUserIdsList(value);
+    this.setOrderIdsList(value);
   },
   get: function() {
-    return this.getUserIdsList();
+    return this.getOrderIdsList();
   },
 });
 
 
 /**
- * repeated string userIds = 1;
+ * repeated string orderIds = 1;
  * @return {!Array<string>}
  */
-proto.zbay.Groupon.prototype.getUserIdsList = function() {
+proto.zbay.Groupon.prototype.getOrderIdsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
 /** @param {!Array<string>} value */
-proto.zbay.Groupon.prototype.setUserIdsList = function(value) {
+proto.zbay.Groupon.prototype.setOrderIdsList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
@@ -1194,7 +1194,7 @@ proto.zbay.Groupon.prototype.setUserIdsList = function(value) {
  * @param {string} value
  * @param {number=} opt_index
  */
-proto.zbay.Groupon.prototype.addUserIds = function(value, opt_index) {
+proto.zbay.Groupon.prototype.addOrderIds = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 1, value, opt_index);
 };
 
@@ -1202,8 +1202,8 @@ proto.zbay.Groupon.prototype.addUserIds = function(value, opt_index) {
 /**
  * Clears the list making it empty but non-null.
  */
-proto.zbay.Groupon.prototype.clearUserIdsList = function() {
-  this.setUserIdsList([]);
+proto.zbay.Groupon.prototype.clearOrderIdsList = function() {
+  this.setOrderIdsList([]);
 };
 
 

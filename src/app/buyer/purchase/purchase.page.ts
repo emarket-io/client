@@ -2,7 +2,7 @@ import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Alipay } from '@ionic-native/alipay/ngx';
-import { Order, PayInfo } from '../../../sdk/order_pb';
+import { Order, PayInfo, Groupon } from '../../../sdk/order_pb';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service';
 import { StringValue } from "google-protobuf/google/protobuf/wrappers_pb";
@@ -67,10 +67,7 @@ export class PurchasePage {
             this.alipay.pay(payInfo)
               .then(result => {
                 // if (result.resultStatus == 9000) {
-                if (this.order.groupon) {
-                  this.order.groupon.userIdsList.push(utilsService.getUser().id);
-                }
-                if (this.order.groupon && this.order.groupon.userIdsList.length <= 1) {
+                if (this.order.groupon && this.order.groupon.orderIdsList.length == 0) {
                   this.order.status = '待成团';
                 } else {
                   this.order.status = '待发货';
@@ -84,10 +81,23 @@ export class PurchasePage {
                     utilsService.alert(JSON.stringify(err));
                   } else {
                     console.log(response);
+                    // update partner order status
+                    if (this.order.groupon && this.order.groupon.orderIdsList.length == 1) {
+                      var partnerOrder = new Order();
+                      partnerOrder.id = this.order.groupon.orderIdsList[0]
+                      var groupon = new Groupon()
+                      groupon.orderIdsList.push(response.id);
+                      partnerOrder.groupon = groupon;
+                      partnerOrder.status = '待发货';
+                      apiService.orderClient.update(partnerOrder, apiService.metaData, (err: any, response: Order) => {
+                        if (err) {
+                          utilsService.alert(JSON.stringify(err));
+                        }
+                      });
+                    }
                     this.router.navigateByUrl('/tabs/cart');
                   }
                 });
-                // update partnerUser order status
               }).catch(error => {
                 console.log(error);
                 utilsService.alert(JSON.stringify(err));

@@ -82,9 +82,9 @@ export namespace PayInfo {
 }
 
 export class Groupon extends jspb.Message {
-  userIdsList: Array<string>;
-  clearuserIdsList(): void;
-  addUserids(value: string, index?: number): void;
+  orderIdsList: Array<string>;
+  clearorderIdsList(): void;
+  addOrderids(value: string, index?: number): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Groupon.AsObject;
   static toObject(includeInstance: boolean, msg: Groupon): Groupon.AsObject;
@@ -95,7 +95,7 @@ export class Groupon extends jspb.Message {
 
 export namespace Groupon {
   export type AsObject = {
-    useridsList: Array<string>,
+    orderidsList: Array<string>,
   }
 }
 

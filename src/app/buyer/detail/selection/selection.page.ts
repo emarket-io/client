@@ -15,6 +15,11 @@ export class SelectionPage {
   formatRBM = utilsService.formatRMB;
   pendingOrders: Order[];
   host = environment.apiUrl;
+  slideOpts = {
+    initialSlide: 1,
+    direction: "vertical",
+    speed: 1000
+  };
 
   constructor(private popoverController: PopoverController) { }
 
@@ -22,18 +27,20 @@ export class SelectionPage {
     this.order.quantity = 1;
     this.order.price = this.order.snapshot.pricesList[0];
 
-    this.pendingOrders = []
-    let requestOrder = new Order();
-    requestOrder.snapshot = this.order.snapshot;
-    requestOrder.status = '待成团';
-    let stream = apiService.orderClient.listByStatus(requestOrder, apiService.metaData);
-    stream.on('data', response => {
-      this.pendingOrders.push(response);
-      console.log(response.toObject())
-    });
-    stream.on('error', err => {
-      utilsService.alert(JSON.stringify(err));
-    });
+    if (this.order.groupon) {
+      this.pendingOrders = []
+      let requestOrder = new Order();
+      requestOrder.snapshot = this.order.snapshot;
+      requestOrder.status = '待成团';
+      let stream = apiService.orderClient.listByStatus(requestOrder, apiService.metaData);
+      stream.on('data', response => {
+        this.pendingOrders.push(response);
+        console.log(response.toObject())
+      });
+      stream.on('error', err => {
+        utilsService.alert(JSON.stringify(err));
+      });
+    }
   }
 
   increment() {
@@ -48,9 +55,9 @@ export class SelectionPage {
     this.order.price = price;
   }
 
-  continue(partnerUserId: string) {
-    if (this.order.groupon && partnerUserId) {
-      this.order.groupon.userIdsList.push(partnerUserId);
+  continue(partnerOrder?: Order) {
+    if (this.order.groupon && partnerOrder) {
+      this.order.groupon.orderIdsList.push(partnerOrder.id);
     }
     this.popoverController.dismiss({ order: this.order });
   }
