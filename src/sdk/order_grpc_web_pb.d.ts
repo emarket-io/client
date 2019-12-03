@@ -6,7 +6,9 @@ import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty
 import * as google_protobuf_wrappers_pb from 'google-protobuf/google/protobuf/wrappers_pb';
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 
-import {Order} from './order_pb';
+import {
+  ListQuery,
+  Order} from './order_pb';
 
 export class OrdersClient {
   constructor (hostname: string,
@@ -41,13 +43,18 @@ export class OrdersClient {
                response: google_protobuf_empty_pb.Empty) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
-  listByUser(
-    request: user_pb.User,
+  listByOrder(
+    request: Order,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Order>;
 
-  listByOrder(
-    request: Order,
+  listForBuyer(
+    request: ListQuery,
+    metadata?: grpcWeb.Metadata
+  ): grpcWeb.ClientReadableStream<Order>;
+
+  listForSeller(
+    request: ListQuery,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Order>;
 
@@ -85,13 +92,18 @@ export class OrdersPromiseClient {
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 
-  listByUser(
-    request: user_pb.User,
+  listByOrder(
+    request: Order,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Order>;
 
-  listByOrder(
-    request: Order,
+  listForBuyer(
+    request: ListQuery,
+    metadata?: grpcWeb.Metadata
+  ): grpcWeb.ClientReadableStream<Order>;
+
+  listForSeller(
+    request: ListQuery,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Order>;
 

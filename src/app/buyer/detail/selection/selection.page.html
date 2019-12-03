@@ -35,9 +35,9 @@
 </ion-content>
 
 <ion-footer style="position: fixed;bottom: 0;width: 100%;" no-border>
-  <ion-slides [options]="slideOpts" *ngIf="order.groupon" style="background: #f2f2f2;height: 20px;">
-    <ion-slide style="font-size: smaller;" *ngFor="let order of pendingOrders">
-      {{order.userId}}的团还差一人，快速[<span (click)="continue(order)">参团</span>]，立即拼成
+  <ion-slides [options]="slideOpts" *ngIf="order.groupon" style="background: #f2f2f2;height: 25px;">
+    <ion-slide style="font-size: smaller;" *ngFor="let partnerOrder of partnerOrders">
+      {{partnerOrder.userId}}的团还差1人，快速[<ion-badge (click)="continue(partnerOrder)">参团</ion-badge>]，立即拼成
     </ion-slide>
   </ion-slides>
   <ion-button (click)="continue()" expand="full">

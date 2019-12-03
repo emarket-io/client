@@ -319,56 +319,6 @@ proto.zbay.OrdersPromiseClient.prototype.delete =
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.zbay.User,
- *   !proto.zbay.Order>}
- */
-const methodInfo_Orders_ListByUser = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.zbay.Order,
-  /** @param {!proto.zbay.User} request */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.zbay.Order.deserializeBinary
-);
-
-
-/**
- * @param {!proto.zbay.User} request The request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.zbay.Order>}
- *     The XHR Node Readable Stream
- */
-proto.zbay.OrdersClient.prototype.listByUser =
-    function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
-      '/zbay.Orders/ListByUser',
-      request,
-      metadata || {},
-      methodInfo_Orders_ListByUser);
-};
-
-
-/**
- * @param {!proto.zbay.User} request The request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.zbay.Order>}
- *     The XHR Node Readable Stream
- */
-proto.zbay.OrdersPromiseClient.prototype.listByUser =
-    function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
-      '/zbay.Orders/ListByUser',
-      request,
-      metadata || {},
-      methodInfo_Orders_ListByUser);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
  *   !proto.zbay.Order,
  *   !proto.zbay.Order>}
  */
@@ -413,6 +363,106 @@ proto.zbay.OrdersPromiseClient.prototype.listByOrder =
       request,
       metadata || {},
       methodInfo_Orders_ListByOrder);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.ListQuery,
+ *   !proto.zbay.Order>}
+ */
+const methodInfo_Orders_ListForBuyer = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Order,
+  /** @param {!proto.zbay.ListQuery} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Order.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.ListQuery} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Order>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.OrdersClient.prototype.listForBuyer =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Orders/ListForBuyer',
+      request,
+      metadata || {},
+      methodInfo_Orders_ListForBuyer);
+};
+
+
+/**
+ * @param {!proto.zbay.ListQuery} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Order>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.OrdersPromiseClient.prototype.listForBuyer =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Orders/ListForBuyer',
+      request,
+      metadata || {},
+      methodInfo_Orders_ListForBuyer);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.ListQuery,
+ *   !proto.zbay.Order>}
+ */
+const methodInfo_Orders_ListForSeller = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Order,
+  /** @param {!proto.zbay.ListQuery} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Order.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.ListQuery} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Order>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.OrdersClient.prototype.listForSeller =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Orders/ListForSeller',
+      request,
+      metadata || {},
+      methodInfo_Orders_ListForSeller);
+};
+
+
+/**
+ * @param {!proto.zbay.ListQuery} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Order>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.OrdersPromiseClient.prototype.listForSeller =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Orders/ListForSeller',
+      request,
+      metadata || {},
+      methodInfo_Orders_ListForSeller);
 };
 
 

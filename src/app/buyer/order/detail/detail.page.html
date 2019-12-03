@@ -14,8 +14,7 @@
   <ion-item>
     <ion-label>单号</ion-label>
     {{order.express?.number}}
-    <a target="_blank"
-      href="https://www.kuaidi100.com/chaxun?nu={{order.express?.number}}">
+    <a target="_blank" href="https://www.kuaidi100.com/chaxun?nu={{order.express?.number}}">
       <ion-icon name="play"></ion-icon>
     </a>
   </ion-item>
@@ -36,5 +35,9 @@
       <ion-label>购买时间</ion-label>
       {{order.created.toDate().toLocaleString()}}
     </ion-item>
+    <!-- <ion-item *ngIf="order.groupon">
+      <ion-label>参团信息</ion-label>
+      {{order.groupon.orderIdsList[0]}},{{order.userId}}
+    </ion-item> -->
   </ion-list>
 </ion-content>

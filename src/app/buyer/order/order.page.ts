@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { Order } from '../../../sdk/order_pb';
+import { Order, ListQuery } from '../../../sdk/order_pb';
 import { AlertController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { environment } from '../../../environments/environment';
@@ -13,6 +13,8 @@ import { apiService, utilsService } from '../../providers/utils.service';
 })
 export class OrderPage {
   orders: Order[];
+  status = '';
+  statuses: string[] = ['全部', '待付款', '待发货', '待收货', '待评价'];
   host = environment.apiUrl;
   formatRBM = utilsService.formatRMB;
   slideOpts = {
@@ -23,12 +25,20 @@ export class OrderPage {
     private router: Router,
     private alertController: AlertController) { }
 
+  listByStatus(status: string) {
+    this.status = status;
+    this.ionViewWillEnter();
+  }
+
   ionViewWillEnter() {
     if (!utilsService.getUser()) {
       return
     }
     this.orders = []
-    let stream = apiService.orderClient.listByUser(utilsService.getUser(), apiService.metaData);
+    let listQuery = new ListQuery();
+    listQuery.user = utilsService.getUser();
+    listQuery.status = this.status == "全部" ? '' : this.status;
+    let stream = apiService.orderClient.listForBuyer(listQuery, apiService.metaData);
     stream.on('data', response => {
       this.orders.push(response);
       console.log(response.toObject())
@@ -60,13 +70,19 @@ export class OrderPage {
         }, {
           text: '确定',
           handler: (alertData) => {
-            order.status = '退款中';
-            order.comment = alertData.refund;
-            apiService.orderClient.update(order, apiService.metaData, (err: any, response: Order) => {
-              if (err) {
-                utilsService.alert(JSON.stringify(err));
-              }
-            });
+            if (!alertData.refund) {
+              utilsService.alert('请输入退款理由');
+            } else {
+              order.status = '退款中';
+              order.comment = alertData.refund;
+              apiService.orderClient.update(order, apiService.metaData, (err: any, response: Order) => {
+                if (err) {
+                  utilsService.alert(JSON.stringify(err));
+                } else {
+                  console.log(response);
+                }
+              });
+            }
           }
         }
       ]

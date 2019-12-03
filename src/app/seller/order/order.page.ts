@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Order, Express } from '../../../sdk/order_pb';
+import { Order, Express, ListQuery } from '../../../sdk/order_pb';
 import { AlertController } from '@ionic/angular';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service';
@@ -18,7 +18,10 @@ export class OrderPage {
 
   ionViewWillEnter() {
     this.orders = []
-    let stream = apiService.orderClient.listByUser(utilsService.getUser(), apiService.metaData);
+    let listQuery = new ListQuery();
+    listQuery.user = utilsService.getUser();
+    listQuery.status = '';
+    let stream = apiService.orderClient.listForSeller(listQuery, apiService.metaData);
     stream.on('data', response => {
       this.orders.push(response);
       console.log(response.toObject())

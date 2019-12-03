@@ -7,20 +7,8 @@
 </ion-header>
 
 <ion-slides [options]="slideOpts" style="width:100%">
-  <ion-slide class="slide-menu">
-    全部
-  </ion-slide>
-  <ion-slide class="slide-menu">
-    待付款
-  </ion-slide>
-  <ion-slide class="slide-menu">
-    待发货
-  </ion-slide>
-  <ion-slide class="slide-menu">
-    待收货
-  </ion-slide>
-  <ion-slide class="slide-menu">
-    待评价
+  <ion-slide class="slide-menu" *ngFor="let status of statuses" (click)="listByStatus(status)">
+    {{status}}
   </ion-slide>
 </ion-slides>
 

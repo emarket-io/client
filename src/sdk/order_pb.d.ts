@@ -117,3 +117,23 @@ export namespace Express {
   }
 }
 
+export class ListQuery extends jspb.Message {
+  user: user_pb.User | undefined;
+  hasuser(): boolean;
+  clearuser(): void;
+  status: string;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListQuery.AsObject;
+  static toObject(includeInstance: boolean, msg: ListQuery): ListQuery.AsObject;
+  static serializeBinaryToWriter(message: ListQuery, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListQuery;
+  static deserializeBinaryFromReader(message: ListQuery, reader: jspb.BinaryReader): ListQuery;
+}
+
+export namespace ListQuery {
+  export type AsObject = {
+    user?: user_pb.User.AsObject,
+    status: string,
+  }
+}
+

@@ -16,6 +16,13 @@ export class DetailPage {
     this.order = <Order>this.router.getCurrentNavigation().extras.state;
   }
 
-  ionViewWillEnter() { }
+  ionViewWillEnter() {
+    console.log(this.order.toObject());
+  }
 
+  // async getOrderById(id: string) {
+  //   await apiService.orderClient.get(new Order(), apiService.metaData, (err: any, response: Order) => {
+  //     return response;
+  //   });
+  // }
 }

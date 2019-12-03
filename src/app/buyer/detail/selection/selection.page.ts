@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { Order } from '../../../../sdk/order_pb';
 import { Price } from '../../../../sdk/commodity_pb';
-import { apiService, utilsService } from '../../../providers/utils.service';
 import { environment } from '../../../../environments/environment';
+import { apiService, utilsService } from '../../../providers/utils.service';
 
 @Component({
   selector: 'app-selection',
@@ -12,9 +12,9 @@ import { environment } from '../../../../environments/environment';
 })
 export class SelectionPage {
   @Input() order: Order;
-  formatRBM = utilsService.formatRMB;
-  pendingOrders: Order[];
+  partnerOrders: Order[];
   host = environment.apiUrl;
+  formatRBM = utilsService.formatRMB;
   slideOpts = {
     direction: "vertical",
     slidesPerView: 1,
@@ -30,13 +30,13 @@ export class SelectionPage {
     this.order.price = this.order.snapshot.pricesList[0];
 
     if (this.order.groupon) {
-      this.pendingOrders = []
+      this.partnerOrders = []
       let requestOrder = new Order();
       requestOrder.snapshot = this.order.snapshot;
       requestOrder.status = '待成团';
       let stream = apiService.orderClient.listByOrder(requestOrder, apiService.metaData);
       stream.on('data', response => {
-        this.pendingOrders.push(response);
+        this.partnerOrders.push(response);
         console.log(response.toObject())
       });
       stream.on('error', err => {
