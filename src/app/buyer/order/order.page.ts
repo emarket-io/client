@@ -34,20 +34,21 @@ export class OrderPage {
     if (!utilsService.getUser()) {
       return
     }
-    let newOrders: Order[] = [];
+    //let newOrders: Order[] = [];
     let listQuery = new ListQuery();
     listQuery.user = utilsService.getUser();
     listQuery.status = this.selectedStatus == "全部" ? '' : this.selectedStatus;
     let stream = apiService.orderClient.listForBuyer(listQuery, apiService.metaData);
+    this.orders = [];
     stream.on('data', response => {
-      newOrders.push(response);
+      this.orders.push(response);
       //console.log(response.toObject());
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
     });
     stream.on('end', () => {
-      this.orders = newOrders;
+      //this.orders = newOrders;
     });
   }
 
