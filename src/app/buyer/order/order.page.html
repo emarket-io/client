@@ -24,8 +24,9 @@
     </ion-item>
     <ion-item-sliding>
       <ion-item lines="none" (click)="gotoOrderDetail(order)">
-        <img class="order-image"
-          src="{{host}}/static/{{order.snapshot?.ownerId}}/{{order.snapshot?.title}}/{{order.snapshot?.mediaList[0]?.image}}" />
+        <ion-img
+          src="{{host}}/static/{{order.snapshot?.ownerId}}/{{order.snapshot?.title}}/{{order.snapshot?.mediaList[0]?.image}}">
+        </ion-img>
         <div class="order-content">
           {{order.snapshot?.title}}
           <div class="order-price">

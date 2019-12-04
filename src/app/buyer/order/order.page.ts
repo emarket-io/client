@@ -12,7 +12,7 @@ import { apiService, utilsService } from '../../providers/utils.service';
   styleUrls: ['order.page.scss']
 })
 export class OrderPage {
-  orders: Order[] = [];
+  orders: Order[];
   statuses: string[] = ['全部', '待付款', '待发货', '待收货', '待评价'];
   selectedStatus = this.statuses[0];
   host = environment.apiUrl;
@@ -34,20 +34,20 @@ export class OrderPage {
     if (!utilsService.getUser()) {
       return
     }
-    this.orders = [];
-    //let startTime = new Date().getTime();
+    let newOrders: Order[] = [];
     let listQuery = new ListQuery();
     listQuery.user = utilsService.getUser();
     listQuery.status = this.selectedStatus == "全部" ? '' : this.selectedStatus;
     let stream = apiService.orderClient.listForBuyer(listQuery, apiService.metaData);
     stream.on('data', response => {
-      //let endTime = new Date().getTime(); // 结束时间
-      //console.log(endTime - startTime); // 毫秒数
-      this.orders.push(response);
+      newOrders.push(response);
       //console.log(response.toObject());
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
+    });
+    stream.on('end', () => {
+      this.orders = newOrders;
     });
   }
 
