@@ -12,9 +12,9 @@ import { apiService, utilsService } from '../../providers/utils.service';
   styleUrls: ['order.page.scss']
 })
 export class OrderPage {
-  orders: Order[];
-  status = '';
+  orders: Order[] = [];
   statuses: string[] = ['全部', '待付款', '待发货', '待收货', '待评价'];
+  selectedStatus = this.statuses[0];
   host = environment.apiUrl;
   formatRBM = utilsService.formatRMB;
   slideOpts = {
@@ -26,7 +26,7 @@ export class OrderPage {
     private alertController: AlertController) { }
 
   listByStatus(status: string) {
-    this.status = status;
+    this.selectedStatus = status;
     this.ionViewWillEnter();
   }
 
@@ -34,14 +34,17 @@ export class OrderPage {
     if (!utilsService.getUser()) {
       return
     }
-    this.orders = []
+    this.orders = [];
+    //let startTime = new Date().getTime();
     let listQuery = new ListQuery();
     listQuery.user = utilsService.getUser();
-    listQuery.status = this.status == "全部" ? '' : this.status;
+    listQuery.status = this.selectedStatus == "全部" ? '' : this.selectedStatus;
     let stream = apiService.orderClient.listForBuyer(listQuery, apiService.metaData);
     stream.on('data', response => {
+      //let endTime = new Date().getTime(); // 结束时间
+      //console.log(endTime - startTime); // 毫秒数
       this.orders.push(response);
-      console.log(response.toObject())
+      //console.log(response.toObject());
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
@@ -54,7 +57,7 @@ export class OrderPage {
 
   async refund(order: Order) {
     const alert = await this.alertController.create({
-      header: '退款理由',
+      subHeader: '退款理由',
       inputs: [
         {
           name: 'refund',

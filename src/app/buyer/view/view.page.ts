@@ -25,12 +25,15 @@ export class ViewPage {
 
   ionViewWillEnter() {
     this.commodities = []
+    //let startTime = new Date().getTime();
     let kw = new StringValue();
     kw.setValue(this.keyword);
     let stream = apiService.commodityClient.search(kw, apiService.metaData);
     stream.on('data', response => {
+      //let endTime = new Date().getTime(); // 结束时间
+      //console.log(endTime - startTime); // 毫秒数
       this.commodities.push(response);
-      console.log(response.toObject())
+      //console.log(response.toObject());
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));

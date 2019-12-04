@@ -1,7 +1,10 @@
-.slide-menu {
-    font-size: small;
-    margin-top: 5px;
-  }
+ion-slides {
+    width: 100%;
+    ion-slide {
+      font-size: small;
+      padding: 3px;
+    }
+}
 
 .order-image {
     width: 20%;
@@ -29,6 +32,7 @@ ion-button {
 }
 
 ion-card {
+    box-shadow: none;
     ion-item {
         --min-height:30px;
         --padding-start:5px;
@@ -38,4 +42,9 @@ ion-card {
         --min-height:30px;
         --background: #f2f2f2;
     }
+}
+
+.selected {
+    color: var(--mycolor);
+    border-bottom: 2px solid var(--mycolor);
 }
