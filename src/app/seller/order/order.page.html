@@ -18,25 +18,26 @@
   </ion-tab-bar>
 </ion-tabs> -->
 <ion-content>
-  <ion-card *ngFor="let order of orders">
-    <ion-item lines="none">
-      <ion-card-subtitle>
+  <div *ngFor="let order of orders">
+    <!-- <ion-item lines="none"> -->
+        {{order.userId}} {{order.status}}
+      <!-- <ion-card-subtitle>
         {{order.userId}}
       </ion-card-subtitle>
       <ion-card-subtitle style="right:15px;position: absolute;">
         {{order.status}}
-      </ion-card-subtitle>
-    </ion-item>
-    <ion-item lines="none" (click)="destination(order)">
-      <img class="order-image"
-        src="{{host}}/static/{{order.snapshot?.ownerId}}/{{order.snapshot?.title}}/{{order.snapshot?.mediaList[0]?.image}}" />
+      </ion-card-subtitle> -->
+    <!-- </ion-item>
+    <ion-item lines="none" (click)="destination(order)"> -->
+      <!-- <img class="order-image"
+        src="{{host}}/static/{{order.snapshot?.ownerId}}/{{order.snapshot?.title}}/{{order.snapshot?.mediaList[0]?.image}}" /> -->
       <div class="order-content">
         {{order.snapshot?.title}}
         <div class="order-price">
           ¥{{formatRBM((order.amount/100).toString())}}
         </div>
       </div>
-    </ion-item>
+    <!-- </ion-item> -->
     <ion-toolbar>
       <ion-buttons slot="end">
         <ion-button (click)="deliver(order)">
@@ -50,5 +51,5 @@
         </ion-button>
       </ion-buttons>
     </ion-toolbar>
-  </ion-card>
+  </div>
 </ion-content>
