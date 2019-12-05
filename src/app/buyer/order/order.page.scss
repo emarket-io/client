@@ -6,35 +6,24 @@ ion-slides {
     }
 }
 
-.order-content {
-    margin-left:5px;
-    width: 75%;
-    vertical-align: top;
-}
-
-.order-price {
-    position:absolute;
-    right:20px;
-    bottom:30px;
-    font-size: large;
-    color:#f04b0f;
-}
-
 ion-button {
     font-size: small;
 }
 
 ion-list {
-    ion-item {
-        --min-height:30px;
-        --padding-start:5px;
-        --background: #f2f2f2;
-        ion-img {
-            width: 20%;
-            height: auto;
-            border-radius:5px;
-            margin-left: 10px;
+    ion-item-sliding{
+        ion-item {
+            //--background: #f2f2f2;
+            ion-img {
+                width: 20%;
+                height: auto;
+                border-radius:5px;
+                margin-left: 10px;
+            }
         }
+    }
+    ion-item {
+        --background: #f2f2f2;
     }
 }
 

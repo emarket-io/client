@@ -13,32 +13,32 @@
 </ion-slides>
 
 <ion-content>
-  <ion-list *ngFor="let order of orders">
-    <ion-item lines="none" (click)="confirmReceive(order)">
-      <ion-label>
+  <ion-list *ngFor="let order of orders" lines="none">
+    <ion-item (click)="confirmReceive(order)">
+      <ion-label style="font-size:small">
         {{order.snapshot?.ownerId?order.snapshot?.ownerId:'好农夫果园之家'}}
       </ion-label>
-      <ion-note slot="end">
+      <ion-note slot="end" style="font-size:medium">
         {{order.status}}
       </ion-note>
     </ion-item>
     <ion-item-sliding>
-      <ion-item lines="none" (click)="gotoOrderDetail(order)">
+      <ion-item (click)="gotoOrderDetail(order)">
         <ion-img
           src="{{host}}/static/{{order.snapshot?.ownerId}}/{{order.snapshot?.title}}/{{order.snapshot?.mediaList[0]?.image}}">
         </ion-img>
-        <div class="order-content">
+        <div style="height: 100%;vertical-align: top;width: 50%;margin-left: 5px;">
           {{order.snapshot?.title}}
-          <div class="order-price">
-            ¥{{formatRBM((order.amount/100).toString())}}
-          </div>
+        </div>
+        <div style="width: 30%;text-align: right;color: red;">
+          ¥{{formatRBM((order.amount/100).toString())}}
         </div>
       </ion-item>
       <ion-item-options side="end">
         <ion-item-option color="danger" (click)="delete(order)">删除</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
-    <ion-item lines="none">
+    <ion-item>
       <ion-buttons slot="end">
         <ion-button (click)="refund(order)">
           申请退款
