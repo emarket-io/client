@@ -13,15 +13,23 @@
 </ion-slides>
 
 <ion-content>
-  <ion-card *ngFor="let order of orders">
-    <div (click)="confirmReceive(order)" style="height: 30px;">
-      <div style="display:inline-block;width: 50%;">
+  <ion-list *ngFor="let order of orders">
+    <!-- <div (click)="confirmReceive(order)" style="height: 30px;">
+      <div>
         {{order.snapshot?.ownerId?order.snapshot?.ownerId:'好农夫果园之家'}}
       </div>
-      <div style="display:inline-block;width: 50%;text-align: end;">
+      <div>
         {{order.status}}
       </div>
-    </div>
+    </div> -->
+    <ion-item lines="none" (click)="confirmReceive(order)">
+      <ion-label>
+        {{order.snapshot?.ownerId?order.snapshot?.ownerId:'好农夫果园之家'}}
+      </ion-label>
+      <ion-label slot="end">
+        {{order.status}}
+      </ion-label>
+    </ion-item>
     <ion-item-sliding>
       <ion-item lines="none" (click)="gotoOrderDetail(order)">
         <ion-img
@@ -51,5 +59,5 @@
         </ion-button>
       </ion-buttons>
     </ion-toolbar> -->
-  </ion-card>
+  </ion-list>
 </ion-content>
