@@ -18,13 +18,16 @@ export class OrderPage {
 
   ionViewWillEnter() {
     this.orders = []
+    let startTime = new Date().getTime();
     let listQuery = new ListQuery();
     listQuery.user = utilsService.getUser();
     listQuery.status = '';
     let stream = apiService.orderClient.listForSeller(listQuery, apiService.metaData);
     stream.on('data', response => {
+      let endTime = new Date().getTime();
       this.orders.push(response);
-      console.log(response.toObject())
+      //console.log(response.toObject())
+      console.log(endTime - startTime);
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
