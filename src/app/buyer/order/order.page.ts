@@ -32,7 +32,7 @@ export class OrderPage {
 
   ionViewWillEnter() {
     if (!utilsService.getUser()) {
-      return
+      return this.router.navigateByUrl('/login');
     }
     //let newOrders: Order[] = [];
     let listQuery = new ListQuery();
