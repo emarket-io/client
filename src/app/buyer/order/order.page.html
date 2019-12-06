@@ -14,14 +14,14 @@
 
 <ion-content>
   <ion-list *ngFor="let order of orders" lines="none">
-    <ion-item (click)="confirmReceive(order)">
+    <!-- <ion-item (click)="confirmReceive(order)">
       <ion-label style="font-size:small">
         {{order.snapshot?.ownerId?order.snapshot?.ownerId:'好农夫果园之家'}}
       </ion-label>
       <ion-note slot="end" style="font-size:medium">
         {{order.status}}
       </ion-note>
-    </ion-item>
+    </ion-item> -->
     <ion-item-sliding>
       <ion-item (click)="gotoOrderDetail(order)">
         <ion-img
