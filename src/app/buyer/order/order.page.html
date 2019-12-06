@@ -14,15 +14,15 @@
 
 <ion-content>
   <ion-list *ngFor="let order of orders" lines="none">
-    <!-- <ion-item (click)="confirmReceive(order)">
+    <ion-item (click)="confirmReceive(order)">
       <ion-label style="font-size:small">
         {{order.snapshot?.ownerId?order.snapshot?.ownerId:'好农夫果园之家'}}
       </ion-label>
       <ion-note slot="end" style="font-size:medium">
         {{order.status}}
       </ion-note>
-    </ion-item> -->
-    <ion-item-sliding>
+    </ion-item>
+    <!-- <ion-item-sliding>
       <ion-item (click)="gotoOrderDetail(order)">
         <ion-img
           src="{{host}}/static/{{order.snapshot?.ownerId}}/{{order.snapshot?.title}}/{{order.snapshot?.mediaList[0]?.image}}">
@@ -37,9 +37,9 @@
       <ion-item-options side="end">
         <ion-item-option color="danger" (click)="delete(order)">删除</ion-item-option>
       </ion-item-options>
-    </ion-item-sliding>
+    </ion-item-sliding> -->
     <ion-item>
-      <!-- <ion-buttons slot="end">
+      <ion-buttons slot="end">
         <ion-button (click)="refund(order)">
           申请退款
         </ion-button>
@@ -49,7 +49,7 @@
         <ion-button>
           立即评价
         </ion-button>
-      </ion-buttons> -->
+      </ion-buttons>
     </ion-item>
   </ion-list>
 </ion-content>
