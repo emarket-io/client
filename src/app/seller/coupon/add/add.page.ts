@@ -32,8 +32,7 @@ export class AddPage {
 
   submit() {
     if (!this.coupon.name) {
-      utilsService.alert('请输入券的名称');
-      return
+      return utilsService.alert('请输入券的名称');
     }
     this.coupon.owner = utilsService.getUser().id;
 

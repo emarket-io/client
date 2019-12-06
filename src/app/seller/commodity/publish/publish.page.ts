@@ -5,6 +5,7 @@ import { File } from '@ionic-native/file/ngx';
 import { HttpClient } from '@angular/common/http';
 import { ModalController } from '@ionic/angular';
 import { CategoryPage } from '../category/category.page';
+import { ExpressPage } from '../express/express.page';
 import { PricePage } from '../price/price.page';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { environment } from '../../../../environments/environment';
@@ -19,10 +20,6 @@ import { apiService, utilsService } from '../../../providers/utils.service';
 })
 export class PublishPage {
   images = [];
-  //price_single = '';
-  //price_group = '';
-  //amount = '';
-  //displayMore = false;
   formData = new FormData();
   commodity = new Commodity();
 
@@ -34,17 +31,11 @@ export class PublishPage {
     private location: Location,
     private httpClient: HttpClient,
     private modalController: ModalController) {
-    // let price = new Price();
-    // price.name = '单买价';
-    // this.commodity.pricesList.push(price);
-    // let price2 = new Price();
-    // price2.name = '拼单价';
-    // this.commodity.pricesList.push(price2);
   }
 
   ionViewWillEnter() {
     if (!utilsService.getUser()) {
-      this.router.navigateByUrl('/login');
+      return this.router.navigateByUrl('/login');
     }
 
     // if (!utilsService.getUser().cert) {
@@ -56,7 +47,6 @@ export class PublishPage {
 
   addMedia() {
     const options: CameraOptions = {
-      // quality: 50,
       allowEdit: true,
       targetWidth: 500,
       targetHeight: 500,
@@ -91,7 +81,7 @@ export class PublishPage {
       //alert(base64Image);
     }, (err) => {
       // Handle error
-      utilsService.alert(err);
+      utilsService.alert(JSON.stringify(err));
     });
   }
 
@@ -154,6 +144,16 @@ export class PublishPage {
   async presentPrice() {
     const modal = await this.modalController.create({
       component: PricePage,
+      componentProps: { commodity: this.commodity },
+    });
+    await modal.present();
+    const { data } = await modal.onWillDismiss();
+    this.commodity = data.commodity;
+  }
+
+  async presentExpress() {
+    const modal = await this.modalController.create({
+      component: ExpressPage,
       componentProps: { commodity: this.commodity },
     });
     await modal.present();

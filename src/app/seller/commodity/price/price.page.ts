@@ -35,6 +35,9 @@ export class PricePage {
 
   close() {
     for (let item of this.commodity.pricesList) {
+      if (!item.name) {
+        return utilsService.alert('请输入规格');
+      }
       var reg = /^(-?\d+)(\.\d{1,2})?$/;
       if (!reg.test(item.single) || !reg.test(item.group)) {
         return utilsService.alert('请输入正确价格');
