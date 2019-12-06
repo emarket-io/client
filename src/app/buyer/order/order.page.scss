@@ -11,6 +11,7 @@ ion-button {
 }
 
 div {
+    //margin: 5px;
     ion-item-sliding{
         ion-item {
             //--background: #f2f2f2;
@@ -24,6 +25,14 @@ div {
     }
     ion-item {
         --background: #f2f2f2;
+    }
+    div {
+        div {
+            display:inline-block;
+            width: 33%;
+            font-size:small;
+            text-align: right;
+        }
     }
 }
 
