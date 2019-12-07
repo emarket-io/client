@@ -15,12 +15,12 @@ import { apiService, utilsService } from '../../providers/utils.service';
 export class OrderPage {
   orders: Order[];
   owners = new Map<string, User>();
-  statuses: string[] = ['全部', '待付款', '待发货', '待收货', '待评价'];
+  statuses: string[] = ['全部', '待发货', '待收货', '待评价', '待付款',];
   selectedStatus = this.statuses[0];
   host = environment.apiUrl;
   formatRBM = utilsService.formatRMB;
   slideOpts = {
-    slidesPerView: 5,
+    slidesPerView: 4,
   };
 
   constructor(

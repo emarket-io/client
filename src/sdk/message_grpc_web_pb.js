@@ -96,6 +96,111 @@ proto.zbay.MessagesPromiseClient =
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
  *   !proto.zbay.Message,
+ *   !proto.zbay.Message>}
+ */
+const methodInfo_Messages_Add = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Message,
+  /** @param {!proto.zbay.Message} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Message.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.Message} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.zbay.Message)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Message>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.MessagesClient.prototype.add =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/zbay.Messages/Add',
+      request,
+      metadata || {},
+      methodInfo_Messages_Add,
+      callback);
+};
+
+
+/**
+ * @param {!proto.zbay.Message} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.zbay.Message>}
+ *     A native promise that resolves to the response
+ */
+proto.zbay.MessagesPromiseClient.prototype.add =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/zbay.Messages/Add',
+      request,
+      metadata || {},
+      methodInfo_Messages_Add);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.User,
+ *   !proto.zbay.Message>}
+ */
+const methodInfo_Messages_List = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Message,
+  /** @param {!proto.zbay.User} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Message.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.User} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Message>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.MessagesClient.prototype.list =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Messages/List',
+      request,
+      metadata || {},
+      methodInfo_Messages_List);
+};
+
+
+/**
+ * @param {!proto.zbay.User} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Message>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.MessagesPromiseClient.prototype.list =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Messages/List',
+      request,
+      metadata || {},
+      methodInfo_Messages_List);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.Message,
  *   !proto.google.protobuf.Empty>}
  */
 const methodInfo_Messages_Send = new grpc.web.AbstractClientBase.MethodInfo(

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-round-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{users[commodity.ownerId]?.name}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <!-- <ion-icon name="shop"></ion-icon> -->
+        进店
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content>
+<ion-item>
+  <ion-label>消息</ion-label>
+  <ion-input [(ngModel)]="message.content"></ion-input>
+  <ion-button (click)="send()">发送</ion-button>
+</ion-item>
