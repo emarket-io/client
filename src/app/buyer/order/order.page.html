@@ -14,7 +14,7 @@
 
 <ion-content>
   <div *ngFor="let order of orders">
-    <div (click)="confirmReceive(order)" style="padding-top: 20px;">
+    <div (click)="confirmReceive(order)">
       <div style="width: 50%;text-align: left;" class="ion-text-capitalize">
         {{owners[order.snapshot?.ownerId]?.name}}
       </div>

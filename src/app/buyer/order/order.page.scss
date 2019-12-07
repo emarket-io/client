@@ -10,26 +10,30 @@ ion-button {
     font-size: small;
 }
 
-div {
-    ion-item-sliding{
-        background: #f2f2f2;
+ion-content{
+    div {
         padding: 10px;
-        ion-item {
-            ion-img {
-                width: 20%;
-                height: auto;
-                border-radius:5px;
-                margin-left: 10px;
+        ion-item-sliding{
+            background: #f2f2f2;
+            padding: 10px 0;
+            ion-item {
+                --background: #f2f2f2;
+                ion-img {
+                    width: 20%;
+                    height: auto;
+                    border-radius:5px;
+                    margin-left: 10px;
+                }
             }
         }
-    }
-    div {
-        padding:0 5px;
         div {
-            display:inline-block;
-            width: 25%;
-            font-size:small;
-            text-align: right;
+            padding:0 5px;
+            div {
+                display:inline-block;
+                width: 25%;
+                font-size:small;
+                text-align: right;
+            }
         }
     }
 }
