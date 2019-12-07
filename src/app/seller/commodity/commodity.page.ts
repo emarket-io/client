@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Commodity } from '../../../sdk/commodity_pb';
+import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service'
 
 
@@ -11,7 +12,8 @@ import { apiService, utilsService } from '../../providers/utils.service'
 })
 export class CommodityPage {
   commodities: Commodity[];
-
+  host = environment.apiUrl;
+  
   constructor(private router: Router) { }
 
   ionViewWillEnter() {

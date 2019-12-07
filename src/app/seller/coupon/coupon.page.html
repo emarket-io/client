@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-tabs>
+  <!-- <ion-tabs>
     <ion-tab-bar slot="top">
       <ion-tab-button tab="/">
         <ion-label>生效中</ion-label>
@@ -22,10 +22,7 @@
         <ion-label>已失效</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
-  </ion-tabs>
-  <ion-item>
-    aaa优惠券
-  </ion-item>
+  </ion-tabs> -->
   <ion-item *ngFor="let coupon of coupons">
     {{coupon.name}}
   </ion-item>
