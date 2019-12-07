@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-round-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>订单详情</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>发货地址</ion-label>
+    {{order.destination?.contact}} - {{order.destination?.telephone}}<br />{{order.destination?.location}}
+  </ion-item>
+  <ion-list lines="none">
+    <ion-item>
+      <ion-label>订单ID</ion-label>
+      {{order.id}}
+    </ion-item>
+    <ion-item>
+      <ion-label>商品名</ion-label>
+      {{order.snapshot?.title}}
+    </ion-item>
+    <ion-item>
+      <ion-label>规格</ion-label>
+      {{order.price?.name}}
+    </ion-item>
+    <ion-item>
+      <ion-label>费用</ion-label>
+      ¥{{formatRBM(order.groupon?order.price?.group:order.price?.single)}}×{{order.quantity}}
+    </ion-item>
+    <ion-item>
+      <ion-label>购买时间</ion-label>
+      {{order.created.toDate().toLocaleString()}}
+    </ion-item>
+    <!-- <ion-item *ngIf="order.groupon">
+      <ion-label>参团信息</ion-label>
+      {{order.groupon.orderIdsList[0]}},{{order.userId}}
+    </ion-item> -->
+  </ion-list>
+</ion-content>

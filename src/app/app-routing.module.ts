@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'seller_order', loadChildren: './seller/order/order.module#OrderPageModule' },
   { path: 'buyer_order_detail', loadChildren: './buyer/order/detail/detail.module#DetailPageModule' },
   { path: 'commodity_update', loadChildren: './seller/commodity/update/update.module#UpdatePageModule' },
-  { path: 'selection', loadChildren: './buyer/detail/selection/selection.module#SelectionPageModule' }
+  { path: 'selection', loadChildren: './buyer/detail/selection/selection.module#SelectionPageModule' },
+  { path: 'seller_order_detail', loadChildren: './seller/order/detail/detail.module#DetailPageModule' }
 ];
 @NgModule({
   imports: [

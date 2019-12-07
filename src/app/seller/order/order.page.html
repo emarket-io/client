@@ -27,7 +27,7 @@
         {{order.status}}
       </ion-card-subtitle>
     </ion-item>
-    <ion-item lines="none" (click)="destination(order)">
+    <ion-item lines="none" (click)="gotoOrderDetail(order)">
       <img class="order-image"
         src="{{host}}/static/{{order.snapshot?.ownerId}}/{{order.snapshot?.title}}/{{order.snapshot?.mediaList[0]?.image}}" />
       <div class="order-content">

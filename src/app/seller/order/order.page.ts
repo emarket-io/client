@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Order, Express, ListQuery } from '../../../sdk/order_pb';
 import { AlertController } from '@ionic/angular';
@@ -14,7 +15,9 @@ export class OrderPage {
   host = environment.apiUrl;
   formatRBM = utilsService.formatRMB;
 
-  constructor(private alertController: AlertController) { }
+  constructor(
+    private router: Router,
+    private alertController: AlertController) { }
 
   ionViewWillEnter() {
     this.orders = []
@@ -36,6 +39,10 @@ export class OrderPage {
 
   destination(order: Order) {
     utilsService.alert(order.destination.contact + '<br/>' + order.destination.telephone + '<br/>' + order.destination.location, '发货地址');
+  }
+
+  gotoOrderDetail(order: Order) {
+    this.router.navigateByUrl('seller_order_detail', { state: order });
   }
 
   async deliver(order: Order) {
