@@ -12,6 +12,8 @@ ion-button {
 
 div {
     ion-item-sliding{
+        background: #f2f2f2;
+        padding: 10px;
         ion-item {
             //--background: #f2f2f2;
             ion-img {
@@ -26,7 +28,7 @@ div {
         --background: #f2f2f2;
     }
     div {
-        padding: 5px;
+        //padding: 5px;
         div {
             display:inline-block;
             width: 25%;

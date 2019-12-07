@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { User } from '../../../sdk/user_pb';
 import { Order, ListQuery } from '../../../sdk/order_pb';
 import { AlertController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';
@@ -13,6 +14,7 @@ import { apiService, utilsService } from '../../providers/utils.service';
 })
 export class OrderPage {
   orders: Order[];
+  owners = new Map<string, User>();
   statuses: string[] = ['全部', '待付款', '待发货', '待收货', '待评价'];
   selectedStatus = this.statuses[0];
   host = environment.apiUrl;
@@ -34,7 +36,6 @@ export class OrderPage {
     if (!utilsService.getUser()) {
       return this.router.navigateByUrl('/login');
     }
-    //let newOrders: Order[] = [];
     let listQuery = new ListQuery();
     listQuery.user = utilsService.getUser();
     listQuery.status = this.selectedStatus == "全部" ? '' : this.selectedStatus;
@@ -43,13 +44,25 @@ export class OrderPage {
     stream.on('data', response => {
       this.orders.push(response);
       //console.log(response.toObject());
+      this.getOwnerById(response.snapshot.ownerId);
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
     });
-    stream.on('end', () => {
-      //this.orders = newOrders;
-    });
+  }
+
+  getOwnerById(userId: string) {
+    let user = new User();
+    user.id = userId;
+    if (!this.owners[userId]) {
+      apiService.userClient.get(user, apiService.metaData, (err: any, response: User) => {
+        if (err) {
+          console.log(err);
+        } else {
+          this.owners[userId] = response;
+        }
+      });
+    }
   }
 
   gotoOrderDetail(order: Order) {
