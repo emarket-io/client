@@ -28,6 +28,14 @@
       {{order.snapshot?.title}}
     </ion-item>
     <ion-item>
+      <ion-label>规格</ion-label>
+      {{order.price?.name}}
+    </ion-item>
+    <ion-item>
+      <ion-label>费用</ion-label>
+      ¥{{formatRBM(order.groupon?order.price?.group:order.price?.single)}}*{{order.quantity}}
+    </ion-item>
+    <ion-item>
       <ion-label>送货地址</ion-label>
       {{order.destination?.location}}
     </ion-item>

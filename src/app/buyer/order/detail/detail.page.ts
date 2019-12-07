@@ -11,6 +11,7 @@ import { apiService, utilsService } from '../../../providers/utils.service';
 })
 export class DetailPage {
   order: Order;
+  formatRBM = utilsService.formatRMB;
 
   constructor(private router: Router) {
     this.order = <Order>this.router.getCurrentNavigation().extras.state;
