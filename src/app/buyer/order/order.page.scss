@@ -15,7 +15,6 @@ div {
         background: #f2f2f2;
         padding: 10px;
         ion-item {
-            //--background: #f2f2f2;
             ion-img {
                 width: 20%;
                 height: auto;
@@ -24,11 +23,8 @@ div {
             }
         }
     }
-    ion-item {
-        --background: #f2f2f2;
-    }
     div {
-        //padding: 5px;
+        padding:0 5px;
         div {
             display:inline-block;
             width: 25%;
