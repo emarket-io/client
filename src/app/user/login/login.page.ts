@@ -1,5 +1,6 @@
 import * as grpcWeb from 'grpc-web';
 import { Events } from '@ionic/angular';
+import { Location } from "@angular/common";
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { User } from '../../../sdk/user_pb';
@@ -15,12 +16,12 @@ export class LoginPage {
 
   constructor(
     private events: Events,
-    private router: Router) { }
+    private router: Router,
+    private location: Location) { }
 
   login() {
     if (!this.user.telephone) {
-      utilsService.alert('请输入手机号码');
-      return
+      return utilsService.alert('请输入手机号码');
     }
     apiService.userClient.login(this.user, apiService.metaData, (err: grpcWeb.Error, response: User) => {
       if (err) {
@@ -29,14 +30,11 @@ export class LoginPage {
       } else {
         utilsService.setUser(response);
         this.events.publish('user:login', response.name);
-        this.router.navigateByUrl('/tabs/my');
+        //this.router.navigateByUrl('/tabs/my');
+        this.location.back();
       }
       //console.log(response);
     })
-  }
-
-  signup() {
-    this.router.navigateByUrl('/signup');
   }
 
   logout() {

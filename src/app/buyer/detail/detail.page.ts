@@ -77,7 +77,7 @@ export class DetailPage {
     }
   }
 
-  message() {
-    this.router.navigateByUrl('/session', { state: this.commodity })
+  session() {
+    this.router.navigateByUrl('session', { state: this.commodity })
   }
 }

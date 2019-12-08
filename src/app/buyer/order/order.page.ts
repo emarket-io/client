@@ -1,9 +1,9 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { User } from '../../../sdk/user_pb';
-import { Order, ListQuery } from '../../../sdk/order_pb';
 import { AlertController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';
+import { Order, ListQuery } from '../../../sdk/order_pb';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service';
 
@@ -36,11 +36,11 @@ export class OrderPage {
     if (!utilsService.getUser()) {
       return this.router.navigateByUrl('/login');
     }
+    this.orders = [];
     let listQuery = new ListQuery();
     listQuery.user = utilsService.getUser();
     listQuery.status = this.selectedStatus == "全部" ? '' : this.selectedStatus;
     let stream = apiService.orderClient.listForBuyer(listQuery, apiService.metaData);
-    this.orders = [];
     stream.on('data', response => {
       this.orders.push(response);
       //console.log(response.toObject());

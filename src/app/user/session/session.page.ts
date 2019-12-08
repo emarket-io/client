@@ -1,9 +1,10 @@
 import { Router } from '@angular/router';
+import { Location } from "@angular/common";
 import { Component } from '@angular/core';
-import { User } from '../../../../sdk/user_pb';
-import { Message } from '../../../../sdk/message_pb';
-import { Commodity } from '../../../../sdk/commodity_pb';
-import { apiService, utilsService } from '../../../providers/utils.service';
+import { User } from '../../../sdk/user_pb';
+import { Message } from '../../../sdk/message_pb';
+import { Commodity } from '../../../sdk/commodity_pb';
+import { apiService, utilsService } from '../../providers/utils.service';
 
 @Component({
   selector: 'app-session',
@@ -16,7 +17,9 @@ export class SessionPage {
   commodity: Commodity;
   users = new Map<string, User>();
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private location: Location) {
     this.commodity = <Commodity>this.router.getCurrentNavigation().extras.state;
     this.getUserById();
   }
@@ -60,7 +63,6 @@ export class SessionPage {
       if (err) {
         utilsService.alert(JSON.stringify(err));
       } else {
-        //this.popoverController.dismiss();
         this.message.content = '';
         this.ionViewWillEnter();
       }
@@ -68,7 +70,7 @@ export class SessionPage {
   }
 
   back() {
-    this.router.navigateByUrl('/detail', { state: this.commodity });
+    this.location.back();
   }
 
 }

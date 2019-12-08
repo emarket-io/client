@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { User } from '../../../sdk/user_pb';
 import { Message } from '../../../sdk/message_pb';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { apiService, utilsService } from '../../providers/utils.service';
@@ -12,6 +13,7 @@ import { apiService, utilsService } from '../../providers/utils.service';
 })
 export class MessagePage {
   messages: Message[];
+  users = new Map<string, User>();
 
   constructor(private router: Router) { }
 
@@ -23,11 +25,25 @@ export class MessagePage {
     let stream = apiService.messageClient.groupBy(utilsService.getUser(), apiService.metaData);
     stream.on('data', response => {
       this.messages.push(response);
+      this.getUserById(response.from);
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
     });
   }
+
+  getUserById(userId:string) {
+    let user = new User();
+    user.id = userId;
+    apiService.userClient.get(user, apiService.metaData, (err: any, response: User) => {
+      if (err) {
+        utilsService.alert(JSON.stringify(err));
+      } else {
+        this.users[userId] = response;
+      }
+    });
+  }
+
 
   gotoSession(from: string) {
     let commodity = new Commodity();
