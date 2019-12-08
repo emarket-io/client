@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar class="ion-text-center">
     <ion-buttons slot="start">
-      <ion-back-button icon="arrow-round-back"></ion-back-button>
+      <ion-back-button icon="arrow-round-back" (click)="back()"></ion-back-button>
     </ion-buttons>
     <ion-title>{{users[commodity.ownerId]?.name}}</ion-title>
     <ion-buttons slot="end">
@@ -14,10 +14,17 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list lines="none">
+    <ion-item *ngFor="let msg of messages">
+      [{{msg.from}}]:{{msg.content}}
+    </ion-item>
+  </ion-list>
 </ion-content>
-<ion-item>
+
+<!-- <ion-footer> -->
+<ion-item color="primary">
   <ion-label>消息</ion-label>
   <ion-input [(ngModel)]="message.content"></ion-input>
   <ion-button (click)="send()">发送</ion-button>
 </ion-item>
+<!-- </ion-footer> -->

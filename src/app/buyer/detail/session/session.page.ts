@@ -6,11 +6,12 @@ import { Commodity } from '../../../../sdk/commodity_pb';
 import { apiService, utilsService } from '../../../providers/utils.service';
 
 @Component({
-  selector: 'app-message',
-  templateUrl: './message.page.html',
-  styleUrls: ['./message.page.scss'],
+  selector: 'app-session',
+  templateUrl: './session.page.html',
+  styleUrls: ['./session.page.scss'],
 })
-export class MessagePage {
+export class SessionPage {
+  messages: Message[];
   message = new Message();
   commodity: Commodity;
   users = new Map<string, User>();
@@ -18,6 +19,23 @@ export class MessagePage {
   constructor(private router: Router) {
     this.commodity = <Commodity>this.router.getCurrentNavigation().extras.state;
     this.getUserById();
+  }
+
+  ionViewWillEnter() {
+    if (!utilsService.getUser()) {
+      return this.router.navigateByUrl('/login');
+    }
+    this.messages = [];
+    let msg = new Message();
+    msg.from = utilsService.getUser().id;
+    msg.to = this.commodity.ownerId;
+    let stream = apiService.messageClient.list(msg, apiService.metaData);
+    stream.on('data', response => {
+      this.messages.push(response);
+    });
+    stream.on('error', err => {
+      utilsService.alert(JSON.stringify(err));
+    });
   }
 
   getUserById() {
@@ -33,15 +51,24 @@ export class MessagePage {
   }
 
   send() {
+    if (!this.message.content) {
+      return utilsService.alert('消息内容为空');
+    }
     this.message.to = this.commodity.ownerId;
+    this.message.from = utilsService.getUser().id;
     apiService.messageClient.add(this.message, apiService.metaData, (err: any, response: Message) => {
       if (err) {
         utilsService.alert(JSON.stringify(err));
       } else {
         //this.popoverController.dismiss();
         this.message.content = '';
+        this.ionViewWillEnter();
       }
     });
+  }
+
+  back() {
+    this.router.navigateByUrl('/detail', { state: this.commodity });
   }
 
 }

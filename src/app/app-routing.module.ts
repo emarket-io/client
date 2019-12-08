@@ -23,7 +23,8 @@ const routes: Routes = [
   { path: 'commodity_update', loadChildren: './seller/commodity/update/update.module#UpdatePageModule' },
   { path: 'selection', loadChildren: './buyer/detail/selection/selection.module#SelectionPageModule' },
   { path: 'seller_order_detail', loadChildren: './seller/order/detail/detail.module#DetailPageModule' },
-  { path: 'message', loadChildren: './buyer/detail/message/message.module#MessagePageModule' }
+  { path: 'session', loadChildren: './buyer/detail/session/session.module#SessionPageModule' },
+  { path: 'message', loadChildren: './user/message/message.module#MessagePageModule' },
 ];
 @NgModule({
   imports: [

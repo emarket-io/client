@@ -150,12 +150,12 @@ proto.zbay.MessagesPromiseClient.prototype.add =
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.zbay.User,
+ *   !proto.zbay.Message,
  *   !proto.zbay.Message>}
  */
 const methodInfo_Messages_List = new grpc.web.AbstractClientBase.MethodInfo(
   proto.zbay.Message,
-  /** @param {!proto.zbay.User} request */
+  /** @param {!proto.zbay.Message} request */
   function(request) {
     return request.serializeBinary();
   },
@@ -164,7 +164,7 @@ const methodInfo_Messages_List = new grpc.web.AbstractClientBase.MethodInfo(
 
 
 /**
- * @param {!proto.zbay.User} request The request proto
+ * @param {!proto.zbay.Message} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.zbay.Message>}
@@ -181,7 +181,7 @@ proto.zbay.MessagesClient.prototype.list =
 
 
 /**
- * @param {!proto.zbay.User} request The request proto
+ * @param {!proto.zbay.Message} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.zbay.Message>}
@@ -194,6 +194,56 @@ proto.zbay.MessagesPromiseClient.prototype.list =
       request,
       metadata || {},
       methodInfo_Messages_List);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.User,
+ *   !proto.zbay.Message>}
+ */
+const methodInfo_Messages_GroupBy = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Message,
+  /** @param {!proto.zbay.User} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Message.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.User} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Message>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.MessagesClient.prototype.groupBy =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Messages/GroupBy',
+      request,
+      metadata || {},
+      methodInfo_Messages_GroupBy);
+};
+
+
+/**
+ * @param {!proto.zbay.User} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Message>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.MessagesPromiseClient.prototype.groupBy =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Messages/GroupBy',
+      request,
+      metadata || {},
+      methodInfo_Messages_GroupBy);
 };
 
 

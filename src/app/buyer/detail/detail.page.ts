@@ -5,7 +5,6 @@ import { Wechat } from '@ionic-native/wechat/ngx';
 import { PopoverController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { SelectionPage } from './selection/selection.page';
-import { MessagePage } from './message/message.page';
 import { utilsService } from '../../providers/utils.service';
 import { environment } from '../../../environments/environment';
 
@@ -78,7 +77,7 @@ export class DetailPage {
     }
   }
 
-  message(ev: Event) {
-    this.router.navigateByUrl('/message', { state: this.commodity })
+  message() {
+    this.router.navigateByUrl('/session', { state: this.commodity })
   }
 }

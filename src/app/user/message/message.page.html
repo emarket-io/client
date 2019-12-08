@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-round-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>消息中心</ion-title>
+    <!-- <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon name="shop"></ion-icon>
+          进店
+        </ion-button>
+      </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  来自于：
+  <ion-list lines="none">
+    <ion-item *ngFor="let msg of messages" (click)="gotoSession(msg.from)">
+      {{msg.from}}
+    </ion-item>
+  </ion-list>
+</ion-content>

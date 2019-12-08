@@ -21,6 +21,11 @@ export class MessagesClient {
   ): grpcWeb.ClientReadableStream<Message>;
 
   list(
+    request: Message,
+    metadata?: grpcWeb.Metadata
+  ): grpcWeb.ClientReadableStream<Message>;
+
+  groupBy(
     request: user_pb.User,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Message>;
@@ -62,6 +67,11 @@ export class MessagesPromiseClient {
   ): Promise<Message>;
 
   list(
+    request: Message,
+    metadata?: grpcWeb.Metadata
+  ): grpcWeb.ClientReadableStream<Message>;
+
+  groupBy(
     request: user_pb.User,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Message>;
