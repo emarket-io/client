@@ -19,6 +19,7 @@ export class PopoverPage {
 
   ionViewWillEnter() {
     if (!utilsService.getUser()) {
+      this.popoverController.dismiss();
       return this.router.navigateByUrl('/login');
     }
     this.address.location = this.location;

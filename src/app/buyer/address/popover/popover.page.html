@@ -16,16 +16,19 @@
   <!-- <ion-item lines="none">
   </ion-item> -->
   <ion-item>
-    <ion-label>收货姓名</ion-label>
+    <!-- <ion-label>收货姓名</ion-label> -->
     <ion-input placeholder="收货姓名" [(ngModel)]="address.contact"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>联系方式</ion-label>
+    <!-- <ion-label>联系方式</ion-label> -->
     <ion-input placeholder="联系方式" [(ngModel)]="address.telephone"></ion-input>
   </ion-item>
-  <ion-item>
+  <!-- <ion-item lines="none">
     <ion-label>详细地址</ion-label>
-    <ion-input placeholder="详细地址（如省/市/区/镇/街道/小区/村）" [(ngModel)]="address.location"></ion-input>
+  </ion-item> -->
+  <ion-item lines="none">
+    <!-- <ion-label position="stacked">详细地址</ion-label> -->
+    <ion-textarea placeholder="详细地址(如省/市/区/镇/街道/小区/村)" [(ngModel)]="address.location"></ion-textarea>
   </ion-item>
 </ion-content>
 
