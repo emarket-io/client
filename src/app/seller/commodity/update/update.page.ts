@@ -46,6 +46,8 @@ export class UpdatePage {
     apiService.commodityClient.update(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
       if (err) {
         utilsService.alert(JSON.stringify(err));
+      } else {
+        this.router.navigateByUrl('/commodity')
       }
     });
   }

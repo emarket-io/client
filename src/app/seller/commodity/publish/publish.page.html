@@ -30,11 +30,18 @@
     <ion-item lines="none" (click)="presentPrice()">
       <ion-label>价格</ion-label>
       <ion-input placeholder="请输入价格" *ngIf="commodity.pricesList.length==0"></ion-input>
-      <ion-item-group slot="end">
-        <div *ngFor="let price of commodity.pricesList">
-          <ion-label>{{price.name}} ¥{{price.single}} ¥{{price.group}}</ion-label>
-        </div>
-      </ion-item-group>
+      <ion-grid *ngIf="commodity.pricesList.length>0">
+        <ion-row>
+          <ion-col>规格</ion-col>
+          <ion-col>单买价</ion-col>
+          <ion-col>拼团价</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let price of commodity.pricesList">
+          <ion-col>{{price.name}}</ion-col>
+          <ion-col>¥{{price.single}}</ion-col>
+          <ion-col>¥{{price.group}}</ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
     <ion-item (click)="presentExpress()">
       <ion-label>物流</ion-label>

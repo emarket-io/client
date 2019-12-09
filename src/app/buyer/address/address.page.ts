@@ -35,7 +35,7 @@ export class AddressPage {
       component: PopoverPage,
       componentProps: { location: passCurrentLocation ? this.address : '' }
     });
-    popover.style.cssText = '--width: 90%;--height:50%';
+    popover.style.cssText = '--width: 90%;--height:60%';
     await popover.present();
     const { data } = await popover.onWillDismiss();
     this.ionViewWillEnter();
