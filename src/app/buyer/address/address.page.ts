@@ -30,11 +30,12 @@ export class AddressPage {
     });
   }
 
-  async presentPopover() {
+  async presentPopover(passCurrentLocation?: boolean) {
     const popover = await this.popoverController.create({
-      component: PopoverPage
+      component: PopoverPage,
+      componentProps: { location: passCurrentLocation ? this.address : '' }
     });
-    popover.style.cssText = '--width: 90%;';
+    popover.style.cssText = '--width: 90%;--height:50%';
     await popover.present();
     const { data } = await popover.onWillDismiss();
     this.ionViewWillEnter();

@@ -20,7 +20,7 @@
       <h3>定位地址</h3>
     </ion-label>
   </ion-item>
-  <ion-item>
+  <ion-item (click)="presentPopover(true)">
     <ion-icon name="pin"></ion-icon>
     <ion-label>
       {{address}}

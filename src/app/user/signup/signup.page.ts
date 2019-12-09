@@ -18,10 +18,6 @@ export class SignupPage {
     private router: Router,
     private location: Location) { }
 
-  login() {
-    this.router.navigateByUrl('/login');
-  }
-
   signup() {
     if (!this.user.telephone) {
       return utilsService.alert('请输入手机号码');
@@ -31,15 +27,20 @@ export class SignupPage {
       return utilsService.alert('两次密码输入不一致');
     }
 
-    apiService.userClient.add(this.user, apiService.metaData, (err: grpcWeb.Error, response: User) => {
-      if (err) {
-        utilsService.alert(err.message);
+    this.user.id = this.user.telephone;
+    apiService.userClient.get(this.user, apiService.metaData, (err: any, response: User) => {
+      if (response) {
+        utilsService.alert('用户已存在');
       } else {
-        //this.router.navigateByUrl('/login');
-        this.location.back();
+        apiService.userClient.add(this.user, apiService.metaData, (err: grpcWeb.Error, response: User) => {
+          if (err) {
+            utilsService.alert(err.message);
+          } else {
+            this.location.back();
+          }
+          console.log(response);
+        })
       }
-      console.log(response);
-    })
+    });
   }
-
 }
