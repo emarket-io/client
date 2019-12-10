@@ -22,7 +22,7 @@
       <ion-avatar slot="start">
         <ion-img src="assets/fruit/apple.png"></ion-img>
       </ion-avatar>
-      {{users[msg.from]?.name}}
+      {{users[msg.from]?.shopsList[0]?.name?users[msg.from]?.shopsList[0].name:users[msg.from]?.name}}
     </ion-item>
   </ion-list>
 </ion-content>

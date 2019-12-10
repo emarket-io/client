@@ -16,7 +16,7 @@
   <div *ngFor="let order of orders">
     <div (click)="confirmReceive(order)">
       <div style="width: 50%;text-align: left;" class="ion-text-capitalize">
-        {{owners[order.snapshot?.ownerId]?.name}}
+        {{users[order.snapshot?.ownerId]?.shopsList[0]?.name?users[order.snapshot?.ownerId]?.shopsList[0].name:users[order.snapshot?.ownerId]?.name}}
       </div>
       <div style="width: 50%;font-size:medium;padding-right: 10px;">
         {{order.status}}

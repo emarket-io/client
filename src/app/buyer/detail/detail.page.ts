@@ -1,11 +1,12 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { User } from '../../../sdk/user_pb';
 import { Order, Groupon } from '../../../sdk/order_pb';
 import { Wechat } from '@ionic-native/wechat/ngx';
 import { PopoverController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { SelectionPage } from './selection/selection.page';
-import { utilsService } from '../../providers/utils.service';
+import { apiService, utilsService } from '../../providers/utils.service';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -16,6 +17,7 @@ import { environment } from '../../../environments/environment';
 export class DetailPage {
   host = environment.apiUrl;
   commodity: Commodity;
+  owner: User;
   formatRBM = utilsService.formatRMB;
   slideOpts = {
     slidesPerView: 1,
@@ -32,6 +34,7 @@ export class DetailPage {
   }
 
   ionViewWillEnter() {
+    this.getOwnerById();
   }
 
   share() {
@@ -79,5 +82,17 @@ export class DetailPage {
 
   session() {
     this.router.navigateByUrl('session', { state: this.commodity })
+  }
+
+  getOwnerById() {
+    let user = new User();
+    user.id = this.commodity.ownerId;
+    apiService.userClient.get(user, apiService.metaData, (err: any, response: User) => {
+      if (err) {
+        utilsService.alert(JSON.stringify(err));
+      } else {
+        this.owner = response;
+      }
+    });
   }
 }

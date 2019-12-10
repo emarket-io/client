@@ -22,7 +22,7 @@ export class UtilsService {
     let jsonUser = JSON.parse(window.localStorage.getItem('user'));
     let user = new User();
     for (let key in jsonUser) {
-      if (key.search('Map|created|cert') == -1) {
+      if (key.search('Map|created|cert|List') == -1) {
         user[key] = jsonUser[key]
       }
     }

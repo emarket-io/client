@@ -14,7 +14,7 @@ import { apiService, utilsService } from '../../providers/utils.service';
 })
 export class OrderPage {
   orders: Order[];
-  owners = new Map<string, User>();
+  users = new Map<string, User>();
   statuses: string[] = ['全部', '待发货', '待收货', '待评价', '待付款',];
   selectedStatus = this.statuses[0];
   host = environment.apiUrl;
@@ -54,12 +54,12 @@ export class OrderPage {
   getOwnerById(userId: string) {
     let user = new User();
     user.id = userId;
-    if (!this.owners[userId]) {
+    if (!this.users[userId]) {
       apiService.userClient.get(user, apiService.metaData, (err: any, response: User) => {
         if (err) {
           console.log(err);
         } else {
-          this.owners[userId] = response;
+          this.users[userId] = response;
         }
       });
     }

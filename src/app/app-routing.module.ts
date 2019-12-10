@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'seller_order_detail', loadChildren: './seller/order/detail/detail.module#DetailPageModule' },
   { path: 'session', loadChildren: './user/session/session.module#SessionPageModule' },
   { path: 'message', loadChildren: './user/message/message.module#MessagePageModule' },
+  { path: 'shop', loadChildren: './seller/shop/shop.module#ShopPageModule' },
 ];
 @NgModule({
   imports: [

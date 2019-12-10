@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button icon="arrow-round-back" (click)="back()"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{users[commodity.ownerId]?.name}}</ion-title>
+    <ion-title>{{users[commodity.ownerId]?.shopsList[0]?.name?users[commodity.ownerId]?.shopsList[0].name:users[commodity.ownerId]?.name}}</ion-title>
     <ion-buttons slot="end">
       <ion-button>
         <!-- <ion-icon name="shop"></ion-icon> -->

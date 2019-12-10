@@ -13,6 +13,9 @@ export class User extends jspb.Message {
   cert: Certification | undefined;
   hascert(): boolean;
   clearcert(): void;
+  shopsList: Array<Shop>;
+  clearshopsList(): void;
+  addShops(value?: Shop, index?: number): Shop;
   annotationsMap: jspb.Map<string, string>;
   clearannotationsMap(): void;
   created: google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -35,6 +38,7 @@ export namespace User {
     icon: string,
     signature: string,
     cert?: Certification.AsObject,
+    shopsList: Array<Shop.AsObject>,
     annotationsMap: Array<[string, string]>,
     created?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
@@ -92,6 +96,26 @@ export namespace Address {
     pb_default: boolean,
     annotationsMap: Array<[string, string]>,
     created?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class Shop extends jspb.Message {
+  id: string;
+  name: string;
+  description: string;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Shop.AsObject;
+  static toObject(includeInstance: boolean, msg: Shop): Shop.AsObject;
+  static serializeBinaryToWriter(message: Shop, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Shop;
+  static deserializeBinaryFromReader(message: Shop, reader: jspb.BinaryReader): Shop;
+}
+
+export namespace Shop {
+  export type AsObject = {
+    id: string,
+    name: string,
+    description: string,
   }
 }
 
