@@ -15,6 +15,7 @@ export class SessionPage {
   messages: Message[];
   message = new Message();
   commodity: Commodity;
+  user = utilsService.getUser();
   users = new Map<string, User>();
 
   constructor(
@@ -28,16 +29,20 @@ export class SessionPage {
     if (!utilsService.getUser()) {
       return this.router.navigateByUrl('/login');
     }
-    this.messages = [];
+    //this.messages = [];
+    let newMessages = [];
     let msg = new Message();
     msg.from = utilsService.getUser().id;
     msg.to = this.commodity.ownerId;
     let stream = apiService.messageClient.list(msg, apiService.metaData);
     stream.on('data', response => {
-      this.messages.push(response);
+      newMessages.push(response);
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
+    });
+    stream.on('end', () => {
+      this.messages = newMessages;
     });
   }
 

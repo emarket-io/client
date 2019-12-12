@@ -3,21 +3,37 @@
     <ion-buttons slot="start">
       <ion-back-button icon="arrow-round-back" (click)="back()"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{users[commodity.ownerId]?.shopsList[0]?.name?users[commodity.ownerId]?.shopsList[0].name:users[commodity.ownerId]?.name}}</ion-title>
-    <ion-buttons slot="end">
+    <ion-title>
+      {{users[commodity.ownerId]?.shopsList[0]?.name?users[commodity.ownerId]?.shopsList[0].name:users[commodity.ownerId]?.name}}
+    </ion-title>
+    <!-- <ion-buttons slot="end">
       <ion-button>
-        <!-- <ion-icon name="shop"></ion-icon> -->
         进店
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list lines="none">
-    <ion-item *ngFor="let msg of messages">
-      [{{msg.from}}]:{{msg.content}}
-    </ion-item>
+    <ion-item-sliding *ngFor="let msg of messages">
+      <ion-item *ngIf="msg.from!=user.id">
+        <ion-avatar slot="start">
+          <img src="assets/fruit/apple.png">
+        </ion-avatar>
+        <ion-badge class="ion-text-wrap" slot="start">{{msg.content}}
+          ({{msg.created?.seconds*1000 | date:'MM/dd H:mm'}})
+        </ion-badge>
+      </ion-item>
+      <ion-item *ngIf="msg.from==user.id">
+        <ion-badge class="ion-text-wrap" color="success" slot="end">{{msg.content}}
+          ({{msg.created?.seconds*1000 | date:'MM/dd H:mm'}})
+        </ion-badge>
+        <ion-avatar slot="end">
+          <img src="assets/fruit/apple.png">
+        </ion-avatar>
+      </ion-item>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>
 
