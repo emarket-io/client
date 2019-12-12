@@ -6,11 +6,9 @@
     <ion-title>
       {{users[commodity.ownerId]?.shopsList[0]?.name?users[commodity.ownerId]?.shopsList[0].name:users[commodity.ownerId]?.name}}
     </ion-title>
-    <!-- <ion-buttons slot="end">
-      <ion-button>
-        进店
-      </ion-button>
-    </ion-buttons> -->
+    <ion-buttons slot="end">
+      <ion-button></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -22,12 +20,12 @@
           <img src="assets/fruit/apple.png">
         </ion-avatar>
         <ion-badge class="ion-text-wrap" slot="start">{{msg.content}}
-          ({{msg.created?.seconds*1000 | date:'MM/dd H:mm'}})
+          ({{msg.created?.toDate() | date:'MM/dd H:mm'}})
         </ion-badge>
       </ion-item>
       <ion-item *ngIf="msg.from==user.id">
         <ion-badge class="ion-text-wrap" color="success" slot="end">{{msg.content}}
-          ({{msg.created?.seconds*1000 | date:'MM/dd H:mm'}})
+          ({{msg.created?.toDate() | date:'MM/dd H:mm'}})
         </ion-badge>
         <ion-avatar slot="end">
           <img src="assets/fruit/apple.png">

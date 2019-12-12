@@ -29,7 +29,6 @@ export class SessionPage {
     if (!utilsService.getUser()) {
       return this.router.navigateByUrl('/login');
     }
-    //this.messages = [];
     let newMessages = [];
     let msg = new Message();
     msg.from = utilsService.getUser().id;
