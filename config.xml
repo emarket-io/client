@@ -101,6 +101,6 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.2" />
     <plugin name="cordova-plugin-gubnoi-alipay" spec="0.0.10">
-        <variable name="APP_ID" value="2018111762227213" />
+        <variable name="APP_ID" value="2019121169872457" />
     </plugin>
 </widget>
