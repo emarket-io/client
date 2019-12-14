@@ -23,8 +23,13 @@
   </ion-slides>
   <ion-grid>
     <ion-row>
-      <ion-col style="color:orangered">
-        ¥<span style="font-size: x-large;font-weight: bolder;">{{formatRBM(commodity.pricesList[0]?.group)}}</span>
+      <ion-col>
+        <div style="color:orangered">¥<span
+            style="font-size: x-large;font-weight: bolder;">{{formatRBM(commodity.pricesList[0]?.group)}}</span>
+          <span style="font-size:x-small">起 </span>
+          <span
+            style="font-size:x-small;text-decoration:line-through;color:black">¥{{commodity.pricesList[0]?.single}}</span>
+        </div>
       </ion-col>
       <ion-col style="text-align: right;font-size: small">
         月销量999件

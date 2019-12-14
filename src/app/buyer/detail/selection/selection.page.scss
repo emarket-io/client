@@ -4,6 +4,19 @@ ion-item {
     }
 }
 
+ion-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    ion-slides {
+        background: #f2f2f2;
+        height: 25px;
+        ion-slide {
+            font-size: smaller;
+        }
+    }
+}
+
 .selected {
     color: var(--mytextcolor);
     background-color: var(--mycolor);

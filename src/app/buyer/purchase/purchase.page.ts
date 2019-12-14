@@ -93,7 +93,7 @@ export class PurchasePage {
                           }
                         });
                       }
-                      this.router.navigateByUrl('/tabs/cart');
+                      this.router.navigateByUrl('/tabs/order');
                     }
                   });
                 } else {

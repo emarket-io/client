@@ -25,12 +25,12 @@ export class PopoverPage {
     this.address.location = this.location;
   }
 
-  submitAddress() {
+  save() {
     if (!this.address.contact) {
-      return utilsService.alert('姓名为空');
+      return utilsService.alert('收货人为空');
     }
     if (!this.address.telephone) {
-      return utilsService.alert('联系方式为空');
+      return utilsService.alert('手机号码为空');
     }
     if (!this.address.location) {
       return utilsService.alert('详细地址为空');
