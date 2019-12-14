@@ -10,31 +10,31 @@
 <!-- </ion-header> -->
 
 <ion-content>
-  <!-- <ion-item lines="none">
-    收货地址
-  </ion-item> -->
-  <!-- <ion-item lines="none">
-  </ion-item> -->
-  <ion-item>
-    <ion-label>收货姓名</ion-label>
-    <ion-input placeholder="请输入收货人姓名" [(ngModel)]="address.contact"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>联系方式</ion-label>
-    <ion-input placeholder="请输入收货人联系方式" [(ngModel)]="address.telephone"></ion-input>
-  </ion-item>
-  <ion-item lines="none">
-    <ion-label position="floating">
-      <span style="font-size: larger;">详细地址</span>
-    </ion-label>
-    <ion-textarea placeholder="请输入收货详细地址(如省/市/区/镇/街道/小区/村)" [(ngModel)]="address.location"></ion-textarea>
-  </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-label>收货人</ion-label>
+      <ion-input placeholder="请填写收货人" [(ngModel)]="address.contact"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>手机号码</ion-label>
+      <ion-input placeholder="收货人手机号码" [(ngModel)]="address.telephone"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="floating">
+        <span style="font-size: larger;">详细地址</span>
+      </ion-label>
+      <ion-textarea placeholder="请输入收货详细地址(如省/市/区/镇/街道/小区/村)" [(ngModel)]="address.location"></ion-textarea>
+    </ion-item>
+  </ion-list>
 </ion-content>
 
 <ion-footer style="position: fixed;bottom: 0;width: 100%;">
   <ion-item>
     <ion-button (click)="submitAddress()">
-      确定
+      保存
+    </ion-button>
+    <ion-button (click)="cancel()">
+      取消
     </ion-button>
   </ion-item>
 </ion-footer>

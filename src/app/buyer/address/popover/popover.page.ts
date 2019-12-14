@@ -46,4 +46,8 @@ export class PopoverPage {
       }
     });
   }
+
+  cancel() {
+    this.popoverController.dismiss();
+  }
 }

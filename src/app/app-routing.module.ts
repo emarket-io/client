@@ -28,9 +28,7 @@ const routes: Routes = [
   { path: 'shop', loadChildren: './seller/shop/shop.module#ShopPageModule' },
 ];
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
