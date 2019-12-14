@@ -10,7 +10,7 @@
 <!-- </ion-header> -->
 
 <ion-content>
-  <ion-list>
+  <ion-list lines="none">
     <ion-item>
       <ion-label>收货人</ion-label>
       <ion-input placeholder="请填写收货人" [(ngModel)]="address.contact"></ion-input>
@@ -28,13 +28,17 @@
   </ion-list>
 </ion-content>
 
-<ion-footer style="position: fixed;bottom: 0;width: 100%;">
-  <ion-item>
-    <ion-button (click)="submitAddress()">
-      保存
-    </ion-button>
-    <ion-button (click)="cancel()">
-      取消
-    </ion-button>
-  </ion-item>
+<ion-footer style="position: fixed;bottom: 0;width: 100%;" no-border>
+  <ion-toolbar>
+    <ion-buttons>
+    </ion-buttons>
+    <ion-item-group slot="end">
+      <ion-button (click)="cancel()" size="small">
+        取消
+      </ion-button>
+      <ion-button (click)="submitAddress()" size="small">
+        保存
+      </ion-button>
+    </ion-item-group>
+  </ion-toolbar>
 </ion-footer>
