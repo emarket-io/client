@@ -1,5 +1,8 @@
 import { Component, } from '@angular/core';
-import { utilsService } from '../../providers/utils.service'
+import { Commodity } from '../../../sdk/commodity_pb';
+import { environment } from '../../../environments/environment';
+import { apiService, utilsService } from '../../providers/utils.service';
+import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Router } from '@angular/router';
 
@@ -12,18 +15,31 @@ declare let AMap;
 })
 export class HomePage {
   city = utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
+  host = environment.apiUrl;
   slideOpts = {
-    slidesPerView: 1,
+    slidesPerView: 3,
+    slidesPerGroup: 3,
     autoplay: {
       delay: 2000,
     },
   };
+  commodities: Commodity[];
 
   constructor(
     private router: Router,
     private geolocation: Geolocation) { }
 
   ionViewWillEnter() {
+    this.commodities = []
+    let kw = new StringValue();
+    //kw.setValue(this.keyword);
+    let stream = apiService.commodityClient.search(kw, apiService.metaData);
+    stream.on('data', response => {
+      this.commodities.push(response);
+    });
+    stream.on('error', err => {
+      utilsService.alert(JSON.stringify(err));
+    });
     this.getLocation();
   }
 

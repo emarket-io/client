@@ -56,8 +56,19 @@
       品牌館
     </div>
   </ion-card-content>
-
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed" style="margin-bottom: 50px;">
+  <div style="margin: 10px 20px;">
+    <ion-card-subtitle>为你推荐</ion-card-subtitle>
+    <ion-slides [options]="slideOpts">
+      <ion-slide *ngFor="let commodity of commodities">
+        <ion-card>
+          <ion-img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}">
+          </ion-img>
+          <ion-label>{{commodity.title}}</ion-label>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <!-- <ion-fab vertical="bottom" horizontal="center" slot="fixed" style="margin-bottom: 50px;">
     <ion-fab-button color="primary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
@@ -81,5 +92,5 @@
         <ion-icon name="videocam"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>
-  </ion-fab>
+  </ion-fab> -->
 </ion-content>
