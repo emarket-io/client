@@ -18,3 +18,16 @@
     font-size: large;
     color:#f04b0f;
 }
+
+.selected {
+    color: var(--mycolor);
+    border-bottom: 2px solid var(--mycolor);
+}
+
+ion-slides {
+    width: 100%;
+    ion-slide {
+      font-size: small;
+      padding: 3px;
+    }
+}

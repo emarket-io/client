@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { Order, Express, ListQuery } from '../../../sdk/order_pb';
 import { AlertController } from '@ionic/angular';
 import { environment } from '../../../environments/environment';
+import { Order, Express, ListQuery } from '../../../sdk/order_pb';
 import { apiService, utilsService } from '../../providers/utils.service';
 
 @Component({
@@ -11,20 +11,30 @@ import { apiService, utilsService } from '../../providers/utils.service';
   styleUrls: ['./order.page.scss'],
 })
 export class OrderPage {
+  statuses: string[] = ['待发货', '待成团', '待退款', '待评价', '全部'];
+  selectedStatus = this.statuses[0];
   orders: Order[];
   host = environment.apiUrl;
   formatRBM = utilsService.formatRMB;
+  slideOpts = {
+    slidesPerView: 3,
+  };
 
   constructor(
     private router: Router,
     private alertController: AlertController) { }
+
+  listByStatus(status: string) {
+    this.selectedStatus = status;
+    this.ionViewWillEnter();
+  }
 
   ionViewWillEnter() {
     this.orders = []
     let startTime = new Date().getTime();
     let listQuery = new ListQuery();
     listQuery.user = utilsService.getUser();
-    listQuery.status = '';
+    listQuery.status = this.selectedStatus == "全部" ? '' : this.selectedStatus;
     let stream = apiService.orderClient.listForSeller(listQuery, apiService.metaData);
     stream.on('data', response => {
       let endTime = new Date().getTime();
@@ -35,10 +45,6 @@ export class OrderPage {
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
     });
-  }
-
-  destination(order: Order) {
-    utilsService.alert(order.destination.contact + '<br/>' + order.destination.telephone + '<br/>' + order.destination.location, '发货地址');
   }
 
   gotoOrderDetail(order: Order) {

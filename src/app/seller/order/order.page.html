@@ -7,16 +7,12 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- <ion-tabs>
-  <ion-tab-bar slot="top">
-    <ion-tab-button tab="/">
-      <ion-label>待发货</ion-label>
-    </ion-tab-button>
-    <ion-tab-button tab="/">
-      <ion-label>待退款</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs> -->
+<ion-slides [options]="slideOpts">
+  <ion-slide *ngFor="let status of statuses" [class.selected]="selectedStatus==status" (click)="listByStatus(status)">
+    {{status}}
+  </ion-slide>
+</ion-slides>
+
 <ion-content>
   <ion-card *ngFor="let order of orders">
     <ion-item lines="none">
