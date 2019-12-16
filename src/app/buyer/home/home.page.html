@@ -58,12 +58,14 @@
   </ion-card-content>
   <div style="margin: 10px 20px;">
     <ion-card-subtitle>为你推荐</ion-card-subtitle>
-    <ion-slides [options]="slideOpts">
+    <ion-slides #mySlider [options]="slideOpts">
       <ion-slide *ngFor="let commodity of commodities">
-        <ion-card>
-          <ion-img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}">
-          </ion-img>
-          <ion-label>{{commodity.title}}</ion-label>
+        <ion-card style="margin:5px">
+          <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
+          <ion-card-header style="text-align: left;padding:2px;">
+            <ion-card-subtitle style="font-size: smaller;">{{commodity.title}}</ion-card-subtitle>
+            <ion-label style="color: red;">¥{{commodity.pricesList[0]?.group}}</ion-label>
+          </ion-card-header>
         </ion-card>
       </ion-slide>
     </ion-slides>

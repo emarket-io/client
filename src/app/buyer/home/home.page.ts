@@ -1,5 +1,6 @@
-import { Component, } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Commodity } from '../../../sdk/commodity_pb';
+import { IonSlides } from '@ionic/angular';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service';
 import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
@@ -14,6 +15,7 @@ declare let AMap;
   styleUrls: ['home.page.scss']
 })
 export class HomePage {
+  @ViewChild('mySlider', { static: false }) slider: IonSlides;
   city = utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
   host = environment.apiUrl;
   slideOpts = {
@@ -41,6 +43,14 @@ export class HomePage {
       utilsService.alert(JSON.stringify(err));
     });
     this.getLocation();
+  }
+
+  ionViewWillLeave() {
+    this.slider.stopAutoplay();
+  }
+
+  ionViewDidEnter() {
+    this.slider.startAutoplay();
   }
 
   gotoView(keyword: string) {
