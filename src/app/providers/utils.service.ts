@@ -39,7 +39,7 @@ export class UtilsService {
 
   formatRMB(value: string): string {
     if (!value) {
-      return ""
+      return "0.00"
     }
     if (value.indexOf('.') == -1) {
       return value = value + ".00"

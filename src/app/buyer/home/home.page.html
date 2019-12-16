@@ -63,11 +63,11 @@
         <ion-card style="margin:5px">
           <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
           <ion-card-header style="text-align: left;padding:2px;">
-            <ion-card-subtitle style="font-size: smaller;">{{commodity.title}}</ion-card-subtitle>
+            <ion-card-subtitle>{{commodity.title}}</ion-card-subtitle>
             <ion-card-subtitle>
               <ion-badge>{{commodity.tagsList[0]}}</ion-badge>
             </ion-card-subtitle>
-            <ion-label style="color: red;">¥{{commodity.pricesList[0]?.group}}</ion-label>
+            <ion-label style="color: red;">¥{{formatRBM(commodity.pricesList[0]?.group)}}</ion-label>
           </ion-card-header>
         </ion-card>
       </ion-slide>
