@@ -29,6 +29,7 @@ export class OrderPage {
     private alertController: AlertController) { }
 
   listByStatus(status: string) {
+    this.orders = [];
     this.selectedStatus = status;
     this.ionViewWillEnter();
   }
