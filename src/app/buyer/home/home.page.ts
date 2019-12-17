@@ -26,19 +26,20 @@ export class HomePage {
       delay: 2000,
     },
   };
-  commodities: Commodity[];
+  commodities: Commodity[] = [];
 
   constructor(
     private router: Router,
     private geolocation: Geolocation) { }
 
   ionViewWillEnter() {
-    this.commodities = []
     let kw = new StringValue();
     //kw.setValue(this.keyword);
     let stream = apiService.commodityClient.search(kw, apiService.metaData);
     stream.on('data', response => {
-      this.commodities.push(response);
+      if (!this.commodities.some(item => item.id == response.id)) {
+        this.commodities.push(response);
+      }
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));

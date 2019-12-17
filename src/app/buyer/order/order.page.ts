@@ -1,3 +1,4 @@
+import { Error } from 'grpc-web';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { User } from '../../../sdk/user_pb';
@@ -13,7 +14,7 @@ import { apiService, utilsService } from '../../providers/utils.service';
   styleUrls: ['order.page.scss']
 })
 export class OrderPage {
-  orders: Order[];
+  orders: Order[] = [];
   users = new Map<string, User>();
   statuses: string[] = ['全部', '待发货', '待收货', '待评价', '待付款',];
   selectedStatus = this.statuses[0];
@@ -36,15 +37,15 @@ export class OrderPage {
     if (!utilsService.getUser()) {
       return this.router.navigateByUrl('/login');
     }
-    this.orders = [];
     let listQuery = new ListQuery();
     listQuery.user = utilsService.getUser();
     listQuery.status = this.selectedStatus == "全部" ? '' : this.selectedStatus;
     let stream = apiService.orderClient.listForBuyer(listQuery, apiService.metaData);
     stream.on('data', response => {
-      this.orders.push(response);
-      //console.log(response.toObject());
-      this.getOwnerById(response.snapshot.ownerId);
+      if (!this.orders.some(item => item.id == response.id)) {
+        this.orders.push(response);
+        this.getOwnerById(response.snapshot.ownerId);
+      }
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
@@ -55,7 +56,7 @@ export class OrderPage {
     let user = new User();
     user.id = userId;
     if (!this.users[userId]) {
-      apiService.userClient.get(user, apiService.metaData, (err: any, response: User) => {
+      apiService.userClient.get(user, apiService.metaData, (err: Error, response: User) => {
         if (err) {
           console.log(err);
         } else {
