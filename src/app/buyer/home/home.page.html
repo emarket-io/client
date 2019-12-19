@@ -15,35 +15,10 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <!-- <div style="position:relative;top: 180px;text-align: center;">
+  <div style="position:relative;top: 180px;text-align: center;">
     <iframe scrolling="no" frameborder="0" allowtransparency="true"
       src="https://i.tianqi.com/index.php?c=code&id=12&num=2"></iframe>
-  </div> -->
-  <ion-slides #mySlider [options]="slideTopOpts" style="position:relative;top: 130px;text-align: center;">
-    <!-- <ion-slide>
-      <iframe scrolling="no" frameborder="0" allowtransparency="true"
-        src="https://i.tianqi.com/index.php?c=code&id=12&num=2"></iframe>
-    </ion-slide> -->
-    <ion-slide *ngFor="let commodity of commodities">
-      <ion-card style="margin:5px">
-        <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
-        <ion-card-header style="text-align: left;padding:2px;">
-          <!-- <ion-item lines="none" class="ion-no-padding"> -->
-          <ion-label style="font-size: small;color: var(--mytextcolor);">
-            {{commodity.title}}
-          </ion-label>
-          <!-- </ion-item> -->
-          <!-- <ion-card-subtitle>
-            <ion-badge style="font-size: smaller;">{{commodity.tagsList[0]?commodity.tagsList[0]:'.'}}</ion-badge>
-          </ion-card-subtitle>
-          <ion-item lines="none" class="ion-no-padding">
-            <ion-label style="color: red;">¥{{formatRBM(commodity.pricesList[0]?.group)}}</ion-label>
-            <ion-icon name="arrow-dropright-circle" slot="end" size="small"></ion-icon>
-          </ion-item> -->
-        </ion-card-header>
-      </ion-card>
-    </ion-slide>
-  </ion-slides>
+  </div>
 </ion-header>
 
 <ion-content>
@@ -81,29 +56,31 @@
       品牌館
     </div>
   </ion-card-content>
-  <!-- <div style="margin: 10px 20px;">
+  <div style="margin: 10px 20px;">
     <ion-card-subtitle>为你推荐</ion-card-subtitle>
     <ion-slides #mySlider [options]="slideOpts">
       <ion-slide *ngFor="let commodity of commodities">
         <ion-card style="margin:5px">
           <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
-          <ion-card-header style="text-align: left;padding:2px;">            
-            <ion-label style="font-size: small;">
-              {{commodity.title}}
-            </ion-label>
+          <ion-card-header style="text-align: left;padding:2px;">
+            <ion-item-group>
+              <ion-label style="font-size: small;">
+                {{commodity.title}}
+              </ion-label>
+            </ion-item-group>
             <ion-card-subtitle>
               <ion-badge style="font-size: smaller;">{{commodity.tagsList[0]?commodity.tagsList[0]:'.'}}</ion-badge>
             </ion-card-subtitle>
-            <ion-item lines="none" class="ion-no-padding">
+            <div style="margin-top:5px">
               <ion-label style="color: red;">¥{{formatRBM(commodity.pricesList[0]?.group)}}</ion-label>
-              <ion-icon name="arrow-dropright-circle" slot="end" size="small"></ion-icon>
-            </ion-item>
+              <ion-icon name="arrow-dropright-circle" size="small" style="position:absolute;right: 0;"></ion-icon>
+            </div>
           </ion-card-header>
         </ion-card>
       </ion-slide>
     </ion-slides>
-  </div> -->
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed" style="margin-bottom: 50px;">
+  </div>
+  <!-- <ion-fab vertical="bottom" horizontal="center" slot="fixed" style="margin-bottom: 50px;">
     <ion-fab-button color="primary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
@@ -127,5 +104,5 @@
         <ion-icon name="videocam"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>
-  </ion-fab>
+  </ion-fab> -->
 </ion-content>

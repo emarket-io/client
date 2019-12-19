@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'session', loadChildren: './user/session/session.module#SessionPageModule' },
   { path: 'message', loadChildren: './user/message/message.module#MessagePageModule' },
   { path: 'shop', loadChildren: './seller/shop/shop.module#ShopPageModule' },
+  { path: 'seller_account', loadChildren: './seller/account/account.module#AccountPageModule' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
