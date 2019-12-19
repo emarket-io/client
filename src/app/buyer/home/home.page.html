@@ -68,10 +68,10 @@
                 {{commodity.title}}
               </ion-label>
             </ion-item-group>
-            <ion-card-subtitle>
+            <ion-item-group style="margin:5px 0;">
               <ion-badge style="font-size: smaller;">{{commodity.tagsList[0]?commodity.tagsList[0]:'.'}}</ion-badge>
-            </ion-card-subtitle>
-            <div style="margin-top:5px">
+            </ion-item-group>
+            <div>
               <ion-label style="color: red;">¥{{formatRBM(commodity.pricesList[0]?.group)}}</ion-label>
               <ion-icon name="arrow-dropright-circle" size="small" style="position:absolute;right: 0;"></ion-icon>
             </div>

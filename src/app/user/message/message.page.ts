@@ -12,7 +12,7 @@ import { apiService, utilsService } from '../../providers/utils.service';
   styleUrls: ['./message.page.scss'],
 })
 export class MessagePage {
-  messages: Message[];
+  messages: Message[] = [];
   users = new Map<string, User>();
 
   constructor(private router: Router) { }
@@ -21,18 +21,19 @@ export class MessagePage {
     if (!utilsService.getUser()) {
       return this.router.navigateByUrl('/login');
     }
-    this.messages = [];
     let stream = apiService.messageClient.groupBy(utilsService.getUser(), apiService.metaData);
     stream.on('data', response => {
-      this.messages.push(response);
-      this.getUserById(response.from);
+      if (!this.messages.some(item => item.id == response.id)) {
+        this.messages.push(response);
+        this.getUserById(response.from);
+      }
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
     });
   }
 
-  getUserById(userId:string) {
+  getUserById(userId: string) {
     let user = new User();
     user.id = userId;
     apiService.userClient.get(user, apiService.metaData, (err: any, response: User) => {
