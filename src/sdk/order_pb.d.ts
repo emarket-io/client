@@ -6,6 +6,35 @@ import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty
 import * as google_protobuf_wrappers_pb from 'google-protobuf/google/protobuf/wrappers_pb';
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 
+export class Account extends jspb.Message {
+  id: string;
+  userId: string;
+  amount: number;
+  orderId: string;
+  created: google_protobuf_timestamp_pb.Timestamp | undefined;
+  hascreated(): boolean;
+  clearcreated(): void;
+  annotationsMap: jspb.Map<string, string>;
+  clearannotationsMap(): void;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Account.AsObject;
+  static toObject(includeInstance: boolean, msg: Account): Account.AsObject;
+  static serializeBinaryToWriter(message: Account, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Account;
+  static deserializeBinaryFromReader(message: Account, reader: jspb.BinaryReader): Account;
+}
+
+export namespace Account {
+  export type AsObject = {
+    id: string,
+    userid: string,
+    amount: number,
+    orderid: string,
+    created?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    annotationsMap: Array<[string, string]>,
+  }
+}
+
 export class Order extends jspb.Message {
   id: string;
   snapshot: commodity_pb.Commodity | undefined;

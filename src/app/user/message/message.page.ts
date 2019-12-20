@@ -23,8 +23,10 @@ export class MessagePage {
     }
     let stream = apiService.messageClient.groupBy(utilsService.getUser(), apiService.metaData);
     stream.on('data', response => {
-      this.messages.push(response);
-      this.getUserById(response.from);
+      if (!this.messages.some(item => item.from == response.from)) {
+        this.messages.push(response);
+        this.getUserById(response.from);
+      }
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));

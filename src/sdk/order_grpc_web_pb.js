@@ -521,5 +521,237 @@ proto.zbay.OrdersPromiseClient.prototype.signAlipay =
 };
 
 
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.zbay.AccountsClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+  /**
+   * @private @const {?Object} The credentials to be used to connect
+   *    to the server
+   */
+  this.credentials_ = credentials;
+
+  /**
+   * @private @const {?Object} Options for the client
+   */
+  this.options_ = options;
+};
+
+
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.zbay.AccountsPromiseClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+  /**
+   * @private @const {?Object} The credentials to be used to connect
+   *    to the server
+   */
+  this.credentials_ = credentials;
+
+  /**
+   * @private @const {?Object} Options for the client
+   */
+  this.options_ = options;
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.Account,
+ *   !proto.zbay.Account>}
+ */
+const methodInfo_Accounts_Add = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Account,
+  /** @param {!proto.zbay.Account} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Account.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.Account} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.zbay.Account)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Account>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.AccountsClient.prototype.add =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/zbay.Accounts/Add',
+      request,
+      metadata || {},
+      methodInfo_Accounts_Add,
+      callback);
+};
+
+
+/**
+ * @param {!proto.zbay.Account} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.zbay.Account>}
+ *     A native promise that resolves to the response
+ */
+proto.zbay.AccountsPromiseClient.prototype.add =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/zbay.Accounts/Add',
+      request,
+      metadata || {},
+      methodInfo_Accounts_Add);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.User,
+ *   !proto.zbay.Account>}
+ */
+const methodInfo_Accounts_List = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Account,
+  /** @param {!proto.zbay.User} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Account.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.User} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Account>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.AccountsClient.prototype.list =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Accounts/List',
+      request,
+      metadata || {},
+      methodInfo_Accounts_List);
+};
+
+
+/**
+ * @param {!proto.zbay.User} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Account>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.AccountsPromiseClient.prototype.list =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Accounts/List',
+      request,
+      metadata || {},
+      methodInfo_Accounts_List);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.Account,
+ *   !proto.zbay.Account>}
+ */
+const methodInfo_Accounts_Total = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Account,
+  /** @param {!proto.zbay.Account} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Account.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.Account} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.zbay.Account)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Account>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.AccountsClient.prototype.total =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/zbay.Accounts/Total',
+      request,
+      metadata || {},
+      methodInfo_Accounts_Total,
+      callback);
+};
+
+
+/**
+ * @param {!proto.zbay.Account} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.zbay.Account>}
+ *     A native promise that resolves to the response
+ */
+proto.zbay.AccountsPromiseClient.prototype.total =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/zbay.Accounts/Total',
+      request,
+      metadata || {},
+      methodInfo_Accounts_Total);
+};
+
+
 module.exports = proto.zbay;
 

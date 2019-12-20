@@ -59,7 +59,7 @@
   <div style="margin: 10px 20px;">
     <ion-card-subtitle>为你推荐</ion-card-subtitle>
     <ion-slides #mySlider [options]="slideOpts">
-      <ion-slide *ngFor="let commodity of commodities">
+      <ion-slide *ngFor="let commodity of commodities" (click)="gotoDetail(commodity)">
         <ion-card style="margin:5px">
           <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
           <ion-card-header style="text-align: left;padding:2px;">

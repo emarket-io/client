@@ -59,6 +59,10 @@ export class HomePage {
     this.router.navigateByUrl('/view', { state: { keyword: keyword } });
   }
 
+  gotoDetail(commodity: Commodity) {
+    this.router.navigateByUrl('/detail', { state: commodity });
+  }
+
   async getLocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
       AMap.convertFrom(resp.coords.longitude + "," + resp.coords.latitude, "gps", (status, result) => {

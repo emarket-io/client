@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { OrdersClient } from '../../sdk/order_grpc_web_pb';
 import { MessagesClient } from '../../sdk/message_grpc_web_pb';
 import { UsersClient, AddressesClient } from '../../sdk/user_grpc_web_pb';
+import { OrdersClient, AccountsClient } from '../../sdk/order_grpc_web_pb';
 import { CommoditiesClient, CouponsClient } from '../../sdk/commodity_grpc_web_pb';
 
 //declare let AMap;
@@ -19,6 +19,7 @@ export class ApiService {
   orderClient = new OrdersClient(environment.apiUrl, null, null);
   addressClient = new AddressesClient(environment.apiUrl, null, null);
   messageClient = new MessagesClient(environment.apiUrl, null, null);
+  accountClient = new AccountsClient(environment.apiUrl, null, null);
 
   constructor() { }
 

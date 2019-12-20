@@ -7,6 +7,7 @@ import * as google_protobuf_wrappers_pb from 'google-protobuf/google/protobuf/wr
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 
 import {
+  Account,
   ListQuery,
   Order} from './order_pb';
 
@@ -67,6 +68,32 @@ export class OrdersClient {
 
 }
 
+export class AccountsClient {
+  constructor (hostname: string,
+               credentials: null | { [index: string]: string; },
+               options: null | { [index: string]: string; });
+
+  add(
+    request: Account,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: Account) => void
+  ): grpcWeb.ClientReadableStream<Account>;
+
+  list(
+    request: user_pb.User,
+    metadata?: grpcWeb.Metadata
+  ): grpcWeb.ClientReadableStream<Account>;
+
+  total(
+    request: Account,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: Account) => void
+  ): grpcWeb.ClientReadableStream<Account>;
+
+}
+
 export class OrdersPromiseClient {
   constructor (hostname: string,
                credentials: null | { [index: string]: string; },
@@ -111,6 +138,28 @@ export class OrdersPromiseClient {
     request: Order,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_wrappers_pb.StringValue>;
+
+}
+
+export class AccountsPromiseClient {
+  constructor (hostname: string,
+               credentials: null | { [index: string]: string; },
+               options: null | { [index: string]: string; });
+
+  add(
+    request: Account,
+    metadata?: grpcWeb.Metadata
+  ): Promise<Account>;
+
+  list(
+    request: user_pb.User,
+    metadata?: grpcWeb.Metadata
+  ): grpcWeb.ClientReadableStream<Account>;
+
+  total(
+    request: Account,
+    metadata?: grpcWeb.Metadata
+  ): Promise<Account>;
 
 }
 
