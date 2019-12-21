@@ -28,6 +28,7 @@ const routes: Routes = [
   { path: 'shop', loadChildren: './seller/shop/shop.module#ShopPageModule' },
   { path: 'seller_account', loadChildren: './seller/account/account.module#AccountPageModule' },
   { path: 'setting', loadChildren: './user/setting/setting.module#SettingPageModule' },
+  { path: 'about', loadChildren: './user/my/about/about.module#AboutPageModule' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

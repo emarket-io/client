@@ -43,7 +43,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../buyer/my/my.module').then(m => m.MyPageModule)
+              import('../user/my/my.module').then(m => m.MyPageModule)
           }
         ]
       },
