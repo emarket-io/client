@@ -19,12 +19,18 @@ export class HomePage {
   city = utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
   formatRBM = utilsService.formatRMB;
   host = environment.apiUrl;
-  slideOpts = {
-    slidesPerView: 3,
-    slidesPerGroup: 3,
+  slideTopOpts = {
+    slidesPerView: 1,
     autoplay: {
       delay: 2000,
     },
+  };
+  slideOpts = {
+    slidesPerView: 3,
+    slidesPerGroup: 3,
+    // autoplay: {
+    //   delay: 2000,
+    // },
   };
   commodities: Commodity[] = [];
 
