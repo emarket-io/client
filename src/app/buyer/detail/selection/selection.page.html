@@ -37,7 +37,9 @@
 <ion-footer no-border>
   <ion-slides [options]="slideOpts" *ngIf="order.groupon&&partnerOrders?.length>0">
     <ion-slide *ngFor="let partnerOrder of partnerOrders">
-      {{partnerOrder.userId}}的团还差1人，快速[<ion-note color="primary" (click)="continue(partnerOrder)">参团</ion-note>]，立即拼成
+      {{users[partnerOrder.userId]?.name}}的团还差1人，快速[
+      <ion-note color="primary" (click)="continue(partnerOrder)">参团</ion-note>
+      ]，立即拼成
     </ion-slide>
   </ion-slides>
   <ion-button (click)="continue()" expand="full">

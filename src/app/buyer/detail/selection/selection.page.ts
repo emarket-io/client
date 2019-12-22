@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
+import { User } from '../../../../sdk/user_pb';
 import { Order } from '../../../../sdk/order_pb';
 import { Price } from '../../../../sdk/commodity_pb';
 import { environment } from '../../../../environments/environment';
@@ -13,6 +14,7 @@ import { apiService, utilsService } from '../../../providers/utils.service';
 export class SelectionPage {
   @Input() order: Order;
   partnerOrders: Order[];
+  users = new Map<string, User>();
   host = environment.apiUrl;
   formatRBM = utilsService.formatRMB;
   slideOpts = {
@@ -37,7 +39,10 @@ export class SelectionPage {
       let stream = apiService.orderClient.listByOrder(requestOrder, apiService.metaData);
       stream.on('data', response => {
         this.partnerOrders.push(response);
-        console.log(response.toObject())
+        console.log(response.toObject());
+        if (!this.users[response.userId]) {
+          this.getUserById(response.userId);
+        }
       });
       stream.on('error', err => {
         utilsService.alert(JSON.stringify(err));
@@ -62,6 +67,18 @@ export class SelectionPage {
       this.order.groupon.orderIdsList.push(partnerOrder.id);
     }
     this.popoverController.dismiss({ order: this.order });
+  }
+
+  getUserById(userId: string) {
+    let user = new User();
+    user.id = userId;
+    apiService.userClient.get(user, apiService.metaData, (err: any, response: User) => {
+      if (err) {
+        utilsService.alert(JSON.stringify(err));
+      } else {
+        this.users[userId] = response;
+      }
+    });
   }
 
   close() {
