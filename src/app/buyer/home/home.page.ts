@@ -21,6 +21,7 @@ export class HomePage {
   host = environment.apiUrl;
   slideTopOpts = {
     slidesPerView: 1,
+    direction: "vertical",
     autoplay: {
       delay: 2000,
     },

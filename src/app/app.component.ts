@@ -34,10 +34,13 @@ export class AppComponent {
   setTheme(random: number) {
     if (random <= 0.33) {
       this.theme = { mycolor: 'rebeccapurple', mytextcolor: '#fff' };
+      this.statusBar.styleLightContent()
     } else if (0.33 < random && random <= 0.66) {
       this.theme = { mycolor: 'orangered', mytextcolor: '#fff' };
+      this.statusBar.styleLightContent()
     } else {
-      this.theme = { mycolor: '#10dc60', mytextcolor: '#222428' };
+      this.theme = { mycolor: '#10dc60', mytextcolor: '#222428' };     
+      this.statusBar.styleDefault();
     }
 
     Object.keys(this.theme).forEach(k =>
