@@ -32,14 +32,17 @@ export class AppComponent {
   theme = { mycolor: '', mytextcolor: '' };
 
   setTheme(random: number) {
-    if (random <= 0.33) {
+    if (random <= 0.25) {
       this.theme = { mycolor: 'rebeccapurple', mytextcolor: '#fff' };
       this.statusBar.styleLightContent()
-    } else if (0.33 < random && random <= 0.66) {
+    } else if (0.25 < random && random <= 0.5) {
       this.theme = { mycolor: 'orangered', mytextcolor: '#fff' };
       this.statusBar.styleLightContent()
+    } else if (0.5 < random && random <= 0.75) {
+      this.theme = { mycolor: '#3880ff', mytextcolor: '#fff' };
+      this.statusBar.styleLightContent()
     } else {
-      this.theme = { mycolor: '#10dc60', mytextcolor: '#222428' };     
+      this.theme = { mycolor: '#10dc60', mytextcolor: '#222428' };
       this.statusBar.styleDefault();
     }
 
