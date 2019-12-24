@@ -1,9 +1,11 @@
 import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { Wechat } from '@ionic-native/wechat/ngx';
 import { Alipay } from '@ionic-native/alipay/ngx';
 import { Order, PayInfo, Groupon } from '../../../sdk/order_pb';
 import { environment } from '../../../environments/environment';
+
 import { apiService, utilsService } from '../../providers/utils.service';
 import { StringValue } from "google-protobuf/google/protobuf/wrappers_pb";
 
@@ -19,6 +21,7 @@ export class PurchasePage {
 
   constructor(
     private router: Router,
+    private wechat: Wechat,
     private alipay: Alipay) {
     this.order = <Order>this.router.getCurrentNavigation().extras.state;
     this.order.payInfo = new PayInfo();
@@ -59,7 +62,7 @@ export class PurchasePage {
   preparebuy() {
     if (this.order.payInfo.type == 'alipay') {
       console.log(this.order.toObject());
-      apiService.orderClient.signAlipay(this.order, apiService.metaData,
+      apiService.accountClient.signAlipay(this.order, apiService.metaData,
         (err: grpcWeb.Error, response: StringValue) => {
           if (err) {
             utilsService.alert(err.message)
@@ -106,7 +109,21 @@ export class PurchasePage {
           }
         });
     } else if (this.order.payInfo.type == 'wechat') {
-      utilsService.alert('微信支付即将开通');
+      //utilsService.alert('微信支付即将开通');
+      var params = {
+        mch_id: '1571295871', // merchant id
+        prepay_id: 'wx24222039950964630869e1691366643900', // prepay id returned from server
+        nonce: 'your nonce', // nonce string returned from server
+        timestamp: '1439531364', // timestamp
+        sign: '0CB01533B8C1EF103065174F50BCA001', // signed string
+      };
+      this.wechat.sendPaymentRequest(params).then(() => {
+        console.log("Success");
+        utilsService.alert('Success');
+      }).catch(error => {
+        console.log(error);
+        utilsService.alert(JSON.stringify(error));
+      });
     }
   }
 

@@ -59,13 +59,6 @@ export class OrdersClient {
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Order>;
 
-  signAlipay(
-    request: Order,
-    metadata: grpcWeb.Metadata | undefined,
-    callback: (err: grpcWeb.Error,
-               response: google_protobuf_wrappers_pb.StringValue) => void
-  ): grpcWeb.ClientReadableStream<google_protobuf_wrappers_pb.StringValue>;
-
 }
 
 export class AccountsClient {
@@ -91,6 +84,20 @@ export class AccountsClient {
     callback: (err: grpcWeb.Error,
                response: Account) => void
   ): grpcWeb.ClientReadableStream<Account>;
+
+  signAlipay(
+    request: Order,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: google_protobuf_wrappers_pb.StringValue) => void
+  ): grpcWeb.ClientReadableStream<google_protobuf_wrappers_pb.StringValue>;
+
+  signWechat(
+    request: Order,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: google_protobuf_wrappers_pb.StringValue) => void
+  ): grpcWeb.ClientReadableStream<google_protobuf_wrappers_pb.StringValue>;
 
 }
 
@@ -134,11 +141,6 @@ export class OrdersPromiseClient {
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Order>;
 
-  signAlipay(
-    request: Order,
-    metadata?: grpcWeb.Metadata
-  ): Promise<google_protobuf_wrappers_pb.StringValue>;
-
 }
 
 export class AccountsPromiseClient {
@@ -160,6 +162,16 @@ export class AccountsPromiseClient {
     request: Account,
     metadata?: grpcWeb.Metadata
   ): Promise<Account>;
+
+  signAlipay(
+    request: Order,
+    metadata?: grpcWeb.Metadata
+  ): Promise<google_protobuf_wrappers_pb.StringValue>;
+
+  signWechat(
+    request: Order,
+    metadata?: grpcWeb.Metadata
+  ): Promise<google_protobuf_wrappers_pb.StringValue>;
 
 }
 
