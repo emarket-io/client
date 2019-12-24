@@ -88,11 +88,13 @@
                 {{commodity.title}}
               </ion-label>
             </ion-item-group>
-            <ion-item-group style="margin:5px 0 8px 0;">
-              <ion-badge style="font-size: smaller;">{{commodity.tagsList[0]?commodity.tagsList[0]:'.'}}</ion-badge>
+            <ion-item-group style="margin:5px 0 7px 0;">
+              <ion-badge style="font-size:x-small">{{commodity.tagsList[0]?commodity.tagsList[0]:'.'}}</ion-badge>
             </ion-item-group>
             <div>
-              <ion-label style="color: red;">¥{{formatRBM(commodity.pricesList[0]?.group)}}</ion-label>
+              <ion-label style="color: red;font-size: xx-small;">¥<span
+                  style="font-weight: bolder;font-size:small">{{formatRBM(commodity.pricesList[0]?.group)}}</span>
+              </ion-label>
               <ion-icon name="arrow-dropright-circle" size="small" style="position:absolute;right: 0;"></ion-icon>
             </div>
           </ion-card-header>
