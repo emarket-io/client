@@ -9,7 +9,8 @@ import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/t
 import {
   Account,
   ListQuery,
-  Order} from './order_pb';
+  Order,
+  WechatPayParams} from './order_pb';
 
 export class OrdersClient {
   constructor (hostname: string,
@@ -92,12 +93,12 @@ export class AccountsClient {
                response: google_protobuf_wrappers_pb.StringValue) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_wrappers_pb.StringValue>;
 
-  signWechat(
+  prepayWechat(
     request: Order,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
-               response: google_protobuf_wrappers_pb.StringValue) => void
-  ): grpcWeb.ClientReadableStream<google_protobuf_wrappers_pb.StringValue>;
+               response: WechatPayParams) => void
+  ): grpcWeb.ClientReadableStream<WechatPayParams>;
 
 }
 
@@ -168,10 +169,10 @@ export class AccountsPromiseClient {
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_wrappers_pb.StringValue>;
 
-  signWechat(
+  prepayWechat(
     request: Order,
     metadata?: grpcWeb.Metadata
-  ): Promise<google_protobuf_wrappers_pb.StringValue>;
+  ): Promise<WechatPayParams>;
 
 }
 

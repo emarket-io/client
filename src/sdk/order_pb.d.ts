@@ -110,6 +110,30 @@ export namespace PayInfo {
   }
 }
 
+export class WechatPayParams extends jspb.Message {
+  partnerid: string;
+  prepayid: string;
+  noncestr: string;
+  timestamp: string;
+  sign: string;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): WechatPayParams.AsObject;
+  static toObject(includeInstance: boolean, msg: WechatPayParams): WechatPayParams.AsObject;
+  static serializeBinaryToWriter(message: WechatPayParams, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): WechatPayParams;
+  static deserializeBinaryFromReader(message: WechatPayParams, reader: jspb.BinaryReader): WechatPayParams;
+}
+
+export namespace WechatPayParams {
+  export type AsObject = {
+    partnerid: string,
+    prepayid: string,
+    noncestr: string,
+    timestamp: string,
+    sign: string,
+  }
+}
+
 export class Groupon extends jspb.Message {
   orderIdsList: Array<string>;
   clearorderIdsList(): void;
