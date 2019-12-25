@@ -20,11 +20,10 @@ export class AppComponent {
   }
 
   initializeApp() {
-    this.statusBar.hide();
+    this.statusBar.overlaysWebView(true);
     this.platform.ready().then(() => {
-      this.statusBar.show();
       this.statusBar.overlaysWebView(true);
-      this.statusBar.styleDefault();
+      // this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.setTheme(Math.random());
       utilsService.injector = this.injector;
