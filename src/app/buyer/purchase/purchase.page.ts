@@ -25,7 +25,7 @@ export class PurchasePage {
     private alipay: Alipay) {
     this.order = <Order>this.router.getCurrentNavigation().extras.state;
     this.order.payInfo = new PayInfo();
-    this.order.payInfo.type = 'alipay';
+    this.order.payInfo.type = 'wechat';
   }
 
   ionViewWillEnter() {
