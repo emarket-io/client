@@ -68,44 +68,16 @@ export class PurchasePage {
             utilsService.alert(err.message)
           } {
             let payInfo = response.getValue();
-            this.alipay.pay(payInfo)
-              .then(result => {
-                if (result.resultStatus == 9000) {
-                  if (this.order.groupon && this.order.groupon.orderIdsList.length == 0) {
-                    this.order.status = '待成团';
-                  } else {
-                    this.order.status = '待发货';
-                  }
-
-                  apiService.orderClient.add(this.order, apiService.metaData, (err: grpcWeb.Error, response: Order) => {
-                    if (err) {
-                      utilsService.alert(JSON.stringify(err));
-                    } else {
-                      console.log(response);
-                      // update partner order status
-                      if (this.order.groupon && this.order.groupon.orderIdsList.length == 1) {
-                        var partnerOrder = new Order();
-                        partnerOrder.id = this.order.groupon.orderIdsList[0]
-                        var groupon = new Groupon()
-                        groupon.orderIdsList.push(response.id);
-                        partnerOrder.groupon = groupon;
-                        partnerOrder.status = '待发货';
-                        apiService.orderClient.update(partnerOrder, apiService.metaData, (err: any, response: Order) => {
-                          if (err) {
-                            utilsService.alert(JSON.stringify(err));
-                          }
-                        });
-                      }
-                      this.router.navigateByUrl('/tabs/order');
-                    }
-                  });
-                } else {
-                  utilsService.alert(JSON.stringify(result));
-                }
-              }).catch(error => {
-                console.log(error);
-                utilsService.alert(JSON.stringify(err));
-              });
+            this.alipay.pay(payInfo).then(result => {
+              if (result.resultStatus == 9000) {
+                this.commitOrder();
+              } else {
+                //utilsService.alert(JSON.stringify(result));
+              }
+            }).catch(error => {
+              console.log(error);
+              utilsService.alert(JSON.stringify(err));
+            });
           }
         });
     } else if (this.order.payInfo.type == 'wechat') {
@@ -121,16 +93,47 @@ export class PurchasePage {
             sign: response.sign,//'0CB01533B8C1EF103065174F50BCA001', // signed string
           };
           this.wechat.sendPaymentRequest(params).then(() => {
+            this.commitOrder();
             console.log("Success");
-            this.router.navigateByUrl('/tabs/order');
           }).catch(error => {
             console.log(error);
-            utilsService.alert(JSON.stringify(error));
+            //utilsService.alert(JSON.stringify(error));
           });
         }
       });
       //utilsService.alert('微信支付即将开通');
     }
+  }
+
+  commitOrder() {
+    if (this.order.groupon && this.order.groupon.orderIdsList.length == 0) {
+      this.order.status = '待成团';
+    } else {
+      this.order.status = '待发货';
+    }
+
+    apiService.orderClient.add(this.order, apiService.metaData, (err: grpcWeb.Error, response: Order) => {
+      if (err) {
+        utilsService.alert(JSON.stringify(err));
+      } else {
+        console.log(response);
+        // update partner order status
+        if (this.order.groupon && this.order.groupon.orderIdsList.length == 1) {
+          var partnerOrder = new Order();
+          partnerOrder.id = this.order.groupon.orderIdsList[0]
+          var groupon = new Groupon()
+          groupon.orderIdsList.push(response.id);
+          partnerOrder.groupon = groupon;
+          partnerOrder.status = '待发货';
+          apiService.orderClient.update(partnerOrder, apiService.metaData, (err: any, response: Order) => {
+            if (err) {
+              utilsService.alert(JSON.stringify(err));
+            }
+          });
+        }
+        this.router.navigateByUrl('/tabs/order');
+      }
+    });
   }
 
   onChangeHandler($event) {
