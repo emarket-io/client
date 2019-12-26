@@ -28,7 +28,7 @@ public class MainActivity extends CordovaActivity
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-        //super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
 
         // enable Cordova apps to be started in the background
         Bundle extras = getIntent().getExtras();
@@ -49,7 +49,7 @@ public class MainActivity extends CordovaActivity
     @Override
     public void onStart()
     {
-        //super.onStart();
+        super.onStart();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
     }
