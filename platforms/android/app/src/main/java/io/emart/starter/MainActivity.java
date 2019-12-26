@@ -21,6 +21,7 @@ package io.emart.starter;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
+import android.view.WindowManager;
 
 public class MainActivity extends CordovaActivity
 {
@@ -34,8 +35,19 @@ public class MainActivity extends CordovaActivity
         if (extras != null && extras.getBoolean("cdvStartInBackground", false)) {
             moveTaskToBack(true);
         }
-
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
+    }
+
+    // [Hyuck] onStart() is totally new.
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
     }
 }
