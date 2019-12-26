@@ -1,8 +1,7 @@
 import { Events } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { User } from '../../../sdk/user_pb';
-import { Component, OnInit } from '@angular/core';
-import { apiService, utilsService } from '../../providers/utils.service'
+import { Component } from '@angular/core';
+import { utilsService } from '../../providers/utils.service'
 
 @Component({
   selector: 'app-my',
@@ -21,8 +20,5 @@ export class MyPage {
     this.events.subscribe('user:logout', (username) => {
       this.user = utilsService.getUser();
     });
-  }
-
-  ionViewWillEnter() {
   }
 }
