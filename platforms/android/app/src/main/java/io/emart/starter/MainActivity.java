@@ -28,26 +28,30 @@ public class MainActivity extends CordovaActivity
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);
+        //super.onCreate(savedInstanceState);
 
         // enable Cordova apps to be started in the background
         Bundle extras = getIntent().getExtras();
         if (extras != null && extras.getBoolean("cdvStartInBackground", false)) {
             moveTaskToBack(true);
         }
+        // Adding...
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        
+        // End adding...
+
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
     }
 
+    // Adding...
     // [Hyuck] onStart() is totally new.
     @Override
     public void onStart()
     {
-        super.onStart();
+        //super.onStart();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
     }
+    // End adding...
 }
