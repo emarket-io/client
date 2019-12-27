@@ -10,7 +10,7 @@
   <ion-avatar style="margin-top: 85px;margin-left: 45px">
     <img src="assets/fruit/apple.png">
   </ion-avatar>
-  <div style="top:110px;left: 120px;position: absolute;color: var(--mytextcolor);" routerLink="/login">
+  <div style="top:110px;left: 120px;position: absolute;color: var(--mytextcolor);" routerLink="/setting">
     Hello,{{user?.name?user.name:'请登录'}}</div>
 </ion-header>
 
@@ -62,7 +62,7 @@
       </ion-item-options>
     </ion-item-sliding> -->
     <ion-item-sliding>
-      <ion-item routerLink="/about">
+      <ion-item routerLink="/help">
         <ion-icon slot="start" name="help-circle"></ion-icon>
         <ion-label>
           <h3>帮助中心</h3>
@@ -75,7 +75,7 @@
       </ion-item-options>
     </ion-item-sliding>
     <ion-item-sliding>
-      <ion-item routerLink="/setting">
+      <ion-item routerLink="/preference">
         <ion-icon slot="start" name="cog"></ion-icon>
         <ion-label>
           <h3>个人设置</h3>

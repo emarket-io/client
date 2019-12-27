@@ -1,4 +1,5 @@
 import { Events } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Location } from "@angular/common";
 import { User } from '../../../sdk/user_pb';
@@ -10,11 +11,19 @@ import { apiService, utilsService } from '../../providers/utils.service'
   styleUrls: ['./setting.page.scss'],
 })
 export class SettingPage {
-  user = utilsService.getUser();
+  user = new User();
 
   constructor(
     private events: Events,
+    private router: Router,
     private location: Location) { }
+
+  ionViewWillEnter() {
+    if (!utilsService.getUser()) {
+      return this.router.navigateByUrl('/login');
+    }
+    this.user = utilsService.getUser();
+  }
 
   save() {
     apiService.userClient.update(this.user, apiService.metaData, (err, response) => {

@@ -29,6 +29,8 @@ const routes: Routes = [
   { path: 'seller_account', loadChildren: './seller/account/account.module#AccountPageModule' },
   { path: 'setting', loadChildren: './user/setting/setting.module#SettingPageModule' },
   { path: 'about', loadChildren: './user/my/about/about.module#AboutPageModule' },
+  { path: 'preference', loadChildren: './user/preference/preference.module#PreferencePageModule' },
+  { path: 'help', loadChildren: './user/help/help.module#HelpPageModule' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
