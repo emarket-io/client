@@ -52,6 +52,8 @@ public class MainActivity extends CordovaActivity
         super.onStart();
         //getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
     // End adding...
 }
