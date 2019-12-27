@@ -43,4 +43,12 @@ public class MainActivity extends CordovaActivity
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
     }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+    }
 }
