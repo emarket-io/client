@@ -24,10 +24,8 @@
       <ion-input placeholder="收货人手机号码" [(ngModel)]="address.telephone"></ion-input>
     </ion-item>
     <ion-item lines="none">
-      <ion-label position="floating">
-        <span style="font-size: larger;">详细地址</span>
-      </ion-label>
-      <ion-textarea placeholder="请输入收货详细地址(如省/市/区/镇/街道/小区/村)" [(ngModel)]="address.location"></ion-textarea>
+      <ion-label>详细地址</ion-label>
+      <ion-input placeholder="请输入收货详细地址(如省/市/区/镇/街道/小区/村)" [(ngModel)]="address.location"></ion-input>
     </ion-item>
   </ion-list>
 </ion-content>

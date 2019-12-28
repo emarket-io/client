@@ -2,8 +2,8 @@ import { Events } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Location } from "@angular/common";
-import { User } from '../../../sdk/user_pb';
-import { apiService, utilsService } from '../../providers/utils.service'
+import { User } from '../../../../sdk/user_pb';
+import { apiService, utilsService } from '../../../providers/utils.service'
 
 @Component({
   selector: 'app-setting',
@@ -37,5 +37,4 @@ export class SettingPage {
       }
     });
   }
-
 }

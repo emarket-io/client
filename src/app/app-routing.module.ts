@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'message', loadChildren: './user/message/message.module#MessagePageModule' },
   { path: 'shop', loadChildren: './seller/shop/shop.module#ShopPageModule' },
   { path: 'seller_account', loadChildren: './seller/account/account.module#AccountPageModule' },
-  { path: 'setting', loadChildren: './user/setting/setting.module#SettingPageModule' },
+  { path: 'setting', loadChildren: './user/my/setting/setting.module#SettingPageModule' },
   { path: 'about', loadChildren: './user/my/about/about.module#AboutPageModule' },
   { path: 'preference', loadChildren: './user/preference/preference.module#PreferencePageModule' },
   { path: 'help', loadChildren: './user/help/help.module#HelpPageModule' },
