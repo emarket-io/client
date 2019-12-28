@@ -27,6 +27,9 @@ ion-header ion-toolbar {
   --background: inherit;
 }
 
-ion-badge {
-  padding-top: 1px;
+ion-item-group {
+  ion-badge {
+    font-size: x-small;
+    padding: 1px;
+  }
 }

@@ -42,14 +42,19 @@ export class OrderPage {
     listQuery.user = utilsService.getUser();
     listQuery.status = this.selectedStatus == "全部" ? '' : this.selectedStatus;
     let stream = apiService.orderClient.listForBuyer(listQuery, apiService.metaData);
+    let newOrders = [];
     stream.on('data', response => {
       if (!this.orders.some(item => item.id == response.id)) {
         this.orders.push(response);
         this.getOwnerById(response.snapshot.ownerId);
       }
+      newOrders.push(response);
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
+    });
+    stream.on('end', () => {
+      this.orders = newOrders;
     });
   }
 

@@ -43,13 +43,18 @@ export class HomePage {
     let kw = new StringValue();
     //kw.setValue(this.keyword);
     let stream = apiService.commodityClient.search(kw, apiService.metaData);
+    let newCommodities = [];
     stream.on('data', response => {
       if (!this.commodities.some(item => item.id == response.id)) {
         this.commodities.push(response);
       }
+      newCommodities.push(response);
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
+    });
+    stream.on('end', () => {
+      this.commodities = newCommodities;
     });
     this.getLocation();
   }
