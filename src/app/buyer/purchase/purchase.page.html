@@ -47,7 +47,9 @@
 
 <ion-footer>
   <ion-toolbar class="ion-text-end">
-    <ion-label style="color:#f04b0f;">¥{{formatRBM((order.amount/100).toString())}}</ion-label>
+    <ion-label style="color:#f04b0f;">¥<span
+        style="font-weight: bolder;">{{formatRBM((order.amount/100).toString())}}</span>
+    </ion-label>
     <ion-buttons slot="end">
       <ion-button (click)="preparebuy()">立即支付
       </ion-button>

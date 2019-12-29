@@ -15,16 +15,15 @@
 }
 
 ion-header {
-  height: 180px;
+  height: 30%;
   color: var(--mytextcolor);
   background: var(--mycolor);
-}
-
-ion-header ion-toolbar {
-  position: absolute;
-  top: 40px;
-  //color: white;
-  --background: inherit;
+  ion-toolbar {
+    position: absolute;
+    top: 15%;
+    //color: white;
+    --background: inherit
+  }
 }
 
 ion-item-group {
