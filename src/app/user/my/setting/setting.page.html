@@ -15,10 +15,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
+  <ion-item (click)="select()">
     <!-- <ion-label>头像</ion-label> -->
     <ion-avatar style="height: 160px;width: 160px;margin-left: 23%;">
-      <img src="assets/fruit/apple.png">
+      <img [src]="user.icon?user.icon:'assets/fruit/apple.png'" />
     </ion-avatar>
     <!-- <ion-icon slot="end" name="arrow-dropright"></ion-icon> -->
   </ion-item>
