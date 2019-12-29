@@ -1,4 +1,4 @@
-<ion-header style="height: 200px;">
+<ion-header style="height: 35%;">
   <!-- <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-button>
@@ -7,10 +7,10 @@
     </ion-buttons>
   </ion-toolbar> -->
   <!-- <img src="assets/fruit/apple.png" style="margin-top: 30px"> -->
-  <ion-avatar style="margin-top: 85px;margin-left: 45px" routerLink="/setting">
-    <img src="assets/fruit/apple.png">
+  <ion-avatar style="top: 45%;left: 12%;position: absolute;" routerLink="/setting">
+    <img [src]="user?.icon?user.icon:'assets/fruit/apple.png'">
   </ion-avatar>
-  <div style="top:110px;left: 120px;position: absolute;color: var(--mytextcolor);" routerLink="/setting">
+  <div style="top:53%;left: 30%;position: absolute;color: var(--mytextcolor);" routerLink="/setting">
     Hello,{{user?.name?user.name:'请登录'}}</div>
 </ion-header>
 

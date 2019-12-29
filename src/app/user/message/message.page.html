@@ -17,7 +17,7 @@
     </ion-item>
     <ion-item *ngFor="let msg of messages" (click)="gotoSession(msg.from)">
       <ion-avatar slot="start">
-        <ion-img src="assets/fruit/apple.png"></ion-img>
+        <ion-img [src]="users[msg.from]?.icon?users[msg.from].icon:'assets/fruit/apple.png'"></ion-img>
       </ion-avatar>
       {{users[msg.from]?.shopsList[0]?.name?users[msg.from]?.shopsList[0].name:users[msg.from]?.name}}
     </ion-item>
