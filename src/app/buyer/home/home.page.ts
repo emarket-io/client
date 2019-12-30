@@ -29,9 +29,9 @@ export class HomePage {
   slideOpts = {
     slidesPerView: 3,
     slidesPerGroup: 3,
-    // autoplay: {
-    //   delay: 2000,
-    // },
+    autoplay: {
+      delay: 3000,
+    },
   };
   commodities: Commodity[] = [];
 
