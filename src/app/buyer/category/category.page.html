@@ -10,7 +10,8 @@
 </ion-header>
 
 <ion-content>
-  <div style="display:inline-block;width: 25%;height: 100%;text-align: center;background-color:#f2f2f2;overflow:auto">
+  <div
+    style="white-space:nowrap;display:inline-block;width: 25%;height: 100%;text-align: center;background-color:#f2f2f2;overflow:auto">
     <ion-card-content (click)="level1Click(item)" [class.selected]="level1 === item" *ngFor="let item of items">
       {{item.title}}
     </ion-card-content>
