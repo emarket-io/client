@@ -31,6 +31,7 @@ const routes: Routes = [
   { path: 'about', loadChildren: './user/my/about/about.module#AboutPageModule' },
   { path: 'preference', loadChildren: './user/preference/preference.module#PreferencePageModule' },
   { path: 'help', loadChildren: './user/help/help.module#HelpPageModule' },
+  { path: 'service', loadChildren: './user/help/service/service.module#ServicePageModule' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

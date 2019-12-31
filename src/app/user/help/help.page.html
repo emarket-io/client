@@ -26,20 +26,13 @@
       <div *ngIf="detailMap['express']">
         <br />
         <p>
-          主流的快递都支持，取决于卖家发货方式
+          主流快递都支持，具体取决于卖家的发货方式
         </p>
       </div>
     </ion-label>
   </ion-item>
-  <ion-item (click)="detail('postSale')" detail="{{!detailMap['postSale']}}">
-    <ion-label>售后服务
-      <div *ngIf="detailMap['postSale']">
-        <br />
-        <p>
-
-        </p>
-      </div>
-    </ion-label>
+  <ion-item detail="true" routerLink="/service">
+    <ion-label>售后服务</ion-label>
   </ion-item>
   <ion-item (click)="detail('problem')" detail="{{!detailMap['problem']}}">
     <ion-label>意见反馈
