@@ -1,12 +1,12 @@
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { IonSlides, Platform } from '@ionic/angular';
 import { Component, ViewChild } from '@angular/core';
 import { Commodity } from '../../../sdk/commodity_pb';
-import { IonSlides, Platform } from '@ionic/angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service';
 import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { Router } from '@angular/router';
 
 declare let AMap;
 
@@ -63,13 +63,13 @@ export class HomePage {
   }
 
   ionViewWillLeave() {
-    this.slider.stopAutoplay();
     this.exitEvent.unsubscribe();
+    this.slider.stopAutoplay();
   }
 
   ionViewDidEnter() {
     this.slider.startAutoplay();
-    this.exitEvent = this.platform.backButton.subscribeWithPriority(1, () => {
+    this.exitEvent = this.platform.backButton.subscribe(() => {
       utilsService.confirm('确认退出[农村大集]客户端？', () => {
         navigator['app'].exitApp();
       });
