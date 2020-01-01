@@ -71,7 +71,7 @@ export class HomePage implements OnInit {
 
   ionViewDidEnter() {
     this.slider.startAutoplay();
-    this.exitEvent = this.platform.backButton.subscribe(() => {
+    this.exitEvent = this.platform.backButton.subscribeWithPriority(99999, () => {
       utilsService.confirm('确认退出[农村大集]客户端？', () => {
         navigator['app'].exitApp();
       });
