@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { IonSlides, Platform } from '@ionic/angular';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { environment } from '../../../environments/environment';
@@ -15,7 +15,7 @@ declare let AMap;
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
-export class HomePage {
+export class HomePage implements OnInit {
   @ViewChild('mySlider', { static: false }) slider: IonSlides;
   city = utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
   formatRBM = utilsService.formatRMB;
@@ -41,6 +41,8 @@ export class HomePage {
     private router: Router,
     private platform: Platform,
     private geolocation: Geolocation) { }
+
+  ngOnInit() { }
 
   ionViewWillEnter() {
     let kw = new StringValue();
