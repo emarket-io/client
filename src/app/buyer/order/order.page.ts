@@ -16,7 +16,7 @@ import { apiService, utilsService } from '../../providers/utils.service';
 export class OrderPage {
   orders: Order[] = [];
   users = new Map<string, User>();
-  statuses: string[] = ['全部', '待发货', '待收货', '待评价', '待付款',];
+  statuses: string[] = ['全部', '待发货', '待收货', '待评价', '待退款',];
   selectedStatus = this.statuses[0];
   host = environment.apiUrl;
   formatRBM = utilsService.formatRMB;
@@ -97,7 +97,7 @@ export class OrderPage {
             if (!alertData.refund) {
               utilsService.alert('请输入退款理由');
             } else {
-              order.status = '退款中';
+              order.status = '待退款';
               order.comment = alertData.refund;
               apiService.orderClient.update(order, apiService.metaData, (err: any, response: Order) => {
                 if (err) {

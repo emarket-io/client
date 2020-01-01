@@ -91,8 +91,8 @@ export class OrderPage {
   }
 
   refund(order: Order) {
-    if (order.status != "退款中") {
-      return utilsService.alert('此订单非退款中');
+    if (order.status != "待退款") {
+      return utilsService.alert('此订单非待退款');
     }
 
     utilsService.confirm('确定要退款给买家？', () => {
