@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { IonSlides, Platform } from '@ionic/angular';
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { environment } from '../../../environments/environment';
@@ -15,7 +15,7 @@ declare let AMap;
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
-export class HomePage implements OnInit {
+export class HomePage {
   @ViewChild('mySlider', { static: false }) slider: IonSlides;
   city = utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
   formatRBM = utilsService.formatRMB;
@@ -41,8 +41,6 @@ export class HomePage implements OnInit {
     private router: Router,
     private platform: Platform,
     private geolocation: Geolocation) { }
-
-  ngOnInit() { }
 
   ionViewWillEnter() {
     let kw = new StringValue();
@@ -70,8 +68,9 @@ export class HomePage implements OnInit {
   }
 
   ionViewDidEnter() {
+    navigator['app'].clearHistory();
     this.slider.startAutoplay();
-    this.exitEvent = this.platform.backButton.subscribeWithPriority(99999, () => {
+    this.exitEvent = this.platform.backButton.subscribeWithPriority(999990, () => {
       utilsService.confirm('确认退出[农村大集]客户端？', () => {
         navigator['app'].exitApp();
       });
@@ -86,7 +85,7 @@ export class HomePage implements OnInit {
     this.router.navigateByUrl('/detail', { state: commodity });
   }
 
-  async getLocation() {
+  getLocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
       AMap.convertFrom(resp.coords.longitude + "," + resp.coords.latitude, "gps", (status, result) => {
         if (status == "complete") {
