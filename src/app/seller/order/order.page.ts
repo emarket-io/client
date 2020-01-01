@@ -73,8 +73,7 @@ export class OrderPage {
           text: '确定',
           handler: (alertData) => {
             if (!alertData.name1) {
-              utilsService.alert('快递单号不能为空');
-              return
+              return utilsService.alert('快递单号不能为空');
             }
             order.status = '待收货';
             order.express.number = alertData.name1;
@@ -89,5 +88,22 @@ export class OrderPage {
     });
 
     await alert.present();
+  }
+
+  refund(order: Order) {
+    if (order.status != "退款中") {
+      return utilsService.alert('此订单非退款中');
+    }
+
+    utilsService.confirm('确定要退款给买家？', () => {
+      order.status = '已退款';
+      apiService.orderClient.update(order, apiService.metaData, (err, response) => {
+        if (err) {
+          utilsService.alert(JSON.stringify(err));
+        } else {
+          console.log(response);
+        }
+      });
+    });
   }
 }
