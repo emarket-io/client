@@ -35,7 +35,7 @@ export class HomePage {
     },
   };
   commodities: Commodity[] = [];
-  exitEvent: Subscription;
+  //exitEvent: Subscription;
 
   constructor(
     private router: Router,
@@ -63,18 +63,17 @@ export class HomePage {
   }
 
   ionViewWillLeave() {
-    this.exitEvent.unsubscribe();
+    //this.exitEvent.unsubscribe();
     this.slider.stopAutoplay();
   }
 
   ionViewDidEnter() {
-    navigator['app'].clearHistory();
     this.slider.startAutoplay();
-    this.exitEvent = this.platform.backButton.subscribeWithPriority(999990, () => {
-      utilsService.confirm('确认退出[农村大集]客户端？', () => {
-        navigator['app'].exitApp();
-      });
-    });
+    // this.exitEvent = this.platform.backButton.subscribeWithPriority(999990, () => {
+    //   utilsService.confirm('确认退出[农村大集]客户端？', () => {
+    //     navigator['app'].exitApp();
+    //   });
+    // });
   }
 
   gotoView(keyword: string) {
