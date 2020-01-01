@@ -4,12 +4,12 @@
         "source": "/home/daniel/emart.io/client/platforms/android/app/src/main/res/xml/config.xml"
     },
     {
-        "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/release/drawable-land-xxxhdpi_screen.png.flat",
-        "source": "/home/daniel/emart.io/client/platforms/android/app/src/main/res/drawable-land-xxxhdpi/screen.png"
-    },
-    {
         "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/release/drawable-mdpi-v4_notification_bg_low_normal.9.png.flat",
         "source": "/home/daniel/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/c16aa6f92629baf4b54fac5f088cdd3d/res/drawable-mdpi-v4/notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/release/drawable-land-xxxhdpi_screen.png.flat",
+        "source": "/home/daniel/emart.io/client/platforms/android/app/src/main/res/drawable-land-xxxhdpi/screen.png"
     },
     {
         "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/release/layout-v21_notification_action.xml.flat",
@@ -32,12 +32,12 @@
         "source": "/home/daniel/emart.io/client/platforms/android/app/src/main/res/drawable-land-mdpi/screen.png"
     },
     {
-        "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/release/layout-v16_notification_template_custom_big.xml.flat",
-        "source": "/home/daniel/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/c16aa6f92629baf4b54fac5f088cdd3d/res/layout-v16/notification_template_custom_big.xml"
-    },
-    {
         "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/release/layout_notification_template_big_media_custom.xml.flat",
         "source": "/home/daniel/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/7b287a918ca23847546929740e8505bf/res/layout/notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/release/layout-v16_notification_template_custom_big.xml.flat",
+        "source": "/home/daniel/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/c16aa6f92629baf4b54fac5f088cdd3d/res/layout-v16/notification_template_custom_big.xml"
     },
     {
         "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/release/drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
@@ -52,16 +52,16 @@
         "source": "/home/daniel/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/c16aa6f92629baf4b54fac5f088cdd3d/res/drawable-hdpi-v4/notification_bg_normal.9.png"
     },
     {
-        "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/release/drawable-land-ldpi_screen.png.flat",
-        "source": "/home/daniel/emart.io/client/platforms/android/app/src/main/res/drawable-land-ldpi/screen.png"
+        "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/release/drawable-port-ldpi_screen.png.flat",
+        "source": "/home/daniel/emart.io/client/platforms/android/app/src/main/res/drawable-port-ldpi/screen.png"
     },
     {
         "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/release/layout_notification_template_big_media_narrow_custom.xml.flat",
         "source": "/home/daniel/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/7b287a918ca23847546929740e8505bf/res/layout/notification_template_big_media_narrow_custom.xml"
     },
     {
-        "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/release/drawable-port-ldpi_screen.png.flat",
-        "source": "/home/daniel/emart.io/client/platforms/android/app/src/main/res/drawable-port-ldpi/screen.png"
+        "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/release/drawable-land-ldpi_screen.png.flat",
+        "source": "/home/daniel/emart.io/client/platforms/android/app/src/main/res/drawable-land-ldpi/screen.png"
     },
     {
         "merged": "/home/daniel/emart.io/client/platforms/android/app/build/intermediates/res/merged/release/mipmap-ldpi_ic_launcher.png.flat",

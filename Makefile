@@ -10,3 +10,6 @@ prod:clean
 
 release:clean
 	ionic cordova build android --prod --release
+
+resource:
+	ionic cordova resources android
