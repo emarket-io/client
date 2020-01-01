@@ -15,6 +15,6 @@
 <ion-content>
   <ion-item>
     <ion-label>当前余额</ion-label>
-    <ion-label>¥{{formatRMB(account.amount.toString())}}</ion-label>
+    <ion-label>¥{{formatRMB((account.amount/100).toString())}}</ion-label>
   </ion-item>
 </ion-content>

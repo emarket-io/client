@@ -1,4 +1,3 @@
-import { Error } from 'grpc-web';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { User } from '../../../sdk/user_pb';
@@ -62,7 +61,7 @@ export class OrderPage {
     let user = new User();
     user.id = userId;
     if (!this.users[userId]) {
-      apiService.userClient.get(user, apiService.metaData, (err: Error, response: User) => {
+      apiService.userClient.get(user, apiService.metaData, (err, response) => {
         if (err) {
           console.log(err);
         } else {
@@ -104,6 +103,7 @@ export class OrderPage {
                   utilsService.alert(JSON.stringify(err));
                 } else {
                   console.log(response);
+                  this.ionViewWillEnter();
                 }
               });
             }
@@ -132,6 +132,8 @@ export class OrderPage {
         apiService.orderClient.update(order, apiService.metaData, (err: any, response: Order) => {
           if (err) {
             utilsService.alert(JSON.stringify(err));
+          } else {
+            this.ionViewWillEnter();
           }
         })
       });

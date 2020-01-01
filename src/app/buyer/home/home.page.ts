@@ -1,6 +1,7 @@
+import { Subscription } from 'rxjs';
 import { Component, ViewChild } from '@angular/core';
 import { Commodity } from '../../../sdk/commodity_pb';
-import { IonSlides } from '@ionic/angular';
+import { IonSlides, Platform } from '@ionic/angular';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service';
 import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
@@ -34,9 +35,11 @@ export class HomePage {
     },
   };
   commodities: Commodity[] = [];
+  exitEvent: Subscription;
 
   constructor(
     private router: Router,
+    private platform: Platform,
     private geolocation: Geolocation) { }
 
   ionViewWillEnter() {
@@ -61,10 +64,16 @@ export class HomePage {
 
   ionViewWillLeave() {
     this.slider.stopAutoplay();
+    this.exitEvent.unsubscribe();
   }
 
   ionViewDidEnter() {
     this.slider.startAutoplay();
+    this.exitEvent = this.platform.backButton.subscribeWithPriority(1, () => {
+      utilsService.confirm('确认退出[农村大集]客户端？', () => {
+        navigator['app'].exitApp();
+      });
+    });
   }
 
   gotoView(keyword: string) {

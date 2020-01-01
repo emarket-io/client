@@ -17,7 +17,7 @@
     <ion-item-sliding *ngFor="let msg of messages">
       <ion-item *ngIf="msg.from!=user.id">
         <ion-avatar slot="start">
-          <img src="assets/fruit/apple.png">
+          <img [src]="users[msg.from]?.icon?users[msg.from].icon:'assets/fruit/apple.png'">
         </ion-avatar>
         <ion-badge class="ion-text-wrap" slot="start">{{msg.content}}
           ({{msg.created?.toDate() | date:'MM/dd H:mm'}})
@@ -28,7 +28,7 @@
           ({{msg.created?.toDate() | date:'MM/dd H:mm'}})
         </ion-badge>
         <ion-avatar slot="end">
-          <img src="assets/fruit/apple.png">
+          <img [src]="user?.icon?user.icon:'assets/fruit/apple.png'">
         </ion-avatar>
       </ion-item>
     </ion-item-sliding>

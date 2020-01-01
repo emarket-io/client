@@ -102,6 +102,7 @@ export class OrderPage {
           utilsService.alert(JSON.stringify(err));
         } else {
           console.log(response);
+          this.ionViewWillEnter();
         }
       });
     });
