@@ -1,4 +1,4 @@
-import { Subscription } from 'rxjs';
+//import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { IonSlides, Platform } from '@ionic/angular';
 import { Component, ViewChild } from '@angular/core';
@@ -17,7 +17,7 @@ declare let AMap;
 })
 export class HomePage {
   @ViewChild('mySlider', { static: false }) slider: IonSlides;
-  city = utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
+  city = '';//utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
   formatRBM = utilsService.formatRMB;
   host = environment.apiUrl;
   slideTopOpts = {
@@ -39,7 +39,7 @@ export class HomePage {
 
   constructor(
     private router: Router,
-    private platform: Platform,
+    //private platform: Platform,
     private geolocation: Geolocation) { }
 
   ionViewWillEnter() {
@@ -105,7 +105,7 @@ export class HomePage {
             });
           });
         } else {
-          alert("坐标转换失败," + status + "/" + result);
+          utilsService.alert("坐标转换失败," + status + "/" + result);
         }
       });
     }).catch((error) => {
