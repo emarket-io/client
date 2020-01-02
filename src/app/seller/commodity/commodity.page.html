@@ -26,8 +26,12 @@
           </ion-img>
         </ion-thumbnail>
         <ion-label>{{commodity.title}}</ion-label>
+        <ion-badge slot="end">{{commodity.status}}</ion-badge>
       </ion-item>
       <ion-item-options side="end">
+        <ion-item-option color="warning" (click)="offline(commodity)">
+          下线
+        </ion-item-option>
         <ion-item-option color="danger" (click)="delete(commodity)">
           删除
         </ion-item-option>

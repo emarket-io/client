@@ -41,6 +41,8 @@ export class SessionPage {
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
     });
+    stream.on('end', () => {
+    });
   }
 
   getUserById() {

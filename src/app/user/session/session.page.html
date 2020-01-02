@@ -14,7 +14,7 @@
 
 <ion-content>
   <ion-list lines="none">
-    <ion-item-sliding *ngFor="let msg of messages">
+    <div *ngFor="let msg of messages">
       <ion-item *ngIf="msg.from!=user.id">
         <ion-avatar slot="start">
           <img [src]="users[msg.from]?.icon?users[msg.from].icon:'assets/fruit/apple.png'">
@@ -31,7 +31,7 @@
           <img [src]="user?.icon?user.icon:'assets/fruit/apple.png'">
         </ion-avatar>
       </ion-item>
-    </ion-item-sliding>
+    </div>
   </ion-list>
 </ion-content>
 

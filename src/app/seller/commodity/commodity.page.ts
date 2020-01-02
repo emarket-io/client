@@ -13,7 +13,7 @@ import { apiService, utilsService } from '../../providers/utils.service'
 export class CommodityPage {
   commodities: Commodity[];
   host = environment.apiUrl;
-  
+
   constructor(private router: Router) { }
 
   ionViewWillEnter() {
@@ -32,8 +32,21 @@ export class CommodityPage {
     this.router.navigateByUrl('/commodity_update', { state: commodity });
   }
 
+  offline(commodity: Commodity) {
+    utilsService.confirm('确认下线此商品？', () => {
+      commodity.status = "已下线";
+      apiService.commodityClient.update(commodity, apiService.metaData, (err: any, response: any) => {
+        if (err) {
+          utilsService.alert(JSON.stringify(err));
+        } else {
+          this.ionViewWillEnter();
+        }
+      });
+    });
+  }
+
   delete(commodity: Commodity) {
-    utilsService.confirm('确认删除此商品？', () => {
+    utilsService.confirm('确认删除此商品？建议先做下线处理', () => {
       apiService.commodityClient.delete(commodity, apiService.metaData, (err: any, response: any) => {
         if (err) {
           utilsService.alert(JSON.stringify(err));
