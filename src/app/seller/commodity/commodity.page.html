@@ -16,8 +16,8 @@
   <ion-list>
     <ion-item-sliding *ngFor="let commodity of commodities">
       <ion-item-options side="start">
-        <ion-item-option (click)="update(commodity)">
-          修改
+        <ion-item-option>
+          @
         </ion-item-option>
       </ion-item-options>
       <ion-item (click)="update(commodity)">
@@ -29,6 +29,9 @@
         <ion-badge slot="end">{{commodity.status}}</ion-badge>
       </ion-item>
       <ion-item-options side="end">
+        <ion-item-option (click)="update(commodity)">
+          修改
+        </ion-item-option>
         <ion-item-option color="warning" (click)="offline(commodity)">
           下线
         </ion-item-option>

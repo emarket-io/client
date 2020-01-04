@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Injector } from '@angular/core';
 import { utilsService } from './providers/utils.service'
 import { Platform } from '@ionic/angular';
@@ -11,6 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent {
   constructor(
+    private router: Router,
     private injector: Injector,
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -26,6 +28,13 @@ export class AppComponent {
       this.splashScreen.hide();
       this.setTheme(Math.random());
       utilsService.injector = this.injector;
+      this.platform.backButton.subscribe(() => {
+        if (this.router.url == '/tabs/home') {
+          utilsService.confirm('确认退出[农村大集]客户端？', () => {
+            navigator['app'].exitApp();
+          });
+        }
+      })
     });
   }
 

@@ -33,10 +33,10 @@
     </ion-grid>
   </ion-item>
   <ion-item>
-    <ion-label position="stacked">
-      <span style="font-size: larger;">描述</span>
-    </ion-label>
-    <ion-textarea placeholder="填写描述" [(ngModel)]="commodity.content"></ion-textarea>
+    <ion-label>描述</ion-label>
+    <div>
+      <ion-textarea style="margin-top: 0;" placeholder="填写描述" [(ngModel)]="commodity.content"></ion-textarea>
+    </div>
   </ion-item>
   <ion-item lines="none">
     <ion-label>标签</ion-label>
@@ -49,4 +49,4 @@
     </ion-select>
   </ion-item>
 </ion-content>
-<ion-button (click)="submit()">确认修改</ion-button>
+<ion-button (click)="update()">确认修改</ion-button>

@@ -19,7 +19,9 @@
   </ion-item>
   <ion-item>
     <ion-label>店铺描述</ion-label>
-    <ion-input placeholder="请输入店铺描述" [(ngModel)]="shop.description"></ion-input>
+    <div>
+      <ion-textarea rows="1" style="margin-top: 0;" placeholder="请输入店铺描述" [(ngModel)]="shop.description"></ion-textarea>
+    </div>
   </ion-item>
 </ion-content>
 <ion-button (click)="save()">保存</ion-button>

@@ -50,7 +50,10 @@
     <!-- <div *ngIf="displayMore"> -->
     <ion-item lines="none">
       <ion-label>描述</ion-label>
-      <ion-input placeholder="填写描述" [(ngModel)]="commodity.content"></ion-input>
+      <div>
+        <ion-textarea rows="1" style="margin-top: 0;" placeholder="填写描述" [(ngModel)]="commodity.content">
+        </ion-textarea>
+      </div>
     </ion-item>
     <ion-item lines="none">
       <ion-label>标签</ion-label>
