@@ -40,7 +40,7 @@ export class DetailPage {
   share() {
     this.wechat.share({
       message: {
-        title: "[农村大集]上农村大集，感受淳朴与自然(" + this.commodity.title + ")",
+        title: "[农村大集]上农村大集，让农货便宜到家(" + this.commodity.title + ")",
         description: "This is description.",
         thumb: "www/img/thumbnail.png",
         mediaTagName: "TEST-TAG-001",

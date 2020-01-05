@@ -61,7 +61,7 @@ export class PublishPage {
         var dirUrl = await this.file.resolveDirectoryUrl(dirpath);
         var retrievedFile = await this.file.getFile(dirUrl, filename, {});
       } catch (err) {
-        alert(err)
+        utilsService.alert(err)
       }
 
       retrievedFile.file(data => {
@@ -117,6 +117,7 @@ export class PublishPage {
       data => {
         console.log(data);
         this.commodity.ownerId = utilsService.getUser().id;
+        this.commodity.status = '已上线';
         apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
           if (err) {
             utilsService.alert(JSON.stringify(err));

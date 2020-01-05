@@ -51,13 +51,13 @@
     <ion-item lines="none">
       <ion-label>描述</ion-label>
       <div style="width: 100%;">
-        <ion-textarea style="margin-top: 0;" placeholder="请输入描述(可选)" [(ngModel)]="commodity.content">
+        <ion-textarea style="margin-top: 0;" placeholder="可附加描述" [(ngModel)]="commodity.content">
         </ion-textarea>
       </div>
     </ion-item>
     <ion-item lines="none">
       <ion-label>标签</ion-label>
-      <ion-select style="max-width: 90%;" placeholder="特色标签(可选)" multiple [(ngModel)]="commodity.tagsList"
+      <ion-select style="max-width: 90%;" placeholder="特色标签" multiple [(ngModel)]="commodity.tagsList"
         cancelText="取消" okText="确定">
         <ion-select-option value="农家自产">农家自产</ion-select-option>
         <!-- <ion-select-option value="限量特价">限量特价</ion-select-option> -->
