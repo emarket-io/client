@@ -2,4 +2,7 @@ ion-item {
     ion-grid {
         text-align: right;
     }
+    ion-label {
+        min-width: 33px;
+    }
 }
