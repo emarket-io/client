@@ -1,6 +1,6 @@
-//import { Subscription } from 'rxjs';
+import { NgZone } from '@angular/core'
 import { Router } from '@angular/router';
-import { IonSlides, Platform } from '@ionic/angular';
+import { IonSlides } from '@ionic/angular';
 import { Component, ViewChild } from '@angular/core';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
@@ -17,7 +17,7 @@ declare let AMap;
 })
 export class HomePage {
   @ViewChild('mySlider', { static: false }) slider: IonSlides;
-  city = '';//utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
+  city = utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
   formatRBM = utilsService.formatRMB;
   host = environment.apiUrl;
   slideTopOpts = {
@@ -35,11 +35,10 @@ export class HomePage {
     },
   };
   commodities: Commodity[] = [];
-  //exitEvent: Subscription;
 
   constructor(
     private router: Router,
-    //private platform: Platform,
+    private ngZone: NgZone,
     private geolocation: Geolocation) { }
 
   ionViewWillEnter() {
@@ -63,17 +62,11 @@ export class HomePage {
   }
 
   ionViewWillLeave() {
-    //this.exitEvent.unsubscribe();
     this.slider.stopAutoplay();
   }
 
   ionViewDidEnter() {
     this.slider.startAutoplay();
-    // this.exitEvent = this.platform.backButton.subscribeWithPriority(999990, () => {
-    //   utilsService.confirm('确认退出[农村大集]客户端？', () => {
-    //     navigator['app'].exitApp();
-    //   });
-    // });
   }
 
   gotoView(keyword: string) {
@@ -85,7 +78,7 @@ export class HomePage {
   }
 
   getLocation() {
-    this.geolocation.getCurrentPosition().then((resp) => {
+    this.geolocation.getCurrentPosition().then(async (resp) => {
       AMap.convertFrom(resp.coords.longitude + "," + resp.coords.latitude, "gps", (status, result) => {
         if (status == "complete") {
           const positionInfo = [result.locations[0].P + '', result.locations[0].O + ''];
@@ -94,11 +87,13 @@ export class HomePage {
             const geocoder = new AMap.Geocoder();
             geocoder.getAddress(positionInfo, (status, result) => {
               if (status === 'complete' && result.info === 'OK') {
-                utilsService.location = result.regeocode;
-                this.city = utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
-                if (utilsService.location.addressComponent.city == '') {
-                  this.city = utilsService.location.addressComponent.province + utilsService.location.addressComponent.district;
-                }
+                this.ngZone.run(() => {//use here
+                  utilsService.location = result.regeocode;
+                  this.city = utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
+                  if (utilsService.location.addressComponent.city == '') {
+                    this.city = utilsService.location.addressComponent.province + utilsService.location.addressComponent.district;
+                  }
+                });
               } else {
                 console.log('获取地址失败', result, status);
               }
@@ -110,7 +105,6 @@ export class HomePage {
       });
     }).catch((error) => {
       console.log('Error getting location', error);
-      //utilsService.alert(JSON.stringify(error));
     });
   }
 }
