@@ -486,6 +486,7 @@ public class CordovaActivity extends Activity {
      */
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
+        newConfig.fontScale=(float) 1.0;
         super.onConfigurationChanged(newConfig);
         if (this.appView == null) {
             return;
