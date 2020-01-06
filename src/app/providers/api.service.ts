@@ -87,9 +87,9 @@ export class ApiService {
     }, {
       "title": "茶叶", "hots": [
         { "name": "菊花茶", "src": "fruit/juhuacha.jpg" },
-        { "name": "茉莉花茶", "src": "fruit/molihuacha.jpg" },
+        { "name": "茉莉花", "src": "fruit/molihuacha.jpg" },
         { "name": "毛尖茶", "src": "fruit/maojiancha.jpg" },
-        { "name": "乌龙红茶", "src": "fruit/wulonghongcha.jpg" }],
+        { "name": "乌龙茶", "src": "fruit/wulonghongcha.jpg" }],
       subCategories: {
         花果茶: ['菊花茶', '玫瑰花茶', '蒲公英茶', '茉莉花茶', '荷叶茶', '其他'],
         黑茶: ['普洱茶', '湖南黑茶', '湖北老青茶', '其他'],

@@ -17,7 +17,7 @@ declare let AMap;
 })
 export class HomePage {
   @ViewChild('mySlider', { static: false }) slider: IonSlides;
-  city = utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
+  city = '定位中';//utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
   formatRBM = utilsService.formatRMB;
   host = environment.apiUrl;
   slideTopOpts = {
