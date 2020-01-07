@@ -24,6 +24,14 @@ export class ViewPage {
   }
 
   ionViewWillEnter() {
+    this.doRefresh();
+  }
+
+  gotoDetail(commodity: Commodity) {
+    this.router.navigateByUrl('/detail', { state: commodity });
+  }
+
+  doRefresh(event: any = null) {
     let kw = new StringValue();
     kw.setValue(this.keyword);
     let stream = apiService.commodityClient.search(kw, apiService.metaData);
@@ -36,18 +44,11 @@ export class ViewPage {
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
     });
-  }
-
-  gotoDetail(commodity: Commodity) {
-    this.router.navigateByUrl('/detail', { state: commodity });
-  }
-
-  doRefresh(event) {
-    console.log('Begin async operation');
-    this.ionViewWillEnter();
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 1000);
+    stream.on('end', () => {
+      // this.orders = newOrders;
+      if (event) {
+        event.target.complete();
+      }
+    });
   }
 }
