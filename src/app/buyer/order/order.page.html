@@ -13,6 +13,9 @@
 </ion-slides>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div *ngFor="let order of orders">
     <div (click)="confirmReceive(order)">
       <div style="width: 50%;text-align: left;" class="ion-text-capitalize">

@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-list *ngIf="messages.length>0">
     <ion-item>
       来自于：
     </ion-item>
@@ -22,4 +22,7 @@
       {{users[msg.from]?.shopsList[0]?.name?users[msg.from]?.shopsList[0].name:users[msg.from]?.name}}
     </ion-item>
   </ion-list>
+  <ion-item *ngIf="messages.length==0" lines="none">
+    暂时没有聊天对话哦
+  </ion-item>
 </ion-content>

@@ -20,6 +20,7 @@
 package io.emart.starter;
 
 import android.os.Bundle;
+import android.content.res.Resources;
 import org.apache.cordova.*;
 import android.view.WindowManager;
 
@@ -50,5 +51,16 @@ public class MainActivity extends CordovaActivity
         super.onStart();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+    }
+
+    @Override
+    public Resources getResources() {//禁止app字体大小跟随系统字体大小调节
+      Resources resources = super.getResources();
+      if (resources != null && resources.getConfiguration().fontScale != 1.0f) {
+        android.content.res.Configuration configuration = resources.getConfiguration();
+        configuration.fontScale = 1.0f;
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+      }
+      return resources;
     }
 }

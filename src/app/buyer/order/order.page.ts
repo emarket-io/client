@@ -151,4 +151,13 @@ export class OrderPage {
       })
     });
   }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.ionViewWillEnter();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 1000);
+  }
 }

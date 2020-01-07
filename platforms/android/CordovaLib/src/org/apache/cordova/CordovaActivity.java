@@ -30,7 +30,6 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Build;
@@ -518,14 +517,4 @@ public class CordovaActivity extends Activity {
         }
 
     }
-
-    @Override
-public Resources getResources() {
-    Resources resources = super.getResources();
-    Configuration configuration = new Configuration();
-    configuration.setToDefaults();
-    resources.updateConfiguration(configuration,resources.getDisplayMetrics());
-    return resources;
-}
-
 }
