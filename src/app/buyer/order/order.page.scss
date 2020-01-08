@@ -11,12 +11,15 @@ ion-button {
 }
 
 ion-content{
-    div {
+    --background: #f2f2f2;
+    ion-card {
         padding: 10px;
+        background: white;
+        //box-shadow: none;
         ion-item-sliding{
-            background: #f2f2f2;
+            //background: #f2f2f2;
             ion-item {
-                --background: #f2f2f2;
+                //--background: #f2f2f2;
                 ion-thumbnail {
                     --border-radius:5px;
                 }

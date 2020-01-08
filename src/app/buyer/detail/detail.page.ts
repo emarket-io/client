@@ -1,13 +1,13 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { User } from '../../../sdk/user_pb';
-import { Order, Groupon } from '../../../sdk/order_pb';
 import { Wechat } from '@ionic-native/wechat/ngx';
 import { PopoverController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';
+import { Order, Groupon } from '../../../sdk/order_pb';
 import { SelectionPage } from './selection/selection.page';
-import { apiService, utilsService } from '../../providers/utils.service';
 import { environment } from '../../../environments/environment';
+import { apiService, utilsService } from '../../providers/utils.service';
 
 @Component({
   selector: 'app-detail',
@@ -40,9 +40,9 @@ export class DetailPage {
   share() {
     this.wechat.share({
       message: {
-        title: "[农村大集]上农村大集，让农货便宜到家(" + this.commodity.title + ")",
+        title: "[农村大集]上农村大集，让农货便宜到家--" + this.commodity.title,
         description: "This is description.",
-        thumb: "www/img/thumbnail.png",
+        thumb: "assets/icon/drawable-mdpi-icon.png",
         mediaTagName: "TEST-TAG-001",
         messageExt: "这是第三方带的测试字段",
         messageAction: "<action>dotalist</action>",

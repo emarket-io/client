@@ -43,6 +43,9 @@ export class ViewPage {
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
+      if (event) {
+        event.target.complete();
+      }
     });
     stream.on('end', () => {
       // this.orders = newOrders;
