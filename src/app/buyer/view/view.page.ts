@@ -24,14 +24,14 @@ export class ViewPage {
   }
 
   ionViewWillEnter() {
-    this.doRefresh();
+    this.refresh();
   }
 
   gotoDetail(commodity: Commodity) {
     this.router.navigateByUrl('/detail', { state: commodity });
   }
 
-  doRefresh(event: any = null) {
+  refresh(event: any = null) {
     let kw = new StringValue();
     kw.setValue(this.keyword);
     let stream = apiService.commodityClient.search(kw, apiService.metaData);

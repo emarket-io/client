@@ -31,7 +31,7 @@
 </ion-slides>
 
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content refreshingSpinner="bubbles"></ion-refresher-content>
   </ion-refresher>
   <ion-item *ngFor="let commodity of commodities" style="height: 150px;" (click)="gotoDetail(commodity)">

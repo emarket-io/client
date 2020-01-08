@@ -17,12 +17,12 @@
     </ion-item>
     <ion-item *ngFor="let msg of messages" (click)="gotoSession(msg.from)">
       <ion-avatar slot="start">
-        <ion-img [src]="users[msg.from]?.icon?users[msg.from].icon:'assets/fruit/apple.png'"></ion-img>
+        <ion-img [src]="users[msg.from]?.icon?users[msg.from].icon:'assets/fruit/banana.png'"></ion-img>
       </ion-avatar>
       {{users[msg.from]?.shopsList[0]?.name?users[msg.from]?.shopsList[0].name:users[msg.from]?.name}}
     </ion-item>
   </ion-list>
-  <ion-item *ngIf="messages.length==0" lines="none">
-    暂时没有聊天对话哦
+  <ion-item *ngIf="messages.length==0" lines="none" style="text-align: center;">
+    <ion-label>暂时没有消息哦</ion-label>
   </ion-item>
 </ion-content>

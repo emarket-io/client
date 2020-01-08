@@ -30,11 +30,11 @@ export class OrderPage {
   listByStatus(status: string) {
     this.orders = [];
     this.selectedStatus = status;
-    this.ionViewWillEnter();
+    this.refresh();
   }
 
   ionViewWillEnter() {
-    this.doRefresh();
+    this.refresh();
   }
 
   getOwnerById(userId: string) {
@@ -132,7 +132,7 @@ export class OrderPage {
     });
   }
 
-  doRefresh(event: any = null) {
+  refresh(event: any = null) {
     if (!utilsService.getUser()) {
       return this.router.navigateByUrl('/login');
     }
