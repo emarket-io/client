@@ -16,7 +16,7 @@
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content refreshingSpinner="bubbles"></ion-refresher-content>
   </ion-refresher>
-  <ion-card *ngFor="let order of orders">
+  <div *ngFor="let order of orders" style="margin: 10px;">
     <div (click)="confirmReceive(order)">
       <div style="width: 50%;text-align: left;" class="ion-text-capitalize">
         {{users[order.snapshot?.ownerId]?.shopsList[0]?.name?users[order.snapshot?.ownerId]?.shopsList[0].name:users[order.snapshot?.ownerId]?.name}}
@@ -48,5 +48,5 @@
       <div (click)="buyAgain(order.snapshot)">再次购买</div>
       <div>立即评价</div>
     </div>
-  </ion-card>
+  </div>
 </ion-content>

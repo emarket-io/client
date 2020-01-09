@@ -42,4 +42,8 @@ export class LoginPage {
     this.events.publish('user:logout', '');
     this.router.navigateByUrl('/login');
   }
+
+  signup() {
+    this.router.navigateByUrl('/signup', { skipLocationChange: true });
+  }
 }

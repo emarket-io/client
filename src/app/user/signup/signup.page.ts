@@ -43,4 +43,8 @@ export class SignupPage {
       }
     });
   }
+
+  login() {
+    this.router.navigateByUrl('/login', { skipLocationChange: true })
+  }
 }

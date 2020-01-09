@@ -13,7 +13,7 @@ import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
 export class ViewPage {
   keyword: string;
   host = environment.apiUrl;
-  commodities: Commodity[];
+  commodities: Commodity[] = [];
   formatRBM = utilsService.formatRMB;
   slideOpts = {
     slidesPerView: 4,
@@ -35,11 +35,12 @@ export class ViewPage {
     let kw = new StringValue();
     kw.setValue(this.keyword);
     let stream = apiService.commodityClient.search(kw, apiService.metaData);
-    this.commodities = [];
+    let newCommodities = [];
     stream.on('data', response => {
-      // if (!this.commodities.some(item => item.id == response.id)) {
-      this.commodities.push(response);
-      // }
+      if (!this.commodities.some(item => item.id == response.id)) {
+        this.commodities.push(response);
+      }
+      newCommodities.push(response);
     });
     stream.on('error', err => {
       utilsService.alert(JSON.stringify(err));
@@ -48,7 +49,7 @@ export class ViewPage {
       }
     });
     stream.on('end', () => {
-      // this.orders = newOrders;
+      this.commodities = newCommodities;
       if (event) {
         event.target.complete();
       }
