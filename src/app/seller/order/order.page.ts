@@ -105,6 +105,6 @@ export class OrderPage {
           this.ionViewWillEnter();
         }
       });
-    });
+    }, '买家理由：' + order.comment);
   }
 }

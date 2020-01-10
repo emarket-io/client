@@ -57,9 +57,10 @@ export class UtilsService {
     await alert.present();
   }
 
-  async confirm(title: string, fn) {
+  async confirm(title: string, fn: Function, content?: string) {
     const alert = await this.injector.get(AlertController).create({
       subHeader: title,
+      message: content,
       buttons: [
         {
           text: '取消'
