@@ -17,8 +17,6 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- <div style="position: absolute;top: 16%;z-index: 1000;width: 50px;height: 20px;margin-left:5px;border: 1px solid var(--mytextcolor);font-size: small;">公测中</div> -->
-
 <ion-slides #mySlider [options]="slideTopOpts" style="width: 100%;height: 29%;top:14%;z-index: 999;position: absolute;">
   <ion-slide>
     <ion-card style="width: 94%;height: 100%;background: linear-gradient(180deg,var(--mycolor), white);">
@@ -53,8 +51,8 @@
 </ion-slides>
 
 <ion-content>
-  <div style="height: 15%;"></div>
-  <ion-card-content style="margin-top: 10px;">
+  <div style="height: 20%;"></div>
+  <ion-card-content>
     <div class="icon-layout" (click)="gotoView('')">
       <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
       限时秒杀
@@ -88,7 +86,7 @@
       品牌館
     </div>
   </ion-card-content>
-  <div style="margin: 10px 20px;">
+  <div style="margin: 5% 20px 0 20px;">
     <ion-card-subtitle>为你推荐</ion-card-subtitle>
     <ion-slides [options]="slideOpts">
       <ion-slide *ngFor="let commodity of commodities" (click)="gotoDetail(commodity)">
