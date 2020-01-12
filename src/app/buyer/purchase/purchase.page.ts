@@ -63,6 +63,9 @@ export class PurchasePage {
     if (!this.order.destination) {
       return utilsService.alert('请输入收货地址');
     }
+    if (this.order.userId == this.order.snapshot.ownerId) {
+      return utilsService.alert('请勿自卖自买');
+    }
     if (this.order.payInfo.type == 'alipay') {
       console.log(this.order.toObject());
       apiService.accountClient.signAlipay(this.order, apiService.metaData,
