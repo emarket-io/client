@@ -84,7 +84,7 @@
       品牌館
     </div>
   </ion-card-content>
-  <div style="margin: 5% 20px 0 20px;">
+  <div style="margin: 5% 20px 90px 20px;">
     <ion-card-subtitle>为你推荐</ion-card-subtitle>
     <ion-slides [options]="slideOpts">
       <ion-slide *ngFor="let commodity of commodities" (click)="gotoDetail(commodity)">
@@ -110,29 +110,4 @@
       </ion-slide>
     </ion-slides>
   </div>
-  <!-- <ion-fab vertical="bottom" horizontal="center" slot="fixed" style="margin-bottom: 50px;">
-    <ion-fab-button color="primary">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-list side="top">
-      <ion-fab-button>
-        <ion-icon name="logo-vimeo"></ion-icon>
-      </ion-fab-button>
-    </ion-fab-list>
-    <ion-fab-list side="bottom">
-      <ion-fab-button>
-        <ion-icon name="camera"></ion-icon>
-      </ion-fab-button>
-    </ion-fab-list>
-    <ion-fab-list side="start">
-      <ion-fab-button>
-        <ion-icon name="paper"></ion-icon>
-      </ion-fab-button>
-    </ion-fab-list>
-    <ion-fab-list side="end">
-      <ion-fab-button>
-        <ion-icon name="videocam"></ion-icon>
-      </ion-fab-button>
-    </ion-fab-list>
-  </ion-fab> -->
 </ion-content>
