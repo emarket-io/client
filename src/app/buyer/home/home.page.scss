@@ -3,11 +3,6 @@
   overflow: hidden;
 }
 
-.map_container {
-  width: 100%;
-  height: 100%;
-}
-
 .icon-layout {
   display: inline-block;
   width:25%;
@@ -18,6 +13,7 @@ ion-header {
   height: 29%;
   color: var(--mytextcolor);
   background: var(--mycolor);
+  z-index: 1;
   ion-toolbar {
     position: absolute;
     top: 15%;
