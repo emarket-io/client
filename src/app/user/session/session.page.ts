@@ -42,6 +42,7 @@ export class SessionPage {
       utilsService.alert(JSON.stringify(err));
     });
     stream.on('end', () => {
+      document.getElementById('msg_bottom').scrollIntoView();
     });
   }
 

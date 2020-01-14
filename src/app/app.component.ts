@@ -28,9 +28,9 @@ export class AppComponent {
       this.splashScreen.hide();
       this.setTheme(Math.random());
       utilsService.injector = this.injector;
-      this.platform.backButton.subscribe(() => {
+      this.platform.backButton.subscribeWithPriority(0, () => {
         if (this.router.url == '/tabs/home') {
-          utilsService.confirm('提示', () => {
+          utilsService.confirm('退出', () => {
             navigator['app'].exitApp();
           }, '确认退出[农村大集]客户端？');
         }
