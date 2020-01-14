@@ -28,7 +28,7 @@ export class AppComponent {
       this.splashScreen.hide();
       this.setTheme(Math.random());
       utilsService.injector = this.injector;
-      this.platform.backButton.subscribeWithPriority(0, () => {
+      this.platform.backButton.subscribeWithPriority(99999, () => {
         if (this.router.url == '/tabs/home') {
           utilsService.confirm('退出', () => {
             navigator['app'].exitApp();
