@@ -17,9 +17,9 @@ declare let AMap;
 })
 export class HomePage {
   @ViewChild('mySlider', { static: false }) slider: IonSlides;
-  city = '定位中';//utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
-  formatRBM = utilsService.formatRMB;
+  city = '定位中';
   host = environment.apiUrl;
+  formatRBM = utilsService.formatRMB;  
   slideTopOpts = {
     slidesPerView: 1,
     direction: "vertical",
@@ -87,7 +87,7 @@ export class HomePage {
             const geocoder = new AMap.Geocoder();
             geocoder.getAddress(positionInfo, (status, result) => {
               if (status === 'complete' && result.info === 'OK') {
-                this.ngZone.run(() => {//use here
+                this.ngZone.run(() => {// refresh view
                   utilsService.location = result.regeocode;
                   this.city = utilsService.location.addressComponent.city + utilsService.location.addressComponent.district;
                   if (utilsService.location.addressComponent.city == '') {

@@ -28,12 +28,12 @@ export class AppComponent {
       this.splashScreen.hide();
       this.setTheme(Math.random());
       utilsService.injector = this.injector;
-      this.platform.backButton.subscribeWithPriority(99999, () => {
+      this.platform.backButton.subscribe(() => {
         if (this.router.url == '/tabs/home') {
           utilsService.confirm('退出', () => {
             navigator['app'].exitApp();
           }, '确认退出[农村大集]客户端？');
-        }
+        };
       })
     });
   }
