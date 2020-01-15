@@ -1,5 +1,5 @@
 import { ApiService } from './api.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { User, Address } from '../../sdk/user_pb';
 import { Injectable, Injector } from '@angular/core';
 
@@ -73,6 +73,15 @@ export class UtilsService {
       ]
     });
     await alert.present();
+  }
+
+
+  async show(msg: string, duration: number = 2000) {
+    const toast = await this.injector.get(ToastController).create({
+      message: msg,
+      duration: duration,
+    });
+    toast.present();
   }
 
   check(value: string): boolean {

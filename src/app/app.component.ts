@@ -11,6 +11,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  exit = false;
+
   constructor(
     private router: Router,
     private injector: Injector,
@@ -30,9 +32,13 @@ export class AppComponent {
       utilsService.injector = this.injector;
       this.platform.backButton.subscribe(() => {
         if (this.router.url == '/tabs/home') {
-          utilsService.confirm('退出', () => {
+          if (this.exit) {
             navigator['app'].exitApp();
-          }, '确认退出[农村大集]客户端？');
+          } else {
+            utilsService.show('再按一次将退出[农村大集]');
+            this.exit = true;
+            setTimeout(() => this.exit = false, 1500);
+          }
         };
       })
     });
