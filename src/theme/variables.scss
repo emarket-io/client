@@ -86,7 +86,8 @@
 
 ion-header {
   height: 80px;
-  background: linear-gradient(170deg,var(--mycolor), white);
+  background: linear-gradient(170deg, var(--mycolor), white);
+
   ion-toolbar {
     position: absolute;
     bottom: 0px;
@@ -116,6 +117,4 @@ ion-button {
 
 .toast-message {
   text-align: center;
-  width:fit-content;
-  padding: 0;
 }

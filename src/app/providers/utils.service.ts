@@ -82,7 +82,7 @@ export class UtilsService {
       duration: duration,
       translucent: true,
       cssClass: 'toast-message',
-      position: "middle",
+      //position: "middle",
     });
     toast.present();
   }
