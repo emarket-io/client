@@ -31,7 +31,7 @@ export class AppComponent {
       this.setTheme(Math.random());
       utilsService.injector = this.injector;
       this.platform.backButton.subscribe(() => {
-        if (this.router.isActive('/tabs/home', true)) {
+        if (this.router.url.includes('/tabs/')) {
           if (this.exit) {
             navigator['app'].exitApp();
           } else {

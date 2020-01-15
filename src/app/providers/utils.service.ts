@@ -76,12 +76,13 @@ export class UtilsService {
   }
 
 
-  async show(msg: string, duration: number = 2000) {
+  async show(msg: string, duration: number = 1000) {
     const toast = await this.injector.get(ToastController).create({
       message: msg,
       duration: duration,
       translucent: true,
       cssClass: 'toast-message',
+      position: "middle",
     });
     toast.present();
   }
