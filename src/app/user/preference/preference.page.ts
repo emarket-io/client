@@ -1,7 +1,8 @@
 import { Events } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { utilsService } from '../../providers/utils.service'
+import { utilsService } from '../../providers/utils.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-preference',
@@ -9,6 +10,7 @@ import { utilsService } from '../../providers/utils.service'
   styleUrls: ['./preference.page.scss'],
 })
 export class PreferencePage {
+  host = environment.apiUrl;
 
   constructor(private events: Events, private router: Router, ) { }
 

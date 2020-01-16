@@ -96,7 +96,6 @@ export class PublishPage {
   }
 
   submit() {
-    //utilsService.show('再按一次将退出[农村大集]');
     if (!this.commodity.title) {
       return utilsService.alert('请输入标题');
     }
