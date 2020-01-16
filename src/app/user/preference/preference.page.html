@@ -26,7 +26,7 @@
   <img style="width: 30%;height: auto;margin: 20% auto;display: block;" src="{{host}}/assets/emart.png" />
 </ion-content>
 
-<ion-footer no-border>
+<ion-footer no-border *ngIf="isLogin">
   <!-- <ion-button expand="full" fill="outline">切换账户</ion-button> -->
   <ion-button (click)="logout()" expand="full" color="light" style="--box-shadow:none;">退出登录</ion-button>
 </ion-footer>

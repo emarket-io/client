@@ -10,9 +10,18 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./preference.page.scss'],
 })
 export class PreferencePage {
+  isLogin = false;
   host = environment.apiUrl;
 
   constructor(private events: Events, private router: Router, ) { }
+
+  ionViewWillEnter() {
+    if (utilsService.getUser()) {
+      this.isLogin = true;
+    } else {
+      this.router.navigateByUrl('/login');
+    }
+  }
 
   logout() {
     utilsService.confirm('确定要退出登录？', () => {
