@@ -96,29 +96,29 @@ export class AppComponent {
     let apk = this.file.dataDirectory + 'aaa.apk';
     const url = 'https://github.com/emart-io/client/raw/master/platforms/android/app/build/outputs/apk/release/app-release.apk';
 
-    var request: DownloadRequest = {
-      uri: url,
-      title: 'MyDownload',
-      description: '',
-      mimeType: '',
-      visibleInDownloadsUi: true,
-      notificationVisibility: NotificationVisibility.VisibleNotifyCompleted,
-      destinationInExternalFilesDir: {
-        dirType: 'Downloads',
-        subPath: 'daji.apk'
-      }
-    };
+    // var request: DownloadRequest = {
+    //   uri: url,
+    //   title: 'MyDownload',
+    //   description: '',
+    //   mimeType: '',
+    //   visibleInDownloadsUi: true,
+    //   notificationVisibility: NotificationVisibility.VisibleNotifyCompleted,
+    //   destinationInExternalFilesDir: {
+    //     dirType: 'Downloads',
+    //     subPath: 'daji.apk'
+    //   }
+    // };
 
 
-    this.downloader.download(request)
-      .then((location: string) => {
-        console.log('File downloaded at:' + location)
-        alert('File downloaded at:' + location)
-      })
-      .catch((error: any) => {
-        console.error(error);
-        alert(error)
-      });
+    // this.downloader.download(request)
+    //   .then((location: string) => {
+    //     console.log('File downloaded at:' + location)
+    //     alert('File downloaded at:' + location)
+    //   })
+    //   .catch((error: any) => {
+    //     console.error(error);
+    //     alert(error)
+    //   });
 
     // fileTransfer.download(url, this.file.dataDirectory + 'file.apk', true).then((entry) => {
     //   alert('download complete: ' + entry.toURL());
@@ -127,19 +127,19 @@ export class AppComponent {
     //   alert('000:' + JSON.stringify(error));
     // });
 
-    // fileTransfer.download(url, apk, true).then((entry) => {
-    //   alert('download complete: ' + entry.toURL());
-    //   this.fileOpener.open(entry.toURL(),
-    //     'application/vnd.android.package-archive')
-    //     .then(() => {
-    //       console.log('File is opened')
-    //     }).catch(e => {
-    //       console.log('Error openening file', e)
-    //       alert('111:' + JSON.stringify(e));
-    //     });
-    // }).catch(error => {
-    //   console.log(error)
-    //   alert('222:' + JSON.stringify(error));
-    // });
+    fileTransfer.download(url, apk, true).then((entry) => {
+      alert('download complete: ' + entry.toURL());
+      this.fileOpener.open(entry.toURL(),
+        'application/vnd.android.package-archive')
+        .then(() => {
+          console.log('File is opened')
+        }).catch(e => {
+          console.log('Error openening file', e)
+          alert('111:' + JSON.stringify(e));
+        });
+    }).catch(error => {
+      console.log(error)
+      alert('222:' + JSON.stringify(error));
+    });
   }
 }
