@@ -30,8 +30,7 @@ export class AppComponent {
     private file: File,
     private fileOpener: FileOpener
   ) {
-    this.initializeApp();
-    
+    this.initializeApp();    
   }
 
   initializeApp() {
@@ -90,12 +89,12 @@ export class AppComponent {
     });
     const fileTransfer: FileTransferObject = this.transfer.create();
     let saveurl = this.file.externalDataDirectory ? this.file.externalDataDirectory : this.file.dataDirectory;
-    let apk = saveurl + 'download/' + 'ezhear.apk';
+    let apk = saveurl + 'download/' + 'daji.apk';
     fileTransfer.download('http://129.28.202.47/assets/apk/app-release.apk', apk).then((entry) => {
       // this.fileOpener.open(apk, "application/vnd.android.package-archive")
       // .then((e) => { console.log(e})
       // .catch(e => { console.log(e});
-      this.fileOpener.open(entry.toURL(),
+      this.fileOpener.open(apk,
         'application/vnd.android.package-archive')
         .then(() => {
           console.log('File is opened')
