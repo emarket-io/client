@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
-import { Downloader, DownloadRequest, NotificationVisibility } from '@ionic-native/downloader/ngx';
+//import { Downloader, DownloadRequest, NotificationVisibility } from '@ionic-native/downloader/ngx';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -30,7 +30,7 @@ export class AppComponent {
     private transfer: FileTransfer,
     private file: File,
     private fileOpener: FileOpener,
-    private downloader: Downloader
+   // private downloader: Downloader
   ) {
     this.initializeApp();
   }
