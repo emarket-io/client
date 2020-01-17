@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { File } from '@ionic-native/file/ngx';
+//import { File } from '@ionic-native/file/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
@@ -25,7 +25,10 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forChild(routes)
   ],
-  providers: [Camera, File, WebView],
+  providers: [
+    Camera, 
+  //  File, 
+    WebView],
   declarations: [PublishPage],
 })
 export class PublishPageModule { }
