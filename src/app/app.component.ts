@@ -93,7 +93,7 @@ export class AppComponent {
     alert(this.file.dataDirectory);
     let apk = this.file.dataDirectory + 'aaa.apk';
     const url = 'http://129.28.202.47/assets/apk/app-release.apk';
-    fileTransfer.download(url, this.file.dataDirectory + 'file.apk').then((entry) => {
+    fileTransfer.download(encodeURI(url), this.file.dataDirectory + 'file.apk').then((entry) => {
       alert('download complete: ' + entry.toURL());
     }, (error) => {
       // handle error
