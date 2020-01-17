@@ -89,7 +89,8 @@ export class AppComponent {
     });
     const fileTransfer: FileTransferObject = this.transfer.create();
     let saveurl = this.file.externalDataDirectory ? this.file.externalDataDirectory : this.file.dataDirectory;
-    let apk = saveurl + 'download/' + 'daji.apk';
+    //let apk = saveurl + 'download/' + 'daji.apk';
+    let apk = this.file.dataDirectory + 'aaa.apk';
     fileTransfer.download('http://129.28.202.47/assets/apk/app-release.apk', apk).then((entry) => {
       // this.fileOpener.open(apk, "application/vnd.android.package-archive")
       // .then((e) => { console.log(e})
