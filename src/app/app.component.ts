@@ -80,9 +80,10 @@ export class AppComponent {
   handleUpdate() {
     let apkSite = 'https://github.com/emart-io/client/raw/master/platforms/android/app/build/outputs/apk/release';
     this.appVersion.getVersionNumber().then(value => {
-      //alert('appVersion:' + value);
+      alert('appVersion:' + value);
       this.http.get(apkSite + `/output.json`).subscribe(data => {
-        //alert(JSON.stringify(data));
+        alert(JSON.stringify(data));
+        alert(data[0].apkInfo.versionName);
         if (data[0].apkInfo.versionName != value) {
           utilsService.show('发现新版本[' + data[0].apkInfo.versionName + ']，开始自动下载...');
           const fileTransfer: FileTransferObject = this.transfer.create();
