@@ -92,22 +92,27 @@ export class AppComponent {
     //let apk = saveurl + 'download/' + 'daji.apk';
     alert(this.file.dataDirectory);
     let apk = this.file.dataDirectory + 'aaa.apk';
-    fileTransfer.download('http://129.28.202.47/assets/apk/app-release.apk', apk, true).then((entry) => {
-      // this.fileOpener.open(apk, "application/vnd.android.package-archive")
-      // .then((e) => { console.log(e})
-      // .catch(e => { console.log(e});
+    const url = 'http://129.28.202.47/assets/apk/app-release.apk';
+    fileTransfer.download(url, this.file.dataDirectory + 'file.apk').then((entry) => {
       alert('download complete: ' + entry.toURL());
-      this.fileOpener.open(entry.toURL(),
-        'application/vnd.android.package-archive')
-        .then(() => {
-          console.log('File is opened')
-        }).catch(e => {
-          console.log('Error openening file', e)
-          alert('111:'+JSON.stringify(e));
-        });
-    }).catch(error => {
-      console.log(error)
-      alert('222:'+JSON.stringify(error));
+    }, (error) => {
+      // handle error
+      alert('000:' + JSON.stringify(error));
     });
+
+    // fileTransfer.download(url, apk, true).then((entry) => {
+    //   alert('download complete: ' + entry.toURL());
+    //   this.fileOpener.open(entry.toURL(),
+    //     'application/vnd.android.package-archive')
+    //     .then(() => {
+    //       console.log('File is opened')
+    //     }).catch(e => {
+    //       console.log('Error openening file', e)
+    //       alert('111:' + JSON.stringify(e));
+    //     });
+    // }).catch(error => {
+    //   console.log(error)
+    //   alert('222:' + JSON.stringify(error));
+    // });
   }
 }
