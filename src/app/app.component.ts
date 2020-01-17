@@ -90,6 +90,7 @@ export class AppComponent {
     const fileTransfer: FileTransferObject = this.transfer.create();
     let saveurl = this.file.externalDataDirectory ? this.file.externalDataDirectory : this.file.dataDirectory;
     //let apk = saveurl + 'download/' + 'daji.apk';
+    alert(this.file.dataDirectory);
     let apk = this.file.dataDirectory + 'aaa.apk';
     fileTransfer.download('http://129.28.202.47/assets/apk/app-release.apk', apk, true).then((entry) => {
       // this.fileOpener.open(apk, "application/vnd.android.package-archive")
@@ -102,11 +103,11 @@ export class AppComponent {
           console.log('File is opened')
         }).catch(e => {
           console.log('Error openening file', e)
-          alert(JSON.stringify(e));
+          alert('111:'+JSON.stringify(e));
         });
-    }, (error) => {
+    }).catch(error => {
       console.log(error)
-      alert(JSON.stringify(error));
+      alert('222:'+JSON.stringify(error));
     });
   }
 }
