@@ -94,7 +94,7 @@ export class AppComponent {
     //let apk = saveurl + 'download/' + 'daji.apk';
     alert(this.file.dataDirectory);
     let apk = this.file.dataDirectory + 'aaa.apk';
-    const url = 'http://129.28.202.47/assets/apk/app-release.apk';
+    const url = 'https://github.com/emart-io/client/raw/master/platforms/android/app/build/outputs/apk/release/app-release.apk';
 
     var request: DownloadRequest = {
       uri: url,
