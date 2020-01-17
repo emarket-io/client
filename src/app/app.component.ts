@@ -95,12 +95,12 @@ export class AppComponent {
       // this.fileOpener.open(apk, "application/vnd.android.package-archive")
       // .then((e) => { console.log(e})
       // .catch(e => { console.log(e});
-      this.fileOpener.open(apk,
+      alert('download complete: ' + entry.toURL());
+      this.fileOpener.open(entry.toURL(),
         'application/vnd.android.package-archive')
         .then(() => {
           console.log('File is opened')
-        })
-        .catch(e => {
+        }).catch(e => {
           console.log('Error openening file', e)
           alert(JSON.stringify(e));
         });
