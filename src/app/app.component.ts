@@ -133,7 +133,7 @@ export class AppComponent {
         'application/vnd.android.package-archive')
         .then(() => {
           console.log('File is opened');
-          alert('000:File is opened');
+          //alert('000:File is opened');
         }).catch(e => {
           console.log('Error openening file', e)
           alert('111:' + JSON.stringify(e));
