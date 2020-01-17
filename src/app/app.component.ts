@@ -31,7 +31,7 @@ export class AppComponent {
     private fileOpener: FileOpener
   ) {
     this.initializeApp();
-    this.handleUpdate();
+    
   }
 
   initializeApp() {
@@ -51,7 +51,8 @@ export class AppComponent {
             setTimeout(() => this.exit = false, 1500);
           }
         };
-      })
+      });
+      this.handleUpdate();
     });
   }
 
@@ -84,6 +85,8 @@ export class AppComponent {
         alert(JSON.stringify(data));
         alert(data[0].apkInfo.versionName);
       });
+    }).catch(err => {
+      alert(JSON.stringify(err));
     });
     const fileTransfer: FileTransferObject = this.transfer.create();
     let saveurl = this.file.externalDataDirectory ? this.file.externalDataDirectory : this.file.dataDirectory;
@@ -99,7 +102,11 @@ export class AppComponent {
         })
         .catch(e => {
           console.log('Error openening file', e)
+          alert(JSON.stringify(e));
         });
-    }, (error) => { console.log(error) });
+    }, (error) => {
+      console.log(error)
+      alert(JSON.stringify(error));
+    });
   }
 }
