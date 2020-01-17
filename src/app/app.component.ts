@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { Downloader, DownloadRequest, NotificationVisibility } from '@ionic-native/downloader/ngx';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -28,7 +29,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     private transfer: FileTransfer,
     private file: File,
-    private fileOpener: FileOpener
+    private fileOpener: FileOpener,
+    private downloader: Downloader
   ) {
     this.initializeApp();
   }
@@ -93,12 +95,37 @@ export class AppComponent {
     alert(this.file.dataDirectory);
     let apk = this.file.dataDirectory + 'aaa.apk';
     const url = 'http://129.28.202.47/assets/apk/app-release.apk';
-    fileTransfer.download(encodeURI(url), this.file.dataDirectory + 'file.apk').then((entry) => {
-      alert('download complete: ' + entry.toURL());
-    }, (error) => {
-      // handle error
-      alert('000:' + JSON.stringify(error));
-    });
+
+    var request: DownloadRequest = {
+      uri: url,
+      title: 'MyDownload',
+      description: '',
+      mimeType: '',
+      visibleInDownloadsUi: true,
+      notificationVisibility: NotificationVisibility.VisibleNotifyCompleted,
+      destinationInExternalFilesDir: {
+        dirType: 'Downloads',
+        subPath: 'daji.apk'
+      }
+    };
+
+
+    this.downloader.download(request)
+      .then((location: string) => {
+        console.log('File downloaded at:' + location)
+        alert('File downloaded at:' + location)
+      })
+      .catch((error: any) => {
+        console.error(error);
+        alert(error)
+      });
+
+    // fileTransfer.download(url, this.file.dataDirectory + 'file.apk', true).then((entry) => {
+    //   alert('download complete: ' + entry.toURL());
+    // }, (error) => {
+    //   // handle error
+    //   alert('000:' + JSON.stringify(error));
+    // });
 
     // fileTransfer.download(url, apk, true).then((entry) => {
     //   alert('download complete: ' + entry.toURL());

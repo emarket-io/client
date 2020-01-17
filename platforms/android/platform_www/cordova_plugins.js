@@ -306,6 +306,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "cordova.getAppVersion"
       ]
+    },
+    {
+      "id": "integrator-cordova-plugin-downloader.Downloader",
+      "file": "plugins/integrator-cordova-plugin-downloader/www/Downloader.js",
+      "pluginId": "integrator-cordova-plugin-downloader",
+      "clobbers": [
+        "cordova.plugins.Downloader"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -322,6 +330,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-file-transfer": "1.7.1",
     "cordova-plugin-file-opener2": "3.0.0",
-    "cordova-plugin-app-version": "0.1.9"
+    "cordova-plugin-app-version": "0.1.9",
+    "integrator-cordova-plugin-downloader": "0.0.1"
   };
 });
