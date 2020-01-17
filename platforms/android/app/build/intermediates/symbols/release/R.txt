@@ -167,3 +167,4 @@ int styleable FontFamilyFont_fontWeight 5
 int xml camera_provider_paths 0x7f0d0000
 int xml config 0x7f0d0001
 int xml network_security_config 0x7f0d0002
+int xml opener_paths 0x7f0d0003

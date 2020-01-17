@@ -733,5 +733,6 @@ public final class R {
     public static final int camera_provider_paths=0x7f0d0000;
     public static final int config=0x7f0d0001;
     public static final int network_security_config=0x7f0d0002;
+    public static final int opener_paths=0x7f0d0003;
   }
 }

@@ -2,7 +2,12 @@ import { Router } from '@angular/router';
 import { Component, Injector } from '@angular/core';
 import { utilsService } from './providers/utils.service'
 import { Platform } from '@ionic/angular';
+import { File } from '@ionic-native/file/ngx';
+import { HttpClient } from '@angular/common/http';
+import { AppVersion } from '@ionic-native/app-version/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
@@ -15,12 +20,18 @@ export class AppComponent {
 
   constructor(
     private router: Router,
+    private http: HttpClient,
     private injector: Injector,
     private platform: Platform,
+    private appVersion: AppVersion,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private transfer: FileTransfer,
+    private file: File,
+    private fileOpener: FileOpener
   ) {
     this.initializeApp();
+    this.handleUpdate();
   }
 
   initializeApp() {
@@ -64,5 +75,31 @@ export class AppComponent {
     Object.keys(this.theme).forEach(k =>
       document.documentElement.style.setProperty(`--${k}`, this.theme[k])
     );
+  }
+
+  handleUpdate() {
+    this.appVersion.getVersionNumber().then(value => {
+      alert('appVersion:' + value);
+      this.http.get(`http://129.28.202.47/assets/apk/output.json`).subscribe(data => {
+        alert(JSON.stringify(data));
+        alert(data[0].apkInfo.versionName);
+      });
+    });
+    const fileTransfer: FileTransferObject = this.transfer.create();
+    let saveurl = this.file.externalDataDirectory ? this.file.externalDataDirectory : this.file.dataDirectory;
+    let apk = saveurl + 'download/' + 'ezhear.apk';
+    fileTransfer.download('http://129.28.202.47/assets/apk/app-release.apk', apk).then((entry) => {
+      // this.fileOpener.open(apk, "application/vnd.android.package-archive")
+      // .then((e) => { console.log(e})
+      // .catch(e => { console.log(e});
+      this.fileOpener.open(entry.toURL(),
+        'application/vnd.android.package-archive')
+        .then(() => {
+          console.log('File is opened')
+        })
+        .catch(e => {
+          console.log('Error openening file', e)
+        });
+    }, (error) => { console.log(error) });
   }
 }
