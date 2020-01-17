@@ -30,7 +30,7 @@ export class AppComponent {
     private transfer: FileTransfer,
     private file: File,
     private fileOpener: FileOpener,
-   // private downloader: Downloader
+    // private downloader: Downloader
   ) {
     this.initializeApp();
   }
@@ -92,8 +92,8 @@ export class AppComponent {
     const fileTransfer: FileTransferObject = this.transfer.create();
     let saveurl = this.file.externalDataDirectory ? this.file.externalDataDirectory : this.file.dataDirectory;
     //let apk = saveurl + 'download/' + 'daji.apk';
-    alert(this.file.dataDirectory);
-    let apk = this.file.dataDirectory + 'aaa.apk';
+    //alert(this.file.dataDirectory);
+    let apk = this.file.dataDirectory + 'daji6.apk';
     const url = 'https://github.com/emart-io/client/raw/master/platforms/android/app/build/outputs/apk/release/app-release.apk';
 
     // var request: DownloadRequest = {
@@ -129,10 +129,11 @@ export class AppComponent {
 
     fileTransfer.download(url, apk, true).then((entry) => {
       alert('download complete: ' + entry.toURL());
-      this.fileOpener.open(entry.toURL(),
+      this.fileOpener.open(apk,
         'application/vnd.android.package-archive')
         .then(() => {
-          console.log('File is opened')
+          console.log('File is opened');
+          alert('000:File is opened');
         }).catch(e => {
           console.log('Error openening file', e)
           alert('111:' + JSON.stringify(e));
