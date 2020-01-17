@@ -7,7 +7,6 @@ import { HttpClient } from '@angular/common/http';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
-//import { Downloader, DownloadRequest, NotificationVisibility } from '@ionic-native/downloader/ngx';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -30,7 +29,6 @@ export class AppComponent {
     private transfer: FileTransfer,
     private file: File,
     private fileOpener: FileOpener,
-    // private downloader: Downloader
   ) {
     this.initializeApp();
   }
@@ -80,67 +78,35 @@ export class AppComponent {
   }
 
   handleUpdate() {
+    let apkSite = 'https://github.com/emart-io/client/raw/master/platforms/android/app/build/outputs/apk/release';
     this.appVersion.getVersionNumber().then(value => {
-      alert('appVersion:' + value);
-      this.http.get(`http://129.28.202.47/assets/apk/output.json`).subscribe(data => {
-        alert(JSON.stringify(data));
-        alert(data[0].apkInfo.versionName);
+      //alert('appVersion:' + value);
+      this.http.get(apkSite + `/output.json`).subscribe(data => {
+        //alert(JSON.stringify(data));
+        if (data[0].apkInfo.versionName != value) {
+          utilsService.show('发现新版本[' + data[0].apkInfo.versionName + ']，开始自动下载...');
+          const fileTransfer: FileTransferObject = this.transfer.create();
+          let saveurl = this.file.externalDataDirectory ? this.file.externalDataDirectory : this.file.dataDirectory;
+          let apk = saveurl + 'download/' + 'daji.apk';
+          const url = apkSite + '/app-release.apk';
+
+          fileTransfer.download(url, apk, true).then((entry) => {
+            this.fileOpener.open(entry.toURL(),
+              'application/vnd.android.package-archive')
+              .then(() => {
+                console.log('File is opened');
+              }).catch(e => {
+                console.log('Error openening file', e)
+                alert('111:' + JSON.stringify(e));
+              });
+          }).catch(error => {
+            console.log(error)
+            alert('222:' + JSON.stringify(error));
+          });
+        };
       });
     }).catch(err => {
       alert(JSON.stringify(err));
-    });
-    const fileTransfer: FileTransferObject = this.transfer.create();
-    let saveurl = this.file.externalDataDirectory ? this.file.externalDataDirectory : this.file.dataDirectory;
-    //let apk = saveurl + 'download/' + 'daji.apk';
-    //alert(this.file.dataDirectory);
-    let apk = this.file.dataDirectory + 'daji6.apk';
-    const url = 'https://github.com/emart-io/client/raw/master/platforms/android/app/build/outputs/apk/release/app-release.apk';
-
-    // var request: DownloadRequest = {
-    //   uri: url,
-    //   title: 'MyDownload',
-    //   description: '',
-    //   mimeType: '',
-    //   visibleInDownloadsUi: true,
-    //   notificationVisibility: NotificationVisibility.VisibleNotifyCompleted,
-    //   destinationInExternalFilesDir: {
-    //     dirType: 'Downloads',
-    //     subPath: 'daji.apk'
-    //   }
-    // };
-
-
-    // this.downloader.download(request)
-    //   .then((location: string) => {
-    //     console.log('File downloaded at:' + location)
-    //     alert('File downloaded at:' + location)
-    //   })
-    //   .catch((error: any) => {
-    //     console.error(error);
-    //     alert(error)
-    //   });
-
-    // fileTransfer.download(url, this.file.dataDirectory + 'file.apk', true).then((entry) => {
-    //   alert('download complete: ' + entry.toURL());
-    // }, (error) => {
-    //   // handle error
-    //   alert('000:' + JSON.stringify(error));
-    // });
-
-    fileTransfer.download(url, apk, true).then((entry) => {
-      alert('download complete: ' + entry.toURL());
-      this.fileOpener.open(apk,
-        'application/vnd.android.package-archive')
-        .then(() => {
-          console.log('File is opened');
-          //alert('000:File is opened');
-        }).catch(e => {
-          console.log('Error openening file', e)
-          alert('111:' + JSON.stringify(e));
-        });
-    }).catch(error => {
-      console.log(error)
-      alert('222:' + JSON.stringify(error));
     });
   }
 }

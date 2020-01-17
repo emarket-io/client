@@ -24,7 +24,6 @@
     "@ionic-native/app-version": "^5.19.1",
     "@ionic-native/camera": "^5.15.0",
     "@ionic-native/core": "^5.0.0",
-    "@ionic-native/downloader": "^5.19.1",
     "@ionic-native/file": "^5.15.0",
     "@ionic-native/file-opener": "^5.19.1",
     "@ionic-native/file-transfer": "^5.19.1",
@@ -54,7 +53,6 @@
     "core-js": "^2.5.4",
     "google-protobuf": "^3.10.0",
     "grpc-web": "^1.0.7",
-    "integrator-cordova-plugin-downloader": "^1.1.0",
     "ionic": "^5.4.15",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
@@ -110,8 +108,7 @@
       "cordova-plugin-file-opener2": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
-      "cordova-plugin-app-version": {},
-      "integrator-cordova-plugin-downloader": {}
+      "cordova-plugin-app-version": {}
     },
     "platforms": [
       "android"
