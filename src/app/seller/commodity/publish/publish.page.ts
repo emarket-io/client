@@ -47,7 +47,7 @@ export class PublishPage {
 
   addMedia() {
     const options: CameraOptions = {
-      allowEdit: true,
+      //allowEdit: true,
       targetWidth: 500,
       targetHeight: 500,
       correctOrientation: true,

@@ -51,7 +51,7 @@ export class AppComponent {
           }
         };
       });
-      this.handleUpdate();
+      this.checkUpdate();
     });
   }
 
@@ -77,15 +77,14 @@ export class AppComponent {
     );
   }
 
-  handleUpdate() {
-    //let apkSite = 'https://github.com/emart-io/client/raw/master/platforms/android/app/build/outputs/apk/release';
+  checkUpdate() {
     this.appVersion.getVersionNumber().then(value => {
       //alert('appVersion:' + value);
       this.http.get('https://raw.githubusercontent.com/emart-io/client/master/platforms/android/app/build/outputs/apk/release/output.json').subscribe(data => {
-       // alert(JSON.stringify(data));
-       // alert(data[0].apkInfo.versionName);
+        // alert(JSON.stringify(data));
+        // alert(data[0].apkInfo.versionName);
         if (data[0].apkInfo.versionName != value) {
-          utilsService.show('发现新版本[' + data[0].apkInfo.versionName + ']，开始自动下载...');
+          utilsService.show('发现新版本[v' + data[0].apkInfo.versionName + ']，开始自动下载.');
           const fileTransfer: FileTransferObject = this.transfer.create();
           let saveurl = this.file.externalDataDirectory ? this.file.externalDataDirectory : this.file.dataDirectory;
           let apk = saveurl + 'download/' + 'daji.apk';
