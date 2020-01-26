@@ -47,7 +47,7 @@ export class PublishPage {
 
   addMedia() {
     const options: CameraOptions = {
-      //allowEdit: true,
+      allowEdit: true,
       targetWidth: 500,
       targetHeight: 500,
       correctOrientation: true,
@@ -106,6 +106,10 @@ export class PublishPage {
 
     if (!utilsService.check(this.commodity.title)) {
       return utilsService.alert('标题含有不合规内容，请检查');
+    }
+
+    if (this.commodity.city.length > 10) {
+      return utilsService.alert('输入省市即可');
     }
 
     // upload firstly
