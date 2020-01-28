@@ -76,12 +76,12 @@ export class UtilsService {
   }
 
 
-  async toast(msg: string, duration: number = 1000) {
+  async toast(msg: string, cssClass?: string) {
     const toast = await this.injector.get(ToastController).create({
       message: msg,
-      duration: duration,
+      duration: 1000,
       translucent: true,
-      cssClass: 'toast-message',
+      cssClass: cssClass ? cssClass : 'toast-message',
       position: "middle",
     });
     toast.present();

@@ -38,16 +38,16 @@
     <ion-thumbnail style="width: 40%;min-width: 140px;;height: 140px;--border-radius:2px">
       <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
     </ion-thumbnail>
-    <div style="width: 60%;vertical-align: top;padding-left: 10px;">
+    <div style="width: 60%;padding-left: 10px;">
       <div>
         {{commodity.title}}
       </div>
       <div style="margin-top: 30px">
         <ion-badge *ngFor="let tag of commodity.tagsList">{{tag}}</ion-badge>
       </div>
-      <div style="margin-top: 30px">
-        <div style="display:inline-block;width: 50%;color:red;">¥{{formatRBM(commodity.pricesList[0]?.group)}}</div>
-        <div style="display:inline-block;width: 50%;text-align: right;">{{commodity.city}}</div>
+      <div style="margin-top: 30px;">
+        <div style="float: left;color:red;">¥{{formatRBM(commodity.pricesList[0]?.group)}}</div>
+        <div style="float: right;">{{commodity.city}}</div>
       </div>
     </div>
   </ion-item>

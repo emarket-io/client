@@ -45,7 +45,7 @@ export class AppComponent {
           if (this.exit) {
             navigator['app'].exitApp();
           } else {
-            utilsService.toast('再按一次将退出[农村大集]');
+            utilsService.toast('再按一次退出[农村大集]');
             this.exit = true;
             setTimeout(() => this.exit = false, 1500);
           }
@@ -106,7 +106,7 @@ export class AppComponent {
         };
       });
     }).catch(err => {
-      utilsService.alert(JSON.stringify(err));
+      console.log(JSON.stringify(err));
     });
   }
 }
