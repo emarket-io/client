@@ -45,7 +45,7 @@ export class AppComponent {
           if (this.exit) {
             navigator['app'].exitApp();
           } else {
-            utilsService.toast('再按一次退出[农村大集]');
+            utilsService.toast('再按一次将退出[农村大集]');
             this.exit = true;
             setTimeout(() => this.exit = false, 1500);
           }
@@ -84,12 +84,12 @@ export class AppComponent {
         // alert(JSON.stringify(data));
         // alert(data[0].apkInfo.versionName);
         if (data[0].apkInfo.versionName != value) {
-          utilsService.toast('发现新版本v' + data[0].apkInfo.versionName + '，开始自动下载.');
+          utilsService.toast('发现新版本[v' + data[0].apkInfo.versionName + ']，开始自动下载.');
           const fileTransfer: FileTransferObject = this.transfer.create();
           let saveurl = this.file.externalDataDirectory ? this.file.externalDataDirectory : this.file.dataDirectory;
           let apk = saveurl + 'download/' + 'daji.apk';
           const url = 'https://github.com/emart-io/client/raw/master/platforms/android/app/build/outputs/apk/release/app-release.apk';
-          
+
           fileTransfer.download(url, apk, true).then((entry) => {
             this.fileOpener.open(entry.toURL(),
               'application/vnd.android.package-archive')
