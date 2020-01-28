@@ -45,7 +45,7 @@ export class AppComponent {
           if (this.exit) {
             navigator['app'].exitApp();
           } else {
-            utilsService.toast('再按一次退出[农村大集]');
+            utilsService.toast('再按一次退出「农村大集」');
             this.exit = true;
             setTimeout(() => this.exit = false, 1500);
           }
