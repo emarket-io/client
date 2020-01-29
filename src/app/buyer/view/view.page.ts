@@ -49,7 +49,9 @@ export class ViewPage {
       }
     });
     stream.on('end', () => {
-      this.commodities = newCommodities;
+      if (this.commodities.toString() != newCommodities.toString()) {
+        this.commodities = newCommodities;
+      }
       if (event) {
         event.target.complete();
       }
