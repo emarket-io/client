@@ -36,8 +36,7 @@
   </ion-refresher>
   <ion-item *ngFor="let commodity of commodities" (click)="gotoDetail(commodity)">
     <ion-thumbnail style="width: 40%;min-width: 140px;--border-radius:5px;height: auto;margin-bottom: 0;">
-      <ion-img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}">
-      </ion-img>
+      <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
     </ion-thumbnail>
     <div style="width: 60%;padding-left: 10px;">
       <div style="margin-top:5px;" class="title">
