@@ -1,7 +1,15 @@
 ion-slides {
   width: 100%;
+
   ion-slide {
     font-size: small;
     padding: 3px;
   }
+}
+
+.title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
