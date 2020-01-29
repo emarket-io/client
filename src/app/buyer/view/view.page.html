@@ -47,7 +47,10 @@
       </div>
       <div style="position: absolute;bottom: 5px;width:inherit;">
         <div style="color:red;display: inline-block;">¥{{formatRBM(commodity.pricesList[0]?.group)}}</div>
-        <div style="font-size: small;display: inline-block;right: 25px;position: absolute;">{{commodity.city}}</div>
+        <div style="font-size: small;display: inline-block;right: 25px;position: absolute;">
+          {{commodity.city}}
+          <ion-icon name="pin"></ion-icon>
+        </div>
       </div>
     </div>
   </ion-item>

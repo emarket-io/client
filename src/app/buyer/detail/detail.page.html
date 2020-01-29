@@ -50,7 +50,7 @@
   <ion-list>
     <ion-item style="margin-top:-20px;padding-top: 0px">
       <ion-avatar slot="start">
-        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        <ion-img [src]="owner?.icon?owner.icon:'assets/fruit/banana.png'"></ion-img>
       </ion-avatar>
       <ion-label>{{owner?.shopsList[0]?.name?owner?.shopsList[0]?.name:owner?.name}}</ion-label>
       <ion-label style="font-size:x-small">1000粉丝</ion-label>
