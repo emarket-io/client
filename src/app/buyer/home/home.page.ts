@@ -1,4 +1,5 @@
-import { NgZone } from '@angular/core'
+import { NgZone } from '@angular/core';
+import { Events } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { IonSlides } from '@ionic/angular';
 import { Component, ViewChild } from '@angular/core';
@@ -19,7 +20,7 @@ export class HomePage {
   @ViewChild('mySlider', { static: false }) slider: IonSlides;
   city = '定位中';
   host = environment.apiUrl;
-  formatRBM = utilsService.formatRMB;  
+  formatRBM = utilsService.formatRMB;
   slideTopOpts = {
     slidesPerView: 1,
     direction: "vertical",
@@ -37,9 +38,14 @@ export class HomePage {
   commodities: Commodity[] = [];
 
   constructor(
+    private events: Events,
     private router: Router,
     private ngZone: NgZone,
-    private geolocation: Geolocation) { }
+    private geolocation: Geolocation) {
+    this.events.subscribe('/tabs/home', (item) => {
+      this.slider.startAutoplay();
+    });
+  }
 
   ionViewWillEnter() {
     let kw = new StringValue();
@@ -70,10 +76,12 @@ export class HomePage {
   }
 
   gotoView(keyword: string) {
+    this.ionViewWillLeave();
     this.router.navigateByUrl('/view', { state: { keyword: keyword } });
   }
 
   gotoDetail(commodity: Commodity) {
+    this.ionViewWillLeave();
     this.router.navigateByUrl('/detail', { state: commodity });
   }
 
