@@ -40,7 +40,7 @@ export class DetailPage {
   share() {
     this.wechat.share({
       message: {
-        title: "[农村大集]上农村大集，让农货便宜到家->" + this.commodity.title,
+        title: "[农村大集]上农村大集，让农货便宜到家--" + this.commodity.title,
         description: "This is description.",
         thumb: "www/assets/icon/drawable-mdpi-icon.png",
         mediaTagName: "TEST-TAG-001",
@@ -48,7 +48,7 @@ export class DetailPage {
         messageAction: "<action>dotalist</action>",
         media: {
           type: 7,// this.wechat.Type.WEBPAGE,
-          webpageUrl: environment.apiUrl + '/download'//"http://www.bing.com"
+          webpageUrl: "http://iyou.city"
         }
       },
       scene: 1,//this.wechat.Scene.TIMELINE   // share to Timeline
