@@ -25,4 +25,11 @@ export class TabsPage {
     //   activateComponent.backFunction();
     // }
   }
+
+  ionViewWillLeave() {
+    console.log("leave:" + this.router.url);
+    //if (this.router.url === '/tabs/home') {
+    this.events.publish('/tabs/home', "leave")
+    //}
+  }
 }

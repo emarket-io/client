@@ -43,7 +43,12 @@ export class HomePage {
     private ngZone: NgZone,
     private geolocation: Geolocation) {
     this.events.subscribe('/tabs/home', (item) => {
-      this.slider.startAutoplay();
+      if (item === "back") {
+        this.slider.startAutoplay();
+      }
+      if (item === "leave") {
+        this.slider.stopAutoplay();
+      }
     });
   }
 
@@ -68,20 +73,20 @@ export class HomePage {
   }
 
   ionViewWillLeave() {
-    this.slider.stopAutoplay();
+    //this.slider.stopAutoplay();
   }
 
   ionViewDidEnter() {
-    this.slider.startAutoplay();
+    //this.slider.startAutoplay();
   }
 
   gotoView(keyword: string) {
-    this.ionViewWillLeave();
+   // this.ionViewWillLeave();
     this.router.navigateByUrl('/view', { state: { keyword: keyword } });
   }
 
   gotoDetail(commodity: Commodity) {
-    this.ionViewWillLeave();
+    //this.ionViewWillLeave();
     this.router.navigateByUrl('/detail', { state: commodity });
   }
 
