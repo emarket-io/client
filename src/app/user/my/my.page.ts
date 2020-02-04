@@ -1,4 +1,3 @@
-import { Events } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { utilsService } from '../../providers/utils.service'
@@ -11,13 +10,11 @@ import { utilsService } from '../../providers/utils.service'
 export class MyPage {
   user = utilsService.getUser();
 
-  constructor(
-    private events: Events,
-    private router: Router) {
-    this.events.subscribe('user:login', (username) => {
+  constructor(private router: Router) {
+    utilsService.Events('user:login').subscribe((username) => {
       this.user = utilsService.getUser();
     });
-    this.events.subscribe('user:logout', (username) => {
+    utilsService.Events('user:logout').subscribe((username) => {
       this.user = utilsService.getUser();
     });
   }

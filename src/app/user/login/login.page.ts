@@ -1,8 +1,7 @@
 import * as grpcWeb from 'grpc-web';
-import { Events } from '@ionic/angular';
-import { Location } from "@angular/common";
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { Location } from "@angular/common";
 import { User } from '../../../sdk/user_pb';
 import { apiService, utilsService } from '../../providers/utils.service'
 
@@ -15,7 +14,6 @@ export class LoginPage {
   user = new User();
 
   constructor(
-    private events: Events,
     private router: Router,
     private location: Location) { }
 
@@ -29,7 +27,7 @@ export class LoginPage {
         utilsService.alert('手机号或密码不正确.');
       } else {
         utilsService.setUser(response);
-        this.events.publish('user:login', response.name);
+        utilsService.Events('user:login').emit(response.name);
         //this.router.navigateByUrl('/tabs/my');
         this.location.back();
       }
@@ -39,7 +37,7 @@ export class LoginPage {
 
   logout() {
     utilsService.setUser(null);
-    this.events.publish('user:logout', '');
+    utilsService.Events('user:logout').emit('');
     this.router.navigateByUrl('/login');
   }
 

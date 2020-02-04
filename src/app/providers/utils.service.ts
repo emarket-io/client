@@ -1,7 +1,7 @@
 import { ApiService } from './api.service';
-import { AlertController, ToastController } from '@ionic/angular';
 import { User, Address } from '../../sdk/user_pb';
-import { Injectable, Injector } from '@angular/core';
+import { AlertController, ToastController } from '@ionic/angular';
+import { Injectable, Injector, EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,15 @@ export class UtilsService {
     formattedAddress: '湖北省荆门市',
     addressComponent: { province: '湖北省', city: "荆门市", district: '沙洋县' }
   };
+
+  events = new Map<string, EventEmitter<any>>()
+
+  Events(topic: string): EventEmitter<any> {
+    if (!this.events.get(topic)) {
+      this.events.set(topic, new EventEmitter());
+    }
+    return this.events.get(topic);
+  }
 
   getUser(): User {
     if (!window.localStorage.getItem('user')) {

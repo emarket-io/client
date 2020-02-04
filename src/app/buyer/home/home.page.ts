@@ -1,5 +1,4 @@
 import { NgZone } from '@angular/core';
-import { Events } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { IonSlides } from '@ionic/angular';
 import { Component, ViewChild } from '@angular/core';
@@ -38,11 +37,10 @@ export class HomePage {
   commodities: Commodity[] = [];
 
   constructor(
-    private events: Events,
     private router: Router,
     private ngZone: NgZone,
     private geolocation: Geolocation) {
-    this.events.subscribe('/tabs/home', (item) => {
+    utilsService.Events('/tabs/home').subscribe(item => {
       if (item === "back") {
         this.slider.startAutoplay();
       }
@@ -73,20 +71,18 @@ export class HomePage {
   }
 
   ionViewWillLeave() {
-    //this.slider.stopAutoplay();
+    this.slider.stopAutoplay();
   }
 
   ionViewDidEnter() {
-    //this.slider.startAutoplay();
+    this.slider.startAutoplay();
   }
 
   gotoView(keyword: string) {
-   // this.ionViewWillLeave();
     this.router.navigateByUrl('/view', { state: { keyword: keyword } });
   }
 
   gotoDetail(commodity: Commodity) {
-    //this.ionViewWillLeave();
     this.router.navigateByUrl('/detail', { state: commodity });
   }
 

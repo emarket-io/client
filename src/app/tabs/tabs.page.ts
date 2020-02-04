@@ -1,6 +1,6 @@
-import { Events } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { utilsService } from '../providers/utils.service'
 
 @Component({
   selector: 'app-tabs',
@@ -9,14 +9,12 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor(
-    private router: Router,
-    private events: Events) { }
+  constructor(private router: Router) { }
 
   ionViewWillEnter() {
     console.log(this.router.url);
     if (this.router.url === '/tabs/home') {
-      this.events.publish(this.router.url, "back")
+      utilsService.Events('/tabs/home').emit('back');
     }
     // let activateComponent = this.tabs.outlet.component;
     // if (activateComponent instanceof HomePage) {
@@ -29,7 +27,7 @@ export class TabsPage {
   ionViewWillLeave() {
     console.log("leave:" + this.router.url);
     //if (this.router.url === '/tabs/home') {
-    this.events.publish('/tabs/home', "leave")
+    utilsService.Events('/tabs/home').emit('leave');
     //}
   }
 }
