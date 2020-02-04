@@ -15,13 +15,13 @@ export class UtilsService {
     addressComponent: { province: '湖北省', city: "荆门市", district: '沙洋县' }
   };
 
-  events = new Map<string, EventEmitter<any>>()
+  eventMap = new Map<string, EventEmitter<any>>()
 
-  Events(topic: string): EventEmitter<any> {
-    if (!this.events.get(topic)) {
-      this.events.set(topic, new EventEmitter());
+  events(topic: string): EventEmitter<any> {
+    if (!this.eventMap.get(topic)) {
+      this.eventMap.set(topic, new EventEmitter());
     }
-    return this.events.get(topic);
+    return this.eventMap.get(topic);
   }
 
   getUser(): User {

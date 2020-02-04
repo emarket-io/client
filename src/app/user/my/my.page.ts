@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { utilsService } from '../../providers/utils.service'
+import { utilsService } from '../../providers/utils.service';
 
 @Component({
   selector: 'app-my',
@@ -11,10 +11,10 @@ export class MyPage {
   user = utilsService.getUser();
 
   constructor(private router: Router) {
-    utilsService.Events('user:login').subscribe((username) => {
+    utilsService.events('user:login').subscribe((username) => {
       this.user = utilsService.getUser();
     });
-    utilsService.Events('user:logout').subscribe((username) => {
+    utilsService.events('user:logout').subscribe((username) => {
       this.user = utilsService.getUser();
     });
   }

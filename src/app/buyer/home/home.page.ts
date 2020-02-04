@@ -40,7 +40,7 @@ export class HomePage {
     private router: Router,
     private ngZone: NgZone,
     private geolocation: Geolocation) {
-    utilsService.Events('/tabs/home').subscribe(item => {
+    utilsService.events('/tabs/home').subscribe(item => {
       if (item === "back") {
         this.slider.startAutoplay();
       }

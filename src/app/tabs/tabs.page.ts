@@ -14,7 +14,7 @@ export class TabsPage {
   ionViewWillEnter() {
     console.log(this.router.url);
     if (this.router.url === '/tabs/home') {
-      utilsService.Events('/tabs/home').emit('back');
+      utilsService.events('/tabs/home').emit('back');
     }
     // let activateComponent = this.tabs.outlet.component;
     // if (activateComponent instanceof HomePage) {
@@ -27,7 +27,7 @@ export class TabsPage {
   ionViewWillLeave() {
     console.log("leave:" + this.router.url);
     //if (this.router.url === '/tabs/home') {
-    utilsService.Events('/tabs/home').emit('leave');
+    utilsService.events('/tabs/home').emit('leave');
     //}
   }
 }
