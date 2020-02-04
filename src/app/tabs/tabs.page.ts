@@ -10,8 +10,8 @@ import { Component } from '@angular/core';
 export class TabsPage {
 
   constructor(
-    private events: Events,
-    private router: Router, ) { }
+    private router: Router,
+    private events: Events) { }
 
   ionViewWillEnter() {
     console.log(this.router.url);
