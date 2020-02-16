@@ -19,34 +19,18 @@
     "@angular/forms": "~8.1.2",
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
+    "@angular/pwa": "^0.803.24",
     "@angular/router": "~8.1.2",
+    "@angular/service-worker": "~8.1.2",
     "@ionic-native/alipay": "^5.15.1",
-    "@ionic-native/app-version": "^5.19.1",
-    "@ionic-native/camera": "^5.15.0",
     "@ionic-native/core": "^5.0.0",
-    "@ionic-native/file": "^5.15.0",
-    "@ionic-native/file-opener": "^5.19.1",
-    "@ionic-native/file-transfer": "^5.19.1",
-    "@ionic-native/geolocation": "^5.14.0",
-    "@ionic-native/ionic-webview": "^5.15.1",
-    "@ionic-native/splash-screen": "^5.0.0",
-    "@ionic-native/status-bar": "^5.0.0",
     "@ionic-native/wechat": "^5.16.0",
     "@ionic/angular": "^4.11.5",
     "cordova": "^9.0.0",
     "cordova-android": "^8.1.0",
-    "cordova-plugin-app-version": "^0.1.9",
-    "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-device": "^2.0.2",
-    "cordova-plugin-file": "^6.0.2",
-    "cordova-plugin-file-opener2": "^3.0.0",
-    "cordova-plugin-file-transfer": "^1.7.1",
-    "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-gubnoi-alipay": "0.0.10",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
-    "cordova-plugin-ionic-webview": "^4.1.1",
-    "cordova-plugin-splashscreen": "^5.0.2",
-    "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-wechat": "^2.9.0",
     "cordova-plugin-whitelist": "^1.3.3",
     "cordova-res": "^0.6.0",
@@ -88,27 +72,14 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-geolocation": {},
-      "cordova-plugin-camera": {
-        "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      },
-      "cordova-plugin-file": {},
       "cordova-plugin-gubnoi-alipay": {
         "APP_ID": "2019121169872457"
       },
       "cordova-plugin-wechat": {
         "WECHATAPPID": "wx28aa8762d098fa7f"
-      },
-      "cordova-plugin-file-transfer": {},
-      "cordova-plugin-file-opener2": {
-        "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      },
-      "cordova-plugin-app-version": {}
+      }
     },
     "platforms": [
       "android"

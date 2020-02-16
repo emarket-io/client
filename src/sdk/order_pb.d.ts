@@ -35,6 +35,23 @@ export namespace Account {
   }
 }
 
+export class SignRequest extends jspb.Message {
+  kvMap: jspb.Map<string, string>;
+  clearkvMap(): void;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SignRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SignRequest): SignRequest.AsObject;
+  static serializeBinaryToWriter(message: SignRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SignRequest;
+  static deserializeBinaryFromReader(message: SignRequest, reader: jspb.BinaryReader): SignRequest;
+}
+
+export namespace SignRequest {
+  export type AsObject = {
+    kvMap: Array<[string, string]>,
+  }
+}
+
 export class Order extends jspb.Message {
   id: string;
   snapshot: commodity_pb.Commodity | undefined;
@@ -116,6 +133,7 @@ export class WechatPayParams extends jspb.Message {
   noncestr: string;
   timestamp: string;
   sign: string;
+  mwebUrl: string;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): WechatPayParams.AsObject;
   static toObject(includeInstance: boolean, msg: WechatPayParams): WechatPayParams.AsObject;
@@ -131,6 +149,7 @@ export namespace WechatPayParams {
     noncestr: string,
     timestamp: string,
     sign: string,
+    mweburl: string,
   }
 }
 

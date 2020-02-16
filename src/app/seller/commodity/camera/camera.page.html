@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-round-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>拍照</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="reverse()">
+        切换
+        <ion-icon name="camera"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <video id="video" autoplay></video>
+</ion-content>
+
+<ion-footer no-border>
+  <ion-button expand="full" (click)="take()">
+    <ion-icon name="camera"></ion-icon>
+    <ion-label>拍照</ion-label>
+  </ion-button>
+</ion-footer>

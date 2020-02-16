@@ -1,7 +1,11 @@
 import { ApiService } from './api.service';
-import { User, Address } from '../../sdk/user_pb';
+import { User, Address, Certification } from '../../sdk/user_pb';
+import { Order, PayInfo, Groupon, SignRequest, Express, } from '../../sdk/order_pb';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Injectable, Injector, EventEmitter } from '@angular/core';
+import { Timestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
+import { Message } from 'google-protobuf';
+import { Commodity, Price } from 'src/sdk/commodity_pb';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +13,24 @@ import { Injectable, Injector, EventEmitter } from '@angular/core';
 export class UtilsService {
   injector: Injector;
   destination: Address;
+  alipayQueryUrl: string;
+
+  setOrder(order: Order) {
+    if (!order) {
+      localStorage.removeItem('order');
+    } else {
+      localStorage.setItem('order', Message.bytesAsB64(order.serializeBinary()));
+    }
+  }
+
+  getOrder(): Order {
+    if (!localStorage.getItem('order')) {
+      return null
+    }
+    return Order.deserializeBinary(Message.bytesAsU8(localStorage.getItem('order')));
+  }
+
+  order: Order;
   // https://lbs.amap.com/api/javascript-api/reference/lnglat-to-address#regeocode
   location = {
     formattedAddress: '湖北省荆门市',
@@ -25,25 +47,40 @@ export class UtilsService {
   }
 
   getUser(): User {
-    if (!window.localStorage.getItem('user')) {
+    if (!localStorage.getItem('user')) {
       return null
     }
-    let jsonUser = JSON.parse(window.localStorage.getItem('user'));
-    let user = new User();
-    for (let key in jsonUser) {
-      if (key.search('Map|created|cert|List') == -1) {
-        user[key] = jsonUser[key]
-      }
-    }
-    return user
+    return User.deserializeBinary(Message.bytesAsU8(localStorage.getItem('user')));
   };
 
   setUser(user: User) {
     if (!user) {
-      window.localStorage.removeItem('user');
+      localStorage.removeItem('user');
     } else {
-      window.localStorage.setItem('user', JSON.stringify(user.toObject()));
+      localStorage.setItem('user', Message.bytesAsB64(user.serializeBinary()));
     }
+  }
+
+  // target=>pbObject | source=>jsonObject
+  copy(target, source) {
+    if (!target) {
+      return
+    }
+    for (var prop in source) {
+      console.log(prop, source[prop], typeof source[prop]);
+      if (typeof source[prop] === 'object') {
+        if (source[prop] instanceof Array && prop.indexOf('Map') == -1) {
+          //target[prop].push(source[prop]);
+        } else {
+          this.copy(target[prop], source[prop])
+        }
+
+      } else {
+        target[prop] = source[prop];
+      }
+    }
+    console.log(target);
+    return target
   }
 
   formatRMB(value: string): string {

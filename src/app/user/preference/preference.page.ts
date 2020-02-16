@@ -1,4 +1,3 @@
-import { Events } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { utilsService } from '../../providers/utils.service';
@@ -13,7 +12,7 @@ export class PreferencePage {
   isLogin = false;
   host = environment.apiUrl;
 
-  constructor(private events: Events, private router: Router, ) { }
+  constructor(private router: Router) { }
 
   ionViewWillEnter() {
     if (utilsService.getUser()) {
@@ -26,7 +25,7 @@ export class PreferencePage {
   logout() {
     utilsService.confirm('确定要退出登录？', () => {
       utilsService.setUser(null);
-      this.events.publish('user:logout', '');
+      utilsService.events('user:logout').emit('');
       this.router.navigateByUrl('/login');
     });
   }

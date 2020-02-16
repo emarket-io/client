@@ -1,12 +1,10 @@
 import * as grpcWeb from 'grpc-web';
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Location } from "@angular/common";
-import { File } from '@ionic-native/file/ngx';
 import { HttpClient } from '@angular/common/http';
 import { User, Certification } from '../../../sdk/user_pb';
-import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { environment } from '../../../environments/environment';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { apiService, utilsService } from '../../providers/utils.service'
 
 @Component({
@@ -22,12 +20,21 @@ export class CertificationPage {
   couldSubmit = false;
 
   constructor(
-    private file: File,
-    private camera: Camera,
-    private webview: WebView,
+    private router: Router,
     private location: Location,
     private httpClient: HttpClient) {
     this.user.cert = new Certification();
+    utilsService.events(this.router.url + 'photo').subscribe((data) => {
+      this.images.push(data);
+    });
+    utilsService.events(this.router.url + 'blob').subscribe((data: Blob) => {
+      if (this.formData.getAll('uploadfile').length == 0) {
+        this.formData.append('uploadfile', data, '身份证正面.jpg');
+      }
+      if (this.formData.getAll('uploadfile').length == 1) {
+        this.formData.append('uploadfile', data, '身份证反面.jpg');
+      }
+    });
   }
 
   ionViewWillEnter() {
@@ -45,6 +52,8 @@ export class CertificationPage {
   }
 
   addImage(name: string) {
+    this.router.navigateByUrl('camera', { state: { url: this.router.url } });
+    /*
     const options: CameraOptions = {
       targetWidth: 600,
       targetHeight: 400,
@@ -78,7 +87,7 @@ export class CertificationPage {
     }, (err) => {
       // Handle error
       utilsService.alert(err);
-    });
+    });*/
   }
 
   submit() {
@@ -94,7 +103,8 @@ export class CertificationPage {
           if (err) {
             utilsService.alert(JSON.stringify(err));
           } else {
-            this.location.back();
+            //this.location.back();
+            this.router.navigateByUrl('seller');
           }
         })
       }, error => {

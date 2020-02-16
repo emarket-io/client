@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { IonSlides } from '@ionic/angular';
 import { Component, ViewChild } from '@angular/core';
 import { Commodity } from '../../../sdk/commodity_pb';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service';
 import { StringValue } from 'google-protobuf/google/protobuf/wrappers_pb';
@@ -38,10 +37,9 @@ export class HomePage {
 
   constructor(
     private router: Router,
-    private ngZone: NgZone,
-    private geolocation: Geolocation) {
-    utilsService.events('/tabs/home').subscribe(item => {
-      if (item === "back") {
+    private ngZone: NgZone) {
+    utilsService.events(this.router.url).subscribe(item => {
+      if (item === "enter") {
         this.slider.startAutoplay();
       }
       if (item === "leave") {
@@ -87,7 +85,7 @@ export class HomePage {
   }
 
   getLocation() {
-    this.geolocation.getCurrentPosition().then(async (resp) => {
+    navigator.geolocation.getCurrentPosition(resp => {
       AMap.convertFrom(resp.coords.longitude + "," + resp.coords.latitude, "gps", (status, result) => {
         if (status == "complete") {
           const positionInfo = [result.locations[0].P + '', result.locations[0].O + ''];
@@ -112,8 +110,9 @@ export class HomePage {
           utilsService.alert("坐标转换失败," + status + "/" + result);
         }
       });
-    }).catch((error) => {
-      console.log('Error getting location', error);
+    }, err => {
+      console.log(err);
+      //utilsService.alert(JSON.stringify(err));
     });
   }
 }

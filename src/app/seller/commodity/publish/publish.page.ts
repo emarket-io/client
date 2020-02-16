@@ -1,15 +1,12 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Location } from "@angular/common";
-import { File } from '@ionic-native/file/ngx';
 import { HttpClient } from '@angular/common/http';
 import { ModalController } from '@ionic/angular';
 import { CategoryPage } from '../category/category.page';
 import { ExpressPage } from '../express/express.page';
 import { PricePage } from '../price/price.page';
-import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { environment } from '../../../../environments/environment';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Commodity, Medium, Price } from '../../../../sdk/commodity_pb';
 import { apiService, utilsService } from '../../../providers/utils.service';
 
@@ -24,13 +21,20 @@ export class PublishPage {
   commodity = new Commodity();
 
   constructor(
-    private file: File,
-    private camera: Camera,
     private router: Router,
-    private webview: WebView,
     private location: Location,
     private httpClient: HttpClient,
     private modalController: ModalController) {
+    utilsService.events(this.router.url + 'photo').subscribe((data) => {
+      this.images.push(data);
+    });
+    utilsService.events(this.router.url + 'blob').subscribe((data: Blob) => {
+      let imageName = new Date().getTime() + '.jpg';
+      this.formData.append('uploadfile', data, imageName);
+      let medium = new (Medium);
+      medium.image = imageName;
+      this.commodity.mediaList.push(medium);
+    });
   }
 
   ionViewWillEnter() {
@@ -46,6 +50,11 @@ export class PublishPage {
   }
 
   addMedia() {
+    //this.presentCanvas()
+    this.router.navigateByUrl('camera', { state: { url: this.router.url } });
+  }
+
+  /*addMedia1() {
     const options: CameraOptions = {
       allowEdit: true,
       targetWidth: 500,
@@ -83,7 +92,7 @@ export class PublishPage {
       // Handle error
       utilsService.alert(JSON.stringify(err));
     });
-  }
+  }*/
 
   addPrice() {
     let price = new Price();
@@ -145,6 +154,16 @@ export class PublishPage {
     const { data } = await modal.onWillDismiss();
     this.commodity.category = data.category;
   }
+
+  // async presentCanvas() {
+  //   const modal = await this.modalController.create({
+  //     component: CanvasPage,
+  //     componentProps: { commodity: this.commodity },
+  //   });
+  //   await modal.present();
+  //   const { data } = await modal.onWillDismiss();
+  //   this.commodity = data.commodity;
+  // }
 
   async presentPrice() {
     const modal = await this.modalController.create({

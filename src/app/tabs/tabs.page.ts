@@ -13,9 +13,13 @@ export class TabsPage {
 
   ionViewWillEnter() {
     console.log(this.router.url);
-    if (this.router.url === '/tabs/home') {
-      utilsService.events('/tabs/home').emit('back');
-    }
+    utilsService.events(this.router.url).emit('enter');
+    // if (this.router.url === '/tabs/home') {
+    //   utilsService.events(this.router.url).emit('enter');
+    // }
+    // if (this.router.url === '/tabs/order') {
+    //   utilsService.events(this.router.url).emit('enter');
+    // }
     // let activateComponent = this.tabs.outlet.component;
     // if (activateComponent instanceof HomePage) {
     //   console.log("home更新");
@@ -27,7 +31,7 @@ export class TabsPage {
   ionViewWillLeave() {
     console.log("leave:" + this.router.url);
     //if (this.router.url === '/tabs/home') {
-    utilsService.events('/tabs/home').emit('leave');
+      utilsService.events('/tabs/home').emit('leave');
     //}
   }
 }

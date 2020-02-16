@@ -25,7 +25,13 @@ export class OrderPage {
 
   constructor(
     private router: Router,
-    private alertController: AlertController) { }
+    private alertController: AlertController) {
+    utilsService.events(this.router.url).subscribe(item => {
+      if (item === "enter") {
+        this.ionViewWillEnter();
+      }
+    });
+  }
 
   listByStatus(status: string) {
     this.orders = [];

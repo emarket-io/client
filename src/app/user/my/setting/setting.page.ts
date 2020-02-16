@@ -1,9 +1,9 @@
-import { Events } from '@ionic/angular';
+//import { Events } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Location } from "@angular/common";
 import { User } from '../../../../sdk/user_pb';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+//import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { apiService, utilsService } from '../../../providers/utils.service'
 
 @Component({
@@ -15,9 +15,9 @@ export class SettingPage {
   user = new User();
 
   constructor(
-    private events: Events,
+    //private events: Events,
     private router: Router,
-    private camera: Camera,
+    //private camera: Camera,
     private location: Location) { }
 
   ionViewWillEnter() {
@@ -28,6 +28,7 @@ export class SettingPage {
   }
 
   select() {
+    /*
     const options: CameraOptions = {
       quality: 80,
       correctOrientation: true,
@@ -44,7 +45,7 @@ export class SettingPage {
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       this.user.icon = base64Image;
-    });
+    });*/
   }
 
   save() {
@@ -54,7 +55,8 @@ export class SettingPage {
       } else {
         //this.user = response;
         utilsService.setUser(response);
-        this.events.publish('user:login', response.name);
+        utilsService.events('user:login').emit(response.name);
+        //this.events.publish('user:login', response.name);
         this.location.back();
       }
     });

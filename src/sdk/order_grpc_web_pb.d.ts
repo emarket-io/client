@@ -10,6 +10,7 @@ import {
   Account,
   ListQuery,
   Order,
+  SignRequest,
   WechatPayParams} from './order_pb';
 
 export class OrdersClient {
@@ -87,7 +88,7 @@ export class AccountsClient {
   ): grpcWeb.ClientReadableStream<Account>;
 
   signAlipay(
-    request: Order,
+    request: SignRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
                response: google_protobuf_wrappers_pb.StringValue) => void
@@ -165,7 +166,7 @@ export class AccountsPromiseClient {
   ): Promise<Account>;
 
   signAlipay(
-    request: Order,
+    request: SignRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_wrappers_pb.StringValue>;
 

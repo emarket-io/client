@@ -701,12 +701,12 @@ proto.zbay.AccountsPromiseClient.prototype.total =
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.zbay.Order,
+ *   !proto.zbay.SignRequest,
  *   !proto.google.protobuf.StringValue>}
  */
 const methodInfo_Accounts_SignAlipay = new grpc.web.AbstractClientBase.MethodInfo(
   google_protobuf_wrappers_pb.StringValue,
-  /** @param {!proto.zbay.Order} request */
+  /** @param {!proto.zbay.SignRequest} request */
   function(request) {
     return request.serializeBinary();
   },
@@ -715,7 +715,7 @@ const methodInfo_Accounts_SignAlipay = new grpc.web.AbstractClientBase.MethodInf
 
 
 /**
- * @param {!proto.zbay.Order} request The
+ * @param {!proto.zbay.SignRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -736,7 +736,7 @@ proto.zbay.AccountsClient.prototype.signAlipay =
 
 
 /**
- * @param {!proto.zbay.Order} request The
+ * @param {!proto.zbay.SignRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata

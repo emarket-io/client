@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
   imports: [
@@ -13,8 +12,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     FormsModule,
     RouterModule.forChild([{ path: '', component: HomePage }])
   ],
-  providers: [
-    Geolocation],
+  providers: [],
   declarations: [HomePage]
 })
 export class HomePageModule { }
