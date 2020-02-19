@@ -27,7 +27,7 @@ export class OrderPage {
     private router: Router,
     private alertController: AlertController) {
     utilsService.events(this.router.url).subscribe(item => {
-      if (item === "enter") {
+      if (item == "enter") {
         this.ionViewWillEnter();
       }
     });

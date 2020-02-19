@@ -68,8 +68,8 @@ export class SettingPage {
         let min = Math.min(img.width, img.height);
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d');
-        canvas.width = 300;
-        canvas.height = 300;
+        canvas.width = 160;
+        canvas.height = 160;
         let x = img.width - img.height;
         if (x > 0) {
           context.drawImage(img, x / 2, 0, min, min, 0, 0, canvas.width, canvas.height);

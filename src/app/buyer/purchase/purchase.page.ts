@@ -19,9 +19,6 @@ export class PurchasePage {
   order: Order;
   host = environment.apiUrl;
   formatRBM = utilsService.formatRMB;
-  //loop: any;
-  //payUrl: string;
-  //modal: any;
 
 
   constructor(
@@ -35,7 +32,6 @@ export class PurchasePage {
     this.order = <Order>this.router.getCurrentNavigation().extras.state;
     this.order.payInfo = new PayInfo();
     this.order.payInfo.type = 'wechat';
-    //this.payUrl= this.sanitizer.bypassSecurityTrustHtml('https://www.jianshu.com/'); 
   }
 
   ionViewWillEnter() {
@@ -114,7 +110,7 @@ export class PurchasePage {
             this.order.payInfo.payResult = bizContent.out_trade_no;
             utilsService.setOrder(this.order);
             console.log(url);
-            window.location.href = url;
+            window.location.replace(url);
           }
         });
     } else if (this.order.payInfo.type == 'wechat') {
@@ -135,7 +131,7 @@ export class PurchasePage {
           // for query
           this.order.payInfo.payResult = pm.kvMap.get('out_trade_no');
           utilsService.setOrder(this.order);
-          window.location.href = url;
+          window.location.replace(url);
         }
       });
     }

@@ -15,17 +15,12 @@ export class AppComponent {
     private router: Router,
     private injector: Injector,
     private platform: Platform,
-    //private splashScreen: SplashScreen,
-    //private statusBar: StatusBar,
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      //this.statusBar.overlaysWebView(true);
-      // this.statusBar.styleDefault();
-      //this.splashScreen.hide();
       this.setTheme(Math.random());
       utilsService.injector = this.injector;
       // this.platform.backButton.subscribe(() => {
@@ -42,7 +37,6 @@ export class AppComponent {
       window.addEventListener("popstate", e => {
         if (this.router.url.includes('/tabs/')) {
           if (this.exit) {
-            //navigator['app'].exitApp();
             window.close();
           } else {
             utilsService.toast('再按一次退出 [农村大集]');
@@ -75,7 +69,10 @@ export class AppComponent {
       document.documentElement.style.setProperty(`--${k}`, this.theme[k])
     );
 
+    // Chrome, Firefox OS and Opera
     document.getElementsByTagName('meta')['theme-color'].content = this.theme.mycolor;
+    //  iOS Safari
+    document.getElementsByTagName('meta')['apple-mobile-web-app-status-bar-style'].content = this.theme.mycolor;
   }
 
   /*checkUpdate() {

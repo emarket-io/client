@@ -28,7 +28,7 @@ export class ShopPage {
       return utilsService.alert('店铺名含有不合规内容，请检查');
     }
     let user = utilsService.getUser();
-    user.shopsList.push(this.shop);
+    user.shopsList[0] = this.shop;
     apiService.userClient.update(user, apiService.metaData, (err: any, response: User) => {
       if (err) {
         utilsService.alert(JSON.stringify(err));
