@@ -1,9 +1,9 @@
+import { Message } from 'google-protobuf';
 import { ApiService } from './api.service';
-import { User, Address } from '../../sdk/user_pb';
 import { Order } from '../../sdk/order_pb';
+import { User, Address } from '../../sdk/user_pb';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Injectable, Injector, EventEmitter } from '@angular/core';
-import { Message } from 'google-protobuf';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,6 @@ import { Message } from 'google-protobuf';
 export class UtilsService {
   injector: Injector;
   destination: Address;
-  alipayQueryUrl: string;
 
   setOrder(order: Order) {
     if (!order) {
@@ -35,7 +34,7 @@ export class UtilsService {
     addressComponent: { province: '湖北省', city: "荆门市", district: '沙洋县' }
   };
 
-  eventMap = new Map<string, EventEmitter<any>>()
+  eventMap = new Map<string, EventEmitter<any>>();
 
   events(topic: string): EventEmitter<any> {
     if (!this.eventMap.get(topic)) {
@@ -57,28 +56,6 @@ export class UtilsService {
     } else {
       localStorage.setItem('user', Message.bytesAsB64(user.serializeBinary()));
     }
-  }
-
-  // target=>pbObject | source=>jsonObject
-  copy(target, source) {
-    if (!target) {
-      return
-    }
-    for (var prop in source) {
-      console.log(prop, source[prop], typeof source[prop]);
-      if (typeof source[prop] === 'object') {
-        if (source[prop] instanceof Array && prop.indexOf('Map') == -1) {
-          //target[prop].push(source[prop]);
-        } else {
-          this.copy(target[prop], source[prop])
-        }
-
-      } else {
-        target[prop] = source[prop];
-      }
-    }
-    console.log(target);
-    return target
   }
 
   formatRMB(value: string): string {

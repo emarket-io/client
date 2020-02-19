@@ -28,16 +28,27 @@ export class AppComponent {
       //this.splashScreen.hide();
       this.setTheme(Math.random());
       utilsService.injector = this.injector;
-      this.platform.backButton.subscribe(() => {
+      // this.platform.backButton.subscribe(() => {
+      //   if (this.router.url.includes('/tabs/')) {
+      //     if (this.exit) {
+      //       navigator['app'].exitApp();
+      //     } else {
+      //       utilsService.toast('再按一次退出 [农村大集]');
+      //       this.exit = true;
+      //       setTimeout(() => this.exit = false, 1500);
+      //     }
+      //   };
+      // });
+      window.addEventListener("popstate", e => {
         if (this.router.url.includes('/tabs/')) {
           if (this.exit) {
-            navigator['app'].exitApp();
+            //navigator['app'].exitApp();
+            window.close();
           } else {
             utilsService.toast('再按一次退出 [农村大集]');
             this.exit = true;
-            setTimeout(() => this.exit = false, 1500);
           }
-        };
+        }
       });
       //this.checkUpdate();
     });

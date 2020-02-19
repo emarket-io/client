@@ -25,16 +25,16 @@ export class PublishPage {
     private location: Location,
     private httpClient: HttpClient,
     private modalController: ModalController) {
-    utilsService.events(this.router.url + 'photo').subscribe((data) => {
-      this.images.push(data);
-    });
-    utilsService.events(this.router.url + 'blob').subscribe((data: Blob) => {
-      let imageName = new Date().getTime() + '.jpg';
-      this.formData.append('uploadfile', data, imageName);
-      let medium = new (Medium);
-      medium.image = imageName;
-      this.commodity.mediaList.push(medium);
-    });
+    // utilsService.events(this.router.url + 'photo').subscribe((data) => {
+    //   this.images.push(data);
+    // });
+    // utilsService.events(this.router.url + 'blob').subscribe((data: Blob) => {
+    //   let imageName = new Date().getTime() + '.jpg';
+    //   this.formData.append('uploadfile', data, imageName);
+    //   let medium = new (Medium);
+    //   medium.image = imageName;
+    //   this.commodity.mediaList.push(medium);
+    // });
   }
 
   ionViewWillEnter() {
@@ -54,8 +54,7 @@ export class PublishPage {
     setTimeout(() => {
       let u = <HTMLInputElement>document.getElementById("cameraBtn");
       u.click();
-    },
-      1000);
+    }, 1000);
   }
 
   addMedia() {
@@ -80,14 +79,14 @@ export class PublishPage {
         }
 
 
-        this.images.push(canvas.toDataURL('image/jpg'));
+        this.images.push(canvas.toDataURL('image/jpg', 60));
         canvas.toBlob(data => {
           let imageName = new Date().getTime() + '.jpg';
           this.formData.append('uploadfile', data, imageName);
           let medium = new (Medium);
           medium.image = imageName;
           this.commodity.mediaList.push(medium);
-        })
+        }, 'image/jpg', 60);
       };
 
     };
@@ -194,16 +193,6 @@ export class PublishPage {
     const { data } = await modal.onWillDismiss();
     this.commodity.category = data.category;
   }
-
-  // async presentCanvas() {
-  //   const modal = await this.modalController.create({
-  //     component: CanvasPage,
-  //     componentProps: { commodity: this.commodity },
-  //   });
-  //   await modal.present();
-  //   const { data } = await modal.onWillDismiss();
-  //   this.commodity = data.commodity;
-  // }
 
   async presentPrice() {
     const modal = await this.modalController.create({

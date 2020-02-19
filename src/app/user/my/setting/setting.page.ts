@@ -1,9 +1,7 @@
-//import { Events } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Location } from "@angular/common";
 import { User } from '../../../../sdk/user_pb';
-//import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { apiService, utilsService } from '../../../providers/utils.service'
 
 @Component({
@@ -15,9 +13,7 @@ export class SettingPage {
   user = new User();
 
   constructor(
-    //private events: Events,
     private router: Router,
-    //private camera: Camera,
     private location: Location) { }
 
   ionViewWillEnter() {
@@ -81,7 +77,7 @@ export class SettingPage {
           context.drawImage(img, 0, -x / 2, min, min, 0, 0, canvas.width, canvas.height);
         }
 
-        this.user.icon = canvas.toDataURL('image/jpg');
+        this.user.icon = canvas.toDataURL('image/jpg', 60);
       }
     };
     reader.readAsDataURL(u.files[0]);
