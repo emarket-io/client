@@ -49,9 +49,49 @@ export class PublishPage {
     this.commodity.city = utilsService.location.addressComponent.province + utilsService.location.addressComponent.city;
   }
 
+  toast() {
+    utilsService.toast('请横屏拍摄');
+    setTimeout(() => {
+      let u = <HTMLInputElement>document.getElementById("cameraBtn");
+      u.click();
+    },
+      1000);
+  }
+
   addMedia() {
-    //this.presentCanvas()
-    this.router.navigateByUrl('camera', { state: { url: this.router.url } });
+    //this.router.navigateByUrl('camera', { state: { url: this.router.url } });
+    //utilsService.toast('请横屏拍摄');
+    let u = <HTMLInputElement>document.getElementById("cameraBtn");
+    let img = new Image();
+    let reader = new FileReader();
+    reader.onload = () => {
+      img.src = reader.result.toString();
+      img.onload = () => {
+        let min = Math.min(img.width, img.height);
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = 500;
+        canvas.height = 500;
+        let x = img.width - img.height;
+        if (x > 0) {
+          context.drawImage(img, x / 2, 0, min, min, 0, 0, canvas.width, canvas.height);
+        } else {
+          context.drawImage(img, 0, -x / 2, min, min, 0, 0, canvas.width, canvas.height);
+        }
+
+
+        this.images.push(canvas.toDataURL('image/jpg'));
+        canvas.toBlob(data => {
+          let imageName = new Date().getTime() + '.jpg';
+          this.formData.append('uploadfile', data, imageName);
+          let medium = new (Medium);
+          medium.image = imageName;
+          this.commodity.mediaList.push(medium);
+        })
+      };
+
+    };
+    reader.readAsDataURL(u.files[0]);
   }
 
   /*addMedia1() {

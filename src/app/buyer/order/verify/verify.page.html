@@ -1,9 +1,30 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>支付结果</ion-title>
+  <ion-toolbar class="ion-text-center">
+    <ion-title>订单确认中</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  支付成功，正转向定单页
+  <ion-list>
+    <ion-item>
+      <ion-label>商品名</ion-label>
+      {{order.snapshot?.title}}
+    </ion-item>
+    <ion-item>
+      <ion-label>规格</ion-label>
+      {{order.price?.name}}
+    </ion-item>
+    <ion-item>
+      <ion-label>费用</ion-label>
+      ¥{{formatRBM(order.groupon?order.price?.group:order.price?.single)}}×{{order.quantity}}
+    </ion-item>
+    <ion-item>
+      <ion-label>送货地址</ion-label>
+      {{order.destination?.location}}
+    </ion-item>
+    <!-- <ion-item *ngIf="order.groupon">
+      <ion-label>参团信息</ion-label>
+      {{order.groupon.orderIdsList[0]}},{{order.userId}}
+    </ion-item> -->
+  </ion-list>
 </ion-content>

@@ -22,18 +22,8 @@
     "@angular/pwa": "^0.803.24",
     "@angular/router": "~8.1.2",
     "@angular/service-worker": "~8.1.2",
-    "@ionic-native/alipay": "^5.15.1",
     "@ionic-native/core": "^5.0.0",
-    "@ionic-native/wechat": "^5.16.0",
     "@ionic/angular": "^4.11.5",
-    "cordova": "^9.0.0",
-    "cordova-android": "^8.1.0",
-    "cordova-plugin-device": "^2.0.2",
-    "cordova-plugin-gubnoi-alipay": "0.0.10",
-    "cordova-plugin-ionic-keyboard": "^2.2.0",
-    "cordova-plugin-wechat": "^2.9.0",
-    "cordova-plugin-whitelist": "^1.3.3",
-    "cordova-res": "^0.6.0",
     "core-js": "^2.5.4",
     "google-protobuf": "^3.10.0",
     "grpc-web": "^1.0.7",
@@ -68,21 +58,5 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
   },
-  "description": "An Ionic project",
-  "cordova": {
-    "plugins": {
-      "cordova-plugin-whitelist": {},
-      "cordova-plugin-device": {},
-      "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-gubnoi-alipay": {
-        "APP_ID": "2019121169872457"
-      },
-      "cordova-plugin-wechat": {
-        "WECHATAPPID": "wx28aa8762d098fa7f"
-      }
-    },
-    "platforms": [
-      "android"
-    ]
-  }
+  "description": "An Ionic project"
 }

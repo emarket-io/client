@@ -2,7 +2,7 @@ import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Order, Groupon, } from '../../../../sdk/order_pb';
+import { Order, Groupon, PayMap } from '../../../../sdk/order_pb';
 import { apiService, utilsService } from '../../../providers/utils.service';
 
 @Component({
@@ -12,32 +12,66 @@ import { apiService, utilsService } from '../../../providers/utils.service';
 })
 export class VerifyPage {
 
+  order = utilsService.getOrder();
+  formatRBM = utilsService.formatRMB;
+
   constructor(
     private router: Router,
-    private httpClient: HttpClient) { }
+    private httpClient: HttpClient
+  ) { }
 
   ionViewWillEnter() {
-    //utilsService.alert(utilsService.alipayQueryUrl);
-    //utilsService.alert(JSON.stringify(utilsService.getOrder().toObject()));
-    let preOrder = utilsService.getOrder();
-    if (preOrder) {
-      this.commitOrder(preOrder);
-      utilsService.setOrder(null);
+    this.order = utilsService.getOrder();
+    if (this.order) {
+      if (this.order.payInfo.type == 'wechat') {
+        let pm = new PayMap();
+        pm.url = 'https://api.mch.weixin.qq.com/pay/orderquery';
+        pm.kvMap.set('out_trade_no', this.order.payInfo.payResult);
+        apiService.accountClient.wechatPay(pm, apiService.metaData, (err, response) => {
+          if (err) {
+            utilsService.alert(JSON.stringify(err));
+          } else {
+            if (response.kvMap.get('trade_state') == 'SUCCESS') {
+              this.commitOrder(this.order);
+            } else {
+              utilsService.toast('订单未支付');
+              this.router.navigateByUrl('/tabs/home');
+            }
+          }
+        });
+      } else { //alipay
+        // query
+        let sr = new PayMap();
+        let queryBizContent = {
+          out_trade_no: this.order.payInfo.payResult,
+        };
+        sr.kvMap.set('method', 'alipay.trade.query')
+        sr.kvMap.set('biz_content', JSON.stringify(queryBizContent));
+        apiService.accountClient.alipay(sr, apiService.metaData,
+          (err: grpcWeb.Error, response) => {
+            let queryUrl = 'https://openapi.alipay.com/gateway.do?';
+            let i = 0;
+            response.kvMap.forEach((value, key, map) => {
+              if (i == 0) {
+                queryUrl = queryUrl + key + "=" + value;
+              } else {
+                queryUrl = queryUrl + '&' + key + "=" + encodeURIComponent(value);
+              }
+              i = i + 1;
+            });
+            console.log(queryUrl);
+            this.httpClient.get(queryUrl).subscribe(data => {
+              //console.log(data, data['alipay_trade_query_response']['code'], data['alipay_trade_query_response']['msg']);
+              if (data['alipay_trade_query_response']['code'] == '10000' && data['alipay_trade_query_response']['msg'] == 'Success') {
+                this.commitOrder(this.order);
+              } else {
+                utilsService.toast('订单未支付');
+                this.router.navigateByUrl('/tabs/home');
+              }
+            });
+          })
+      }
     }
-
-
-    // this.httpClient.get(utilsService.alipayQueryUrl).subscribe(data => {
-    //   utilsService.alert(JSON.stringify(data));
-    //   console.log(data, data['alipay_trade_query_response']['code'], data['alipay_trade_query_response']['msg']);
-    //   //if (data['alipay_trade_query_response']['code'] == '10000' && data['alipay_trade_query_response']['msg'] == 'Success') {
-    //   //clearInterval(this.loop);
-    //   //this.commitOrder();
-    //   this.commitOrder(utilsService.order);
-    //   // }
-    // }, err => {
-    //   utilsService.alert(JSON.stringify(err));
-    //   console.log(JSON.stringify(err));
-    // })
   }
 
   commitOrder(order: Order) {
@@ -66,6 +100,7 @@ export class VerifyPage {
             }
           });
         }
+        utilsService.setOrder(null);
         this.router.navigateByUrl('/tabs/order');
       }
     });

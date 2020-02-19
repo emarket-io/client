@@ -17,10 +17,12 @@
       <img style="width: 80px;height: auto;margin: 0 1px;" *ngFor="let image of images" [src]="image" />
     </ion-item>
     <ion-item lines="none">
-      <ion-button (click)="addMedia()">
+      <ion-button (click)="toast()">
         <ion-label>拍照</ion-label>
         <ion-icon name="camera"></ion-icon>+
       </ion-button>
+      <input id="cameraBtn" type="file" (change)="addMedia()" accept="image/*" capture="camera"
+        style="display: none;" />
     </ion-item>
     <ion-item (click)="presentModal(commodity)">
       <ion-label>类别</ion-label>
@@ -57,8 +59,8 @@
     </ion-item>
     <ion-item lines="none">
       <ion-label>标签</ion-label>
-      <ion-select style="max-width: 90%;" placeholder="特色标签" multiple [(ngModel)]="commodity.tagsList"
-        cancelText="取消" okText="确定">
+      <ion-select style="max-width: 90%;" placeholder="特色标签" multiple [(ngModel)]="commodity.tagsList" cancelText="取消"
+        okText="确定">
         <ion-select-option value="农家自产">农家自产</ion-select-option>
         <!-- <ion-select-option value="限量特价">限量特价</ion-select-option> -->
         <ion-select-option value="7天退换">7天退换</ion-select-option>

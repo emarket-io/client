@@ -61,4 +61,29 @@ export class SettingPage {
       }
     });
   }
+
+  selectIcon() {
+    let u = <HTMLInputElement>document.getElementById("fileBtn");
+    let reader = new FileReader();
+    let img = new Image();
+    reader.onload = (e) => {
+      img.src = reader.result.toString();
+      img.onload = () => {
+        let min = Math.min(img.width, img.height);
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = 300;
+        canvas.height = 300;
+        let x = img.width - img.height;
+        if (x > 0) {
+          context.drawImage(img, x / 2, 0, min, min, 0, 0, canvas.width, canvas.height);
+        } else {
+          context.drawImage(img, 0, -x / 2, min, min, 0, 0, canvas.width, canvas.height);
+        }
+
+        this.user.icon = canvas.toDataURL('image/jpg');
+      }
+    };
+    reader.readAsDataURL(u.files[0]);
+  }
 }

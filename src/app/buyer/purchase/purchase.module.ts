@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Wechat } from '@ionic-native/wechat/ngx';
-import { Alipay } from '@ionic-native/alipay/ngx';
+//import { Wechat } from '@ionic-native/wechat/ngx';
+//import { Alipay } from '@ionic-native/alipay/ngx';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
@@ -23,7 +23,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  providers: [Alipay, Wechat],
+  //  providers: [Alipay, Wechat],
   declarations: [PurchasePage]
 })
 export class PurchasePageModule { }

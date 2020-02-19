@@ -18,8 +18,9 @@
   <ion-item (click)="select()">
     <!-- <ion-label>头像</ion-label> -->
     <ion-avatar style="height: 160px;width: 160px;margin:20px auto;">
-      <img [src]="user.icon?user.icon:'assets/fruit/banana.png'" />
+      <img [src]="user.icon?user.icon:'assets/fruit/banana.png'" onClick="getElementById('fileBtn').click()" />
     </ion-avatar>
+    <input id="fileBtn" type="file" (change)="selectIcon()" accept="image/*" style="display: none;" />
   </ion-item>
   <ion-item>
     <ion-icon slot="start" name="bonfire"></ion-icon>

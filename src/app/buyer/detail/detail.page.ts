@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { User } from '../../../sdk/user_pb';
-import { Wechat } from '@ionic-native/wechat/ngx';
+//import { Wechat } from '@ionic-native/wechat/ngx';
 import { PopoverController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { Order, Groupon } from '../../../sdk/order_pb';
@@ -28,7 +28,7 @@ export class DetailPage {
 
   constructor(
     private router: Router,
-    private wechat: Wechat,
+    //private wechat: Wechat,
     private popoverController: PopoverController) {
     this.commodity = <Commodity>this.router.getCurrentNavigation().extras.state;
   }
@@ -38,6 +38,7 @@ export class DetailPage {
   }
 
   share() {
+    /*
     this.wechat.share({
       message: {
         title: "[农村大集]上农村大集，让农货便宜到家--" + this.commodity.title,
@@ -57,6 +58,7 @@ export class DetailPage {
     }).catch(err => {
       utilsService.alert(JSON.stringify(err));
     });
+    */
   }
 
   async select(isGroup: boolean, ev: Event) {

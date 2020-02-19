@@ -35,19 +35,21 @@ export namespace Account {
   }
 }
 
-export class SignRequest extends jspb.Message {
+export class PayMap extends jspb.Message {
+  url: string;
   kvMap: jspb.Map<string, string>;
   clearkvMap(): void;
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SignRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: SignRequest): SignRequest.AsObject;
-  static serializeBinaryToWriter(message: SignRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SignRequest;
-  static deserializeBinaryFromReader(message: SignRequest, reader: jspb.BinaryReader): SignRequest;
+  toObject(includeInstance?: boolean): PayMap.AsObject;
+  static toObject(includeInstance: boolean, msg: PayMap): PayMap.AsObject;
+  static serializeBinaryToWriter(message: PayMap, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PayMap;
+  static deserializeBinaryFromReader(message: PayMap, reader: jspb.BinaryReader): PayMap;
 }
 
-export namespace SignRequest {
+export namespace PayMap {
   export type AsObject = {
+    url: string,
     kvMap: Array<[string, string]>,
   }
 }
@@ -128,12 +130,14 @@ export namespace PayInfo {
 }
 
 export class WechatPayParams extends jspb.Message {
+  appid: string;
   partnerid: string;
   prepayid: string;
   noncestr: string;
   timestamp: string;
   sign: string;
   mwebUrl: string;
+  outTradeNo: string;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): WechatPayParams.AsObject;
   static toObject(includeInstance: boolean, msg: WechatPayParams): WechatPayParams.AsObject;
@@ -144,12 +148,14 @@ export class WechatPayParams extends jspb.Message {
 
 export namespace WechatPayParams {
   export type AsObject = {
+    appid: string,
     partnerid: string,
     prepayid: string,
     noncestr: string,
     timestamp: string,
     sign: string,
     mweburl: string,
+    outtradeno: string,
   }
 }
 

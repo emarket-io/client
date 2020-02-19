@@ -10,8 +10,7 @@ import {
   Account,
   ListQuery,
   Order,
-  SignRequest,
-  WechatPayParams} from './order_pb';
+  PayMap} from './order_pb';
 
 export class OrdersClient {
   constructor (hostname: string,
@@ -87,19 +86,19 @@ export class AccountsClient {
                response: Account) => void
   ): grpcWeb.ClientReadableStream<Account>;
 
-  signAlipay(
-    request: SignRequest,
+  alipay(
+    request: PayMap,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
-               response: google_protobuf_wrappers_pb.StringValue) => void
-  ): grpcWeb.ClientReadableStream<google_protobuf_wrappers_pb.StringValue>;
+               response: PayMap) => void
+  ): grpcWeb.ClientReadableStream<PayMap>;
 
-  prepayWechat(
-    request: Order,
+  wechatPay(
+    request: PayMap,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
-               response: WechatPayParams) => void
-  ): grpcWeb.ClientReadableStream<WechatPayParams>;
+               response: PayMap) => void
+  ): grpcWeb.ClientReadableStream<PayMap>;
 
 }
 
@@ -165,15 +164,15 @@ export class AccountsPromiseClient {
     metadata?: grpcWeb.Metadata
   ): Promise<Account>;
 
-  signAlipay(
-    request: SignRequest,
+  alipay(
+    request: PayMap,
     metadata?: grpcWeb.Metadata
-  ): Promise<google_protobuf_wrappers_pb.StringValue>;
+  ): Promise<PayMap>;
 
-  prepayWechat(
-    request: Order,
+  wechatPay(
+    request: PayMap,
     metadata?: grpcWeb.Metadata
-  ): Promise<WechatPayParams>;
+  ): Promise<PayMap>;
 
 }
 
