@@ -37,7 +37,23 @@ export class DetailPage {
     this.getOwnerById();
   }
 
+  star() {
+    window.location.href = window.location.href;
+    //window.close();
+  }
+
   share() {
+    var aux = document.createElement("input");
+    aux.setAttribute("value", "[农村大集]上农村大集，让农货便宜到家--" + this.commodity.title);
+    document.body.appendChild(aux);
+    aux.select();
+    document.execCommand("Copy");
+    document.body.removeChild(aux);
+    utilsService.toast('已将分享内容复制，打开微信粘贴即可');
+    setTimeout(() => {
+      window.open('weixin://')//, '_blank');
+    }, 1000);
+
     /*
     this.wechat.share({
       message: {

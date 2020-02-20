@@ -110,7 +110,7 @@ export class PurchasePage {
             this.order.payInfo.payResult = bizContent.out_trade_no;
             utilsService.setOrder(this.order);
             console.log(url);
-            window.location.replace(url);
+            location.href = url;
           }
         });
     } else if (this.order.payInfo.type == 'wechat') {
@@ -131,7 +131,8 @@ export class PurchasePage {
           // for query
           this.order.payInfo.payResult = pm.kvMap.get('out_trade_no');
           utilsService.setOrder(this.order);
-          window.location.replace(url);
+          location.href = url;
+          //this.router.navigateByUrl('/verify');
         }
       });
     }

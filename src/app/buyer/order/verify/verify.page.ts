@@ -2,6 +2,7 @@ import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActionSheetController } from '@ionic/angular';
 import { Order, Groupon, PayMap } from '../../../../sdk/order_pb';
 import { apiService, utilsService } from '../../../providers/utils.service';
 
@@ -17,28 +18,47 @@ export class VerifyPage {
 
   constructor(
     private router: Router,
-    private httpClient: HttpClient
-  ) { }
+    private httpClient: HttpClient,
+    private actionSheetController: ActionSheetController) { }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     this.order = utilsService.getOrder();
     if (this.order) {
       if (this.order.payInfo.type == 'wechat') {
-        let pm = new PayMap();
-        pm.url = 'https://api.mch.weixin.qq.com/pay/orderquery';
-        pm.kvMap.set('out_trade_no', this.order.payInfo.payResult);
-        apiService.accountClient.wechatPay(pm, apiService.metaData, (err, response) => {
-          if (err) {
-            utilsService.alert(JSON.stringify(err));
-          } else {
-            if (response.kvMap.get('trade_state') == 'SUCCESS') {
-              this.commitOrder(this.order);
-            } else {
+        const actionSheet = await this.actionSheetController.create({
+          header: '请确认微信支付是否已完成',
+          backdropDismiss: false,
+          buttons: [{
+            text: '已完成支付',
+            role: 'destructive',
+            icon: 'briefcase',
+            handler: () => {
+              let pm = new PayMap();
+              pm.url = 'https://api.mch.weixin.qq.com/pay/orderquery';
+              pm.kvMap.set('out_trade_no', this.order.payInfo.payResult);
+              apiService.accountClient.wechatPay(pm, apiService.metaData, (err, response) => {
+                if (err) {
+                  utilsService.alert(JSON.stringify(err));
+                } else {
+                  if (response.kvMap.get('trade_state') == 'SUCCESS') {
+                    this.commitOrder(this.order);
+                  } else {
+                    utilsService.toast('订单未支付');
+                    this.router.navigateByUrl('/tabs/home');
+                  }
+                }
+              });
+            }
+          }, {
+            text: '支付遇到问题，已取消',
+            icon: 'backspace',
+            handler: () => {
               utilsService.toast('订单未支付');
               this.router.navigateByUrl('/tabs/home');
             }
-          }
+          }]
         });
+        await actionSheet.present();
       } else { //alipay
         // query
         let sr = new PayMap();
