@@ -43,6 +43,8 @@ export class UtilsService {
     return this.eventMap.get(topic);
   }
 
+  paraMap = new Map<string, any>();
+
   getUser(): User {
     if (!localStorage.getItem('user')) {
       return null
@@ -78,7 +80,7 @@ export class UtilsService {
     await alert.present();
   }
 
-  async confirm(title: string, fn: Function,fx?: Function, content?: string) {
+  async confirm(title: string, fn: Function, fx?: Function, content?: string) {
     const alert = await this.injector.get(AlertController).create({
       subHeader: title,
       message: content,

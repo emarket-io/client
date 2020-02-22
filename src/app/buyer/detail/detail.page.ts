@@ -38,7 +38,7 @@ export class DetailPage {
   }
 
   star() {
-    window.location.href = window.location.href;
+    //window.location.href = window.location.href;
     //window.close();
   }
 
@@ -51,7 +51,7 @@ export class DetailPage {
     document.body.removeChild(aux);
     utilsService.toast('已将分享内容复制，打开微信粘贴即可');
     setTimeout(() => {
-      window.open('weixin://')//, '_blank');
+      window.open('weixin://');
     }, 1000);
 
     /*
@@ -94,6 +94,7 @@ export class DetailPage {
 
     const { data } = await popover.onWillDismiss();
     if (data) {
+      utilsService.paraMap['purchase'] = data.order;
       this.router.navigateByUrl('/purchase', { state: data.order })
     }
   }

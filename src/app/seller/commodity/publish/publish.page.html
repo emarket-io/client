@@ -13,9 +13,12 @@
       <ion-label>标题</ion-label>
       <ion-input required placeholder="请输入商品标题" [(ngModel)]="commodity.title"></ion-input>
     </ion-item>
-    <ion-item lines="none">
-      <img style="width: 80px;height: 80px;margin: 0 1px;" *ngFor="let image of images" [src]="image" />
-    </ion-item>
+    <!-- <ion-item lines="none" style="--overflow:auto;overflow:auto;height: 80px;"> -->
+    <div style="height: 80px;margin-left: 15px;overflow-x:auto;overflow-y: hidden;white-space: nowrap;">
+      <img style="width: 80px;height: 80px;margin: 0 1px;display: inline-block;" *ngFor="let image of images"
+        [src]="image" />
+    </div>
+    <!-- </ion-item> -->
     <ion-item lines="none">
       <ion-button (click)="toast()">
         <ion-label>拍照</ion-label>

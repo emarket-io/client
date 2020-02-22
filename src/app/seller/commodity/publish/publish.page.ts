@@ -93,6 +93,10 @@ export class PublishPage {
     reader.readAsDataURL(u.files[0]);
   }
 
+  remove(index){
+    //this.formData.getAll('').sl
+  }
+
   /*addMedia1() {
     const options: CameraOptions = {
       allowEdit: true,
