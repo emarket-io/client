@@ -14,7 +14,7 @@ import { apiService, utilsService } from '../../providers/utils.service';
   styleUrls: ['./purchase.page.scss'],
 })
 export class PurchasePage {
-  order: Order = utilsService.paraMap['purchase'];
+  order: Order;
   host = environment.apiUrl;
   formatRBM = utilsService.formatRMB;
 
@@ -24,8 +24,9 @@ export class PurchasePage {
     private httpClient: HttpClient,
     private actionSheetController: ActionSheetController) {
     if (!utilsService.paraMap['purchase']) {
-      this.order = utilsService.getOrder();
+      this.order = utilsService.getMessage('order', Order);
     } else {
+      this.order = utilsService.paraMap['purchase'];
       this.order.payInfo = new PayInfo();
       this.order.payInfo.type = 'wechat';
     }
@@ -102,11 +103,12 @@ export class PurchasePage {
   }
 
   ionViewWillEnter() {
-    this.order = utilsService.paraMap['purchase'];
-    if (!this.order) { //after pay
-      this.order = utilsService.getOrder();
+    // after pay
+    if (!utilsService.paraMap['purchase']) {
+      this.order = utilsService.getMessage('order', Order);
       return this.verify(this.order);
     } else {
+      this.order = utilsService.paraMap['purchase'];
       this.order.payInfo = new PayInfo();
       this.order.payInfo.type = 'wechat';
     }
@@ -131,11 +133,7 @@ export class PurchasePage {
     this.order.amount = ~~(Number(this.order.groupon ? this.order.price.group : this.order.price.single) * 100 * this.order.quantity);
   }
 
-  ionViewWillLeave() {
-    //if (this.loop) {
-    //clearInterval(this.loop);
-    //}
-  }
+  ionViewWillLeave() { }
 
   increment() {
     this.order.quantity += 1;
@@ -185,7 +183,8 @@ export class PurchasePage {
               i = i + 1;
             });
             this.order.payInfo.payResult = bizContent.out_trade_no;
-            utilsService.setOrder(this.order);
+            //utilsService.setOrder(this.order);
+            utilsService.setMessage('order', this.order);
             console.log(url);
             location.href = url;
           }
@@ -203,12 +202,14 @@ export class PurchasePage {
         if (err) {
           utilsService.alert(JSON.stringify(err));
         } else {
+          // redirect_url is unstable
           let url = response.kvMap.get('mweb_url');//+ '&redirect_url=' + encodeURIComponent('https://iyou.city/verify')
           console.log(url);
           // for query
           this.order.payInfo.payResult = pm.kvMap.get('out_trade_no');
-          utilsService.setOrder(this.order);
-          location.href = url;//'http://localhost:8100/purchase';
+          //utilsService.setOrder(this.order);
+          utilsService.setMessage('order', this.order);
+          location.href = url;
           //this.router.navigateByUrl('/verify');
         }
       });

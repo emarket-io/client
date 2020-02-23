@@ -12,20 +12,36 @@ export class UtilsService {
   injector: Injector;
   destination: Address;
 
-  setOrder(order: Order) {
-    if (!order) {
-      localStorage.removeItem('order');
-    } else {
-      localStorage.setItem('order', Message.bytesAsB64(order.serializeBinary()));
-    }
-  }
-
-  getOrder(): Order {
+  getMessage(key: string, clazz: any) {
     if (!localStorage.getItem('order')) {
       return null
     }
-    return Order.deserializeBinary(Message.bytesAsU8(localStorage.getItem('order')));
+    return clazz.deserializeBinary(Message.bytesAsU8(localStorage.getItem(key)));
   }
+
+  setMessage(key: string, msg: Message) {
+    if (!msg) {
+      localStorage.removeItem(key);
+    } else {
+      localStorage.setItem(key, Message.bytesAsB64(msg.serializeBinary()));
+    }
+  }
+
+
+  // setOrder(order: Order) {
+  //   if (!order) {
+  //     localStorage.removeItem('order');
+  //   } else {
+  //     localStorage.setItem('order', Message.bytesAsB64(order.serializeBinary()));
+  //   }
+  // }
+
+  // getOrder(): Order {
+  //   if (!localStorage.getItem('order')) {
+  //     return null
+  //   }
+  //   return Order.deserializeBinary(Message.bytesAsU8(localStorage.getItem('order')));
+  // }
 
   order: Order;
   // https://lbs.amap.com/api/javascript-api/reference/lnglat-to-address#regeocode
