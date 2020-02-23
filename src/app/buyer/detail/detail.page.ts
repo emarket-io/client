@@ -27,9 +27,9 @@ export class DetailPage {
 
   constructor(
     private router: Router,
-    //private wechat: Wechat,
     private popoverController: PopoverController) {
-    this.commodity = utilsService.storage.get('detail', Commodity);
+    //utilsService.storage.get('detail', Commodity);
+    this.commodity = <Commodity>this.router.getCurrentNavigation().extras.state;
   }
 
   ionViewWillEnter() {

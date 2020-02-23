@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 import { Component, Injector } from '@angular/core';
 import { utilsService } from './providers/utils.service'
-import { Platform } from '@ionic/angular';
+import { EventManager } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent {
     private router: Router,
     private injector: Injector,
     private platform: Platform,
+    private eventManager: EventManager,
   ) {
     this.initializeApp();
   }
@@ -34,7 +36,7 @@ export class AppComponent {
       //     }
       //   };
       // });
-      window.addEventListener("popstate", e => {
+      this.eventManager.addGlobalEventListener('window', 'popstate', (event) => {
         if (this.router.url.includes('/tabs/')) {
           if (this.exit) {
             window.close();

@@ -28,8 +28,8 @@ export class ViewPage {
   }
 
   gotoDetail(commodity: Commodity) {
-    utilsService.storage.set('detail', commodity);
-    this.router.navigateByUrl('/detail'/*, { state: commodity }*/);
+    //utilsService.storage.set('detail', commodity);
+    this.router.navigateByUrl('/detail', { state: commodity });
   }
 
   refresh(event: any = null) {
