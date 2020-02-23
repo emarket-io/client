@@ -1,7 +1,6 @@
 import { Message } from 'google-protobuf';
 import { ApiService } from './api.service';
-import { Order } from '../../sdk/order_pb';
-import { User, Address } from '../../sdk/user_pb';
+import { Address } from '../../sdk/user_pb';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Injectable, Injector, EventEmitter } from '@angular/core';
 
@@ -86,7 +85,6 @@ export class UtilsService {
     await alert.present();
   }
 
-
   async toast(msg: string, cssClass?: string) {
     const toast = await this.injector.get(ToastController).create({
       message: msg,
@@ -120,7 +118,6 @@ export class MesssageStorage {
       localStorage.setItem(key, Message.bytesAsB64(msg.serializeBinary()));
     }
   }
-
 }
 
 export const utilsService = new UtilsService();
