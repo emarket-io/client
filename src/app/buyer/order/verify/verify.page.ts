@@ -13,7 +13,7 @@ import { apiService, utilsService } from '../../../providers/utils.service';
 })
 export class VerifyPage {
 
-  order = utilsService.getMessage('order', Order);
+  order = utilsService.storage.get('order', Order);
   formatRBM = utilsService.formatRMB;
 
   constructor(
@@ -22,7 +22,7 @@ export class VerifyPage {
     private actionSheetController: ActionSheetController) { }
 
   async ionViewWillEnter() {
-    this.order = utilsService.getMessage('order', Order);
+    this.order = utilsService.storage.get('order', Order);
     if (this.order) {
       if (this.order.payInfo.type == 'wechat') {
         const actionSheet = await this.actionSheetController.create({
@@ -120,7 +120,7 @@ export class VerifyPage {
             }
           });
         }
-        utilsService.setMessage('order', null);
+        utilsService.storage.set('order', null);
         this.router.navigateByUrl('/tabs/order');
       }
     });

@@ -17,10 +17,10 @@ export class SettingPage {
     private location: Location) { }
 
   ionViewWillEnter() {
-    if (!utilsService.getUser()) {
+    if (!utilsService.storage.get('user', User)) {
       return this.router.navigateByUrl('/login');
     }
-    this.user = utilsService.getUser();
+    this.user = utilsService.storage.get('user', User);
   }
 
   select() {
@@ -50,7 +50,7 @@ export class SettingPage {
         utilsService.alert(JSON.stringify(err));
       } else {
         //this.user = response;
-        utilsService.setUser(response);
+        utilsService.storage.set('user', response);
         utilsService.events('user:login').emit(response.name);
         //this.events.publish('user:login', response.name);
         this.location.back();

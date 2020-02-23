@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { User } from '../../../../sdk/user_pb';
 import { Coupon } from '../../../../sdk/commodity_pb';
 import { Commodity } from '../../../../sdk/commodity_pb';
 import { Timestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
@@ -20,7 +21,7 @@ export class AddPage {
 
   ionViewWillEnter() {
     this.commodities = []
-    let stream = apiService.commodityClient.list(utilsService.getUser(), apiService.metaData);
+    let stream = apiService.commodityClient.list(utilsService.storage.get('user', User), apiService.metaData);
     stream.on('data', response => {
       this.commodities.push(response);
       console.log(response.toObject())
@@ -34,7 +35,7 @@ export class AddPage {
     if (!this.coupon.name) {
       return utilsService.alert('请输入券的名称');
     }
-    this.coupon.owner = utilsService.getUser().id;
+    this.coupon.owner = utilsService.storage.get('user', User).id;
 
     let tBegin = new Timestamp();
     tBegin.fromDate(new Date(this.begin));

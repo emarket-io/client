@@ -1,7 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { User } from '../../../sdk/user_pb';
-//import { Wechat } from '@ionic-native/wechat/ngx';
 import { PopoverController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { Order, Groupon } from '../../../sdk/order_pb';
@@ -30,7 +29,7 @@ export class DetailPage {
     private router: Router,
     //private wechat: Wechat,
     private popoverController: PopoverController) {
-    this.commodity = <Commodity>this.router.getCurrentNavigation().extras.state;
+    this.commodity = utilsService.storage.get('detail', Commodity);
   }
 
   ionViewWillEnter() {

@@ -14,7 +14,7 @@ export class ShopPage {
   constructor(private location: Location) { }
 
   ionViewWillEnter() {
-    apiService.userClient.get(utilsService.getUser(), apiService.metaData, (err: any, response: User) => {
+    apiService.userClient.get(utilsService.storage.get('user', User), apiService.metaData, (err: any, response: User) => {
       if (err) {
         utilsService.alert(JSON.stringify(err));
       } else {
@@ -27,7 +27,7 @@ export class ShopPage {
     if (!utilsService.check(this.shop.name)) {
       return utilsService.alert('店铺名含有不合规内容，请检查');
     }
-    let user = utilsService.getUser();
+    let user = utilsService.storage.get('user', User);
     user.shopsList[0] = this.shop;
     apiService.userClient.update(user, apiService.metaData, (err: any, response: User) => {
       if (err) {

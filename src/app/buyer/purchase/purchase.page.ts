@@ -4,8 +4,9 @@ import { Location } from "@angular/common";
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActionSheetController } from '@ionic/angular';
-import { Order, PayInfo, PayMap, Groupon } from '../../../sdk/order_pb';
+import { User } from '../../../sdk/user_pb';
 import { environment } from '../../../environments/environment';
+import { Order, PayInfo, PayMap, Groupon } from '../../../sdk/order_pb';
 import { apiService, utilsService } from '../../providers/utils.service';
 
 @Component({
@@ -24,7 +25,7 @@ export class PurchasePage {
     private httpClient: HttpClient,
     private actionSheetController: ActionSheetController) {
     if (!utilsService.paraMap['purchase']) {
-      this.order = utilsService.getMessage('order', Order);
+      this.order = utilsService.storage.get('order', Order);
     } else {
       this.order = utilsService.paraMap['purchase'];
       this.order.payInfo = new PayInfo();
@@ -105,7 +106,7 @@ export class PurchasePage {
   ionViewWillEnter() {
     // after pay
     if (!utilsService.paraMap['purchase']) {
-      this.order = utilsService.getMessage('order', Order);
+      this.order = utilsService.storage.get('order', Order);
       return this.verify(this.order);
     } else {
       this.order = utilsService.paraMap['purchase'];
@@ -113,11 +114,11 @@ export class PurchasePage {
       this.order.payInfo.type = 'wechat';
     }
 
-    if (!utilsService.getUser()) {
+    if (!utilsService.storage.get('user', User)) {
       return this.router.navigateByUrl('/login');
     }
     if (!utilsService.destination) {
-      let stream = apiService.addressClient.list(utilsService.getUser(), apiService.metaData);
+      let stream = apiService.addressClient.list(utilsService.storage.get('user', User), apiService.metaData);
       stream.on('data', response => {
         this.order.destination = response;
         if (response.default) {
@@ -128,7 +129,7 @@ export class PurchasePage {
         utilsService.alert(JSON.stringify(err));
       });
     }
-    this.order.userId = utilsService.getUser().id;
+    this.order.userId = utilsService.storage.get('user', User).id;
     this.order.destination = utilsService.destination;
     this.order.amount = ~~(Number(this.order.groupon ? this.order.price.group : this.order.price.single) * 100 * this.order.quantity);
   }
@@ -184,7 +185,7 @@ export class PurchasePage {
             });
             this.order.payInfo.payResult = bizContent.out_trade_no;
             //utilsService.setOrder(this.order);
-            utilsService.setMessage('order', this.order);
+            utilsService.storage.set('order', this.order);
             console.log(url);
             location.href = url;
           }
@@ -208,7 +209,7 @@ export class PurchasePage {
           // for query
           this.order.payInfo.payResult = pm.kvMap.get('out_trade_no');
           //utilsService.setOrder(this.order);
-          utilsService.setMessage('order', this.order);
+          utilsService.storage.set('order', this.order);
           location.href = url;
           //this.router.navigateByUrl('/verify');
         }

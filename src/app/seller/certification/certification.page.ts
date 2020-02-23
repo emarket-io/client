@@ -16,7 +16,7 @@ export class CertificationPage {
   images = [];
   formData = new FormData();
   host = environment.apiUrl;
-  user = utilsService.getUser();
+  user = utilsService.storage.get('user', User);
   couldSubmit = false;
 
   constructor(
@@ -94,7 +94,7 @@ export class CertificationPage {
     // upload images
     this.httpClient.post(environment.apiUrl + '/upload', this.formData, {
       params: {
-        paths: [utilsService.getUser().id, 'certification']
+        paths: [utilsService.storage.get('user', User).id, 'certification']
       }, responseType: 'text',
     }).subscribe(
       data => {

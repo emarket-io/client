@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { User } from '../../../sdk/user_pb';
 import { AlertController } from '@ionic/angular';
 import { environment } from '../../../environments/environment';
 import { Order, Express, ListQuery } from '../../../sdk/order_pb';
@@ -33,7 +34,7 @@ export class OrderPage {
     this.orders = []
     let startTime = new Date().getTime();
     let listQuery = new ListQuery();
-    listQuery.user = utilsService.getUser();
+    listQuery.user = utilsService.storage.get('user', User);
     listQuery.status = this.selectedStatus == "全部" ? '' : this.selectedStatus;
     let stream = apiService.orderClient.listForSeller(listQuery, apiService.metaData);
     stream.on('data', response => {

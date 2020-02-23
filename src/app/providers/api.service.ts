@@ -5,8 +5,6 @@ import { UsersClient, AddressesClient } from '../../sdk/user_grpc_web_pb';
 import { OrdersClient, AccountsClient } from '../../sdk/order_grpc_web_pb';
 import { CommoditiesClient, CouponsClient } from '../../sdk/commodity_grpc_web_pb';
 
-//declare let AMap;
-
 @Injectable({
   providedIn: 'root'
 })

@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { User } from '../../../sdk/user_pb';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service'
@@ -18,7 +19,7 @@ export class CommodityPage {
 
   ionViewWillEnter() {
     this.commodities = []
-    let stream = apiService.commodityClient.list(utilsService.getUser(), apiService.metaData);
+    let stream = apiService.commodityClient.list(utilsService.storage.get('user', User), apiService.metaData);
     stream.on('data', response => {
       this.commodities.push(response);
       console.log(response.toObject())

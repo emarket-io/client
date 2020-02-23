@@ -15,7 +15,7 @@ export class SessionPage {
   messages: Message[] = [];
   message = new Message();
   commodity: Commodity;
-  user = utilsService.getUser();
+  user = utilsService.storage.get('user', User);
   users = new Map<string, User>();
 
   constructor(
@@ -26,11 +26,11 @@ export class SessionPage {
   }
 
   ionViewWillEnter() {
-    if (!utilsService.getUser()) {
+    if (!utilsService.storage.get('user', User)) {
       return this.router.navigateByUrl('/login');
     }
     let msg = new Message();
-    msg.from = utilsService.getUser().id;
+    msg.from = utilsService.storage.get('user', User).id;
     msg.to = this.commodity.ownerId;
     let stream = apiService.messageClient.list(msg, apiService.metaData);
     stream.on('data', response => {
@@ -63,7 +63,7 @@ export class SessionPage {
       return utilsService.alert('消息内容为空');
     }
     this.message.to = this.commodity.ownerId;
-    this.message.from = utilsService.getUser().id;
+    this.message.from = utilsService.storage.get('user', User).id;
     apiService.messageClient.add(this.message, apiService.metaData, (err: any, response: Message) => {
       if (err) {
         utilsService.alert(JSON.stringify(err));

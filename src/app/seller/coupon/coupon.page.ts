@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from '../../../sdk/user_pb';
 import { Coupon } from '../../../sdk/commodity_pb';
 import { apiService, utilsService } from '../../providers/utils.service'
 
@@ -14,7 +15,7 @@ export class CouponPage {
 
   ionViewWillEnter() {
     this.coupons = []
-    let stream = apiService.couponClient.list(utilsService.getUser(), apiService.metaData);
+    let stream = apiService.couponClient.list(utilsService.storage.get('user', User), apiService.metaData);
     stream.on('data', response => {
       this.coupons.push(response);
       console.log(response.toObject())

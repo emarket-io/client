@@ -11,39 +11,8 @@ import { Injectable, Injector, EventEmitter } from '@angular/core';
 export class UtilsService {
   injector: Injector;
   destination: Address;
+  storage = new MesssageStorage();
 
-  getMessage(key: string, clazz: any) {
-    if (!localStorage.getItem('order')) {
-      return null
-    }
-    return clazz.deserializeBinary(Message.bytesAsU8(localStorage.getItem(key)));
-  }
-
-  setMessage(key: string, msg: Message) {
-    if (!msg) {
-      localStorage.removeItem(key);
-    } else {
-      localStorage.setItem(key, Message.bytesAsB64(msg.serializeBinary()));
-    }
-  }
-
-
-  // setOrder(order: Order) {
-  //   if (!order) {
-  //     localStorage.removeItem('order');
-  //   } else {
-  //     localStorage.setItem('order', Message.bytesAsB64(order.serializeBinary()));
-  //   }
-  // }
-
-  // getOrder(): Order {
-  //   if (!localStorage.getItem('order')) {
-  //     return null
-  //   }
-  //   return Order.deserializeBinary(Message.bytesAsU8(localStorage.getItem('order')));
-  // }
-
-  order: Order;
   // https://lbs.amap.com/api/javascript-api/reference/lnglat-to-address#regeocode
   location = {
     formattedAddress: '湖北省荆门市',
@@ -61,20 +30,20 @@ export class UtilsService {
 
   paraMap = new Map<string, any>();
 
-  getUser(): User {
-    if (!localStorage.getItem('user')) {
-      return null
-    }
-    return User.deserializeBinary(Message.bytesAsU8(localStorage.getItem('user')));
-  };
+  // getUser(): User {
+  //   if (!localStorage.getItem('user')) {
+  //     return null
+  //   }
+  //   return User.deserializeBinary(Message.bytesAsU8(localStorage.getItem('user')));
+  // };
 
-  setUser(user: User) {
-    if (!user) {
-      localStorage.removeItem('user');
-    } else {
-      localStorage.setItem('user', Message.bytesAsB64(user.serializeBinary()));
-    }
-  }
+  // setUser(user: User) {
+  //   if (!user) {
+  //     localStorage.removeItem('user');
+  //   } else {
+  //     localStorage.setItem('user', Message.bytesAsB64(user.serializeBinary()));
+  //   }
+  // }
 
   formatRMB(value: string): string {
     if (!value) {
@@ -132,6 +101,26 @@ export class UtilsService {
   check(value: string): boolean {
     return value.search('妈|测试|傻|逼|鸡巴') == -1;
   }
+}
+
+
+export class MesssageStorage {
+
+  get(key: string, clazz: any) {
+    if (!localStorage.getItem(key)) {
+      return null
+    }
+    return clazz.deserializeBinary(Message.bytesAsU8(localStorage.getItem(key)));
+  }
+
+  set(key: string, msg: Message) {
+    if (!msg) {
+      localStorage.removeItem(key);
+    } else {
+      localStorage.setItem(key, Message.bytesAsB64(msg.serializeBinary()));
+    }
+  }
+
 }
 
 export const utilsService = new UtilsService();
