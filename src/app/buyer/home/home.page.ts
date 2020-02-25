@@ -22,6 +22,8 @@ export class HomePage {
   slideTopOpts = {
     slidesPerView: 1,
     direction: "vertical",
+    autoHeight: true,
+    height: 180,
     autoplay: {
       delay: 2000,
     },

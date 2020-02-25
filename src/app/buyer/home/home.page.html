@@ -1,5 +1,6 @@
-<ion-header>
-  <ion-toolbar>
+<!-- <ion-header> -->
+<div style="background: var(--mycolor);height: 28%;">
+  <!-- <ion-toolbar style="--background:inherit;--color:var(--mytextcolor);--padding-top:7%">
     <ion-buttons slot="start">
       <ion-button routerLink="/address">
         <ion-icon name="pin"></ion-icon>
@@ -14,24 +15,41 @@
         <ion-icon name="mail-unread"></ion-icon>
       </ion-button>
     </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+  </ion-toolbar> -->
+  <div class="top-toolbar">
+    <ion-button routerLink="/address" size="small">
+      <ion-icon name="pin"></ion-icon>
+      <ion-label>{{city}}</ion-label>
+    </ion-button>
+  </div>
+  <div class="top-toolbar">
+    <ion-button size="small">
+      <ion-input placeholder="搜一下" (keyup.enter)="gotoView($event.target.value)"></ion-input>
+    </ion-button>
+  </div>
+  <div class="top-toolbar" style="text-align: right;">
+    <ion-button routerLink="/message" size="small">
+      <ion-icon name="mail-unread"></ion-icon>
+    </ion-button>
+  </div>
+</div>
+<!-- </ion-header> -->
 
-<ion-content style="position: absolute;top: 14%;">
-  <ion-slides #mySlider [options]="slideTopOpts" style="width: 100%;height: 29%;">
+<div style="height: 90%;width:100%; overflow: auto;top: 13%;position: fixed;">
+  <ion-slides #mySlider [options]="slideTopOpts">
     <ion-slide>
-      <ion-card style="width: 94%;height: 100%;background: linear-gradient(180deg,var(--mycolor), white);">
+      <div class="swiper">
         <!-- <ion-item style="--background: inherit;" lines="none">
           <ion-icon name="browsers" slot="start"></ion-icon>
         </ion-item> -->
         <iframe allowtransparency="true" frameborder="0" width="360" height="64" scrolling="no"
           style="top: 35%;position: relative;"
           src="https://tianqi.2345.com/plugin/widget/index.htm?s=2&z=3&t=1&v=2&d=2&bd=0&k=&f=&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=60198&w=410&h=64&align=center"></iframe>
-      </ion-card>
+      </div>
     </ion-slide>
     <ion-slide>
-      <ion-card style="width: 94%;height: 100%;background: linear-gradient(180deg,var(--mycolor), white);">
-        <img style="height:100%;width:100%" src="assets/top/top1.jpg" />
+      <div class="swiper">
+        <img style="height:100%;width:100%;border-radius: 5px;" src="assets/top/top1.jpg" />
         <!-- <ion-item style="--background: inherit;" lines="none">
           <ion-icon name="browsers" slot="start" color="light"></ion-icon>
         </ion-item>
@@ -41,16 +59,15 @@
         <!-- <iframe allowtransparency="true" frameborder="0" width="360" height="64" scrolling="no"
           style="top: 35%;position: relative;"
           src="https://tianqi.2345.com/plugin/widget/index.htm?s=2&z=3&t=1&v=2&d=2&bd=0&k=&f=&ltf=009944&htf=cc0000&q=1&e=0&a=0&c=54511&w=410&h=64&align=center"></iframe> -->
-      </ion-card>
+      </div>
     </ion-slide>
     <ion-slide>
-      <ion-card
-        style="width: 94%;height: 100%;background: linear-gradient(180deg,var(--mycolor), white);text-align: center;">
-        <img style="height:100%;width:100%" src="assets/top/top2.jpg" />
-      </ion-card>
+      <div class="swiper">
+        <img style="height:100%;width:100%;border-radius: 5px;" src="assets/top/top2.jpg" />
+      </div>
     </ion-slide>
   </ion-slides>
-  <ion-card-content style="z-index: 1000;">
+  <ion-card-content>
     <div class="icon-layout" (click)="gotoView('')">
       <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
       限时特惠
@@ -84,7 +101,7 @@
       品牌館
     </div>
   </ion-card-content>
-  <div style="margin: 5% 20px 90px 20px;">
+  <div style="margin: 5% 20px;">
     <ion-card-subtitle>为你推荐</ion-card-subtitle>
     <ion-slides [options]="slideOpts">
       <ion-slide *ngFor="let commodity of commodities" (click)="gotoDetail(commodity)">
@@ -110,4 +127,27 @@
       </ion-slide>
     </ion-slides>
   </div>
-</ion-content>
+  <div style="margin: 5% 20px;">
+    <ion-card-subtitle>最新上架</ion-card-subtitle>
+    <ion-item style="z-index: 1000;margin-left: -10px;" *ngFor="let commodity of commodities"
+      (click)="gotoDetail(commodity)">
+      <ion-thumbnail style="width: 40%;min-width: 140px;--border-radius:5px;height: auto;margin-bottom: 0;">
+        <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
+      </ion-thumbnail>
+      <div style="width: 60%;padding-left: 10px;">
+        <div style="margin-top:5px;" class="title">
+          {{commodity.title}}
+        </div>
+        <div style="margin-top:20%">
+          <ion-badge *ngFor="let tag of commodity.tagsList">{{tag}}</ion-badge>
+        </div>
+        <div style="margin-top: 20%;width:inherit;">
+          <div style="color:red;display: inline-block;">¥{{formatRBM(commodity.pricesList[0]?.group)}}</div>
+          <div style="font-size: small;display: inline-block;right: 10px;position: absolute;">
+            <ion-icon name="pin"></ion-icon>{{commodity.city}}
+          </div>
+        </div>
+      </div>
+    </ion-item>
+  </div>
+</div>

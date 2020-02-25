@@ -85,25 +85,27 @@
 }
 
 ion-header {
-  height: 80px;
-  background: linear-gradient(170deg, var(--mycolor), white);
+  //height: 80px;
+  //background: linear-gradient(170deg, var(--mycolor), white);
 
   ion-toolbar {
-    position: absolute;
-    bottom: 0px;
-    color: var(--mytextcolor);
-    --background: transparent;
+    //position: absolute;
+    //bottom: 0px;
+    --color: var(--mytextcolor);
+    --min-height: 80px;
+    --background: linear-gradient(170deg, var(--mycolor), white);
   }
 }
 
 ion-badge {
-  margin: 0 1px;
-  padding: 2px;
+  //margin: 0 1px;
+  //padding: 2px;
+  --padding-start: 0px;
 }
 
-ion-button {
-  text-transform: none;
-}
+// ion-button {
+//   text-transform: none;
+// }
 
 .bottom-sheet-popover .popover-content {
   width: 100% !important;

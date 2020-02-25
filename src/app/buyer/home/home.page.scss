@@ -5,21 +5,27 @@
 
 .icon-layout {
   display: inline-block;
-  width:25%;
+  width: 25%;
   text-align: center
 }
 
-ion-header {
-  height: 29%;
-  color: var(--mytextcolor);
-  background: var(--mycolor);
-  z-index: 1;
-  ion-toolbar {
-    position: absolute;
-    top: 15%;
-    //color: white;
-    --background: inherit
+.top-toolbar {
+  display: inline-block;
+  width: 33%;
+  margin-top: 30px;
+
+  ion-button {
+    //--border-style:none;
+    --box-shadow: none;
+    --color: var(--mytextcolor);
   }
+}
+
+.swiper {
+  width: 94%;
+  height: 180px;
+  background: linear-gradient(180deg, var(--mycolor), white);
+  text-align: center;
 }
 
 ion-item-group {
@@ -27,5 +33,11 @@ ion-item-group {
     font-size: x-small;
     padding-top: 2px;
     padding-bottom: 0px;
+  }
+}
+
+ion-card-content {
+  div {
+    background: white;
   }
 }

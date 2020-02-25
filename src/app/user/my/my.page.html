@@ -1,4 +1,4 @@
-<ion-header style="height: 35%;">
+<div style="height: 35%;background: linear-gradient(170deg, var(--mycolor), white)">
   <!-- <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-button>
@@ -7,12 +7,14 @@
     </ion-buttons>
   </ion-toolbar> -->
   <!-- <img src="assets/fruit/apple.png" style="margin-top: 30px"> -->
-  <ion-avatar style="top: 45%;left: 12%;position: absolute;" routerLink="/setting">
-    <img [src]="user?.icon?user.icon:'assets/fruit/apple.png'">
-  </ion-avatar>
-  <div style="top:53%;left: 31%;position: absolute;color: var(--mytextcolor);" routerLink="/setting">
+  <div style="top: 16%;left: 12%;position: absolute;">
+    <ion-avatar routerLink="/setting">
+      <img routerLink="/setting" [src]="user?.icon?user.icon:'assets/fruit/apple.png'">
+    </ion-avatar>
+  </div>
+  <div style="top:20%;left: 33%;position:absolute;color: var(--mytextcolor);" routerLink="/setting">
     Hello,{{user?.name?user.name:'请登录'}}</div>
-</ion-header>
+</div>
 
 <ion-content>
   <div class="menu_item">
