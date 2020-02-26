@@ -18,10 +18,10 @@ export class MessagePage {
   constructor(private router: Router) { }
 
   ionViewWillEnter() {
-    if (!utilsService.storage.get('user',User)) {
+    if (!utilsService.storage.get('user', User)) {
       return this.router.navigateByUrl('/login');
     }
-    let stream = apiService.messageClient.groupBy(utilsService.storage.get('user',User), apiService.metaData);
+    let stream = apiService.messageClient.groupBy(utilsService.storage.get('user', User), apiService.metaData);
     stream.on('data', response => {
       if (!this.messages.some(item => item.from == response.from)) {
         this.messages.push(response);

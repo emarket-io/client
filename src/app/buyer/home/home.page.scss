@@ -9,6 +9,11 @@
   text-align: center
 }
 
+.top-header {
+  background: var(--mycolor);
+  height: 28%;
+}
+
 .top-toolbar {
   display: inline-block;
   width: 33%;
@@ -21,7 +26,7 @@
   }
 }
 
-.swiper {
+.top-swiper {
   width: 94%;
   height: 180px;
   background: linear-gradient(180deg, var(--mycolor), white);

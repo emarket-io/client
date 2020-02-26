@@ -73,7 +73,7 @@ export class AppComponent {
 
     // Chrome, Firefox OS and Opera
     document.getElementsByTagName('meta')['theme-color'].content = this.theme.mycolor;
-    //  iOS Safari
+    //  iOS Safari <!-- 可选default、black、black-translucent? -->
     document.getElementsByTagName('meta')['apple-mobile-web-app-status-bar-style'].content = this.theme.mycolor;
   }
 
