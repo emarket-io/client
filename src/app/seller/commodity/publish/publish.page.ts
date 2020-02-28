@@ -96,7 +96,7 @@ export class PublishPage {
 
   remove(index) {
     this.images.splice(index, 1);
-
+    this.commodity.mediaList.splice(index, 1);
     let data = this.formData.getAll('uploadfile');
     data.splice(index, 1);
     this.formData = new FormData();
