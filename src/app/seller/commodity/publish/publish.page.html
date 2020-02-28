@@ -15,8 +15,11 @@
     </ion-item>
     <!-- <ion-item lines="none" style="--overflow:auto;overflow:auto;height: 80px;"> -->
     <div style="height: 80px;margin-left: 15px;overflow-x:auto;overflow-y: hidden;white-space: nowrap;">
-      <img style="width: 80px;height: 80px;margin: 0 1px;display: inline-block;" *ngFor="let image of images"
-        [src]="image" />
+      <div style="margin: 0 1px;display: inline-block;position: relative;" *ngFor="let image of images;let i=index">
+        <img style="width: 80px;height: 80px;" [src]="image" />
+        <img src="svg/md-close-circle.svg" (click)="remove(i)"
+          style="height: 20px;width: 20px;position:absolute;top:0;right: 0;display: block;" />
+      </div>
     </div>
     <!-- </ion-item> -->
     <ion-item lines="none">

@@ -30,4 +30,14 @@ export class PreferencePage {
       this.router.navigateByUrl('/login');
     });
   }
+
+  clear() {
+    navigator.serviceWorker.getRegistrations()
+      .then(function (registrations) {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    utilsService.toast('缓存已清除');
+  }
 }

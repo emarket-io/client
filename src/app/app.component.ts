@@ -39,7 +39,8 @@ export class AppComponent {
       this.eventManager.addGlobalEventListener('window', 'popstate', (event) => {
         if (this.router.url.includes('/tabs/')) {
           if (this.exit) {
-            window.close();
+            //window.close();
+            history.pushState(null, null);
           } else {
             utilsService.toast('再按一次退出 [农村大集]');
             this.exit = true;

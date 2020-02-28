@@ -6,7 +6,7 @@ import { ModalController } from '@ionic/angular';
 import { CategoryPage } from '../category/category.page';
 import { ExpressPage } from '../express/express.page';
 import { PricePage } from '../price/price.page';
-import { User} from '../../../../sdk/user_pb';
+import { User } from '../../../../sdk/user_pb';
 import { environment } from '../../../../environments/environment';
 import { Commodity, Medium, Price } from '../../../../sdk/commodity_pb';
 import { apiService, utilsService } from '../../../providers/utils.service';
@@ -94,8 +94,15 @@ export class PublishPage {
     reader.readAsDataURL(u.files[0]);
   }
 
-  remove(index){
-    //this.formData.getAll('').sl
+  remove(index) {
+    this.images.splice(index, 1);
+
+    let data = this.formData.getAll('uploadfile');
+    data.splice(index, 1);
+    this.formData = new FormData();
+    for (let k of data) {
+      this.formData.append('uploadfile', <File>k, (<File>k).name);
+    }
   }
 
   /*addMedia1() {

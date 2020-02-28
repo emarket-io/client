@@ -153,7 +153,9 @@ export class OrderPage {
     stream.on('data', response => {
       if (!this.orders.some(item => item.id == response.id)) {
         this.orders.push(response);
-        this.getOwnerById(response.snapshot.ownerId);
+        if (response.snapshot) {
+          this.getOwnerById(response.snapshot.ownerId);
+        }
       }
       newOrders.push(response);
     });
