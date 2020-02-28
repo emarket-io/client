@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { Location } from "@angular/common";
 import { User } from '../../../sdk/user_pb';
 import { PopoverController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';
@@ -27,6 +28,7 @@ export class DetailPage {
 
   constructor(
     private router: Router,
+    private location: Location,
     private popoverController: PopoverController) {
     //utilsService.storage.get('detail', Commodity);
     this.commodity = <Commodity>this.router.getCurrentNavigation().extras.state;
@@ -50,7 +52,7 @@ export class DetailPage {
     document.body.removeChild(aux);
     utilsService.toast('已将分享内容复制，打开微信粘贴即可');
     setTimeout(() => {
-      window.open('weixin://');
+      //window.open('weixin://');
     }, 1000);
 
     /*
@@ -112,5 +114,9 @@ export class DetailPage {
         this.owner = response;
       }
     });
+  }
+
+  back() {
+    this.location.back();
   }
 }

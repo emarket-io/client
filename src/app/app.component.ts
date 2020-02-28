@@ -74,7 +74,13 @@ export class AppComponent {
     // Chrome, Firefox OS and Opera
     document.getElementsByTagName('meta')['theme-color'].content = this.theme.mycolor;
     //  iOS Safari <!-- 可选default、black、black-translucent? -->
-    document.getElementsByTagName('meta')['apple-mobile-web-app-status-bar-style'].content = this.theme.mycolor;
+    document.getElementsByTagName('meta')['apple-mobile-web-app-status-bar-style'].content = 'black-translucent';
+    /*if (navigator.userAgent.indexOf('Safari') > -1) {
+      let els = document.getElementsByTagName('ion-app');
+      els[0].style.background = 'white';
+      els[0].style.marginTop = '20px';
+      document.body.style.background = this.theme.mycolor;
+    }*/
   }
 
   /*checkUpdate() {

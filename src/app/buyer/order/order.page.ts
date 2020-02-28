@@ -50,10 +50,13 @@ export class OrderPage {
       apiService.userClient.get(user, apiService.metaData, (err, response) => {
         if (err) {
           console.log(err);
+          this.users.delete(userId);
         } else {
           this.users[userId] = response;
         }
       });
+      // avoid duplicated request
+      this.users[userId] = user;
     }
   }
 
