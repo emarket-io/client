@@ -34,10 +34,27 @@
         text-align: center;
         background: white;
 
-        img {
+        div {
+          margin: 5px auto;
           height: 30px;
-          width: auto;
+          width: 30px;
+          box-shadow: 10px 5px 5px #888888;
+          color: var(--mytextcolor);
+          background: var(--mycolor);
+          border-radius: 10px;
+          padding-top: 5px;
         }
+
+        // ion-card {
+        //   margin: 5px auto;
+        //   height: 30px;
+        //   width: 30px;
+        //   box-shadow: 10px 10px 5px #888888;
+        //   --color: var(--mytextcolor);
+        //   --background: var(--mycolor);
+        //   border-radius: 10px;
+        //   padding-top: 5px;
+        // }
       }
     }
   }
