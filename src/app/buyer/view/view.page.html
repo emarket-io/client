@@ -39,17 +39,13 @@
       <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
     </ion-thumbnail>
     <div style="width: 60%;padding-left: 10px;">
-      <div style="margin-top:5px;" class="title">
-        {{commodity.title}}
-      </div>
-      <div style="margin-top:20%">
+      <div class="title"> {{commodity.title}} </div>
+      <div style="top:45%;position: absolute;">
         <ion-badge *ngFor="let tag of commodity.tagsList">{{tag}}</ion-badge>
       </div>
-      <div style="margin-top: 20%;width:inherit;">
-        <div style="color:red;display: inline-block;">¥{{formatRBM(commodity.pricesList[0]?.group)}}</div>
-        <div style="font-size: small;display: inline-block;right: 10px;position: absolute;">
-          <ion-icon name="pin"></ion-icon>{{commodity.city}}
-        </div>
+      <div style="color:red;position: absolute;bottom: 10px;">¥{{formatRBM(commodity.pricesList[0]?.group)}}</div>
+      <div style="font-size: small;right: 2%;bottom: 10px;position: absolute;">
+        <ion-icon name="pin"></ion-icon>{{commodity.city}}
       </div>
     </div>
   </ion-item>

@@ -1,5 +1,5 @@
 <!-- <ion-header> -->
-<div class="top-header">
+<div class="div-header">
   <!-- <ion-toolbar style="--background:inherit;--color:var(--mytextcolor);--padding-top:7%">
     <ion-buttons slot="start">
       <ion-button routerLink="/address">
@@ -16,6 +16,10 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar> -->
+</div>
+<!-- </ion-header> -->
+
+<div class="div-content">
   <div class="top-toolbar">
     <ion-button routerLink="/address" size="small">
       <ion-icon name="pin"></ion-icon>
@@ -27,127 +31,120 @@
       <ion-input placeholder="搜一下" (keyup.enter)="gotoView($event.target.value)"></ion-input>
     </ion-button>
   </div>
-  <div class="top-toolbar" style="text-align: right;">
+  <div style="text-align: right;" class="top-toolbar">
     <ion-button routerLink="/message" size="small">
       <ion-icon name="mail-unread"></ion-icon>
     </ion-button>
   </div>
-</div>
-<!-- </ion-header> -->
-
-<div style="height: 90%;width:100%; overflow: auto;top: 13%;position: absolute">
-  <ion-slides #mySlider [options]="slideTopOpts">
-    <ion-slide>
-      <div class="top-swiper">
-        <!-- <ion-item style="--background: inherit;" lines="none">
+  <div class="div-scroll">
+    <ion-slides #mySlider [options]="slideTopOpts">
+      <ion-slide>
+        <div class="top-swiper">
+          <!-- <ion-item style="--background: inherit;" lines="none">
           <ion-icon name="browsers" slot="start"></ion-icon>
         </ion-item> -->
-        <iframe allowtransparency="true" frameborder="0" width="360" height="64" scrolling="no"
-          style="top: 35%;position: relative;"
-          src="https://tianqi.2345.com/plugin/widget/index.htm?s=2&z=3&t=1&v=2&d=2&bd=0&k=&f=&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=60198&w=410&h=64&align=center"></iframe>
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <div class="top-swiper">
-        <img style="height:100%;width:100%;border-radius: 5px;" src="assets/top/top1.jpg" />
-        <!-- <ion-item style="--background: inherit;" lines="none">
+          <iframe allowtransparency="true" frameborder="0" width="360" height="64" scrolling="no"
+            style="top: 35%;position: relative;"
+            src="https://tianqi.2345.com/plugin/widget/index.htm?s=2&z=3&t=1&v=2&d=2&bd=0&k=&f=&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=60198&w=410&h=64&align=center"></iframe>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="top-swiper">
+          <img style="height:100%;width:100%;border-radius: 5px;" src="assets/top/top1.jpg" />
+          <!-- <ion-item style="--background: inherit;" lines="none">
           <ion-icon name="browsers" slot="start" color="light"></ion-icon>
         </ion-item>
         <div style="color:var(--mytextcolor);font-size:x-large;height: 50%;text-shadow: -1px -1px white,1px 1px #333;">
           大集优选
         </div> -->
-        <!-- <iframe allowtransparency="true" frameborder="0" width="360" height="64" scrolling="no"
+          <!-- <iframe allowtransparency="true" frameborder="0" width="360" height="64" scrolling="no"
           style="top: 35%;position: relative;"
           src="https://tianqi.2345.com/plugin/widget/index.htm?s=2&z=3&t=1&v=2&d=2&bd=0&k=&f=&ltf=009944&htf=cc0000&q=1&e=0&a=0&c=54511&w=410&h=64&align=center"></iframe> -->
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <div class="top-swiper">
-        <img style="height:100%;width:100%;border-radius: 5px;" src="assets/top/top2.jpg" />
-      </div>
-    </ion-slide>
-  </ion-slides>
-  <ion-card-content>
-    <div class="icon-layout" (click)="gotoView('')">
-      <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
-      限时特惠
-    </div>
-    <div class="icon-layout" (click)="gotoView('')">
-      <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
-      大集果园
-    </div>
-    <div class="icon-layout" (click)="gotoView('')">
-      <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
-      件件9块9
-    </div>
-    <div class="icon-layout" (click)="gotoView('')">
-      <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
-      认证好店
-    </div>
-    <div class="icon-layout" (click)="gotoView('')">
-      <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
-      厂家直销
-    </div>
-    <div class="icon-layout" (click)="gotoView('')">
-      <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
-      全国行情
-    </div>
-    <div class="icon-layout" (click)="gotoView('')">
-      <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
-      生意圈
-    </div>
-    <div class="icon-layout" (click)="gotoView('')">
-      <img style="height:30px;width:auto" src="assets/fruit/apple.png" /><br>
-      品牌館
-    </div>
-  </ion-card-content>
-  <div style="margin: 5% 20px;">
-    <ion-card-subtitle>为你推荐</ion-card-subtitle>
-    <ion-slides [options]="slideOpts">
-      <ion-slide *ngFor="let commodity of commodities" (click)="gotoDetail(commodity)">
-        <ion-card style="margin:5px">
-          <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
-          <ion-card-header style="text-align: left;padding:2px;">
-            <ion-item-group>
-              <ion-label style="font-size: small;">
-                {{commodity.title}}
-              </ion-label>
-            </ion-item-group>
-            <ion-item-group style="margin:5px 0 7px 0; height: 16px;">
-              <ion-badge>{{commodity.tagsList[0]}}</ion-badge>
-            </ion-item-group>
-            <div>
-              <ion-label style="color: red;font-size: xx-small;">¥<span
-                  style="font-weight: bolder;font-size:small">{{formatRBM(commodity.pricesList[0]?.group)}}</span>
-              </ion-label>
-              <ion-icon name="arrow-dropright-circle" size="small" style="position:absolute;right: 0;"></ion-icon>
-            </div>
-          </ion-card-header>
-        </ion-card>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="top-swiper">
+          <img style="height:100%;width:100%;border-radius: 5px;" src="assets/top/top2.jpg" />
+        </div>
       </ion-slide>
     </ion-slides>
-  </div>
-  <div style="margin: 5% 20px;">
-    <ion-card-subtitle>最新上架</ion-card-subtitle>
-    <ion-item style="z-index: 1000;margin-left: -10px;" *ngFor="let commodity of commodities"
-      (click)="gotoDetail(commodity)">
-      <ion-thumbnail style="width: 40%;min-width: 140px;--border-radius:5px;height: auto;margin-bottom: 0;">
-        <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
-      </ion-thumbnail>
-      <div style="width: 60%;padding-left: 10px;">
-        <div style="margin-top:5px;" class="title">
-          {{commodity.title}}
-        </div>
-        <div style="margin-top:20%">
-          <ion-badge *ngFor="let tag of commodity.tagsList">{{tag}}</ion-badge>
-        </div>
-        <div style="margin-top: 20%;width:inherit;">
-          <div style="color:red;display: inline-block;">¥{{formatRBM(commodity.pricesList[0]?.group)}}</div>
-          <div style="font-size: small;display: inline-block;right: 10px;position: absolute;">
+    <ion-card-content>
+      <div (click)="gotoView('')">
+        <img src="assets/fruit/apple.png" /><br>
+        限时特惠
+      </div>
+      <div (click)="gotoView('')">
+        <img src="assets/fruit/apple.png" /><br>
+        大集果园
+      </div>
+      <div (click)="gotoView('')">
+        <img src="assets/fruit/apple.png" /><br>
+        件件9块9
+      </div>
+      <div (click)="gotoView('')">
+        <img src="assets/fruit/apple.png" /><br>
+        认证好店
+      </div>
+      <div (click)="gotoView('')">
+        <img src="assets/fruit/apple.png" /><br>
+        厂家直销
+      </div>
+      <div (click)="gotoView('')">
+        <img src="assets/fruit/apple.png" /><br>
+        全国行情
+      </div>
+      <div (click)="gotoView('')">
+        <img src="assets/fruit/apple.png" /><br>
+        生意圈
+      </div>
+      <div (click)="gotoView('')">
+        <img src="assets/fruit/apple.png" /><br>
+        品牌館
+      </div>
+    </ion-card-content>
+    <div style="margin: 5% 20px;">
+      <ion-card-subtitle>为你推荐</ion-card-subtitle>
+      <ion-slides [options]="slideOpts">
+        <ion-slide *ngFor="let commodity of commodities" (click)="gotoDetail(commodity)">
+          <ion-card style="margin:5px">
+            <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
+            <ion-card-header style="text-align: left;padding:2px;">
+              <ion-item-group>
+                <ion-label style="font-size: small;">
+                  {{commodity.title}}
+                </ion-label>
+              </ion-item-group>
+              <ion-item-group style="margin:5px 0 7px 0; height: 16px;">
+                <ion-badge>{{commodity.tagsList[0]}}</ion-badge>
+              </ion-item-group>
+              <div>
+                <ion-label style="color: red;font-size: xx-small;">¥<span
+                    style="font-weight: bolder;font-size:small">{{formatRBM(commodity.pricesList[0]?.group)}}</span>
+                </ion-label>
+                <ion-icon name="arrow-dropright-circle" size="small" style="position:absolute;right: 0;"></ion-icon>
+              </div>
+            </ion-card-header>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <div style="margin: 5% 20px;">
+      <ion-card-subtitle>最新上架</ion-card-subtitle>
+      <ion-item style="--padding-start:5px" *ngFor="let commodity of commodities" (click)="gotoDetail(commodity)">
+        <ion-thumbnail style="width: 40%;min-width: 140px;--border-radius:5px;height: auto;margin-bottom: 0;">
+          <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
+        </ion-thumbnail>
+        <div style="width: 60%;padding-left: 10px;">
+          <div class="title"> {{commodity.title}} </div>
+          <div style="top:45%;position: absolute;">
+            <ion-badge *ngFor="let tag of commodity.tagsList">{{tag}}</ion-badge>
+          </div>
+          <div style="color:red;position: absolute;bottom: 10px;">¥{{formatRBM(commodity.pricesList[0]?.group)}}</div>
+          <div style="font-size: small;right: 0;bottom: 10px;position: absolute;">
             <ion-icon name="pin"></ion-icon>{{commodity.city}}
           </div>
         </div>
-      </div>
-    </ion-item>
+      </ion-item>
+    </div>
   </div>
 </div>

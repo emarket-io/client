@@ -1,28 +1,45 @@
-.welcome-card img {
-  max-height: 35vh;
-  overflow: hidden;
-}
-
-.icon-layout {
-  display: inline-block;
-  width: 25%;
-  text-align: center
-}
-
-.top-header {
+.div-header {
   background: var(--mycolor);
-  height: 28%;
+  height: 27%;
 }
 
-.top-toolbar {
-  display: inline-block;
-  width: 33%;
-  margin-top: 30px;
+.div-content {
+  height: 90%;
+  width: 100%;
+  top: 6%;
+  position: absolute;
 
-  ion-button {
-    //--border-style:none;
-    --box-shadow: none;
-    --color: var(--mytextcolor);
+  .top-toolbar {
+    display: inline-block;
+    width: 33%;
+    margin-bottom: 2%;
+
+    ion-button {
+      //--border-style:none;
+      --box-shadow: none;
+      --color: var(--mytextcolor);
+    }
+  }
+
+  .div-scroll {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    position: absolute;
+
+    ion-card-content {
+      div {
+        display: inline-block;
+        width: 25%;
+        text-align: center;
+        background: white;
+
+        img {
+          height: 30px;
+          width: auto;
+        }
+      }
+    }
   }
 }
 
@@ -36,13 +53,16 @@
 ion-item-group {
   ion-badge {
     font-size: x-small;
-    padding-top: 2px;
-    padding-bottom: 0px;
+    --padding-top: 2px;
+    --padding-bottom: 0px;
   }
 }
 
-ion-card-content {
-  div {
-    background: white;
-  }
+.title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  top: 5px;
+  position: absolute;
 }
