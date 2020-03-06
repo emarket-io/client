@@ -73,7 +73,7 @@ export class AppComponent {
         // why invalid?
         window.scrollTo(0, 1);
 
-        if (this.supportPWA || this.platform.is('iphone')) {
+        if ((this.supportPWA || this.platform.is('iphone')) && !location.search.includes('pwa')) {
           const popover = await this.injector.get(PopoverController).create({
             component: PwaComponent,
             backdropDismiss: false,
