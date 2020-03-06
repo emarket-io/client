@@ -23,7 +23,7 @@ export class HomePage {
     slidesPerView: 1,
     direction: "vertical",
     autoHeight: true,
-    height: 180,
+    height: 150,
     autoplay: {
       delay: 2000,
     },

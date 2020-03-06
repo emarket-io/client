@@ -1,8 +1,9 @@
 import { Router } from '@angular/router';
-import { Platform } from '@ionic/angular';
 import { Component, Injector } from '@angular/core';
-import { utilsService } from './providers/utils.service'
+import { PwaComponent } from './user/pwa/pwa.component';
 import { EventManager } from '@angular/platform-browser';
+import { utilsService } from './providers/utils.service';
+import { Platform, PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { EventManager } from '@angular/platform-browser';
 })
 export class AppComponent {
   exit = false;
+  supportPWA = false;
 
   constructor(
     private router: Router,
@@ -40,14 +42,47 @@ export class AppComponent {
         if (this.router.url.includes('/tabs/')) {
           if (this.exit) {
             //window.close();
-            history.pushState(null, null);
+            //window.opener = null;
+            window.close();
+            // window.open('about:blank', '_self').close();
           } else {
             utilsService.toast('再按一次退出 [农村大集]');
+            window.history.pushState(null, null);
             this.exit = true;
           }
         }
       });
+
+      this.eventManager.addGlobalEventListener('window', 'beforeinstallprompt', (event) => {
+        this.supportPWA = true;
+      });
+
+      /* this.eventManager.addGlobalEventListener('window', 'appinstalled', async (event) => {
+         alert(event);
+         if (popover) {
+           await popover.dismiss();
+         }
+       });*/
       //this.checkUpdate();
+
+      let hl = document.getElementsByTagName('html')[0];
+      hl.style.height = screen.height + 'px';
+      hl.style.overflow = 'auto';
+      // window.scrollTo(0, 50);
+      setTimeout(async () => {
+        // why invalid?
+        window.scrollTo(0, 1);
+
+        if (this.supportPWA || this.platform.is('iphone')) {
+          const popover = await this.injector.get(PopoverController).create({
+            component: PwaComponent,
+            backdropDismiss: false,
+            cssClass: 'bottom-sheet-popover-pwa',
+          });
+          await popover.present();
+        }
+      }, 3000);
+
     });
   }
 
@@ -76,12 +111,12 @@ export class AppComponent {
     document.getElementsByTagName('meta')['theme-color'].content = this.theme.mycolor;
     //  iOS Safari <!-- 可选default、black、black-translucent? -->
     document.getElementsByTagName('meta')['apple-mobile-web-app-status-bar-style'].content = 'black-translucent';
-    /*if (navigator.userAgent.indexOf('Safari') > -1) {
+    if (navigator.userAgent.indexOf('Safari') > -1 && this.platform.is('iphone')) {
       let els = document.getElementsByTagName('ion-app');
       els[0].style.background = 'white';
       els[0].style.marginTop = '20px';
       document.body.style.background = this.theme.mycolor;
-    }*/
+    }
   }
 
   /*checkUpdate() {

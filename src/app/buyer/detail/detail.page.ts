@@ -87,8 +87,8 @@ export class DetailPage {
     const popover = await this.popoverController.create({
       component: SelectionPage,
       componentProps: { order: order },
-      event: ev,
-      translucent: true,
+      //event: ev,
+      //translucent: true,
       cssClass: 'bottom-sheet-popover'
     });
     await popover.present();
