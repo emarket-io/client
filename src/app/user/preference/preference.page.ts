@@ -38,6 +38,7 @@ export class PreferencePage {
           registration.unregister();
         }
       });
+    window.localStorage.clear();
     utilsService.toast('缓存已清除');
   }
 }

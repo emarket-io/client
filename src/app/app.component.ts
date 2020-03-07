@@ -27,28 +27,16 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.setTheme(Math.random());
       utilsService.injector = this.injector;
-      // this.platform.backButton.subscribe(() => {
-      //   if (this.router.url.includes('/tabs/')) {
-      //     if (this.exit) {
-      //       navigator['app'].exitApp();
-      //     } else {
-      //       utilsService.toast('再按一次退出 [农村大集]');
-      //       this.exit = true;
-      //       setTimeout(() => this.exit = false, 1500);
-      //     }
-      //   };
-      // });
       this.eventManager.addGlobalEventListener('window', 'popstate', (event) => {
         if (this.router.url.includes('/tabs/')) {
           if (this.exit) {
-            //window.close();
-            //window.opener = null;
-            window.close();
-            // window.open('about:blank', '_self').close();
+            for (let i = 0; i < history.length; i++) {
+              history.back();
+            }
           } else {
             utilsService.toast('再按一次退出 [农村大集]');
-            window.history.pushState(null, null);
             this.exit = true;
+            setTimeout(() => this.exit = false, 2000);
           }
         }
       });
@@ -72,7 +60,7 @@ export class AppComponent {
         hl.style.height = screen.height + 'px';
         hl.style.overflow = 'auto';
         // window.scrollTo(0, 50);
-        setTimeout(async () => {
+        setTimeout(() => {
           // why invalid?
           window.scrollTo(0, 1);
         }, 3000);
@@ -110,7 +98,7 @@ export class AppComponent {
     document.getElementsByTagName('meta')['theme-color'].content = this.theme.mycolor;
     //  iOS Safari <!-- 可选default、black、black-translucent? -->
     document.getElementsByTagName('meta')['apple-mobile-web-app-status-bar-style'].content = 'black-translucent';
-    if (navigator.userAgent.indexOf('Safari') > -1 && this.platform.is('iphone') && location.search.includes('pwa')) {
+    if (navigator.userAgent.includes('Safari') && this.platform.is('iphone') && location.search.includes('pwa')) {
       let els = document.getElementsByTagName('ion-app');
       els[0].style.background = 'white';
       els[0].style.marginTop = '20px';
@@ -127,36 +115,4 @@ export class AppComponent {
     });
     await popover.present();
   }
-  /*checkUpdate() {
-    this.appVersion.getVersionNumber().then(value => {
-      //alert('appVersion:' + value);
-      this.http.get('https://raw.githubusercontent.com/emart-io/client/master/platforms/android/app/build/outputs/apk/release/output.json').subscribe(data => {
-        // alert(JSON.stringify(data));
-        // alert(data[0].apkInfo.versionName);
-        if (data[0].apkInfo.versionName != value) {
-          utilsService.toast('发现新版本[v' + data[0].apkInfo.versionName + ']，开始自动下载.');
-          const fileTransfer: FileTransferObject = this.transfer.create();
-          let saveurl = this.file.externalDataDirectory ? this.file.externalDataDirectory : this.file.dataDirectory;
-          let apk = saveurl + 'download/' + 'daji.apk';
-          const url = 'https://github.com/emart-io/client/raw/master/platforms/android/app/build/outputs/apk/release/app-release.apk';
-
-          fileTransfer.download(url, apk, true).then((entry) => {
-            this.fileOpener.open(entry.toURL(),
-              'application/vnd.android.package-archive')
-              .then(() => {
-                console.log('File is opened');
-              }).catch(e => {
-                console.log('Error openening file', e)
-                utilsService.alert(JSON.stringify(e));
-              });
-          }).catch(error => {
-            console.log(error)
-            utilsService.alert(JSON.stringify(error));
-          });
-        };
-      });
-    }).catch(err => {
-      console.log(JSON.stringify(err));
-    });
-  }*/
 }
