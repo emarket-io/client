@@ -12,7 +12,7 @@ import { Platform, PopoverController } from '@ionic/angular';
 })
 export class AppComponent {
   exit = false;
-  supportPWA = false;
+  alreadyPopover = false;
 
   constructor(
     private router: Router,
@@ -54,7 +54,9 @@ export class AppComponent {
       });
 
       this.eventManager.addGlobalEventListener('window', 'beforeinstallprompt', (event) => {
-        this.supportPWA = true;
+        if (!this.alreadyPopover) {
+          this.popoverPWA();
+        }
       });
 
       /* this.eventManager.addGlobalEventListener('window', 'appinstalled', async (event) => {
@@ -65,23 +67,20 @@ export class AppComponent {
        });*/
       //this.checkUpdate();
 
-      let hl = document.getElementsByTagName('html')[0];
-      hl.style.height = screen.height + 'px';
-      hl.style.overflow = 'auto';
-      // window.scrollTo(0, 50);
-      setTimeout(async () => {
-        // why invalid?
-        window.scrollTo(0, 1);
+      if (!location.search.includes('pwa')) {
+        let hl = document.getElementsByTagName('html')[0];
+        hl.style.height = screen.height + 'px';
+        hl.style.overflow = 'auto';
+        // window.scrollTo(0, 50);
+        setTimeout(async () => {
+          // why invalid?
+          window.scrollTo(0, 1);
+        }, 3000);
 
-        if ((this.supportPWA || this.platform.is('iphone')) && !location.search.includes('pwa')) {
-          const popover = await this.injector.get(PopoverController).create({
-            component: PwaComponent,
-            backdropDismiss: false,
-            cssClass: 'bottom-sheet-popover-pwa',
-          });
-          await popover.present();
+        if (this.platform.is('iphone') && !this.alreadyPopover) {
+          this.popoverPWA();
         }
-      }, 3000);
+      }
 
     });
   }
@@ -111,7 +110,7 @@ export class AppComponent {
     document.getElementsByTagName('meta')['theme-color'].content = this.theme.mycolor;
     //  iOS Safari <!-- 可选default、black、black-translucent? -->
     document.getElementsByTagName('meta')['apple-mobile-web-app-status-bar-style'].content = 'black-translucent';
-    if (navigator.userAgent.indexOf('Safari') > -1 && this.platform.is('iphone')) {
+    if (navigator.userAgent.indexOf('Safari') > -1 && this.platform.is('iphone') && location.search.includes('pwa')) {
       let els = document.getElementsByTagName('ion-app');
       els[0].style.background = 'white';
       els[0].style.marginTop = '20px';
@@ -119,6 +118,15 @@ export class AppComponent {
     }
   }
 
+  async popoverPWA() {
+    this.alreadyPopover = true;
+    const popover = await this.injector.get(PopoverController).create({
+      component: PwaComponent,
+      backdropDismiss: false,
+      cssClass: 'bottom-sheet-popover-pwa',
+    });
+    await popover.present();
+  }
   /*checkUpdate() {
     this.appVersion.getVersionNumber().then(value => {
       //alert('appVersion:' + value);
