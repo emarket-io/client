@@ -30,13 +30,14 @@ export class AppComponent {
       this.eventManager.addGlobalEventListener('window', 'popstate', (event) => {
         if (this.router.url.includes('/tabs/')) {
           if (this.exit) {
-            for (let i = 0; i < history.length; i++) {
+            let hl = history.length
+            for (var i = 0; i <= hl; i++) {
               history.back();
             }
           } else {
             utilsService.toast('再按一次退出 [农村大集]');
             this.exit = true;
-            setTimeout(() => this.exit = false, 2000);
+            setTimeout(() => this.exit = false, 1500);
           }
         }
       });
