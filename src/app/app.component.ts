@@ -30,8 +30,9 @@ export class AppComponent {
       this.eventManager.addGlobalEventListener('window', 'popstate', (event) => {
         if (this.router.url.includes('/tabs/')) {
           if (this.exit) {
+            //history.go(-history.length);
             let hl = history.length
-            for (var i = 0; i <= hl; i++) {
+            for (var i = 0; i <= hl + 1; i++) {
               history.back();
             }
           } else {
