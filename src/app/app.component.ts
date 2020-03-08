@@ -56,7 +56,7 @@ export class AppComponent {
        });*/
       //this.checkUpdate();
 
-      if (!location.search.includes('pwa')) {
+      if (!location.search.includes('homescreen')) {
         let hl = document.getElementsByTagName('html')[0];
         hl.style.height = screen.height + 'px';
         hl.style.overflow = 'auto';
@@ -99,7 +99,7 @@ export class AppComponent {
     document.getElementsByTagName('meta')['theme-color'].content = this.theme.mycolor;
     //  iOS Safari <!-- 可选default、black、black-translucent? -->
     document.getElementsByTagName('meta')['apple-mobile-web-app-status-bar-style'].content = 'black-translucent';
-    if (navigator.userAgent.includes('Safari') && this.platform.is('iphone') && location.search.includes('pwa')) {
+    if (navigator.userAgent.includes('Safari') && this.platform.is('iphone') && location.search.includes('homescreen')) {
       let els = document.getElementsByTagName('ion-app');
       els[0].style.background = 'white';
       els[0].style.marginTop = '20px';
