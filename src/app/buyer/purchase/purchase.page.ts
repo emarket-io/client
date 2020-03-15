@@ -21,7 +21,7 @@ export class PurchasePage {
 
   constructor(
     private router: Router,
-    private location: Location,
+    //private location: Location,
     private httpClient: HttpClient,
     private actionSheetController: ActionSheetController) {
     if (!utilsService.paraMap['purchase']) {
