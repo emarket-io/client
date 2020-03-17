@@ -7,20 +7,20 @@ import { IonicModule } from '@ionic/angular';
 
 import { ExpressPage } from './express.page';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: ExpressPage
-  }
-];
+// const routes: Routes = [
+//   {
+//     path: '',
+//     component: ExpressPage
+//   }
+// ];
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    //RouterModule.forChild(routes)
   ],
-  // declarations: [ExpressPage]
+  declarations: [ExpressPage]
 })
-export class ExpressPageModule {}
+export class ExpressPageModule { }

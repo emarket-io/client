@@ -48,7 +48,7 @@ export class UpdatePage {
       if (err) {
         utilsService.alert(JSON.stringify(err));
       } else {
-        this.router.navigateByUrl('/commodity')
+        this.router.navigateByUrl('/commodity', { skipLocationChange: true })
       }
     });
   }

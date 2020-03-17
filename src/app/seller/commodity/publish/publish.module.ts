@@ -8,6 +8,9 @@ import { CategoryPage } from '../category/category.page';
 import { ExpressPage } from '../express/express.page';
 import { PricePage } from '../price/price.page';
 import { PublishPage } from './publish.page';
+import { ModalPageModule } from '../category/category.module';
+import { ExpressPageModule } from '../express/express.module';
+import { PricePageModule } from '../price/price.module';
 
 const routes: Routes = [
   {
@@ -22,10 +25,13 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     HttpClientModule,
+    ModalPageModule,
+    ExpressPageModule,
+    PricePageModule,
     RouterModule.forChild(routes)
   ],
   providers: [],
-  declarations: [CategoryPage, ExpressPage, PricePage, PublishPage],
+  declarations: [PublishPage],
   entryComponents: [CategoryPage, ExpressPage, PricePage],
 })
 export class PublishPageModule { }

@@ -7,20 +7,20 @@ import { IonicModule } from '@ionic/angular';
 
 import { CategoryPage } from './category.page';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: CategoryPage
-  }
-];
+// const routes: Routes = [
+//   {
+//     path: '',
+//     component: CategoryPage
+//   }
+// ];
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    // RouterModule.forChild(routes)
   ],
-  //declarations: [PopoverPage],
+  declarations: [CategoryPage],
 })
 export class ModalPageModule { }
