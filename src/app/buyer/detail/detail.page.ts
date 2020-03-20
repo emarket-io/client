@@ -44,16 +44,30 @@ export class DetailPage {
   }
 
   share() {
-    var aux = document.createElement("input");
-    aux.setAttribute("value", "[农村大集]上农村大集，让农货便宜到家--" + this.commodity.title);
-    document.body.appendChild(aux);
-    aux.select();
-    document.execCommand("Copy");
-    document.body.removeChild(aux);
-    utilsService.toast('已将分享内容复制，打开微信粘贴即可');
-    setTimeout(() => {
-      //window.open('weixin://');
-    }, 1000);
+    if (window.navigator && window.navigator['share']) {
+      window.navigator['share']({
+        title: '[农村大集]上农村大集，让农货便宜到家--' + this.commodity.title,
+        text: '[农村大集]上农村大集，让农货便宜到家--' + this.commodity.title,
+        url: 'https://iyou.city'
+      }).then(() => {
+        console.log('done');
+      });
+    } else {
+      var aux = document.createElement("input");
+      aux.setAttribute("value", "[农村大集]上农村大集，让农货便宜到家--" + this.commodity.title);
+      document.body.appendChild(aux);
+      aux.select();
+      document.execCommand("Copy");
+      document.body.removeChild(aux);
+      utilsService.toast('已将分享内容复制，打开微信粘贴即可');
+      setTimeout(() => {
+        //window.open('weixin://');
+      }, 1000);
+    }
+
+
+
+
 
     /*
     this.wechat.share({
