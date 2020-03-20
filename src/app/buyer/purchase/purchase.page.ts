@@ -203,7 +203,7 @@ export class PurchasePage {
           utilsService.alert(JSON.stringify(err));
         } else {
           // redirect_url is unstable
-          let url = response.kvMap.get('mweb_url') + '&redirect_url=' + encodeURIComponent('https://iyou.city/purchase');
+          let url = response.kvMap.get('mweb_url'); //+ '&redirect_url=' + encodeURIComponent('https://iyou.city/purchase');
           console.log(url);
           // for query
           this.order.payInfo.payResult = pm.kvMap.get('out_trade_no');

@@ -44,9 +44,9 @@ export class DetailPage {
   }
 
   share() {
-    if (window.navigator && window.navigator['share']) {
+    if (window.navigator['share']) {
       window.navigator['share']({
-        title: '[农村大集]上农村大集，让农货便宜到家--' + this.commodity.title,
+        title: '农村大集',
         text: '[农村大集]上农村大集，让农货便宜到家--' + this.commodity.title,
         url: 'https://iyou.city'
       }).then(() => {
