@@ -1,4 +1,3 @@
-import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
 import { Location } from "@angular/common";
 import { Component } from '@angular/core';
@@ -78,7 +77,7 @@ export class PurchasePage {
       sr.kvMap.set('method', 'alipay.trade.query')
       sr.kvMap.set('biz_content', JSON.stringify(queryBizContent));
       apiService.accountClient.alipay(sr, apiService.metaData,
-        (err: grpcWeb.Error, response) => {
+        (err, response) => {
           let queryUrl = 'https://openapi.alipay.com/gateway.do?';
           let i = 0;
           response.kvMap.forEach((value, key, map) => {
@@ -154,7 +153,6 @@ export class PurchasePage {
       return utilsService.alert('请勿自卖自买');
     }
     if (this.order.payInfo.type == 'alipay') {
-      //console.log(this.order.toObject());
       let sr = new PayMap();
       let bizContent = {
         subject: this.order.snapshot.title + '-订单费用',
@@ -166,10 +164,9 @@ export class PurchasePage {
 
       sr.kvMap.set('biz_content', JSON.stringify(bizContent));
       sr.kvMap.set('method', 'alipay.trade.wap.pay');
-      //sr.kvMap.set('return_url', 'https://iyou.city/verify');
       sr.kvMap.set('return_url', 'https://iyou.city/purchase');
       apiService.accountClient.alipay(sr, apiService.metaData,
-        (err: grpcWeb.Error, response) => {
+        (err, response) => {
           if (err) {
             utilsService.alert(err.message)
           } {
@@ -222,7 +219,7 @@ export class PurchasePage {
       order.status = '待发货';
     }
 
-    apiService.orderClient.add(order, apiService.metaData, (err: grpcWeb.Error, response: Order) => {
+    apiService.orderClient.add(order, apiService.metaData, (err, response: Order) => {
       if (err) {
         utilsService.alert(JSON.stringify(err));
       } else {
