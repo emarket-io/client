@@ -756,5 +756,347 @@ proto.zbay.CouponsPromiseClient.prototype.list =
 };
 
 
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.zbay.CommentsClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+  /**
+   * @private @const {?Object} The credentials to be used to connect
+   *    to the server
+   */
+  this.credentials_ = credentials;
+
+  /**
+   * @private @const {?Object} Options for the client
+   */
+  this.options_ = options;
+};
+
+
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.zbay.CommentsPromiseClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+  /**
+   * @private @const {?Object} The credentials to be used to connect
+   *    to the server
+   */
+  this.credentials_ = credentials;
+
+  /**
+   * @private @const {?Object} Options for the client
+   */
+  this.options_ = options;
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.Comment,
+ *   !proto.zbay.Comment>}
+ */
+const methodInfo_Comments_Add = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Comment,
+  /** @param {!proto.zbay.Comment} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Comment.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.Comment} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.zbay.Comment)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Comment>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.CommentsClient.prototype.add =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/zbay.Comments/Add',
+      request,
+      metadata || {},
+      methodInfo_Comments_Add,
+      callback);
+};
+
+
+/**
+ * @param {!proto.zbay.Comment} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.zbay.Comment>}
+ *     A native promise that resolves to the response
+ */
+proto.zbay.CommentsPromiseClient.prototype.add =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/zbay.Comments/Add',
+      request,
+      metadata || {},
+      methodInfo_Comments_Add);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.Comment,
+ *   !proto.zbay.Comment>}
+ */
+const methodInfo_Comments_Get = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Comment,
+  /** @param {!proto.zbay.Comment} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Comment.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.Comment} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.zbay.Comment)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Comment>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.CommentsClient.prototype.get =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/zbay.Comments/Get',
+      request,
+      metadata || {},
+      methodInfo_Comments_Get,
+      callback);
+};
+
+
+/**
+ * @param {!proto.zbay.Comment} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.zbay.Comment>}
+ *     A native promise that resolves to the response
+ */
+proto.zbay.CommentsPromiseClient.prototype.get =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/zbay.Comments/Get',
+      request,
+      metadata || {},
+      methodInfo_Comments_Get);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.Comment,
+ *   !proto.zbay.Comment>}
+ */
+const methodInfo_Comments_Update = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Comment,
+  /** @param {!proto.zbay.Comment} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Comment.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.Comment} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.zbay.Comment)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Comment>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.CommentsClient.prototype.update =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/zbay.Comments/Update',
+      request,
+      metadata || {},
+      methodInfo_Comments_Update,
+      callback);
+};
+
+
+/**
+ * @param {!proto.zbay.Comment} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.zbay.Comment>}
+ *     A native promise that resolves to the response
+ */
+proto.zbay.CommentsPromiseClient.prototype.update =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/zbay.Comments/Update',
+      request,
+      metadata || {},
+      methodInfo_Comments_Update);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.Comment,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodInfo_Comments_Delete = new grpc.web.AbstractClientBase.MethodInfo(
+  google_protobuf_empty_pb.Empty,
+  /** @param {!proto.zbay.Comment} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.Comment} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.google.protobuf.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.CommentsClient.prototype.delete =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/zbay.Comments/Delete',
+      request,
+      metadata || {},
+      methodInfo_Comments_Delete,
+      callback);
+};
+
+
+/**
+ * @param {!proto.zbay.Comment} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.google.protobuf.Empty>}
+ *     A native promise that resolves to the response
+ */
+proto.zbay.CommentsPromiseClient.prototype.delete =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/zbay.Comments/Delete',
+      request,
+      metadata || {},
+      methodInfo_Comments_Delete);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.Commodity,
+ *   !proto.zbay.Comment>}
+ */
+const methodInfo_Comments_List = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Comment,
+  /** @param {!proto.zbay.Commodity} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Comment.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.Commodity} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Comment>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.CommentsClient.prototype.list =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Comments/List',
+      request,
+      metadata || {},
+      methodInfo_Comments_List);
+};
+
+
+/**
+ * @param {!proto.zbay.Commodity} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Comment>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.CommentsPromiseClient.prototype.list =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Comments/List',
+      request,
+      metadata || {},
+      methodInfo_Comments_List);
+};
+
+
 module.exports = proto.zbay;
 

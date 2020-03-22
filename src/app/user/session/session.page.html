@@ -16,10 +16,8 @@
   <ion-list lines="none">
     <div *ngFor="let msg of messages">
       <ion-item *ngIf="msg.from!=user.id">
-        <ion-avatar slot="start">
-          <img [src]="users[msg.from]?.icon?users[msg.from].icon:'assets/fruit/banana.png'">
-        </ion-avatar>
-        <ion-badge class="ion-text-wrap" slot="start">{{msg.content}}
+        <img style="margin-right: 5px;" [src]="users[msg.from]?.icon?users[msg.from].icon:'assets/fruit/banana.png'">
+        <ion-badge class="ion-text-wrap">{{msg.content}}
           ({{msg.created?.toDate() | date:'MM/dd H:mm'}})
         </ion-badge>
       </ion-item>
@@ -27,9 +25,7 @@
         <ion-badge class="ion-text-wrap" color="success" slot="end">{{msg.content}}
           ({{msg.created?.toDate() | date:'MM/dd H:mm'}})
         </ion-badge>
-        <ion-avatar slot="end">
-          <img [src]="user?.icon?user.icon:'assets/fruit/banana.png'">
-        </ion-avatar>
+        <img style="position: absolute;right: 0;" [src]="user?.icon?user.icon:'assets/fruit/banana.png'">
       </ion-item>
     </div>
   </ion-list>

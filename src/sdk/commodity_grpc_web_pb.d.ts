@@ -6,6 +6,7 @@ import * as google_protobuf_wrappers_pb from 'google-protobuf/google/protobuf/wr
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 
 import {
+  Comment,
   Commodity,
   Coupon} from './commodity_pb';
 
@@ -94,6 +95,46 @@ export class CouponsClient {
 
 }
 
+export class CommentsClient {
+  constructor (hostname: string,
+               credentials: null | { [index: string]: string; },
+               options: null | { [index: string]: string; });
+
+  add(
+    request: Comment,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: Comment) => void
+  ): grpcWeb.ClientReadableStream<Comment>;
+
+  get(
+    request: Comment,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: Comment) => void
+  ): grpcWeb.ClientReadableStream<Comment>;
+
+  update(
+    request: Comment,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: Comment) => void
+  ): grpcWeb.ClientReadableStream<Comment>;
+
+  delete(
+    request: Comment,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: google_protobuf_empty_pb.Empty) => void
+  ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  list(
+    request: Commodity,
+    metadata?: grpcWeb.Metadata
+  ): grpcWeb.ClientReadableStream<Comment>;
+
+}
+
 export class CommoditiesPromiseClient {
   constructor (hostname: string,
                credentials: null | { [index: string]: string; },
@@ -160,6 +201,38 @@ export class CouponsPromiseClient {
     request: user_pb.User,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Coupon>;
+
+}
+
+export class CommentsPromiseClient {
+  constructor (hostname: string,
+               credentials: null | { [index: string]: string; },
+               options: null | { [index: string]: string; });
+
+  add(
+    request: Comment,
+    metadata?: grpcWeb.Metadata
+  ): Promise<Comment>;
+
+  get(
+    request: Comment,
+    metadata?: grpcWeb.Metadata
+  ): Promise<Comment>;
+
+  update(
+    request: Comment,
+    metadata?: grpcWeb.Metadata
+  ): Promise<Comment>;
+
+  delete(
+    request: Comment,
+    metadata?: grpcWeb.Metadata
+  ): Promise<google_protobuf_empty_pb.Empty>;
+
+  list(
+    request: Commodity,
+    metadata?: grpcWeb.Metadata
+  ): grpcWeb.ClientReadableStream<Comment>;
 
 }
 

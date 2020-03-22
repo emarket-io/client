@@ -143,3 +143,38 @@ export namespace Coupon {
   }
 }
 
+export class Comment extends jspb.Message {
+  id: string;
+  commodityId: string;
+  content: string;
+  keywordsList: Array<string>;
+  clearkeywordsList(): void;
+  addKeywords(value: string, index?: number): void;
+  star: number;
+  owner: string;
+  annotationsMap: jspb.Map<string, string>;
+  clearannotationsMap(): void;
+  created: google_protobuf_timestamp_pb.Timestamp | undefined;
+  hascreated(): boolean;
+  clearcreated(): void;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Comment.AsObject;
+  static toObject(includeInstance: boolean, msg: Comment): Comment.AsObject;
+  static serializeBinaryToWriter(message: Comment, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Comment;
+  static deserializeBinaryFromReader(message: Comment, reader: jspb.BinaryReader): Comment;
+}
+
+export namespace Comment {
+  export type AsObject = {
+    id: string,
+    commodityid: string,
+    content: string,
+    keywordsList: Array<string>,
+    star: number,
+    owner: string,
+    annotationsMap: Array<[string, string]>,
+    created?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
