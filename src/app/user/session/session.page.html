@@ -13,22 +13,20 @@
 </ion-header>
 
 <ion-content>
-  <ion-list lines="none">
-    <div *ngFor="let msg of messages">
-      <ion-item *ngIf="msg.from!=user.id">
-        <img style="margin-right: 5px;" [src]="users[msg.from]?.icon?users[msg.from].icon:'assets/fruit/banana.png'">
-        <ion-badge class="ion-text-wrap">{{msg.content}}
-          ({{msg.created?.toDate() | date:'MM/dd H:mm'}})
-        </ion-badge>
-      </ion-item>
-      <ion-item *ngIf="msg.from==user.id">
-        <ion-badge class="ion-text-wrap" color="success" slot="end">{{msg.content}}
-          ({{msg.created?.toDate() | date:'MM/dd H:mm'}})
-        </ion-badge>
-        <img style="position: absolute;right: 0;" [src]="user?.icon?user.icon:'assets/fruit/banana.png'">
-      </ion-item>
-    </div>
-  </ion-list>
+  <div *ngFor="let msg of messages">
+    <ion-item *ngIf="msg.from!=user.id" lines="none">
+      <img style="margin-right: 5px;" [src]="users[msg.from]?.icon?users[msg.from].icon:'assets/fruit/banana.png'">
+      <ion-badge class="ion-text-wrap">{{msg.content}}
+        ({{msg.created?.toDate() | date:'MM/dd H:mm'}})
+      </ion-badge>
+    </ion-item>
+    <ion-item *ngIf="msg.from==user.id" lines="none">
+      <ion-badge class="ion-text-wrap right-align" color="success">{{msg.content}}
+        ({{msg.created?.toDate() | date:'MM/dd H:mm'}})
+      </ion-badge>
+      <img style="position: absolute;right: 12px;" [src]="user?.icon?user.icon:'assets/fruit/banana.png'">
+    </ion-item>
+  </div>
   <div id="msg_bottom"></div>
 </ion-content>
 

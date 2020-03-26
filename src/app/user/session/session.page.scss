@@ -1,12 +1,16 @@
 .ion-text-wrap {
     white-space: nowrap;
-    margin-right: 20px;
 }
 
 ion-item {
     img {
-        height: 30px;
-        width: 30px;
-        border-radius: 30px;
+        height: 40px;
+        width: 40px;
+        border-radius: 40px;
     }
+}
+
+.right-align {
+    position: absolute;
+    right: 55px;
 }

@@ -89,7 +89,6 @@ export class UtilsService {
     const toast = await this.injector.get(ToastController).create({
       message: msg,
       duration: 1000,
-      translucent: true,
       cssClass: cssClass ? cssClass : 'toast-message',
       position: "middle",
     });
