@@ -1,0 +1,38 @@
+import { Component, Input } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
+import { Memo } from '../../../../../sdk/user_pb';
+import { apiService, utilsService } from '../../../../providers/utils.service';
+
+@Component({
+  selector: 'app-add',
+  templateUrl: './add.component.html',
+  styleUrls: ['./add.component.scss'],
+})
+export class AddComponent {
+  @Input() memo: Memo;
+
+  constructor(private popoverController: PopoverController) { }
+
+  save() {
+    if (!this.memo.content) {
+      return utilsService.alert('内容为空');
+    }
+    this.memo.userId = utilsService.getUser().id;
+    this.memo.location = utilsService.location.addressComponent.province + utilsService.location.addressComponent.city;
+    if (this.memo.id != "") {
+      apiService.memoClient.update(this.memo, apiService.metaData).then(memo => {
+        this.memo = memo;
+        this.popoverController.dismiss(memo);
+      }).catch(err => {
+        utilsService.alert(err.message);
+      });
+    } else {
+      apiService.memoClient.add(this.memo, apiService.metaData).then(memo => {
+        this.memo = memo;
+        this.popoverController.dismiss(memo);
+      }).catch(err => {
+        utilsService.alert(err.message);
+      });
+    };
+  }
+}

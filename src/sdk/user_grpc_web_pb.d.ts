@@ -5,6 +5,7 @@ import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/t
 
 import {
   Address,
+  Memo,
   User} from './user_pb';
 
 export class UsersClient {
@@ -101,6 +102,46 @@ export class AddressesClient {
 
 }
 
+export class MemosClient {
+  constructor (hostname: string,
+               credentials: null | { [index: string]: string; },
+               options: null | { [index: string]: string; });
+
+  add(
+    request: Memo,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: Memo) => void
+  ): grpcWeb.ClientReadableStream<Memo>;
+
+  get(
+    request: Memo,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: Memo) => void
+  ): grpcWeb.ClientReadableStream<Memo>;
+
+  update(
+    request: Memo,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: Memo) => void
+  ): grpcWeb.ClientReadableStream<Memo>;
+
+  delete(
+    request: Memo,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: google_protobuf_empty_pb.Empty) => void
+  ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  list(
+    request: User,
+    metadata?: grpcWeb.Metadata
+  ): grpcWeb.ClientReadableStream<Memo>;
+
+}
+
 export class UsersPromiseClient {
   constructor (hostname: string,
                credentials: null | { [index: string]: string; },
@@ -172,6 +213,38 @@ export class AddressesPromiseClient {
     request: User,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<Address>;
+
+}
+
+export class MemosPromiseClient {
+  constructor (hostname: string,
+               credentials: null | { [index: string]: string; },
+               options: null | { [index: string]: string; });
+
+  add(
+    request: Memo,
+    metadata?: grpcWeb.Metadata
+  ): Promise<Memo>;
+
+  get(
+    request: Memo,
+    metadata?: grpcWeb.Metadata
+  ): Promise<Memo>;
+
+  update(
+    request: Memo,
+    metadata?: grpcWeb.Metadata
+  ): Promise<Memo>;
+
+  delete(
+    request: Memo,
+    metadata?: grpcWeb.Metadata
+  ): Promise<google_protobuf_empty_pb.Empty>;
+
+  list(
+    request: User,
+    metadata?: grpcWeb.Metadata
+  ): grpcWeb.ClientReadableStream<Memo>;
 
 }
 

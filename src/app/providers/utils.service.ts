@@ -1,6 +1,6 @@
 import { Message } from 'google-protobuf';
 import { ApiService } from './api.service';
-import { Address } from '../../sdk/user_pb';
+import { Address, User } from '../../sdk/user_pb';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Injectable, Injector, EventEmitter } from '@angular/core';
 
@@ -29,20 +29,13 @@ export class UtilsService {
 
   paraMap = new Map<string, any>();
 
-  // getUser(): User {
-  //   if (!localStorage.getItem('user')) {
-  //     return null
-  //   }
-  //   return User.deserializeBinary(Message.bytesAsU8(localStorage.getItem('user')));
-  // };
+  getUser(): User {
+    return this.storage.get('user', User)
+  }
 
-  // setUser(user: User) {
-  //   if (!user) {
-  //     localStorage.removeItem('user');
-  //   } else {
-  //     localStorage.setItem('user', Message.bytesAsB64(user.serializeBinary()));
-  //   }
-  // }
+  setUser(user: User) {
+    this.storage.set('user', user);
+  }
 
   formatRMB(value: string): string {
     if (!value) {

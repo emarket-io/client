@@ -33,6 +33,7 @@ const routes: Routes = [
   { path: 'help', loadChildren: './user/help/help.module#HelpPageModule' },
   { path: 'service', loadChildren: './user/help/service/service.module#ServicePageModule' },
   { path: 'camera', loadChildren: './seller/commodity/camera/camera.module#CameraPageModule' },
+  { path: 'memo', loadChildren: './user/tools/memo/memo.module#MemoPageModule' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { MessagesClient } from '../../sdk/message_grpc_web_pb';
-import { UsersClient, AddressesClient } from '../../sdk/user_grpc_web_pb';
 import { OrdersClient, AccountsClient } from '../../sdk/order_grpc_web_pb';
-import { CommoditiesClient, CouponsClient } from '../../sdk/commodity_grpc_web_pb';
+import { UsersClient, AddressesClient, MemosPromiseClient } from '../../sdk/user_grpc_web_pb';
+import { CommoditiesClient, CouponsClient, CommentsClient } from '../../sdk/commodity_grpc_web_pb';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,8 @@ export class ApiService {
   addressClient = new AddressesClient(environment.apiUrl, null, null);
   messageClient = new MessagesClient(environment.apiUrl, null, null);
   accountClient = new AccountsClient(environment.apiUrl, null, null);
+  commentClient = new CommentsClient(environment.apiUrl, null, null);
+  memoClient = new MemosPromiseClient(environment.apiUrl, null, null);
 
   constructor() { }
 

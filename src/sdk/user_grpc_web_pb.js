@@ -812,5 +812,347 @@ proto.zbay.AddressesPromiseClient.prototype.list =
 };
 
 
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.zbay.MemosClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+  /**
+   * @private @const {?Object} The credentials to be used to connect
+   *    to the server
+   */
+  this.credentials_ = credentials;
+
+  /**
+   * @private @const {?Object} Options for the client
+   */
+  this.options_ = options;
+};
+
+
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?Object} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.zbay.MemosPromiseClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options['format'] = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+  /**
+   * @private @const {?Object} The credentials to be used to connect
+   *    to the server
+   */
+  this.credentials_ = credentials;
+
+  /**
+   * @private @const {?Object} Options for the client
+   */
+  this.options_ = options;
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.Memo,
+ *   !proto.zbay.Memo>}
+ */
+const methodInfo_Memos_Add = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Memo,
+  /** @param {!proto.zbay.Memo} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Memo.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.Memo} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.zbay.Memo)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Memo>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.MemosClient.prototype.add =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/zbay.Memos/Add',
+      request,
+      metadata || {},
+      methodInfo_Memos_Add,
+      callback);
+};
+
+
+/**
+ * @param {!proto.zbay.Memo} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.zbay.Memo>}
+ *     A native promise that resolves to the response
+ */
+proto.zbay.MemosPromiseClient.prototype.add =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/zbay.Memos/Add',
+      request,
+      metadata || {},
+      methodInfo_Memos_Add);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.Memo,
+ *   !proto.zbay.Memo>}
+ */
+const methodInfo_Memos_Get = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Memo,
+  /** @param {!proto.zbay.Memo} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Memo.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.Memo} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.zbay.Memo)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Memo>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.MemosClient.prototype.get =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/zbay.Memos/Get',
+      request,
+      metadata || {},
+      methodInfo_Memos_Get,
+      callback);
+};
+
+
+/**
+ * @param {!proto.zbay.Memo} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.zbay.Memo>}
+ *     A native promise that resolves to the response
+ */
+proto.zbay.MemosPromiseClient.prototype.get =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/zbay.Memos/Get',
+      request,
+      metadata || {},
+      methodInfo_Memos_Get);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.Memo,
+ *   !proto.zbay.Memo>}
+ */
+const methodInfo_Memos_Update = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Memo,
+  /** @param {!proto.zbay.Memo} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Memo.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.Memo} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.zbay.Memo)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Memo>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.MemosClient.prototype.update =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/zbay.Memos/Update',
+      request,
+      metadata || {},
+      methodInfo_Memos_Update,
+      callback);
+};
+
+
+/**
+ * @param {!proto.zbay.Memo} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.zbay.Memo>}
+ *     A native promise that resolves to the response
+ */
+proto.zbay.MemosPromiseClient.prototype.update =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/zbay.Memos/Update',
+      request,
+      metadata || {},
+      methodInfo_Memos_Update);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.Memo,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodInfo_Memos_Delete = new grpc.web.AbstractClientBase.MethodInfo(
+  google_protobuf_empty_pb.Empty,
+  /** @param {!proto.zbay.Memo} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.Memo} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.google.protobuf.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.MemosClient.prototype.delete =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/zbay.Memos/Delete',
+      request,
+      metadata || {},
+      methodInfo_Memos_Delete,
+      callback);
+};
+
+
+/**
+ * @param {!proto.zbay.Memo} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.google.protobuf.Empty>}
+ *     A native promise that resolves to the response
+ */
+proto.zbay.MemosPromiseClient.prototype.delete =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/zbay.Memos/Delete',
+      request,
+      metadata || {},
+      methodInfo_Memos_Delete);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.zbay.User,
+ *   !proto.zbay.Memo>}
+ */
+const methodInfo_Memos_List = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.zbay.Memo,
+  /** @param {!proto.zbay.User} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.zbay.Memo.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.zbay.User} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Memo>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.MemosClient.prototype.list =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Memos/List',
+      request,
+      metadata || {},
+      methodInfo_Memos_List);
+};
+
+
+/**
+ * @param {!proto.zbay.User} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.zbay.Memo>}
+ *     The XHR Node Readable Stream
+ */
+proto.zbay.MemosPromiseClient.prototype.list =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/zbay.Memos/List',
+      request,
+      metadata || {},
+      methodInfo_Memos_List);
+};
+
+
 module.exports = proto.zbay;
 

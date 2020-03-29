@@ -1,0 +1,27 @@
+<!-- <p>
+  随手一记
+</p> -->
+
+<ion-content>
+  <ion-card-header>
+    <!-- <ion-card-subtitle>添加</ion-card-subtitle>
+    <ion-card-title></ion-card-title> -->
+  </ion-card-header>
+  <ion-item>
+    <!-- <ion-label>标题</ion-label> -->
+    <ion-input placeholder="标题" [(ngModel)]="memo.title"></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <!-- <ion-label>内容</ion-label> -->
+    <div style="width: 100%;">
+      <ion-textarea style="margin-top: 0;" placeholder="内容" [(ngModel)]="memo.content">
+      </ion-textarea>
+    </div>
+  </ion-item>
+</ion-content>
+
+<ion-footer style="position: fixed;bottom: 0;width: 100%;" no-border>
+  <ion-button (click)="save()" expand="full">
+    保存
+  </ion-button>
+</ion-footer>

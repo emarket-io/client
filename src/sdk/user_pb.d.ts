@@ -119,3 +119,38 @@ export namespace Shop {
   }
 }
 
+export class Memo extends jspb.Message {
+  id: string;
+  userId: string;
+  title: string;
+  content: string;
+  location: string;
+  annotationsMap: jspb.Map<string, string>;
+  clearannotationsMap(): void;
+  created: google_protobuf_timestamp_pb.Timestamp | undefined;
+  hascreated(): boolean;
+  clearcreated(): void;
+  updated: google_protobuf_timestamp_pb.Timestamp | undefined;
+  hasupdated(): boolean;
+  clearupdated(): void;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Memo.AsObject;
+  static toObject(includeInstance: boolean, msg: Memo): Memo.AsObject;
+  static serializeBinaryToWriter(message: Memo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Memo;
+  static deserializeBinaryFromReader(message: Memo, reader: jspb.BinaryReader): Memo;
+}
+
+export namespace Memo {
+  export type AsObject = {
+    id: string,
+    userid: string,
+    title: string,
+    content: string,
+    location: string,
+    annotationsMap: Array<[string, string]>,
+    created?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    updated?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
