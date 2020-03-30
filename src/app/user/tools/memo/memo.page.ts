@@ -13,6 +13,9 @@ import { apiService, utilsService } from '../../../providers/utils.service';
 export class MemoPage {
   memos: Memo[] = [];
   now = new Date();
+  location = utilsService.location.addressComponent.province + utilsService.location.addressComponent.city;
+  timeOutEvent;
+
 
   constructor(
     private router: Router,
@@ -52,9 +55,19 @@ export class MemoPage {
     }
   }
 
-  remove(item: Memo) {
-    apiService.memoClient.delete(item, apiService.metaData).catch(err => {
-      utilsService.alert(err);
-    });
+  touchstart(item: Memo) {
+    this.timeOutEvent = setTimeout(() => {
+      utilsService.confirm('删除' + item.title + '？', () => {
+        apiService.memoClient.delete(item, apiService.metaData).then(() => {
+          this.ionViewWillEnter();
+        }).catch(err => {
+          utilsService.alert(err);
+        });
+      })
+    }, 500);
+  }
+
+  touchend() {
+    clearTimeout(this.timeOutEvent);
   }
 }
