@@ -42,9 +42,10 @@ export class MemoPage {
   }
 
   async add(memo: Memo = new Memo()) {
+    memo.location = this.location;
     let popover = await this.popoverController.create({
       component: AddComponent,
-      //backdropDismiss:false,
+      backdropDismiss: false,
       componentProps: { memo: memo },
       cssClass: 'bottom-sheet-popover',
     });

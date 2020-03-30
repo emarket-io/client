@@ -18,7 +18,6 @@ export class AddComponent {
       return utilsService.alert('内容为空');
     }
     this.memo.userId = utilsService.getUser().id;
-    this.memo.location = utilsService.location.addressComponent.province + utilsService.location.addressComponent.city;
     if (this.memo.id != "") {
       apiService.memoClient.update(this.memo, apiService.metaData).then(memo => {
         this.memo = memo;
@@ -34,5 +33,9 @@ export class AddComponent {
         utilsService.alert(err.message);
       });
     };
+  }
+
+  close() {
+    this.popoverController.dismiss();
   }
 }
