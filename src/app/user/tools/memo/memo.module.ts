@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AddComponent } from './add/add.component';
+import { SaveComponent } from './save/save.component';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
@@ -22,7 +22,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [AddComponent, MemoPage],
-  entryComponents: [AddComponent],
+  declarations: [SaveComponent, MemoPage],
+  entryComponents: [SaveComponent],
 })
 export class MemoPageModule { }

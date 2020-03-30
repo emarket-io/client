@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Memo } from '../../../../sdk/user_pb';
-import { AddComponent } from './add/add.component';
 import { PopoverController } from '@ionic/angular';
+import { SaveComponent } from './save/save.component';
 import { apiService, utilsService } from '../../../providers/utils.service';
 
 @Component({
@@ -41,10 +41,10 @@ export class MemoPage {
     });
   }
 
-  async add(memo: Memo = new Memo()) {
+  async save(memo: Memo = new Memo()) {
     memo.location = this.location;
     let popover = await this.popoverController.create({
-      component: AddComponent,
+      component: SaveComponent,
       backdropDismiss: false,
       componentProps: { memo: memo },
       cssClass: 'bottom-sheet-popover',

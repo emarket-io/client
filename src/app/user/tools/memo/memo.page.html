@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>随手记</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="add()">
+      <ion-button (click)="save()">
         <ion-icon slot="icon-only" name="more"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -17,8 +17,8 @@
     <ul id="first-list">
       <li *ngFor="let memo of memos" (touchstart)="touchstart(memo)" (touchmove)="touchend()" (touchend)="touchend()">
         <span></span>
-        <div class="title" (click)="add(memo)">{{memo.title}}</div>
-        <div class="info" (click)="add(memo)">{{memo.content}}</div>
+        <div class="title" (click)="save(memo)">{{memo.title}}</div>
+        <div class="info" (click)="save(memo)">{{memo.content}}</div>
         <div class="name">- {{memo.location}} -</div>
         <div class="time">
           <span>{{memo.created.toDate().getMonth()+1}}月{{memo.created.toDate().getDate()}}<sup>
@@ -139,7 +139,7 @@
   </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="add()">
+    <ion-fab-button (click)="save()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

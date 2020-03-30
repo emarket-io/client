@@ -4,11 +4,11 @@ import { Memo } from '../../../../../sdk/user_pb';
 import { apiService, utilsService } from '../../../../providers/utils.service';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss'],
+  selector: 'app-save',
+  templateUrl: './save.component.html',
+  styleUrls: ['./save.component.scss'],
 })
-export class AddComponent {
+export class SaveComponent {
   @Input() memo: Memo;
 
   constructor(private popoverController: PopoverController) { }
