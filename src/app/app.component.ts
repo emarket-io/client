@@ -4,6 +4,7 @@ import { PwaComponent } from './user/pwa/pwa.component';
 import { EventManager } from '@angular/platform-browser';
 import { utilsService } from './providers/utils.service';
 import { Platform, PopoverController } from '@ionic/angular';
+import { browser } from 'protractor';
 
 @Component({
   selector: 'app-root',
@@ -47,6 +48,10 @@ export class AppComponent {
           this.popoverPWA();
         }
       });
+
+      if (navigator.userAgent.toLowerCase().includes('micromessenger')) {
+        utilsService.alert('请点击右上角->在浏览器打开');
+      }
 
       /* this.eventManager.addGlobalEventListener('window', 'appinstalled', async (event) => {
          alert(event);
