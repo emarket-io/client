@@ -4,7 +4,6 @@ import { PwaComponent } from './user/pwa/pwa.component';
 import { EventManager } from '@angular/platform-browser';
 import { utilsService } from './providers/utils.service';
 import { Platform, PopoverController } from '@ionic/angular';
-import { browser } from 'protractor';
 
 @Component({
   selector: 'app-root',
