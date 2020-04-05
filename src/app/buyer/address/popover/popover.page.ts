@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, Input } from '@angular/core';
+import { Address } from '../../../../sdk/user_pb';
 import { PopoverController } from '@ionic/angular';
-import { Address, User } from '../../../../sdk/user_pb';
 import { apiService, utilsService } from '../../../providers/utils.service'
 
 @Component({
@@ -18,7 +18,7 @@ export class PopoverPage {
     private popoverController: PopoverController) { }
 
   ionViewWillEnter() {
-    if (!utilsService.storage.get('user', User)) {
+    if (!utilsService.getUser()) {
       this.popoverController.dismiss();
       return this.router.navigateByUrl('/login');
     }
@@ -36,7 +36,7 @@ export class PopoverPage {
       return utilsService.alert('详细地址为空');
     }
 
-    this.address.userId = utilsService.storage.get('user', User).id;
+    this.address.userId = utilsService.getUser().id;
     apiService.addressClient.add(this.address, apiService.metaData, (err: any, response: Address) => {
       if (err) {
         utilsService.alert(JSON.stringify(err));

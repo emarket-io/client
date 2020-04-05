@@ -1,6 +1,5 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { User } from '../../../sdk/user_pb';
 import { utilsService } from '../../providers/utils.service';
 import { environment } from '../../../environments/environment';
 
@@ -16,7 +15,7 @@ export class PreferencePage {
   constructor(private router: Router) { }
 
   ionViewWillEnter() {
-    if (utilsService.storage.get('user', User)) {
+    if (utilsService.getUser()) {
       this.isLogin = true;
     } else {
       this.router.navigateByUrl('/login');
@@ -25,7 +24,7 @@ export class PreferencePage {
 
   logout() {
     utilsService.confirm('确定要退出登录？', () => {
-      utilsService.storage.set('user', null);
+      utilsService.setUser(null);
       utilsService.events('user:logout').emit('');
       this.router.navigateByUrl('/login');
     });

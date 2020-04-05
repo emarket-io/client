@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Address,User } from '../../../sdk/user_pb';
+import { Address } from '../../../sdk/user_pb';
 import { apiService, utilsService } from '../../providers/utils.service'
 import { Location } from "@angular/common";
 import { PopoverController } from '@ionic/angular';
@@ -20,7 +20,7 @@ export class AddressPage {
 
   ionViewWillEnter() {
     this.addresses = []
-    let stream = apiService.addressClient.list(utilsService.storage.get('user', User), apiService.metaData);
+    let stream = apiService.addressClient.list(utilsService.getUser(), apiService.metaData);
     stream.on('data', response => {
       this.addresses.push(response);
       console.log(response.toObject());

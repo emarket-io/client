@@ -1,4 +1,3 @@
-import { User } from '../../sdk/user_pb';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { utilsService } from '../providers/utils.service'
@@ -14,7 +13,7 @@ export class SellerPage {
   }
 
   ionViewWillEnter() {
-    if (!utilsService.storage.get('user', User)) {
+    if (!utilsService.getUser()) {
       this.router.navigateByUrl('/login');
     }
   }

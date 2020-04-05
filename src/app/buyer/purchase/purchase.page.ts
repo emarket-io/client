@@ -3,7 +3,6 @@ import { Location } from "@angular/common";
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActionSheetController } from '@ionic/angular';
-import { User } from '../../../sdk/user_pb';
 import { environment } from '../../../environments/environment';
 import { Order, PayInfo, PayMap, Groupon } from '../../../sdk/order_pb';
 import { apiService, utilsService } from '../../providers/utils.service';
@@ -113,11 +112,11 @@ export class PurchasePage {
       this.order.payInfo.type = 'wechat';
     }
 
-    if (!utilsService.storage.get('user', User)) {
+    if (!utilsService.getUser()) {
       return this.router.navigateByUrl('/login');
     }
     if (!utilsService.destination) {
-      let stream = apiService.addressClient.list(utilsService.storage.get('user', User), apiService.metaData);
+      let stream = apiService.addressClient.list(utilsService.getUser(), apiService.metaData);
       stream.on('data', response => {
         this.order.destination = response;
         if (response.default) {
@@ -128,7 +127,7 @@ export class PurchasePage {
         utilsService.alert(JSON.stringify(err));
       });
     }
-    this.order.userId = utilsService.storage.get('user', User).id;
+    this.order.userId = utilsService.getUser().id;
     this.order.destination = utilsService.destination;
     this.order.amount = ~~(Number(this.order.groupon ? this.order.price.group : this.order.price.single) * 100 * this.order.quantity);
   }

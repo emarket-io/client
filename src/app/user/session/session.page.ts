@@ -26,11 +26,11 @@ export class SessionPage {
   }
 
   ionViewWillEnter() {
-    if (!utilsService.storage.get('user', User)) {
+    if (!utilsService.getUser()) {
       return this.router.navigateByUrl('/login');
     }
     let msg = new Message();
-    msg.from = utilsService.storage.get('user', User).id;
+    msg.from = utilsService.getUser().id;
     msg.to = this.commodity.ownerId;
     let stream = apiService.messageClient.list(msg, apiService.metaData);
     stream.on('data', response => {

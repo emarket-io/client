@@ -142,11 +142,11 @@ export class OrderPage {
   }
 
   refresh(event: any = null) {
-    if (!utilsService.storage.get('user', User)) {
+    if (!utilsService.getUser()) {
       return this.router.navigateByUrl('/login');
     }
     let listQuery = new ListQuery();
-    listQuery.user = utilsService.storage.get('user', User);
+    listQuery.user = utilsService.getUser();
     listQuery.status = this.selectedStatus == "全部" ? '' : this.selectedStatus;
     let stream = apiService.orderClient.listForBuyer(listQuery, apiService.metaData);
     let newOrders = [];

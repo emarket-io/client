@@ -6,7 +6,6 @@ import { ModalController } from '@ionic/angular';
 import { CategoryPage } from '../category/category.page';
 import { ExpressPage } from '../express/express.page';
 import { PricePage } from '../price/price.page';
-import { User } from '../../../../sdk/user_pb';
 import { environment } from '../../../../environments/environment';
 import { Commodity, Medium, Price } from '../../../../sdk/commodity_pb';
 import { apiService, utilsService } from '../../../providers/utils.service';
@@ -39,7 +38,7 @@ export class PublishPage {
   }
 
   ionViewWillEnter() {
-    if (!utilsService.storage.get('user', User)) {
+    if (!utilsService.getUser()) {
       return this.router.navigateByUrl('/login');
     }
 
@@ -175,12 +174,12 @@ export class PublishPage {
     // upload firstly
     this.httpClient.post(environment.apiUrl + '/upload', this.formData, {
       params: {
-        paths: [utilsService.storage.get('user', User).id, this.commodity.title]
+        paths: [utilsService.getUser().id, this.commodity.title]
       }, responseType: 'text',
     }).subscribe(
       data => {
         console.log(data);
-        this.commodity.ownerId = utilsService.storage.get('user', User).id;
+        this.commodity.ownerId = utilsService.getUser().id;
         this.commodity.status = '已上线';
         apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
           if (err) {
