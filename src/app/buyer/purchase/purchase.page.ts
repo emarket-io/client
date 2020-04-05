@@ -31,7 +31,7 @@ export class PurchasePage {
     }
   }
 
-  async verify(order: Order) {
+  async verify() {
     if (this.order.payInfo.type == 'wechat') {
       const actionSheet = await this.actionSheetController.create({
         header: '请确认微信支付是否已完成',
@@ -49,7 +49,7 @@ export class PurchasePage {
                 utilsService.alert(JSON.stringify(err));
               } else {
                 if (response.kvMap.get('trade_state') == 'SUCCESS') {
-                  this.commitOrder(order);
+                  this.commitOrder();
                 } else {
                   utilsService.toast('订单未支付');
                   this.router.navigateByUrl('/tabs/home');
@@ -91,7 +91,7 @@ export class PurchasePage {
           this.httpClient.get(queryUrl).subscribe(data => {
             //console.log(data, data['alipay_trade_query_response']['code'], data['alipay_trade_query_response']['msg']);
             if (data['alipay_trade_query_response']['code'] == '10000' && data['alipay_trade_query_response']['msg'] == 'Success') {
-              this.commitOrder(order);
+              this.commitOrder();
             } else {
               utilsService.toast('订单未支付');
               this.router.navigateByUrl('/tabs/home');
@@ -105,7 +105,7 @@ export class PurchasePage {
     // after pay
     if (!utilsService.paraMap['purchase']) {
       this.order = utilsService.storage.get('order', Order);
-      return this.verify(this.order);
+      return this.verify();
     } else {
       this.order = utilsService.paraMap['purchase'];
       this.order.payInfo = new PayInfo();
@@ -211,22 +211,22 @@ export class PurchasePage {
     }
   }
 
-  commitOrder(order: Order) {
-    if (order.groupon && order.groupon.orderIdsList.length == 0) {
-      order.status = '待成团';
+  commitOrder() {
+    if (this.order.groupon && this.order.groupon.orderIdsList.length == 0) {
+      this.order.status = '待成团';
     } else {
-      order.status = '待发货';
+      this.order.status = '待发货';
     }
 
-    apiService.orderClient.add(order, apiService.metaData, (err, response: Order) => {
+    apiService.orderClient.add(this.order, apiService.metaData, (err, response: Order) => {
       if (err) {
         utilsService.alert(JSON.stringify(err));
       } else {
         console.log(response);
         // update partner order status
-        if (order.groupon && order.groupon.orderIdsList.length == 1) {
+        if (this.order.groupon && this.order.groupon.orderIdsList.length == 1) {
           var partnerOrder = new Order();
-          partnerOrder.id = order.groupon.orderIdsList[0]
+          partnerOrder.id = this.order.groupon.orderIdsList[0]
           var groupon = new Groupon()
           groupon.orderIdsList.push(response.id);
           partnerOrder.groupon = groupon;
