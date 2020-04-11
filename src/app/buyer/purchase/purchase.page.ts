@@ -129,19 +129,19 @@ export class PurchasePage {
     }
     this.order.userId = utilsService.getUser().id;
     this.order.destination = utilsService.destination;
-    this.order.amount = Math.ceil(Number(this.order.groupon ? this.order.price.group : this.order.price.single) * 100 * this.order.quantity);
+    this.order.amount = Math.round(Number(this.order.groupon ? this.order.price.group : this.order.price.single) * 100 * this.order.quantity);
   }
 
   ionViewWillLeave() { }
 
   increment() {
     this.order.quantity += 1;
-    this.order.amount = Math.ceil(Number(this.order.groupon ? this.order.price.group : this.order.price.single) * 100 * this.order.quantity);
+    this.order.amount = Math.round(Number(this.order.groupon ? this.order.price.group : this.order.price.single) * 100 * this.order.quantity);
   }
 
   decrement() {
     this.order.quantity -= 1;
-    this.order.amount = Math.ceil(Number(this.order.groupon ? this.order.price.group : this.order.price.single) * 100 * this.order.quantity);
+    this.order.amount = Math.round(Number(this.order.groupon ? this.order.price.group : this.order.price.single) * 100 * this.order.quantity);
   }
 
   preparebuy() {
