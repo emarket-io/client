@@ -49,12 +49,10 @@ export class SessionPage {
   getUserById() {
     let user = new User();
     user.id = this.commodity.ownerId;
-    apiService.userClient.get(user, apiService.metaData, (err: any, response: User) => {
-      if (err) {
-        utilsService.alert(JSON.stringify(err));
-      } else {
-        this.users[this.commodity.ownerId] = response;
-      }
+    apiService.userClient.get(user, apiService.metaData).then(user => {
+      this.users[this.commodity.ownerId] = user;
+    }).catch(err => {
+      utilsService.alert(JSON.stringify(err));
     });
   }
 

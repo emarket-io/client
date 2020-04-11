@@ -123,12 +123,10 @@ export class DetailPage {
   getOwnerById() {
     let user = new User();
     user.id = this.commodity.ownerId;
-    apiService.userClient.get(user, apiService.metaData, (err: any, response: User) => {
-      if (err) {
-        utilsService.alert(JSON.stringify(err));
-      } else {
-        this.owner = response;
-      }
+    apiService.userClient.get(user, apiService.metaData).then((user) => {
+      this.owner = user;
+    }).catch(err => {
+      utilsService.alert(JSON.stringify(err));
     });
   }
 

@@ -28,20 +28,19 @@ export class SignupPage {
     }
 
     this.user.id = this.user.telephone;
-    apiService.userClient.get(this.user, apiService.metaData, (err: any, response: User) => {
-      if (response) {
+    apiService.userClient.get(this.user, apiService.metaData).then(user => {
+      if (user) {
         utilsService.alert('用户已存在');
       } else {
-        apiService.userClient.add(this.user, apiService.metaData, (err: grpcWeb.Error, response: User) => {
-          if (err) {
-            utilsService.alert(err.message);
-          } else {
-            this.location.back();
-          }
-          console.log(response);
-        })
+        apiService.userClient.add(this.user, apiService.metaData).then(user => {
+          this.location.back();
+        }).catch(err => {
+          utilsService.alert(err.message);
+        });
       }
-    });
+    }).catch(err => {
+      utilsService.alert(err.message);
+    })
   }
 
   login() {

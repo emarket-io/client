@@ -14,12 +14,10 @@ export class ShopPage {
   constructor(private location: Location) { }
 
   ionViewWillEnter() {
-    apiService.userClient.get(utilsService.getUser(), apiService.metaData, (err: any, response: User) => {
-      if (err) {
-        utilsService.alert(JSON.stringify(err));
-      } else {
-        this.shop = response.shopsList[0] ? response.shopsList[0] : this.shop;
-      }
+    apiService.userClient.get(utilsService.getUser(), apiService.metaData).then(user => {
+      this.shop = user.shopsList[0] ? user.shopsList[0] : this.shop;
+    }).catch(err => {
+      utilsService.alert(JSON.stringify(err));
     });
   }
 
@@ -29,12 +27,10 @@ export class ShopPage {
     }
     let user = utilsService.getUser();
     user.shopsList[0] = this.shop;
-    apiService.userClient.update(user, apiService.metaData, (err: any, response: User) => {
-      if (err) {
-        utilsService.alert(JSON.stringify(err));
-      } else {
-        this.location.back();
-      }
+    apiService.userClient.update(user, apiService.metaData).then(user => {
+      this.location.back();
+    }).catch(err => {
+      utilsService.alert(JSON.stringify(err));
     });
   }
 }

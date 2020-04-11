@@ -45,16 +45,14 @@ export class SettingPage {
   }
 
   save() {
-    apiService.userClient.update(this.user, apiService.metaData, (err, response) => {
-      if (err) {
-        utilsService.alert(JSON.stringify(err));
-      } else {
-        //this.user = response;
-        utilsService.setUser(response);
-        utilsService.events('user:login').emit(response.name);
-        //this.events.publish('user:login', response.name);
-        this.location.back();
-      }
+    apiService.userClient.update(this.user, apiService.metaData).then(user => {
+      //this.user = response;
+      utilsService.setUser(user);
+      utilsService.events('user:login').emit(user.name);
+      //this.events.publish('user:login', response.name);
+      this.location.back();
+    }).catch(err => {
+      utilsService.alert(JSON.stringify(err));
     });
   }
 

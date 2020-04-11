@@ -47,13 +47,11 @@ export class OrderPage {
     let user = new User();
     user.id = userId;
     if (!this.users[userId]) {
-      apiService.userClient.get(user, apiService.metaData, (err, response) => {
-        if (err) {
-          console.log(err);
-          this.users.delete(userId);
-        } else {
-          this.users[userId] = response;
-        }
+      apiService.userClient.get(user, apiService.metaData).then((user) => {
+        this.users[userId] = user;
+      }).catch((err) => {
+        console.log(err);
+        this.users.delete(userId);
       });
       // avoid duplicated request
       this.users[userId] = user;

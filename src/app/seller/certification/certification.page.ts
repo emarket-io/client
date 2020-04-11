@@ -38,17 +38,15 @@ export class CertificationPage {
   }
 
   ionViewWillEnter() {
-    apiService.userClient.get(this.user, apiService.metaData, (err: any, response: User) => {
-      if (err) {
-        utilsService.alert(JSON.stringify(err));
-      } else {
-        this.user = response;
-        if (!this.user.cert) {
-          this.user.cert = new Certification();
-          this.couldSubmit = true;
-        }
+    apiService.userClient.get(this.user, apiService.metaData).then(user => {
+      this.user = user;
+      if (!this.user.cert) {
+        this.user.cert = new Certification();
+        this.couldSubmit = true;
       }
-    })
+    }).catch(err => {
+      utilsService.alert(JSON.stringify(err));
+    });
   }
 
   addImage(name: string) {
@@ -99,13 +97,10 @@ export class CertificationPage {
     }).subscribe(
       data => {
         console.log(data);
-        apiService.userClient.certificate(this.user, apiService.metaData, (err: grpcWeb.Error, response: User) => {
-          if (err) {
-            utilsService.alert(JSON.stringify(err));
-          } else {
-            //this.location.back();
-            this.router.navigateByUrl('seller');
-          }
+        apiService.userClient.certificate(this.user, apiService.metaData).then(user => {
+          this.router.navigateByUrl('seller');
+        }).catch(err => {
+          utilsService.alert(JSON.stringify(err));
         })
       }, error => {
         utilsService.alert(JSON.stringify(error));

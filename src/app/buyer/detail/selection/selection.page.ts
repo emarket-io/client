@@ -72,12 +72,10 @@ export class SelectionPage {
   getUserById(userId: string) {
     let user = new User();
     user.id = userId;
-    apiService.userClient.get(user, apiService.metaData, (err: any, response: User) => {
-      if (err) {
-        utilsService.alert(JSON.stringify(err));
-      } else {
-        this.users[userId] = response;
-      }
+    apiService.userClient.get(user, apiService.metaData).then((user) => {
+      this.users[userId] = user;
+    }).catch((err) => {
+      utilsService.alert(JSON.stringify(err));
     });
   }
 

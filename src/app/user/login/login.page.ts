@@ -21,18 +21,15 @@ export class LoginPage {
     if (!this.user.telephone) {
       return utilsService.alert('请输入手机号码');
     }
-    apiService.userClient.login(this.user, apiService.metaData, (err: grpcWeb.Error, response: User) => {
-      if (err) {
-        console.log(err.code, err.message);
-        utilsService.alert('手机号或密码不正确.');
-      } else {
-        utilsService.setUser(response);
-        utilsService.events('user:login').emit(response.name);
-        //this.router.navigateByUrl('/tabs/my');
-        this.location.back();
-      }
-      //console.log(response);
-    })
+    apiService.userClient.login(this.user, apiService.metaData).then(user => {
+      utilsService.setUser(user);
+      utilsService.events('user:login').emit(user.name);
+      //this.router.navigateByUrl('/tabs/my');
+      this.location.back();
+    }).catch(err => {
+      console.log(err.code, err.message);
+      utilsService.alert('手机号或密码不正确.');
+    });
   }
 
   logout() {

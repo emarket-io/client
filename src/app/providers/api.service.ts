@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { MessagesClient } from '../../sdk/message_grpc_web_pb';
 import { OrdersClient, AccountsClient } from '../../sdk/order_grpc_web_pb';
-import { UsersClient, AddressesClient, MemosPromiseClient } from '../../sdk/user_grpc_web_pb';
 import { CommoditiesClient, CouponsClient, CommentsClient } from '../../sdk/commodity_grpc_web_pb';
+import { UsersPromiseClient, AddressesClient, MemosPromiseClient } from '../../sdk/user_grpc_web_pb';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class ApiService {
   metaData = { 'authorization-token': 'admin' };
 
   commodityClient = new CommoditiesClient(environment.apiUrl, null, null);
-  userClient = new UsersClient(environment.apiUrl, null, null);
+  userClient = new UsersPromiseClient(environment.apiUrl, null, null);
   couponClient = new CouponsClient(environment.apiUrl, null, null);
   orderClient = new OrdersClient(environment.apiUrl, null, null);
   addressClient = new AddressesClient(environment.apiUrl, null, null);
