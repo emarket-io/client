@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { MessagesClient } from '../../sdk/message_grpc_web_pb';
-import { OrdersClient, AccountsClient } from '../../sdk/order_grpc_web_pb';
-import { CommoditiesClient, CouponsClient, CommentsClient } from '../../sdk/commodity_grpc_web_pb';
-import { UsersPromiseClient, AddressesClient, MemosPromiseClient } from '../../sdk/user_grpc_web_pb';
+import { MessagesPromiseClient } from '../../sdk/message_grpc_web_pb';
+import { OrdersPromiseClient, AccountsPromiseClient } from '../../sdk/order_grpc_web_pb';
+import { UsersPromiseClient, AddressesPromiseClient, MemosPromiseClient } from '../../sdk/user_grpc_web_pb';
+import { CommoditiesPromiseClient, CouponsPromiseClient, CommentsPromiseClient } from '../../sdk/commodity_grpc_web_pb';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +11,14 @@ import { UsersPromiseClient, AddressesClient, MemosPromiseClient } from '../../s
 export class ApiService {
   metaData = { 'authorization-token': 'admin' };
 
-  commodityClient = new CommoditiesClient(environment.apiUrl, null, null);
+  commodityClient = new CommoditiesPromiseClient(environment.apiUrl, null, null);
   userClient = new UsersPromiseClient(environment.apiUrl, null, null);
-  couponClient = new CouponsClient(environment.apiUrl, null, null);
-  orderClient = new OrdersClient(environment.apiUrl, null, null);
-  addressClient = new AddressesClient(environment.apiUrl, null, null);
-  messageClient = new MessagesClient(environment.apiUrl, null, null);
-  accountClient = new AccountsClient(environment.apiUrl, null, null);
-  commentClient = new CommentsClient(environment.apiUrl, null, null);
+  couponClient = new CouponsPromiseClient(environment.apiUrl, null, null);
+  orderClient = new OrdersPromiseClient(environment.apiUrl, null, null);
+  addressClient = new AddressesPromiseClient(environment.apiUrl, null, null);
+  messageClient = new MessagesPromiseClient(environment.apiUrl, null, null);
+  accountClient = new AccountsPromiseClient(environment.apiUrl, null, null);
+  commentClient = new CommentsPromiseClient(environment.apiUrl, null, null);
   memoClient = new MemosPromiseClient(environment.apiUrl, null, null);
 
   constructor() { }

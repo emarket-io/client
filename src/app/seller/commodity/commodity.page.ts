@@ -35,24 +35,20 @@ export class CommodityPage {
   offline(commodity: Commodity) {
     utilsService.confirm('确认下线此商品？', () => {
       commodity.status = "已下线";
-      apiService.commodityClient.update(commodity, apiService.metaData, (err: any, response: any) => {
-        if (err) {
-          utilsService.alert(JSON.stringify(err));
-        } else {
-          this.ionViewWillEnter();
-        }
-      });
+      apiService.commodityClient.update(commodity, apiService.metaData).then(response => {
+        this.ionViewWillEnter();
+      }).catch(err => {
+        utilsService.alert(JSON.stringify(err));
+      })
     });
   }
 
   delete(commodity: Commodity) {
     utilsService.confirm('确认删除此商品？建议先做下线处理', () => {
-      apiService.commodityClient.delete(commodity, apiService.metaData, (err: any, response: any) => {
-        if (err) {
-          utilsService.alert(JSON.stringify(err));
-        } else {
-          this.ionViewWillEnter();
-        }
+      apiService.commodityClient.delete(commodity, apiService.metaData).then(response => {
+        this.ionViewWillEnter();
+      }).catch(err => {
+        utilsService.alert(JSON.stringify(err));
       });
     });
   }

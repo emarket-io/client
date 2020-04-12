@@ -61,15 +61,13 @@ export class SessionPage {
       return utilsService.alert('消息内容为空');
     }
     this.message.to = this.commodity.ownerId;
-    this.message.from = utilsService.storage.get('user', User).id;
-    apiService.messageClient.add(this.message, apiService.metaData, (err: any, response: Message) => {
-      if (err) {
-        utilsService.alert(JSON.stringify(err));
-      } else {
-        this.message.content = '';
-        this.ionViewWillEnter();
-      }
-    });
+    this.message.from = utilsService.getUser().id;
+    apiService.messageClient.add(this.message, apiService.metaData).then(response => {
+      this.message.content = '';
+      this.ionViewWillEnter();
+    }).catch(err => {
+      utilsService.alert(JSON.stringify(err));
+    })
   }
 
   back() {

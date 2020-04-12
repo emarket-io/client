@@ -44,17 +44,15 @@ export class PurchasePage {
             let pm = new PayMap();
             pm.url = 'https://api.mch.weixin.qq.com/pay/orderquery';
             pm.kvMap.set('out_trade_no', this.order.payInfo.payResult);
-            apiService.accountClient.wechatPay(pm, apiService.metaData, (err, response) => {
-              if (err) {
-                utilsService.alert(JSON.stringify(err));
+            apiService.accountClient.wechatPay(pm, apiService.metaData).then(response => {
+              if (response.kvMap.get('trade_state') == 'SUCCESS') {
+                this.commitOrder();
               } else {
-                if (response.kvMap.get('trade_state') == 'SUCCESS') {
-                  this.commitOrder();
-                } else {
-                  utilsService.toast('订单未支付');
-                  this.router.navigateByUrl('/tabs/home');
-                }
+                utilsService.toast('订单未支付');
+                this.router.navigateByUrl('/tabs/home');
               }
+            }).catch(err => {
+              utilsService.alert(JSON.stringify(err));
             });
           }
         }, {
@@ -75,29 +73,30 @@ export class PurchasePage {
       };
       sr.kvMap.set('method', 'alipay.trade.query')
       sr.kvMap.set('biz_content', JSON.stringify(queryBizContent));
-      apiService.accountClient.alipay(sr, apiService.metaData,
-        (err, response) => {
-          let queryUrl = 'https://openapi.alipay.com/gateway.do?';
-          let i = 0;
-          response.kvMap.forEach((value, key, map) => {
-            if (i == 0) {
-              queryUrl = queryUrl + key + "=" + value;
-            } else {
-              queryUrl = queryUrl + '&' + key + "=" + encodeURIComponent(value);
-            }
-            i = i + 1;
-          });
-          console.log(queryUrl);
-          this.httpClient.get(queryUrl).subscribe(data => {
-            //console.log(data, data['alipay_trade_query_response']['code'], data['alipay_trade_query_response']['msg']);
-            if (data['alipay_trade_query_response']['code'] == '10000' && data['alipay_trade_query_response']['msg'] == 'Success') {
-              this.commitOrder();
-            } else {
-              utilsService.toast('订单未支付');
-              this.router.navigateByUrl('/tabs/home');
-            }
-          });
-        })
+      apiService.accountClient.alipay(sr, apiService.metaData).then(response => {
+        let queryUrl = 'https://openapi.alipay.com/gateway.do?';
+        let i = 0;
+        response.kvMap.forEach((value, key, map) => {
+          if (i == 0) {
+            queryUrl = queryUrl + key + "=" + value;
+          } else {
+            queryUrl = queryUrl + '&' + key + "=" + encodeURIComponent(value);
+          }
+          i = i + 1;
+        });
+        console.log(queryUrl);
+        this.httpClient.get(queryUrl).subscribe(data => {
+          //console.log(data, data['alipay_trade_query_response']['code'], data['alipay_trade_query_response']['msg']);
+          if (data['alipay_trade_query_response']['code'] == '10000' && data['alipay_trade_query_response']['msg'] == 'Success') {
+            this.commitOrder();
+          } else {
+            utilsService.toast('订单未支付');
+            this.router.navigateByUrl('/tabs/home');
+          }
+        });
+      }).catch(err => {
+        utilsService.alert(JSON.stringify(err));
+      });
     }
   }
 
@@ -164,27 +163,24 @@ export class PurchasePage {
       sr.kvMap.set('biz_content', JSON.stringify(bizContent));
       sr.kvMap.set('method', 'alipay.trade.wap.pay');
       sr.kvMap.set('return_url', 'https://iyou.city/purchase');
-      apiService.accountClient.alipay(sr, apiService.metaData,
-        (err, response) => {
-          if (err) {
-            utilsService.alert(err.message)
-          } {
-            let url = 'https://openapi.alipay.com/gateway.do?';
-            let i = 0;
-            response.kvMap.forEach((value, key, map) => {
-              if (i == 0) {
-                url = url + key + "=" + value;
-              } else {
-                url = url + '&' + key + "=" + encodeURIComponent(value);
-              }
-              i = i + 1;
-            });
-            this.order.payInfo.payResult = bizContent.out_trade_no;
-            utilsService.storage.set('order', this.order);
-            console.log(url);
-            location.assign(url);
+      apiService.accountClient.alipay(sr, apiService.metaData).then(response => {
+        let url = 'https://openapi.alipay.com/gateway.do?';
+        let i = 0;
+        response.kvMap.forEach((value, key, map) => {
+          if (i == 0) {
+            url = url + key + "=" + value;
+          } else {
+            url = url + '&' + key + "=" + encodeURIComponent(value);
           }
+          i = i + 1;
         });
+        this.order.payInfo.payResult = bizContent.out_trade_no;
+        utilsService.storage.set('order', this.order);
+        console.log(url);
+        location.assign(url);
+      }).catch(err => {
+        utilsService.alert(err.message)
+      })
     } else if (this.order.payInfo.type == 'wechat') {
       let pm = new PayMap();
       pm.url = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
@@ -194,20 +190,18 @@ export class PurchasePage {
       pm.kvMap.set('total_fee', this.order.amount + '');
       pm.kvMap.set('out_trade_no', 'daji-' + new Date().getTime());
 
-      apiService.accountClient.wechatPay(pm, apiService.metaData, (err, response) => {
-        if (err) {
-          utilsService.alert(JSON.stringify(err));
-        } else {
-          // redirect_url is unstable
-          let url = response.kvMap.get('mweb_url'); //+ '&redirect_url=' + encodeURIComponent('https://iyou.city/purchase');
-          console.log(url);
-          // for query
-          this.order.payInfo.payResult = pm.kvMap.get('out_trade_no');
-          utilsService.storage.set('order', this.order);
-          location.assign(url);
-          //this.router.navigateByUrl('/verify');
-        }
-      });
+      apiService.accountClient.wechatPay(pm, apiService.metaData).then(response => {
+        // redirect_url is unstable
+        let url = response.kvMap.get('mweb_url'); //+ '&redirect_url=' + encodeURIComponent('https://iyou.city/purchase');
+        console.log(url);
+        // for query
+        this.order.payInfo.payResult = pm.kvMap.get('out_trade_no');
+        utilsService.storage.set('order', this.order);
+        location.assign(url);
+        //this.router.navigateByUrl('/verify');
+      }).catch(err => {
+        utilsService.alert(JSON.stringify(err));
+      })
     }
   }
 
@@ -218,28 +212,24 @@ export class PurchasePage {
       this.order.status = '待发货';
     }
 
-    apiService.orderClient.add(this.order, apiService.metaData, (err, response: Order) => {
-      if (err) {
-        utilsService.alert(JSON.stringify(err));
-      } else {
-        console.log(response);
-        // update partner order status
-        if (this.order.groupon && this.order.groupon.orderIdsList.length == 1) {
-          var partnerOrder = new Order();
-          partnerOrder.id = this.order.groupon.orderIdsList[0]
-          var groupon = new Groupon()
-          groupon.orderIdsList.push(response.id);
-          partnerOrder.groupon = groupon;
-          partnerOrder.status = '待发货';
-          apiService.orderClient.update(partnerOrder, apiService.metaData, (err: any, response: Order) => {
-            if (err) {
-              utilsService.alert(JSON.stringify(err));
-            }
-          });
-        }
-        this.router.navigateByUrl('/tabs/order');
+    apiService.orderClient.add(this.order, apiService.metaData).then(response => {
+      console.log(response);
+      // update partner order status
+      if (this.order.groupon && this.order.groupon.orderIdsList.length == 1) {
+        var partnerOrder = new Order();
+        partnerOrder.id = this.order.groupon.orderIdsList[0]
+        var groupon = new Groupon()
+        groupon.orderIdsList.push(response.id);
+        partnerOrder.groupon = groupon;
+        partnerOrder.status = '待发货';
+        apiService.orderClient.update(partnerOrder, apiService.metaData).then().catch(err => {
+          utilsService.alert(JSON.stringify(err));
+        })
       }
-    });
+      this.router.navigateByUrl('/tabs/order');
+    }).catch(err => {
+      utilsService.alert(JSON.stringify(err));
+    })
   }
 
   onChangeHandler($event) {

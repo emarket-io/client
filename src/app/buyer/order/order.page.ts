@@ -85,13 +85,11 @@ export class OrderPage {
             } else {
               order.status = '待退款';
               order.comment = alertData.refund;
-              apiService.orderClient.update(order, apiService.metaData, (err: any, response: Order) => {
-                if (err) {
-                  utilsService.alert(JSON.stringify(err));
-                } else {
-                  console.log(response);
-                  this.ionViewWillEnter();
-                }
+              apiService.orderClient.update(order, apiService.metaData).then(order => {
+                console.log(order);
+                this.ionViewWillEnter();
+              }).catch(err => {
+                utilsService.alert(JSON.stringify(err));
               });
             }
           }
@@ -103,12 +101,10 @@ export class OrderPage {
   }
 
   buyAgain(commodity: Commodity) {
-    apiService.commodityClient.get(commodity, apiService.metaData, (err: any, response: Commodity) => {
-      if (err) {
-        utilsService.alert(JSON.stringify(err));
-      } else {
-        this.router.navigateByUrl('/detail', { state: response });
-      }
+    apiService.commodityClient.get(commodity, apiService.metaData).then(commodity => {
+      this.router.navigateByUrl('/detail', { state: commodity });
+    }).catch(err => {
+      utilsService.alert(JSON.stringify(err));
     });
   }
 
@@ -116,25 +112,21 @@ export class OrderPage {
     if (order.status == '待收货') {
       utilsService.confirm('确认收货后，卖家将收到付款.', () => {
         order.status = '待评价';
-        apiService.orderClient.update(order, apiService.metaData, (err: any, response: Order) => {
-          if (err) {
-            utilsService.alert(JSON.stringify(err));
-          } else {
-            this.ionViewWillEnter();
-          }
-        })
+        apiService.orderClient.update(order, apiService.metaData).then(order => {
+          this.ionViewWillEnter();
+        }).catch(err => {
+          utilsService.alert(JSON.stringify(err));
+        });
       });
     }
   }
 
   delete(order: Order) {
     utilsService.confirm('确认删除此订单？', () => {
-      apiService.orderClient.delete(order, apiService.metaData, (err: any, response: any) => {
-        if (err) {
-          utilsService.alert(JSON.stringify(err));
-        } else {
-          this.ionViewWillEnter();
-        }
+      apiService.orderClient.delete(order, apiService.metaData).then(() => {
+        this.ionViewWillEnter();
+      }).catch(err => {
+        utilsService.alert(JSON.stringify(err));
       })
     });
   }

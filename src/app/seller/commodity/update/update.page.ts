@@ -44,12 +44,10 @@ export class UpdatePage {
       return utilsService.alert('标题含有不合规内容，请检查');
     }
     this.commodity.status = '已上线';
-    apiService.commodityClient.update(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
-      if (err) {
-        utilsService.alert(JSON.stringify(err));
-      } else {
-        this.router.navigateByUrl('/commodity', { skipLocationChange: true })
-      }
-    });
+    apiService.commodityClient.update(this.commodity, apiService.metaData).then(response => {
+      this.router.navigateByUrl('/commodity', { skipLocationChange: true })
+    }).catch(err => {
+      utilsService.alert(JSON.stringify(err));
+    })
   }
 }

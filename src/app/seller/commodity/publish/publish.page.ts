@@ -181,15 +181,13 @@ export class PublishPage {
         console.log(data);
         this.commodity.ownerId = utilsService.getUser().id;
         this.commodity.status = '已上线';
-        apiService.commodityClient.add(this.commodity, apiService.metaData, (err: any, response: Commodity) => {
-          if (err) {
-            utilsService.alert(JSON.stringify(err));
-          } else {
-            console.log(response);
-            // this.location.back();
-            this.router.navigateByUrl('/seller');
-          }
-        });
+        apiService.commodityClient.add(this.commodity, apiService.metaData).then(response => {
+          console.log(response);
+          // this.location.back();
+          this.router.navigateByUrl('/seller');
+        }).catch(err => {
+          utilsService.alert(JSON.stringify(err));
+        })
       }, error => {
         utilsService.alert(JSON.stringify(error));
       }

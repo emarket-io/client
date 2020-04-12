@@ -45,13 +45,11 @@ export class AddPage {
     tEnd.fromDate(new Date(this.end));
     this.coupon.end = tEnd;
 
-    apiService.couponClient.add(this.coupon, apiService.metaData, (err: any, response: Coupon) => {
-      if (err) {
-        utilsService.alert(JSON.stringify(err));
-      } else {
-        console.log(response);
-        this.router.navigateByUrl('/coupon');
-      }
+    apiService.couponClient.add(this.coupon, apiService.metaData).then(response => {
+      console.log(response);
+      this.router.navigateByUrl('/coupon');
+    }).catch(err => {
+      utilsService.alert(JSON.stringify(err));
     })
   }
 }

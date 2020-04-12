@@ -77,11 +77,9 @@ export class OrderPage {
             }
             order.status = '待收货';
             order.express.number = alertData.name1;
-            apiService.orderClient.update(order, apiService.metaData, (err: any, response: Order) => {
-              if (err) {
-                utilsService.alert(JSON.stringify(err));
-              }
-            });
+            apiService.orderClient.update(order, apiService.metaData).catch(err => {
+              utilsService.alert(JSON.stringify(err));
+            })
           }
         }
       ]
@@ -97,14 +95,12 @@ export class OrderPage {
 
     utilsService.confirm('确定要退款给买家？', () => {
       order.status = '已退款';
-      apiService.orderClient.update(order, apiService.metaData, (err, response) => {
-        if (err) {
-          utilsService.alert(JSON.stringify(err));
-        } else {
-          console.log(response);
-          this.ionViewWillEnter();
-        }
-      });
+      apiService.orderClient.update(order, apiService.metaData).then(response => {
+        console.log(response);
+        this.ionViewWillEnter();
+      }).catch(err => {
+        utilsService.alert(JSON.stringify(err));
+      })
     }, () => { }, '买家理由：' + order.comment);
   }
 }
