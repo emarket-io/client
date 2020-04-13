@@ -1,11 +1,10 @@
-import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Location } from "@angular/common";
 import { HttpClient } from '@angular/common/http';
-import { User, Certification } from '../../../sdk/user_pb';
+import { Certification } from '../../../sdk/user_pb';
 import { environment } from '../../../environments/environment';
-import { apiService, utilsService } from '../../providers/utils.service'
+import { apiService, utilsService } from '../../providers/utils.service';
 
 @Component({
   selector: 'app-certification',

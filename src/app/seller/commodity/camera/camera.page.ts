@@ -35,10 +35,10 @@ export class CameraPage {
         video.srcObject = stream;
         video.play();
       }).catch(err => {
-        alert('a' + JSON.stringify(err));
+        //alert('a' + JSON.stringify(err));
       });
     }).catch(err => {
-      alert('b' + JSON.stringify(err));
+      //alert('b' + JSON.stringify(err));
     });
   }
 
