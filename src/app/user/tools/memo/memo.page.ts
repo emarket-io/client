@@ -16,7 +16,6 @@ export class MemoPage {
   location = utilsService.location.addressComponent.province + utilsService.location.addressComponent.city;
   timeOutEvent;
 
-
   constructor(
     private router: Router,
     private popoverController: PopoverController) { }

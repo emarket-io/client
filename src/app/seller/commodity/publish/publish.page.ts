@@ -50,11 +50,11 @@ export class PublishPage {
   }
 
   toast() {
-    utilsService.toast('请横屏拍摄');
-    setTimeout(() => {
-      let u = <HTMLInputElement>document.getElementById("cameraBtn");
-      u.click();
-    }, 1000);
+    // utilsService.toast('请横屏拍摄');
+    //setTimeout(() => {
+    let u = <HTMLInputElement>document.getElementById("cameraBtn");
+    u.click();
+    //}, 1000);
   }
 
   addMedia() {
