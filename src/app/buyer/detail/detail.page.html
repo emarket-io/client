@@ -37,7 +37,7 @@
         </div>
       </ion-col>
       <ion-col style="text-align: right;font-size: small">
-        月销量999件
+        <!-- 月销量999件 -->
       </ion-col>
     </ion-row>
     <ion-row>
@@ -53,12 +53,13 @@
   </ion-grid>
   <hr style="height: 5px;background-color:gainsboro;margin-top: -5px;" />
   <ion-list>
-    <ion-item style="margin-top:-20px;padding-top: 0px">
+    <ion-item>
       <ion-avatar slot="start">
         <ion-img [src]="owner?.icon?owner.icon:'assets/fruit/banana.png'"></ion-img>
       </ion-avatar>
       <ion-label>{{owner?.shopsList[0]?.name?owner?.shopsList[0]?.name:owner?.name}}</ion-label>
-      <ion-label style="font-size:x-small">1000粉丝</ion-label>
+      <!-- <ion-label slot="end" style="font-size:x-small">1000粉丝</ion-label> -->
+      <ion-note slot="end">1000粉丝</ion-note>
     </ion-item>
     <ion-item lines="none">
       商品详情
