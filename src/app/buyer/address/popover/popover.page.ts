@@ -10,8 +10,7 @@ import { apiService, utilsService } from '../../../providers/utils.service'
   styleUrls: ['./popover.page.scss'],
 })
 export class PopoverPage {
-  @Input() location: string;
-  address = new Address()
+  @Input() address: Address;
 
   constructor(
     private router: Router,
@@ -22,7 +21,7 @@ export class PopoverPage {
       this.popoverController.dismiss();
       return this.router.navigateByUrl('/login');
     }
-    this.address.location = this.location;
+    //this.address.location = this.location;
   }
 
   save() {
@@ -37,12 +36,21 @@ export class PopoverPage {
     }
 
     this.address.userId = utilsService.getUser().id;
-    apiService.addressClient.add(this.address, apiService.metaData).then(address => {
-      console.log(address);
-      this.popoverController.dismiss();
-    }).catch(err => {
-      utilsService.alert(JSON.stringify(err));
-    })
+    if (this.address.id != "") {
+      apiService.addressClient.update(this.address, apiService.metaData).then(address => {
+        console.log(address);
+        this.popoverController.dismiss();
+      }).catch(err => {
+        utilsService.alert(JSON.stringify(err));
+      })
+    } else {
+      apiService.addressClient.add(this.address, apiService.metaData).then(address => {
+        console.log(address);
+        this.popoverController.dismiss();
+      }).catch(err => {
+        utilsService.alert(JSON.stringify(err));
+      })
+    }
   }
 
   cancel() {

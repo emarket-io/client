@@ -11,12 +11,15 @@ import { PopoverPage } from './popover/popover.page';
   styleUrls: ['./address.page.scss'],
 })
 export class AddressPage {
+  timeOutEvent;
   addresses: Address[]
-  address = utilsService.location.formattedAddress;
+  address = new Address();
 
   constructor(
     private location: Location,
-    private popoverController: PopoverController) { }
+    private popoverController: PopoverController) {
+    this.address.location = utilsService.location.formattedAddress;
+  }
 
   ionViewWillEnter() {
     this.addresses = []
@@ -30,10 +33,10 @@ export class AddressPage {
     });
   }
 
-  async presentPopover(passCurrentLocation?: boolean) {
+  async presentPopover(address: Address = new Address()) {
     const popover = await this.popoverController.create({
       component: PopoverPage,
-      componentProps: { location: passCurrentLocation ? this.address : '' },
+      componentProps: { address: address },
       cssClass: 'bottom-sheet-popover',
     });
     //popover.style.cssText = '--width: 90%;--height:60%';
@@ -47,6 +50,16 @@ export class AddressPage {
   selectDestionation(address: Address) {
     utilsService.destination = address;
     this.closeAddress();
+  }
+
+  touchstart(item: Address) {
+    this.timeOutEvent = setTimeout(() => {
+      this.presentPopover(item);
+    }, 500);
+  }
+
+  touchend() {
+    clearTimeout(this.timeOutEvent);
   }
 
   closeAddress() {
