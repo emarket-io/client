@@ -30,7 +30,7 @@ export class ViewPage {
   gotoDetail(commodity: Commodity) {
     //utilsService.storage.set('detail', commodity);
     //this.router.navigateByUrl('/detail', { state: commodity });
-    this.router.navigate(['detail'], { queryParams: { id: commodity.id }, state: commodity });
+    this.router.navigate(['commodity/detail'], { queryParams: { id: commodity.id }, state: commodity });
   }
 
   refresh(event: any = null) {

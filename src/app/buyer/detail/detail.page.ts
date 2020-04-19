@@ -62,13 +62,13 @@ export class DetailPage {
       window.navigator['share']({
         title: '农村大集',
         text: '[农村大集]上农村大集，让农货便宜到家--' + this.commodity.title,
-        url: 'https://iyou.city/detail?id=' + this.commodity.id
+        url: 'https://iyou.city/commodity/detail?id=' + this.commodity.id
       }).then(() => {
         console.log('done');
       });
     } else {
       var aux = document.createElement("input");
-      aux.setAttribute("value", "[农村大集]上农村大集，让农货便宜到家--" + this.commodity.title + ";https://iyou.city/detail?id=" + this.commodity.id);
+      aux.setAttribute("value", "[农村大集]上农村大集，让农货便宜到家--" + this.commodity.title + ";https://iyou.city/commodity/detail?id=" + this.commodity.id);
       document.body.appendChild(aux);
       aux.select();
       document.execCommand("Copy");
