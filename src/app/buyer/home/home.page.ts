@@ -83,7 +83,8 @@ export class HomePage {
   }
 
   gotoDetail(commodity: Commodity) {
-    this.router.navigateByUrl('/detail', { state: commodity });
+    //this.router.navigateByUrl('/detail', { state: commodity });
+    this.router.navigate(['detail'], { queryParams: { id: commodity.id }, state: commodity });
   }
 
   getLocation() {

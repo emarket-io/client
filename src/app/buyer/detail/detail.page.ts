@@ -1,10 +1,10 @@
-import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Location } from "@angular/common";
 import { User } from '../../../sdk/user_pb';
 import { PopoverController } from '@ionic/angular';
 import { Commodity } from '../../../sdk/commodity_pb';
 import { Order, Groupon } from '../../../sdk/order_pb';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SelectionPage } from './selection/selection.page';
 import { environment } from '../../../environments/environment';
 import { apiService, utilsService } from '../../providers/utils.service';
@@ -28,20 +28,32 @@ export class DetailPage {
 
   constructor(
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private popoverController: PopoverController) {
-    //utilsService.storage.get('detail', Commodity);
     this.commodity = <Commodity>this.router.getCurrentNavigation().extras.state;
+    if (this.commodity) {
+      this.getOwnerById();
+    } else {
+      this.activatedRoute.queryParams.subscribe(params => {
+        if (params['id']) {
+          this.commodity = new Commodity();
+          this.commodity.id = params['id'];
+          apiService.commodityClient.get(this.commodity, apiService.metaData).then(commodity => {
+            this.commodity = commodity;
+            this.getOwnerById();
+          })
+        }
+      });
+    }
   }
 
-  ionViewWillEnter() {
-    this.getOwnerById();
-  }
+  ionViewWillEnter() { }
 
   star() {
     // android only | https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate
     if (navigator.vibrate) {
-      navigator.vibrate(20);
+      navigator.vibrate(50);
     }
   }
 
@@ -50,13 +62,13 @@ export class DetailPage {
       window.navigator['share']({
         title: '农村大集',
         text: '[农村大集]上农村大集，让农货便宜到家--' + this.commodity.title,
-        url: 'https://iyou.city'
+        url: 'https://iyou.city/detail?id=' + this.commodity.id
       }).then(() => {
         console.log('done');
       });
     } else {
       var aux = document.createElement("input");
-      aux.setAttribute("value", "[农村大集]上农村大集，让农货便宜到家--" + this.commodity.title);
+      aux.setAttribute("value", "[农村大集]上农村大集，让农货便宜到家--" + this.commodity.title + ";https://iyou.city/detail?id=" + this.commodity.id);
       document.body.appendChild(aux);
       aux.select();
       document.execCommand("Copy");
@@ -66,10 +78,6 @@ export class DetailPage {
         //window.open('weixin://');
       }, 1000);
     }
-
-
-
-
 
     /*
     this.wechat.share({
@@ -131,6 +139,10 @@ export class DetailPage {
   }
 
   back() {
-    this.location.back();
+    if (history.length <= 2) {
+      this.router.navigateByUrl('/');
+    } else {
+      this.location.back();
+    }
   }
 }
