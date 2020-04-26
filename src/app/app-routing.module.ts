@@ -34,6 +34,7 @@ const routes: Routes = [
   { path: 'service', loadChildren: './user/help/service/service.module#ServicePageModule' },
   { path: 'camera', loadChildren: './seller/commodity/camera/camera.module#CameraPageModule' },
   { path: 'memo', loadChildren: './user/tools/memo/memo.module#MemoPageModule' },
+  { path: 'scanner', loadChildren: './user/scanner/scanner.module#ScannerPageModule' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
