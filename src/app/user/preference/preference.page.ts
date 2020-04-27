@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { BrowserQRCodeSvgWriter } from '@zxing/library';
 import { utilsService } from '../../providers/utils.service';
 import { environment } from '../../../environments/environment';
 
@@ -20,6 +21,9 @@ export class PreferencePage {
     } else {
       this.router.navigateByUrl('/login');
     }
+
+    const codeWriter = new BrowserQRCodeSvgWriter();
+    codeWriter.writeToDom('#qr-code', "https://iyou.city/", 150, 150)
   }
 
   logout() {
