@@ -63,6 +63,11 @@ export class SelectionPage {
   }
 
   continue(partnerOrder?: Order) {
+    if (this.partnerOrders && this.partnerOrders.length >= 1 && !partnerOrder) {
+      return utilsService.confirm('当前有可参团订单，确定要单独开团？', () => {
+        this.popoverController.dismiss({ order: this.order });
+      }, () => { });
+    }
     if (this.order.groupon && partnerOrder) {
       this.order.groupon.orderIdsList.push(partnerOrder.id);
     }
