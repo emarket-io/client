@@ -19,11 +19,11 @@ export class PreferencePage {
     if (utilsService.getUser()) {
       this.isLogin = true;
     } else {
-      this.router.navigateByUrl('/login');
+      return this.router.navigateByUrl('/login');
     }
 
     const codeWriter = new BrowserQRCodeSvgWriter();
-    codeWriter.writeToDom('#qr-code', "https://iyou.city/", 150, 150)
+    codeWriter.writeToDom('#qr-code', "https://iyou.city", 150, 150)
   }
 
   logout() {
