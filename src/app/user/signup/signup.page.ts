@@ -1,9 +1,8 @@
-import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
-import { Location } from "@angular/common";
 import { Component } from '@angular/core';
+import { Location } from "@angular/common";
 import { User } from '../../../sdk/user_pb';
-import { apiService, utilsService } from '../../providers/utils.service'
+import { apiService, utilsService } from '../../providers/utils.service';
 
 @Component({
   selector: 'app-signup',
@@ -29,18 +28,18 @@ export class SignupPage {
 
     this.user.id = this.user.telephone;
     apiService.userClient.get(this.user, apiService.metaData).then(user => {
-      if (user) {
-        utilsService.alert('用户已存在');
-      } else {
+      utilsService.alert('用户已存在');
+    }).catch(err => {
+      if (<string>err.message.includes("no rows in result")) {
         apiService.userClient.add(this.user, apiService.metaData).then(user => {
           this.location.back();
         }).catch(err => {
           utilsService.alert(err.message);
         });
+      } else {
+        utilsService.alert(err.message);
       }
-    }).catch(err => {
-      utilsService.alert(err.message);
-    })
+    });
   }
 
   login() {

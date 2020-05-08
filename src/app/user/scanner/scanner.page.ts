@@ -9,11 +9,50 @@ import { BrowserMultiFormatReader, NotFoundException } from '@zxing/library';
 })
 export class ScannerPage {
   codeReader = new BrowserMultiFormatReader();
+  selectedDeviceId: string;
+  deviceIds: string[] = [];
 
-  constructor() { }
+  constructor() {
+    this.codeReader.listVideoInputDevices().then((videoInputDevices) => {
+      videoInputDevices.forEach(item => {
+        this.deviceIds.push(item.deviceId);
+      })
+    });
+  }
 
   ionViewWillEnter() {
-    this.codeReader.decodeOnceFromVideoDevice(undefined, 'qr-video')
+    this.scan();
+  }
+
+  ionViewWillLeave() {
+    this.codeReader.reset();
+  }
+
+  toggleLight() {
+    // this.qrScanner.getStatus().then((status: QRScannerStatus) => {
+    //   if (status.lightEnabled) {
+    //     this.qrScanner.disableLight();
+    //   } else {
+    //     this.qrScanner.enableLight();
+    //   }
+    // });
+  }
+
+  toggleCamera() {
+    if (this.deviceIds.length > 1) {
+      if (this.selectedDeviceId == this.deviceIds[0]) {
+        this.selectedDeviceId = this.deviceIds[1];
+      } else {
+        this.selectedDeviceId = this.deviceIds[0];
+      }
+    }
+
+    this.scan();
+  }
+
+  scan() {
+    //this.codeReader.reset();
+    this.codeReader.decodeOnceFromVideoDevice(this.selectedDeviceId, 'qr-video')
       .then(result => {
         console.log(result.getText());
         utilsService.alert(result.getText());
@@ -30,11 +69,5 @@ export class ScannerPage {
     //     console.error(err);
     //   }
     // });
-
   }
-
-  ionViewWillLeave() {
-    this.codeReader.reset();
-  }
-
 }

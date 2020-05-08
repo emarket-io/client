@@ -53,7 +53,7 @@ export class DetailPage {
   star() {
     // android only | https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate
     if (navigator.vibrate) {
-      navigator.vibrate(50);
+      navigator.vibrate(100);
     }
   }
 
