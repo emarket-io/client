@@ -11,6 +11,7 @@ export class ScannerPage {
   codeReader = new BrowserMultiFormatReader();
   selectedDeviceId: string;
   deviceIds: string[] = [];
+  torch = false;
 
   constructor() {
     this.codeReader.listVideoInputDevices().then((videoInputDevices) => {
@@ -29,13 +30,36 @@ export class ScannerPage {
   }
 
   toggleLight() {
-    // this.qrScanner.getStatus().then((status: QRScannerStatus) => {
-    //   if (status.lightEnabled) {
-    //     this.qrScanner.disableLight();
-    //   } else {
-    //     this.qrScanner.enableLight();
-    //   }
-    // });
+    this.torch = !this.torch;
+    if (!this.torch) {
+      return location.href = 'https://iyou.city/scanner';
+    }
+    navigator.mediaDevices.getUserMedia({
+      video: {
+        facingMode: 'environment',
+      }
+    }).then((stream) => {
+      const video = document.querySelector('video');
+      video.srcObject = stream;
+      // get the active track of the stream
+      const track = stream.getVideoTracks()[0];
+
+      video.addEventListener('loadedmetadata', (e) => {
+        window.setTimeout(() => (
+          onCapabilitiesReady(track.getCapabilities())
+        ), 500);
+      });
+
+      function onCapabilitiesReady(capabilities) {
+        if (capabilities.torch) {
+          track.applyConstraints({
+            // @ts-ignore
+            advanced: [{ torch: true }]
+          }).catch(e => console.log(e));
+        }
+      }
+
+    }).catch(err => console.error('getUserMedia() failed: ', err));
   }
 
   toggleCamera() {
