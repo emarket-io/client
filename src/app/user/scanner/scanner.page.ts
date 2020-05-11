@@ -12,6 +12,7 @@ export class ScannerPage {
   selectedDeviceId: string;
   deviceIds: string[] = [];
   torch = false;
+  track;
 
   constructor() {
     this.codeReader.listVideoInputDevices().then((videoInputDevices) => {
@@ -19,6 +20,15 @@ export class ScannerPage {
         this.deviceIds.push(item.deviceId);
       })
     });
+
+    navigator.mediaDevices.getUserMedia({
+      video: {
+        facingMode: 'environment',
+      }
+    }).then((stream) => {
+      // get the active track of the stream
+      this.track = stream.getVideoTracks()[0];
+    }).catch(err => console.error('getUserMedia() failed: ', err));
   }
 
   ionViewWillEnter() {
@@ -31,35 +41,16 @@ export class ScannerPage {
 
   toggleLight() {
     this.torch = !this.torch;
-    if (!this.torch) {
+    if (this.torch) {
+      this.track.applyConstraints({
+        advanced: [{ torch: true }]
+      }).catch(e => utilsService.alert(JSON.stringify(e)));
+    } else {
+      // this.track.applyConstraints({
+      //   advanced: [{ torch: false }]
+      // }).catch(e => utilsService.alert(JSON.stringify(e)));
       return location.href = 'https://iyou.city/scanner';
     }
-    navigator.mediaDevices.getUserMedia({
-      video: {
-        facingMode: 'environment',
-      }
-    }).then((stream) => {
-      const video = document.querySelector('video');
-      video.srcObject = stream;
-      // get the active track of the stream
-      const track = stream.getVideoTracks()[0];
-
-      video.addEventListener('loadedmetadata', (e) => {
-        window.setTimeout(() => (
-          onCapabilitiesReady(track.getCapabilities())
-        ), 500);
-      });
-
-      function onCapabilitiesReady(capabilities) {
-        if (capabilities.torch) {
-          track.applyConstraints({
-            // @ts-ignore
-            advanced: [{ torch: true }]
-          }).catch(e => console.log(e));
-        }
-      }
-
-    }).catch(err => console.error('getUserMedia() failed: ', err));
   }
 
   toggleCamera() {
