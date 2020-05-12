@@ -27,7 +27,7 @@
         <ion-label>拍照</ion-label>
         <ion-icon name="camera"></ion-icon>+
       </ion-button>
-      <input id="cameraBtn" type="file" (change)="addMedia()" accept="image/*" style="display: none;" />
+      <input id="cameraBtn" type="file" (change)="addMedia()" accept="image/*,video/mp4" style="display: none;" />
     </ion-item>
     <ion-item (click)="presentModal(commodity)">
       <ion-label>类别</ion-label>

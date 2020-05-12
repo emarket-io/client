@@ -61,36 +61,50 @@ export class PublishPage {
     //this.router.navigateByUrl('camera', { state: { url: this.router.url } });
     //utilsService.toast('请横屏拍摄');
     let u = <HTMLInputElement>document.getElementById("cameraBtn");
-    let img = new Image();
+
     let reader = new FileReader();
-    reader.onload = () => {
-      img.src = reader.result.toString();
-      img.onload = () => {
-        let min = Math.min(img.width, img.height);
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        canvas.width = 500;
-        canvas.height = 500;
-        let x = img.width - img.height;
-        if (x > 0) {
-          context.drawImage(img, x / 2, 0, min, min, 0, 0, canvas.width, canvas.height);
-        } else {
-          context.drawImage(img, 0, -x / 2, min, min, 0, 0, canvas.width, canvas.height);
-        }
+    reader.onload = (evt) => {
+      // 是图片
+      if (true) {
+        let img = new Image();
+        img.src = reader.result.toString();
+        img.onload = () => {
+          let min = Math.min(img.width, img.height);
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('2d');
+          canvas.width = 500;
+          canvas.height = 500;
+          let x = img.width - img.height;
+          if (x > 0) {
+            context.drawImage(img, x / 2, 0, min, min, 0, 0, canvas.width, canvas.height);
+          } else {
+            context.drawImage(img, 0, -x / 2, min, min, 0, 0, canvas.width, canvas.height);
+          }
 
 
-        this.images.push(canvas.toDataURL('image/jpg', 60));
-        canvas.toBlob(data => {
-          let imageName = new Date().getTime() + '.jpg';
-          this.formData.append('uploadfile', data, imageName);
-          let medium = new (Medium);
-          medium.image = imageName;
-          this.commodity.mediaList.push(medium);
-        }, 'image/jpg', 60);
-      };
+          this.images.push(canvas.toDataURL('image/jpg', 60));
+          canvas.toBlob(data => {
+            let imageName = new Date().getTime() + '.jpg';
+            this.formData.append('uploadfile', data, imageName);
+            let medium = new (Medium);
+            medium.image = imageName;
+            this.commodity.mediaList.push(medium);
+          }, 'image/jpg', 60);
+        };
+      }
+
 
     };
-    reader.readAsDataURL(u.files[0]);
+    let file = u.files[0];
+    if (file.type.includes("image")) {
+      reader.readAsDataURL(file);
+    } else if (file.type.includes("video")) {
+      let videoName = new Date().getTime() + '.mp4';
+      this.formData.append('uploadfile', file, videoName);
+      let medium = new (Medium);
+      medium.video = videoName;
+      this.commodity.mediaList.push(medium);
+    }
   }
 
   remove(index) {
