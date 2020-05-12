@@ -16,7 +16,9 @@ import { apiService, utilsService } from '../../../providers/utils.service';
   styleUrls: ['./publish.page.scss'],
 })
 export class PublishPage {
-  images = [];
+  // images = [];
+  // videos = [];
+  mediumPreviews: Medium[] = [];
   formData = new FormData();
   commodity = new Commodity();
 
@@ -65,40 +67,46 @@ export class PublishPage {
     let reader = new FileReader();
     reader.onload = (evt) => {
       // 是图片
-      if (true) {
-        let img = new Image();
-        img.src = reader.result.toString();
-        img.onload = () => {
-          let min = Math.min(img.width, img.height);
-          const canvas = document.createElement('canvas');
-          const context = canvas.getContext('2d');
-          canvas.width = 500;
-          canvas.height = 500;
-          let x = img.width - img.height;
-          if (x > 0) {
-            context.drawImage(img, x / 2, 0, min, min, 0, 0, canvas.width, canvas.height);
-          } else {
-            context.drawImage(img, 0, -x / 2, min, min, 0, 0, canvas.width, canvas.height);
-          }
+      //if (true) {
+      let img = new Image();
+      img.src = reader.result.toString();
+      img.onload = () => {
+        let min = Math.min(img.width, img.height);
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = 500;
+        canvas.height = 500;
+        let x = img.width - img.height;
+        if (x > 0) {
+          context.drawImage(img, x / 2, 0, min, min, 0, 0, canvas.width, canvas.height);
+        } else {
+          context.drawImage(img, 0, -x / 2, min, min, 0, 0, canvas.width, canvas.height);
+        }
 
+        //this.images.push(canvas.toDataURL('image/jpg', 60));
+        let mediumPreview = new (Medium);
+        mediumPreview.image = canvas.toDataURL('image/jpg', 60)
+        this.mediumPreviews.push(mediumPreview);
 
-          this.images.push(canvas.toDataURL('image/jpg', 60));
-          canvas.toBlob(data => {
-            let imageName = new Date().getTime() + '.jpg';
-            this.formData.append('uploadfile', data, imageName);
-            let medium = new (Medium);
-            medium.image = imageName;
-            this.commodity.mediaList.push(medium);
-          }, 'image/jpg', 60);
-        };
-      }
-
-
+        canvas.toBlob(data => {
+          let imageName = new Date().getTime() + '.jpg';
+          this.formData.append('uploadfile', data, imageName);
+          let medium = new (Medium);
+          medium.image = imageName;
+          this.commodity.mediaList.push(medium);
+        }, 'image/jpg', 60);
+      };
+      //}
     };
     let file = u.files[0];
     if (file.type.includes("image")) {
       reader.readAsDataURL(file);
     } else if (file.type.includes("video")) {
+      //var videoUrl = URL.createObjectURL(file);
+      let mediumPreview = new (Medium);
+      mediumPreview.video = URL.createObjectURL(file);
+      this.mediumPreviews.push(mediumPreview);
+
       let videoName = new Date().getTime() + '.mp4';
       this.formData.append('uploadfile', file, videoName);
       let medium = new (Medium);
@@ -108,7 +116,7 @@ export class PublishPage {
   }
 
   remove(index) {
-    this.images.splice(index, 1);
+    this.mediumPreviews.splice(index, 1);
     this.commodity.mediaList.splice(index, 1);
     let data = this.formData.getAll('uploadfile');
     data.splice(index, 1);
