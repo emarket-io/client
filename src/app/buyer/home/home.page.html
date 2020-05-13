@@ -102,7 +102,10 @@
       <ion-slides [options]="slideOpts">
         <ion-slide *ngFor="let commodity of commodities" (click)="gotoDetail(commodity)">
           <ion-card style="margin:5px">
-            <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
+            <img *ngIf="commodity.mediaList[0]?.image"
+              src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
+            <video *ngIf="commodity.mediaList[0]?.video" style="max-height:100px;"
+              src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.video}}"></video>
             <ion-card-header style="text-align: left;padding:2px;">
               <ion-item-group>
                 <ion-label style="font-size: small;">
@@ -127,7 +130,10 @@
       <ion-card-subtitle>最新上架</ion-card-subtitle>
       <ion-item style="--padding-start:5px" *ngFor="let commodity of commodities" (click)="gotoDetail(commodity)">
         <ion-thumbnail style="width: 40%;min-width: 140px;--border-radius:5px;height: auto;margin-bottom: 0;">
-          <img src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
+          <img *ngIf="commodity.mediaList[0]?.image"
+            src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
+          <video *ngIf="commodity.mediaList[0]?.video" style="width: 40%;min-width: 140px;--border-radius:5px;margin-bottom: 0;"
+            src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.video}}"></video>
         </ion-thumbnail>
         <div style="width: 60%;padding-left: 10px;">
           <div class="title"> {{commodity.title}} </div>

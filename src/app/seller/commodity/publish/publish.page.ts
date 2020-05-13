@@ -6,6 +6,7 @@ import { ModalController } from '@ionic/angular';
 import { CategoryPage } from '../category/category.page';
 import { ExpressPage } from '../express/express.page';
 import { PricePage } from '../price/price.page';
+import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from '../../../../environments/environment';
 import { Commodity, Medium, Price } from '../../../../sdk/commodity_pb';
 import { apiService, utilsService } from '../../../providers/utils.service';
@@ -16,9 +17,7 @@ import { apiService, utilsService } from '../../../providers/utils.service';
   styleUrls: ['./publish.page.scss'],
 })
 export class PublishPage {
-  // images = [];
-  // videos = [];
-  mediumPreviews: Medium[] = [];
+  mediumPreviews = [];
   formData = new FormData();
   commodity = new Commodity();
 
@@ -26,6 +25,7 @@ export class PublishPage {
     private router: Router,
     private location: Location,
     private httpClient: HttpClient,
+    private sanitizer: DomSanitizer,
     private modalController: ModalController) {
     // utilsService.events(this.router.url + 'photo').subscribe((data) => {
     //   this.images.push(data);
@@ -66,8 +66,6 @@ export class PublishPage {
 
     let reader = new FileReader();
     reader.onload = (evt) => {
-      // 是图片
-      //if (true) {
       let img = new Image();
       img.src = reader.result.toString();
       img.onload = () => {
@@ -84,8 +82,8 @@ export class PublishPage {
         }
 
         //this.images.push(canvas.toDataURL('image/jpg', 60));
-        let mediumPreview = new (Medium);
-        mediumPreview.image = canvas.toDataURL('image/jpg', 60)
+        let mediumPreview = new Object;
+        mediumPreview["image"] = canvas.toDataURL('image/jpg', 60)
         this.mediumPreviews.push(mediumPreview);
 
         canvas.toBlob(data => {
@@ -96,15 +94,16 @@ export class PublishPage {
           this.commodity.mediaList.push(medium);
         }, 'image/jpg', 60);
       };
-      //}
     };
     let file = u.files[0];
     if (file.type.includes("image")) {
       reader.readAsDataURL(file);
     } else if (file.type.includes("video")) {
-      //var videoUrl = URL.createObjectURL(file);
-      let mediumPreview = new (Medium);
-      mediumPreview.video = URL.createObjectURL(file);
+      if (file.size > 10 * 1024 * 1024) {
+        return utilsService.alert("大小应在10M以内，请重新上传");
+      }
+      let mediumPreview = new Object;
+      mediumPreview["video"] = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(file));
       this.mediumPreviews.push(mediumPreview);
 
       let videoName = new Date().getTime() + '.mp4';
