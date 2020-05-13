@@ -132,7 +132,8 @@
         <ion-thumbnail style="width: 40%;min-width: 140px;--border-radius:5px;height: auto;margin-bottom: 0;">
           <img *ngIf="commodity.mediaList[0]?.image"
             src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.image}}" />
-          <video *ngIf="commodity.mediaList[0]?.video" style="width: 40%;min-width: 140px;--border-radius:5px;margin-bottom: 0;"
+          <video *ngIf="commodity.mediaList[0]?.video"
+            style="width: 40%;min-width: 140px;--border-radius:5px;margin-bottom: 0;"
             src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{commodity.mediaList[0]?.video}}"></video>
         </ion-thumbnail>
         <div style="width: 60%;padding-left: 10px;">

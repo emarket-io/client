@@ -99,8 +99,8 @@ export class PublishPage {
     if (file.type.includes("image")) {
       reader.readAsDataURL(file);
     } else if (file.type.includes("video")) {
-      if (file.size > 10 * 1024 * 1024) {
-        return utilsService.alert("大小应在10M以内，请重新上传");
+      if (file.size > 30 * 1024 * 1024) {
+        return utilsService.alert("文件大小超过30M，请重新上传");
       }
       let mediumPreview = new Object;
       mediumPreview["video"] = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(file));
