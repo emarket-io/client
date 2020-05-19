@@ -24,8 +24,10 @@
     <ion-slide *ngFor="let medium of commodity.mediaList">
       <img *ngIf="medium.image" style="width: 100%;max-height: auto; object-fit: cover;"
         src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{medium.image}}" />
-      <video autoplay muted *ngIf="medium.video" style="width: 100%;max-height: 300px; object-fit: cover;"
-        src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{medium.video}}"></video>
+      <div style="height:0;padding-bottom: 100%;position: relative;" *ngIf="medium.video">
+        <video autoplay muted *ngIf="medium.video" style="width: 100%;height: auto; object-fit: fill;"
+          src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{medium.video}}"></video>
+      </div>
     </ion-slide>
   </ion-slides>
   <ion-grid>
@@ -71,9 +73,11 @@
     </ion-item>
     <div style="display:inline-block;width: 50%;height:auto;padding: 0 1px;" *ngFor="let medium of commodity.mediaList">
       <img *ngIf="medium.image" src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{medium.image}}" />
-      <video *ngIf="medium.video" autoplay controls loop muted
-        style="display:inline-block;width: 50%;height:auto;padding: 0 1px;"
-        src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{medium.video}}"></video>
+      <div style="height:0;padding-bottom: 100%;position: relative;" *ngIf="medium.video">
+        <video *ngIf="medium.video" autoplay loop muted
+          style="height: 100%;width: 100%;position: absolute;object-fit: fill;"
+          src="{{host}}/static/{{commodity.ownerId}}/{{commodity.title}}/{{medium.video}}"></video>
+      </div>
     </div>
   </ion-list>
 </ion-content>
